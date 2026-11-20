@@ -1,0 +1,1061 @@
+[
+  {
+    "id": "tipo-fonte-padrao",
+    "categoria": "visual-tipografia",
+    "titulo": "Só fonte padrão de biblioteca ou do sistema, sem fonte própria",
+    "descricao": "Os títulos e o texto usam apenas uma das fontes mais comuns do mundo (Inter, Roboto, Arial, fonte do sistema) e o site não define nenhuma fonte própria. A tipografia parece não ter sido escolhida.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Lê a primeira família de font-family do body e do h1 computados e compara com a lista de fontes genéricas. Verifica se há @font-face próprio ou fonte de serviço fora da lista. Dispara se o corpo e/ou o título usam uma família da lista e não há fonte própria. Intensidade proporcional aos papéis (título, corpo) que usam fonte da lista.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "lista_generica": [
+          "inter",
+          "roboto",
+          "arial",
+          "helvetica",
+          "helvetica neue",
+          "system-ui",
+          "-apple-system",
+          "segoe ui",
+          "sans-serif",
+          "open sans",
+          "lato",
+          "poppins",
+          "geist"
+        ],
+        "lista_display_extra": [
+          "impact",
+          "arial black"
+        ],
+        "papeis": [
+          "body",
+          "h1"
+        ],
+        "credito_de_craft": "existe @font-face próprio ou família fora da lista em título",
+        "onde_ler": "estilos computados do DOM final e regras @font-face do CSS"
+      }
+    },
+    "peso": 9,
+    "severidade": "tell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Escolha uma fonte de título (e, se quiser, uma de texto) que combine com o assunto do site e carregue-a como fonte própria.",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque a fonte {{valor}} usada nos títulos por uma família que combine com o assunto do site, carregada por @font-face ou serviço de fontes e definida em uma variável CSS (--fonte-titulo). Mantenha uma fonte legível no corpo. Não mude tamanhos nem textos. Pronto quando a fonte do h1 não estiver na lista genérica e a variável for usada nos títulos.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:B1",
+      "unslop-ui:generic-font",
+      "hallmark:gate-1",
+      "impeccable:floor-proib-fonte-sistema"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Peso 9 e lista base do ai-design-tells (B1, que exige ausência de @font-face próprio); hallmark acrescenta Poppins e Helvetica Neue; unslop-ui acrescenta Geist e Inter/Roboto via next/font; impeccable proíbe Impact, Arial Black e fonte de plataforma como voz de display. Confiança média: lista calibrada por um repositório. O unslop (heydamir) lista Inter/Geist como aceitáveis em produto técnico: o modelo pode anular em dashboards e documentação."
+  },
+  {
+    "id": "tipo-escala-ausente-ou-caotica",
+    "categoria": "visual-tipografia",
+    "titulo": "Sem hierarquia de tamanhos (ou tamanhos demais)",
+    "descricao": "A página inteira usa um ou dois tamanhos de letra, então título e texto se parecem, ou usa tantos tamanhos que não há escala. A hierarquia fica confusa.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Conta os tamanhos de fonte distintos declarados no CSS e nas classes (não todos os computados). Dispara se há 2 ou menos tamanhos em página com 2 ou mais seções, ou mais de 18 tamanhos distintos.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "minimo_tamanhos_para_hierarquia": 3,
+        "maximo_tamanhos": 18,
+        "secoes_minimas": 2,
+        "contar": "valores distintos de font-size declarados (px, rem, classes text-*)"
+      }
+    },
+    "peso": 5,
+    "severidade": "tell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Defina uma escala de poucos tamanhos (título, subtítulo, corpo, legenda) e use só esses.",
+    "prompt_correcao": "No arquivo {{arquivo}}, defina uma escala de tamanhos de fonte com 4 a 6 degraus (por exemplo legenda, corpo, subtítulo, título, título grande) em variáveis CSS e troque os valores soltos como {{valor}} por eles. Não mude cores nem o conteúdo. Pronto quando a página usar entre 3 e 12 tamanhos distintos e os títulos forem claramente maiores que o corpo.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:B2",
+      "design-review:DR-TIP-04",
+      "impeccable:tipo-escala-deliberada"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Limiares (2 ou menos; mais de 18) do ai-design-tells B2, calibrado em 202 sites: a mediana humana é 10 tamanhos e o p90 é 15, por isso só os extremos contam. Os valores medidos pelo repositório não valem como norma universal: confiança média."
+  },
+  {
+    "id": "tipo-pesos-exagerados",
+    "categoria": "visual-tipografia",
+    "titulo": "Pesos de letra demais ou títulos em peso extremo",
+    "descricao": "A página usa mais de três pesos de fonte (fina, normal, média, negrito, extranegrito) ou coloca os títulos em peso 800/900. O resultado fica pesado e sem ritmo.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Conta os font-weight distintos em texto visível de uso corrente e verifica se títulos (h1 a h3) usam peso 800 ou 900. Dispara se há mais de 3 pesos distintos ou se títulos usam 800/900.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "maximo_pesos": 3,
+        "peso_extremo": [
+          800,
+          900
+        ],
+        "elementos_peso_extremo": [
+          "h1",
+          "h2",
+          "h3"
+        ]
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Fique com dois ou três pesos (normal, médio, semibold) e use o negrito pesado com moderação.",
+    "prompt_correcao": "No arquivo {{arquivo}}, reduza os pesos de fonte para no máximo 3 (por exemplo 400, 500 e 600) e troque os pesos {{valor}} nos títulos por 600 ou 700. Não altere tamanhos nem cores. Pronto quando houver no máximo 3 font-weight distintos no texto visível e nenhum título usar 800 ou 900.",
+    "fonte": [
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:F19",
+      "unslop-heydamir:peso-800-900",
+      "unslop-heydamir:muitos-tamanhos-pesos",
+      "impeccable:qui-pesos",
+      "impeccable:dis-tipo",
+      "design-review:DR-TIP-05"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Limiar de 3 pesos vem do hallmark (F19, Finish) e de \"2 a 3 pesos\" do impeccable (distill). O peso 800/900 em títulos é regra de gosto do heydamir, sem número de calibração: confiança baixa."
+  },
+  {
+    "id": "tipo-titulo-sem-tracking",
+    "categoria": "visual-tipografia",
+    "titulo": "Títulos grandes com espaçamento de letras de fábrica",
+    "descricao": "Os títulos grandes (36px ou mais) ficam com o espaçamento entre letras padrão. Em tamanhos grandes, um leve apertamento costuma deixar o título mais refinado.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Seleciona títulos (h1 a h3) com font-size computado de 36px ou mais e lê o letter-spacing computado. Dispara se existe título grande e nenhum título grande tem espaçamento negativo.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "tamanho_minimo_px": 36,
+        "letter_spacing": "nenhum < 0",
+        "elementos": [
+          "h1",
+          "h2",
+          "h3"
+        ],
+        "referencia_craft": "-0.02em perto de 40px e -0.03em perto de 56px"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Aperte levemente o espaçamento dos títulos grandes (valores negativos pequenos em em).",
+    "prompt_correcao": "No arquivo {{arquivo}}, aplique letter-spacing levemente negativo aos títulos grandes {{trecho}} (por exemplo -0.02em perto de 40px e -0.03em perto de 56px). Não altere tamanhos, textos nem o espaçamento do corpo. Pronto quando todo título de 36px ou mais tiver letter-spacing menor que 0 e nenhum passar de -0,04em.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:B3",
+      "unslop-heydamir:tok-tracking",
+      "impeccable:floor-tipo-medida"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Limiar de 36px (ou 2,25rem, text-4xl) e peso 3 do ai-design-tells (B3). Faixa de referência do heydamir. É \"crédito de craft\": se a fonte tem tracking negativo, reduz tells correlatos (SPEC 6.5)."
+  },
+  {
+    "id": "tipo-tracking-fora-de-faixa",
+    "categoria": "visual-tipografia",
+    "titulo": "Espaçamento entre letras apertado demais ou em texto pequeno",
+    "descricao": "Texto pequeno com letras apertadas, ou títulos apertados além do razoável, dificultam a leitura. O apertamento só funciona em títulos grandes e em dose pequena.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Lê o letter-spacing computado. Dispara se texto abaixo de 16px tem espaçamento negativo, ou se qualquer texto tem espaçamento menor que -0,04em.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "tamanho_texto_pequeno_px": 16,
+        "minimo_em": -0.04
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "fato",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Zere o espaçamento em textos menores que 16px e não passe de -0,04em nos títulos.",
+    "prompt_correcao": "No arquivo {{arquivo}}, defina letter-spacing: 0 nos textos menores que 16px ({{trecho}}) e limite os títulos a -0.04em no máximo. Não mude tamanhos nem pesos. Pronto quando nenhum texto abaixo de 16px tiver espaçamento negativo e nenhum valor ficar abaixo de -0,04em.",
+    "fonte": [
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:tracking-negativo-pequeno",
+      "unslop-heydamir:tok-tracking",
+      "impeccable:floor-tipo-medida"
+    ],
+    "citacoes": [
+      "numero"
+    ],
+    "notas": "Números: \"0 abaixo de 16px\" (tokens do heydamir) e mínimo de -0,04em (craft-floor do impeccable). Baseados em gosto de dois autores, sem calibração: confiança baixa."
+  },
+  {
+    "id": "tipo-microtexto",
+    "categoria": "visual-tipografia",
+    "titulo": "Textos minúsculos (abaixo de 12px)",
+    "descricao": "Há vários tamanhos de letra abaixo de 12px, em rótulos e legendas. Fica difícil de ler, principalmente no celular.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Conta os tamanhos de fonte distintos abaixo de 12px (px, rem x 16, text-[Npx]) entre o texto visível. Dispara com 3 ou mais tamanhos. Também reporta texto corrido abaixo de 12px e texto funcional (botões, rótulos) abaixo de 11px.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "limite_px": 12,
+        "minimo_tamanhos_distintos": 3,
+        "texto_corrido_minimo_px": 12,
+        "texto_funcional_minimo_px": 11,
+        "regex_classe": "text-\\[(\\d+(\\.\\d+)?)px\\]"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Suba os textos pequenos para pelo menos 12px (e 16px no corpo, sempre que o espaço permitir).",
+    "prompt_correcao": "No arquivo {{arquivo}}, aumente para pelo menos 12px os textos que hoje usam {{valor}} (por exemplo {{trecho}}), mantendo a hierarquia. Não altere cores nem o conteúdo. Pronto quando nenhum texto visível tiver menos de 12px e nenhum texto corrido tiver menos de 12px de altura.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:B4",
+      "hallmark:gate-75",
+      "impeccable:tipo-corpo-16",
+      "impeccable:hard-fonte-minima"
+    ],
+    "citacoes": [
+      "contagem",
+      "numero"
+    ],
+    "notas": "Limiar de 12px e de 3 tamanhos do ai-design-tells (B4); 12px (corrido) e 11px (funcional) do hallmark (75). O piso de corpo de 16px do impeccable não entra como regra própria: o heydamir recomenda corpo de 14 a 15px em produto, então fica como referência."
+  },
+  {
+    "id": "tipo-entrelinha-apertada",
+    "categoria": "visual-tipografia",
+    "titulo": "Entrelinha apertada (parágrafos ou títulos em caixa alta)",
+    "descricao": "As linhas de um parágrafo ficam coladas demais (menos de 1,3 vez o tamanho da letra), ou títulos em caixa alta têm entrelinha abaixo de 1,0. A leitura cansa e as letras maiúsculas chegam a colidir.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Para parágrafos com mais de 40 caracteres, divide o line-height computado pelo font-size e dispara se for menor que 1,3. Para títulos com text-transform uppercase que podem quebrar linha, dispara se o line-height for menor que 1,0 (menor que 1,02 se for linha única com nowrap).",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "prosa_minimo_razao": 1.3,
+        "caixa_alta_minimo_quebravel": 1,
+        "caixa_alta_minimo_linha_unica": 1.02,
+        "tamanho_minimo_paragrafo_caracteres": 40
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Aumente a entrelinha do texto para perto de 1,5 e dê 1,0 ou mais aos títulos em caixa alta.",
+    "prompt_correcao": "No arquivo {{arquivo}}, ajuste o line-height de {{trecho}}: parágrafos para algo entre 1.5 e 1.7 e títulos em caixa alta para pelo menos 1.0. Não altere tamanhos nem cores. Pronto quando nenhum parágrafo tiver line-height abaixo de 1.3 vezes o tamanho e nenhum título em caixa alta tiver abaixo de 1.0.",
+    "fonte": [
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:gate-75",
+      "hallmark:gate-55a",
+      "hallmark:gate-55b",
+      "design-review:DR-TIP-03"
+    ],
+    "citacoes": [
+      "numero"
+    ],
+    "notas": "Limiares do hallmark: 1,3 em prosa (gate 75); 1,0 e 1,02 em caixa alta (gate 55). O design-review sugere 1,5 a 1,7 no corpo e 1,1 a 1,3 em títulos, só como referência de correção. Confiança média: números de uma única ferramenta."
+  },
+  {
+    "id": "tipo-linha-longa-demais",
+    "categoria": "visual-tipografia",
+    "titulo": "Linhas de texto longas demais para ler com conforto",
+    "descricao": "Os parágrafos ocupam a largura toda e cada linha passa de 75 caracteres (acima de 88 é bem pior). O olho se perde ao voltar para a linha seguinte.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "No viewport de 1440, para cada parágrafo de corpo com 3 ou mais linhas renderizadas, mede quantos caracteres cabem por linha (Range.getClientRects). Dispara se a mediana por parágrafo passa de 75; marca como forte se há linhas de 88 caracteres ou mais.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "viewport": "1440x900",
+        "faixa_boa_caracteres": [
+          45,
+          75
+        ],
+        "limite_aviso": 75,
+        "limite_forte": 88,
+        "linhas_minimas_do_paragrafo": 3,
+        "referencia_wcag_aaa": 80
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Limite a largura do texto corrido a cerca de 65 caracteres (max-width em ch).",
+    "prompt_correcao": "No arquivo {{arquivo}}, limite a largura dos parágrafos {{trecho}} com max-width: 65ch (ou similar), centralizando ou alinhando o bloco como já está. Não mude tamanhos de fonte nem o conteúdo. Pronto quando a mediana de caracteres por linha dos parágrafos ficar entre 45 e 75 no viewport de 1440.",
+    "fonte": [
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "WCAG 2.2 (W3C), critério 1.4.8 Apresentação visual",
+        "url": "https://www.w3.org/TR/WCAG22/#visual-presentation",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:gate-25",
+      "design-review:DR-TIP-02",
+      "impeccable:tipo-medida",
+      "impeccable:floor-tipo-medida",
+      "wcag:1.4.8"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Faixa de 45 a 75 caracteres do hallmark e do impeccable (typeset); 50 a 75 do design-review; 65 a 75 no craft-floor do impeccable (inconsistência entre arquivos). WCAG 1.4.8 (nível AAA) cita no máximo 80. Selo opinião: nenhum critério A/AA obriga."
+  },
+  {
+    "id": "tipo-familias-demais",
+    "categoria": "visual-tipografia",
+    "titulo": "Mais de três famílias de fonte na mesma página",
+    "descricao": "O site carrega e usa mais de três fontes diferentes. A tipografia perde unidade, e cada fonte extra pesa na página.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Conta as primeiras famílias distintas de font-family declaradas no CSS e nas variáveis --font-*, ignorando famílias genéricas (serif, sans-serif, monospace) e fontes de ícones. Dispara com mais de 3.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "maximo_familias": 3,
+        "ignorar": [
+          "serif",
+          "sans-serif",
+          "monospace",
+          "system-ui",
+          "fontes de ícones"
+        ]
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Reduza para uma ou duas famílias e varie com tamanho e peso.",
+    "prompt_correcao": "No arquivo {{arquivo}}, reduza as famílias de fonte ({{valor}}) para no máximo duas (uma de título e uma de texto) e troque as demais por elas. Não mude tamanhos nem textos. Pronto quando a página declarar no máximo 3 famílias distintas e idealmente 2.",
+    "fonte": [
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:gate-37",
+      "impeccable:tipo-papeis-minimos",
+      "impeccable:dis-tipo"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Limite de 3 vem do hallmark (gate 37, \"três é o teto\"). O impeccable pede o menor número possível (uma família costuma bastar), sem número fixo."
+  },
+  {
+    "id": "tipo-texto-gradiente",
+    "categoria": "visual-tipografia",
+    "titulo": "Texto preenchido com degradê",
+    "descricao": "Títulos, números ou o logotipo têm letras preenchidas com gradiente de cor. É um efeito muito repetido em páginas prontas; a ênfase funciona melhor com peso ou tamanho.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Procura texto com background-clip: text (ou -webkit-background-clip: text) e cor de texto transparente sobre fundo em gradiente, e classes equivalentes (bg-clip-text com text-transparent), em títulos, números e logotipo.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "regex_css": "(-webkit-)?background-clip\\s*:\\s*text",
+        "regex_classes": "bg-clip-text.*text-transparent|text-transparent.*bg-clip-text",
+        "onde_olhar": [
+          "h1",
+          "h2",
+          "h3",
+          "números de destaque",
+          "logotipo"
+        ],
+        "excecao": "degradê de uma só matiz, com paradas em variáveis de cor e contraste aprovado"
+      }
+    },
+    "peso": 7,
+    "severidade": "tell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Use cor sólida no título e crie ênfase com peso ou tamanho.",
+    "prompt_correcao": "No arquivo {{arquivo}}, remova o preenchimento em degradê do texto {{trecho}} (background-clip: text) e use uma cor sólida da paleta; se precisar de ênfase, use peso ou tamanho. Não mude o texto nem o layout. Pronto quando nenhum elemento de texto usar background-clip: text com text-transparent.",
+    "fonte": [
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-ui:gradient-text",
+      "hallmark:gate-2b",
+      "hallmark:gate-2a",
+      "unslop-heydamir:texto-gradiente",
+      "unslop-heydamir:headline-gradiente",
+      "impeccable:floor-proib-gradient-text"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Quatro fontes concordam (unslop-ui: high; hallmark: Floor/Reflex; impeccable: detector imediato). Não há peso numérico nelas: o 7 é nosso, pela convergência e pela escala do ai-design-tells para o gradiente azul/roxo (A2 = 7). O hallmark aceita rampa de uma só matiz com paradas em tokens."
+  },
+  {
+    "id": "tipo-palavra-destacada-no-titulo",
+    "categoria": "visual-tipografia",
+    "titulo": "Uma palavra em itálico ou cor diferente em vários títulos",
+    "descricao": "Em vários títulos, exatamente uma palavra aparece em itálico, com cor, peso ou marca-texto diferentes do resto. Repetido em seção após seção, vira fórmula de página pronta.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "html",
+      "metodo": "Em h1 a h3, procura <em>, <i> ou <span> com estilo diferente (font-style, cor, peso ou fundo de marca-texto) cobrindo uma única palavra do título. Dispara se 2 ou mais títulos da página seguem o padrão. O modelo confere se é intencional.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "elementos": [
+          "em",
+          "i",
+          "span",
+          "mark"
+        ],
+        "palavras_destacadas_por_titulo": 1,
+        "minimo_titulos": 2,
+        "tratamentos": [
+          "font-style: italic",
+          "color",
+          "font-weight",
+          "background marca-texto",
+          "sublinhado"
+        ]
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Deixe o título em um só estilo e destaque uma palavra só no título principal, se necessário.",
+    "prompt_correcao": "No arquivo {{arquivo}}, uniformize os títulos que destacam uma única palavra ({{trecho}}): deixe o estilo corrido e mantenha o destaque somente no título principal da primeira tela. Não mude o texto nem o tamanho. Pronto quando no máximo 1 título da página tiver uma palavra com tratamento diferente.",
+    "fonte": [
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:gate-38i",
+      "hallmark:gate-38iii",
+      "hallmark:gate-38ii",
+      "unslop-heydamir:italico-enfase"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "O hallmark trata como Floor (palavra em itálico no título) e Reflex (palavra destacada; só uma, no hero). O limiar de 2 títulos é proposta nossa: limiar inicial, a calibrar no teste de acerto."
+  },
+  {
+    "id": "tipo-rotulo-caixa-alta-espacado",
+    "categoria": "visual-tipografia",
+    "titulo": "Rótulos em CAIXA ALTA espaçada (inclusive acima de títulos)",
+    "descricao": "Pequenos rótulos em maiúsculas com letras espaçadas aparecem em vários lugares, muitas vezes logo acima dos títulos de seção. Um pouco é normal; em todo lugar vira marca de página padronizada.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Ramo A: conta textos de até 15px com text-transform uppercase, small-caps ou letter-spacing acima de 0,03em (exclui logotipo, links de rodapé e botões de marca). Ramo B: conta textos curtos (até 7 palavras e 56 caracteres) logo acima de h1 a h3, com 2 ou mais dos sinais caixa alta, espaçamento de 0,04em ou mais e tamanho de 15px ou menos. Dispara com 3 rótulos (A) ou 2 eyebrows (B).",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "ramo_a": {
+          "tamanho_maximo_px": 15,
+          "letter_spacing_acima_em": 0.03,
+          "minimo_ocorrencias": 3
+        },
+        "ramo_b": {
+          "max_palavras": 7,
+          "max_caracteres": 56,
+          "letter_spacing_minimo_em": 0.04,
+          "sinais_necessarios": 2,
+          "minimo_ocorrencias": 2
+        },
+        "excecoes": [
+          "figcaption",
+          "th",
+          "label",
+          "nav",
+          "time",
+          "byline",
+          "nome de arquivo",
+          "logotipo"
+        ]
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Escreva rótulos em caixa normal, no corpo, sem espaçamento; se o rótulo acima do título não acrescenta informação, apague.",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque os rótulos em caixa alta espaçada ({{trecho}}) por texto em caixa normal, mesma fonte do corpo, um tamanho abaixo, sem letter-spacing; se o rótulo só repete o título, remova-o. Não altere os títulos. Pronto quando houver menos de 3 rótulos com uppercase/espaçamento maior que 0,03em e menos de 2 rótulos curtos acima de títulos.",
+    "fonte": [
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:gate-67",
+      "hallmark:gate-54",
+      "unslop-heydamir:caixa-alta-tracking",
+      "impeccable:floor-proib-eyebrow"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Números: 15px e 0,03em (gate 67), 7 palavras, 56 caracteres e 0,04em (gate 54) do hallmark, que os trata como Floor com qualquer ocorrência. Os mínimos de 3 e 2 ocorrências são proposta nossa: limiar inicial, a calibrar no teste de acerto, para não punir um único logotipo. Teste do hallmark: apague o rótulo; se nada se perde, não trabalhava."
+  },
+  {
+    "id": "tipo-mono-decorativa",
+    "categoria": "visual-tipografia",
+    "titulo": "Fonte de código (monoespaçada) usada como enfeite",
+    "descricao": "Rótulos, legendas e cabeçalhos de tabela usam fonte monoespaçada só para parecer \"técnico\". Fonte de código deve ficar para código, medidas e dados.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Procura textos com família monoespaçada em elementos que não são code, pre, kbd, samp nem números/medidas (classes de rótulo, legenda, th, figcaption, badge). Dispara com 3 ocorrências ou mais.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "regex_familia_mono": "mono|courier|jetbrains|plex mono|geist mono|fira code|space mono|dm mono|roboto mono|source code",
+        "elementos_alvo": [
+          "label",
+          "th",
+          "figcaption",
+          "small",
+          "badge",
+          "legenda"
+        ],
+        "excecoes": [
+          "code",
+          "pre",
+          "kbd",
+          "samp",
+          "preço",
+          "medida",
+          "versão",
+          "hash",
+          "data e hora"
+        ],
+        "minimo_ocorrencias": 3
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Use a fonte do corpo nos rótulos e deixe a monoespaçada só para código e números.",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque a fonte monoespaçada de {{trecho}} pela fonte do corpo, um tamanho abaixo, e mantenha a monoespaçada só em código e dados numéricos. Não mude tamanhos nem textos. Pronto quando nenhum rótulo, legenda ou cabeçalho de tabela usar fonte monoespaçada.",
+    "fonte": [
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:gate-64",
+      "impeccable:floor-proib-mono-fantasia"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "O hallmark aceita mono em tema monoespaçado (monoIsMaterial) e em dados; o limiar de 3 ocorrências é nosso (limiar inicial, a calibrar no teste de acerto)."
+  },
+  {
+    "id": "tipo-numeros-sem-tabular",
+    "categoria": "visual-tipografia",
+    "titulo": "Números em colunas sem algarismos de mesma largura",
+    "descricao": "Tabelas, preços e contadores com números comparáveis não usam algarismos tabulares, então as colunas não alinham e os dígitos \"dançam\" quando o valor muda.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Seleciona células de tabela e elementos de estatística/preço cujo texto é dominado por dígitos (3 ou mais dígitos) e verifica se font-variant-numeric inclui tabular-nums (ou font-feature-settings tnum). Dispara se a maioria deles não tem.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "elementos": [
+          "td",
+          "th",
+          "preços em lista",
+          "contadores/estatísticas"
+        ],
+        "propriedade_esperada": "font-variant-numeric: tabular-nums",
+        "alternativa": "font-feature-settings: 'tnum'",
+        "minimo_digitos": 3,
+        "fracao_sem_tabular_para_disparar": "maioria (mais de 50%)"
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Aplique font-variant-numeric: tabular-nums em tabelas, preços e contadores.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione font-variant-numeric: tabular-nums em {{trecho}} (tabelas, preços e contadores). Não mude fonte, tamanho nem alinhamento. Pronto quando mais de 50% dos elementos numéricos mencionados usarem tabular-nums.",
+    "fonte": [
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "vercel-web-interface-guidelines:AG-CA-65",
+      "vercel-web-interface-guidelines:CMD-TYP-05",
+      "hallmark:F6",
+      "unslop-heydamir:numeros-mistos",
+      "impeccable:tipo-numerais"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "AGENTS.md da Vercel Labs marca como MUST para comparações numéricas; hallmark como Finish. O corte de \"maioria\" e de 3 dígitos é proposta nossa: limiar inicial, a calibrar no teste de acerto."
+  },
+  {
+    "id": "tipo-acabamento-fino",
+    "categoria": "visual-tipografia",
+    "titulo": "Acabamento tipográfico: aspas retas, reticências e títulos soltos",
+    "descricao": "Pequenos descuidos: aspas retas no texto corrido, três pontos no lugar do caractere de reticências, texto justificado sem hifenização ou títulos que deixam uma palavra sozinha na última linha. Detalhe fino, peso baixo.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Em texto corrido visível, procura aspas retas em volta de trechos, sequência de três pontos, text-align: justify sem hyphens: auto e títulos de 2 a 3 linhas cuja última linha tem uma só palavra, sem text-wrap: balance/pretty.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "regex_aspas_retas": "\"[^\"\\n]{3,}\"",
+        "regex_tres_pontos": "\\.\\.\\.",
+        "justificado_sem_hifen": "text-align: justify sem hyphens: auto",
+        "titulo_palavra_solta": "última linha de h1 a h3 com uma palavra e sem text-wrap balance ou pretty",
+        "minimo_achados": 2
+      }
+    },
+    "peso": 1,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Use aspas tipográficas e o caractere de reticências, hifenização em texto justificado e text-wrap: balance nos títulos.",
+    "prompt_correcao": "No arquivo {{arquivo}}, corrija o acabamento tipográfico de {{trecho}}: use aspas curvas, o caractere … no lugar de três pontos, hyphens: auto em texto justificado e text-wrap: balance nos títulos. Não mude o conteúdo. Pronto quando não houver aspas retas nem três pontos em texto corrido e nenhum título terminar com uma palavra sozinha.",
+    "fonte": [
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:F1",
+      "hallmark:F2",
+      "hallmark:F3",
+      "hallmark:F22",
+      "hallmark:F26",
+      "vercel-web-interface-guidelines:CMD-TYP-01",
+      "vercel-web-interface-guidelines:CMD-TYP-02",
+      "vercel-web-interface-guidelines:CMD-TYP-06"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Checagens de acabamento (Finish) do hallmark; não bloqueiam. O mínimo de 2 achados para disparar é proposta nossa: limiar inicial, a calibrar no teste de acerto. Aspas retas em código ou em exemplos técnicos não contam."
+  },
+  {
+    "id": "tipo-titulos-de-secao-timidos",
+    "categoria": "visual-tipografia",
+    "titulo": "Títulos de seção pequenos demais em página de venda ou institucional",
+    "descricao": "Os títulos de seção (h2) ficam com menos de 40px no desktop. Em páginas de apresentação isso apaga a hierarquia e a leitura rápida.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "No viewport de 1440, mede o font-size computado de todos os h2 visíveis e calcula a mediana. Dispara se a mediana for menor que 40px.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "viewport": "1440x900",
+        "mediana_minima_px": 40,
+        "elementos": [
+          "h2"
+        ]
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "landing-page",
+      "pagina-de-vendas",
+      "site-institucional"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Aumente os títulos de seção para dar hierarquia clara frente ao corpo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, aumente o tamanho dos h2 ({{valor}}) para pelo menos 40px em telas de 1440px de largura, usando clamp() para reduzir no celular. Não altere o corpo do texto nem as cores. Pronto quando a mediana dos h2 for de 40px ou mais a 1440px e continuar legível a 390px.",
+    "fonte": [
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:gate-78",
+      "unslop-heydamir:tok-escala-tipo"
+    ],
+    "citacoes": [
+      "numero"
+    ],
+    "notas": "Limiar de 40px a 1440 do hallmark (gate 78, Reflex), pensado para páginas de marketing; tokens do heydamir sugerem título de seção de 28 a 36px em produto, por isso só se aplica a páginas de apresentação e com confiança baixa."
+  }
+]

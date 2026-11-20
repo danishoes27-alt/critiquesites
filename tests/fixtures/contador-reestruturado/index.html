@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contador reestruturado</title></head>
+<body><main>
+<h1 id="hero-h1">Aprenda a cozinhar melhor em casa e <em><span class="cnt" data-to="3000" data-pre="+R$ ">+R$ 3.000</span></em></h1>
+<p>Tem <span class="cnt" data-to="54">54</span> receitas prontas e <span class="cnt" data-to="7">7</span> módulos.</p>
+<script>
+// O JS divide o título em <span> por palavra (reestrutura o DOM) e reinicia os contadores em 0 antes de animar.
+document.addEventListener('DOMContentLoaded', function () {
+  var h = document.getElementById('hero-h1');
+  var palavras = h.childNodes[0].textContent.trim().split(/\s+/);
+  var em = h.querySelector('em');
+  h.removeChild(h.childNodes[0]);
+  palavras.reverse().forEach(function (w) { var s = document.createElement('span'); s.textContent = w + ' '; h.insertBefore(s, h.firstChild); });
+  document.querySelectorAll('.cnt').forEach(function (el) { el.textContent = (el.dataset.pre || '') + '0'; });
+  setTimeout(function () {
+    var t0 = performance.now();
+    (function passo(t) {
+      var p = Math.min(1, (t - t0) / 1200);
+      document.querySelectorAll('.cnt').forEach(function (el) {
+        var v = Math.round(Number(el.dataset.to) * p);
+        el.textContent = (el.dataset.pre || '') + v.toLocaleString('pt-BR');
+      });
+      if (p < 1) requestAnimationFrame(passo);
+    })(t0);
+  }, 400);
+});
+</script>
+</main></body></html>

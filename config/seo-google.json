@@ -1,0 +1,42 @@
+{
+  "versao": 1,
+  "nota": {
+    "constante_C": 30,
+    "observacao": "Mesma fórmula das notas por área: 100 − 100·S/(S+C). Sem Lighthouse, para a mesma entrada dar a mesma nota."
+  },
+  "categorias_da_nota_de_seo": [
+    "seo",
+    "seo-google"
+  ],
+  "regras_reaproveitadas_de_outras_areas": [
+    "a11y-imagem-sem-alt",
+    "a11y-titulos-vazios-ou-fora-de-ordem",
+    "seg-pagina-sem-https",
+    "perf-imagem-maior-que-o-exibido",
+    "perf-imagem-formato-pouco-eficiente",
+    "perf-imagem-sem-dimensoes",
+    "cont-contato-visivel",
+    "lei-cnpj-ausente"
+  ],
+  "top_achados_no_relatorio": 5,
+  "search_console": {
+    "tamanho_maximo_bytes": 5242880,
+    "linhas_maximas": 50000,
+    "posicao_minima": 4,
+    "posicao_maxima": 20,
+    "impressoes_minimas": 100,
+    "faixas_de_posicao": [
+      4,
+      8,
+      12,
+      16,
+      20
+    ]
+  },
+  "termo_alvo": {
+    "palavras_minimas_no_texto": 50
+  },
+  "artigo": {
+    "palavras_minimas_para_exigir_fontes": 400
+  }
+}

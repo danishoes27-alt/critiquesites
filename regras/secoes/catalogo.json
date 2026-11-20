@@ -1,0 +1,431 @@
+[
+  {
+    "id": "listagem-de-itens",
+    "tipo_de_site": "catalogo",
+    "nome": "Listagem de itens",
+    "descricao": "O visitante espera ver os itens em uma grade ou lista, cada um com foto, nome e preço, para comparar sem abrir um por um.",
+    "obrigatoriedade": "essencial",
+    "peso": 9,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"product\" i]",
+        "[class*=\"produto\" i]",
+        "ul.products",
+        "[class*=\"card\" i]"
+      ],
+      "palavras": [
+        "produtos",
+        "catálogo",
+        "catalogo",
+        "ver todos"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: UX Guidelines for Ecommerce Homepages, Category Pages, and Product Listing Pages",
+        "url": "https://www.nngroup.com/articles/ecommerce-homepages-listing-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. A fonte descreve páginas de listagem como o ponto central da navegação em catálogos."
+  },
+  {
+    "id": "foto-do-item",
+    "tipo_de_site": "catalogo",
+    "nome": "Fotos do item",
+    "descricao": "Foto nítida, ampliável e com mais de um ângulo responde dúvidas que o texto não responde.",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"gallery\" i] img",
+        "picture img",
+        "img[alt]"
+      ],
+      "palavras": [],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: UX Guidelines for Ecommerce Product Pages",
+        "url": "https://www.nngroup.com/articles/ecommerce-product-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. A fonte pede imagens reconhecíveis, ampliáveis, com mais ângulos e detalhes. O script mede quantidade e alt, não a qualidade."
+  },
+  {
+    "id": "nome-e-descricao-do-item",
+    "tipo_de_site": "catalogo",
+    "nome": "Nome e descrição do item",
+    "descricao": "Cada item precisa de nome claro e uma descrição completa sem enrolação, explicando para que serve e como se usa.",
+    "obrigatoriedade": "essencial",
+    "peso": 7,
+    "deteccao": {
+      "seletores": [
+        "h1",
+        "[itemprop=\"description\"]",
+        "[class*=\"descricao\" i]"
+      ],
+      "palavras": [
+        "descrição",
+        "descricao",
+        "sobre o produto"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: UX Guidelines for Ecommerce Product Pages",
+        "url": "https://www.nngroup.com/articles/ecommerce-product-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lei 8.078/1990 (Código de Defesa do Consumidor), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O CDC art. 31 pede informação clara e precisa sobre características do produto ou serviço ofertado."
+  },
+  {
+    "id": "preco-ou-faixa-de-preco",
+    "tipo_de_site": "catalogo",
+    "nome": "Preço ou faixa de preço",
+    "descricao": "Preço escondido faz o visitante desconfiar ou ir embora. Quando o valor varia, mostrar a partir de quanto ou uma faixa já ajuda.",
+    "obrigatoriedade": "essencial",
+    "peso": 7,
+    "deteccao": {
+      "seletores": [
+        "[itemprop=\"price\"]",
+        "[class*=\"preco\" i]",
+        "[class*=\"price\" i]"
+      ],
+      "palavras": [
+        "preço",
+        "preco",
+        "a partir de",
+        "por apenas"
+      ],
+      "padroes_regex": [
+        "R\\$\\s?\\d"
+      ],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Pricing information gives B2B sites a competitive advantage",
+        "url": "https://www.nngroup.com/articles/show-price/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Show Prices for Common Scenarios",
+        "url": "https://www.nngroup.com/articles/show-prices-for-common-scenarios/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Decreto 5.903/2006 (informação de preços ao consumidor), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/decreto/d5903.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Fonte NN/g trata de B2B; a lógica de transparência foi estendida a catálogos. O Decreto 5.903/2006 pede preço claro e legível."
+  },
+  {
+    "id": "como-comprar-ou-pedir",
+    "tipo_de_site": "catalogo",
+    "nome": "Como comprar ou pedir",
+    "descricao": "Depois de ver o item, a pessoa precisa saber o próximo passo: comprar, chamar no WhatsApp ou pedir orçamento. O botão deve dizer o que acontece.",
+    "obrigatoriedade": "essencial",
+    "peso": 7,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"wa.me\"]",
+        "a[href*=\"api.whatsapp.com\"]",
+        "a[href^=\"tel:\"]",
+        "a[href^=\"mailto:\"]",
+        "button[type=\"submit\"]"
+      ],
+      "palavras": [
+        "comprar",
+        "pedir orçamento",
+        "solicitar orçamento",
+        "whatsapp",
+        "fale conosco",
+        "adicionar"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 'Contact Us' Page Guidelines",
+        "url": "https://www.nngroup.com/articles/contact-us-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Homepage Design: 5 Fundamental Principles",
+        "url": "https://www.nngroup.com/articles/homepage-design-principles/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Rótulos específicos de ação vêm do NN/g; canais de contato reais também."
+  },
+  {
+    "id": "categorias-e-filtros",
+    "tipo_de_site": "catalogo",
+    "nome": "Categorias e filtros",
+    "descricao": "Catálogos com muitos itens precisam de categorias e filtros com nomes concretos, para reduzir a lista até o que a pessoa procura.",
+    "obrigatoriedade": "esperada",
+    "peso": 6,
+    "deteccao": {
+      "seletores": [
+        "nav[aria-label*=\"categor\" i]",
+        "[class*=\"filter\" i]",
+        "[class*=\"filtro\" i]",
+        "select[name*=\"ordem\" i]"
+      ],
+      "palavras": [
+        "categorias",
+        "filtrar",
+        "filtros",
+        "ordenar"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Traditional and Hybrid Category Pages",
+        "url": "https://www.nngroup.com/articles/category-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Defining Helpful Filter Categories and Values for Better UX",
+        "url": "https://www.nngroup.com/articles/filter-categories-values/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. A fonte também recomenda priorizar filtros gerais como preço e marca e usar rótulos concretos."
+  },
+  {
+    "id": "busca-no-catalogo",
+    "tipo_de_site": "catalogo",
+    "nome": "Busca no catálogo",
+    "descricao": "Quem sabe o que quer prefere digitar. Um campo de busca visível em todas as páginas poupa navegação.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "input[type=\"search\"]",
+        "form[role=\"search\"]",
+        "[role=\"search\"]"
+      ],
+      "palavras": [
+        "buscar",
+        "pesquisar",
+        "o que você procura"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Search: Visible and Simple",
+        "url": "https://www.nngroup.com/articles/search-visible-and-simple/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. A fonte recomenda campo aberto e visível em todas as páginas."
+  },
+  {
+    "id": "disponibilidade-e-variacoes",
+    "tipo_de_site": "catalogo",
+    "nome": "Disponibilidade e variações",
+    "descricao": "Cor, tamanho e disponibilidade devem aparecer de forma clara, para a pessoa não escolher algo que não existe.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "select[name*=\"tamanho\" i]",
+        "[class*=\"variant\" i]",
+        "[class*=\"swatch\" i]",
+        "[class*=\"estoque\" i]"
+      ],
+      "palavras": [
+        "em estoque",
+        "indisponível",
+        "indisponivel",
+        "esgotado",
+        "tamanho",
+        "cor"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: UX Guidelines for Ecommerce Product Pages",
+        "url": "https://www.nngroup.com/articles/ecommerce-product-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Design Guidelines for Selling Products with Multiple Variants",
+        "url": "https://www.nngroup.com/articles/products-with-multiple-variants/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Aplica-se a itens com variações; itens únicos precisam só mostrar a disponibilidade."
+  },
+  {
+    "id": "especificacoes",
+    "tipo_de_site": "catalogo",
+    "nome": "Especificações e medidas",
+    "descricao": "Medidas, material e características técnicas ajudam a decidir. Tabelas funcionam bem quando há muitos dados.",
+    "obrigatoriedade": "esperada",
+    "peso": 4,
+    "deteccao": {
+      "seletores": [
+        "table",
+        "dl",
+        "[class*=\"spec\" i]",
+        "[class*=\"ficha\" i]"
+      ],
+      "palavras": [
+        "especificações",
+        "especificacoes",
+        "dimensões",
+        "dimensoes",
+        "material",
+        "medidas",
+        "ficha técnica"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: UX Guidelines for Ecommerce Product Pages",
+        "url": "https://www.nngroup.com/articles/ecommerce-product-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. A fonte sugere tabelas de comparação para dados técnicos."
+  },
+  {
+    "id": "identificacao-do-vendedor",
+    "tipo_de_site": "catalogo",
+    "nome": "Identificação do vendedor",
+    "descricao": "Se o catálogo oferece itens ao público, a pessoa espera ver o nome da empresa, o CNPJ ou CPF, o endereço e meios de contato.",
+    "obrigatoriedade": "esperada",
+    "peso": 6,
+    "deteccao": {
+      "seletores": [
+        "footer address",
+        "footer",
+        "address"
+      ],
+      "palavras": [
+        "cnpj",
+        "razão social",
+        "razao social",
+        "endereço",
+        "endereco"
+      ],
+      "padroes_regex": [
+        "\\b\\d{2}\\.?\\d{3}\\.?\\d{3}/?\\d{4}-?\\d{2}\\b"
+      ],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 2º (I e II) vale para sites que ofertam ou fecham venda online. Aviso, não parecer jurídico."
+  },
+  {
+    "id": "avaliacoes-de-clientes",
+    "tipo_de_site": "catalogo",
+    "nome": "Avaliações de clientes",
+    "descricao": "Opiniões de quem já comprou ajudam a decidir. Valem mais quando mostram também pontos negativos e são de clientes reais.",
+    "obrigatoriedade": "opcional",
+    "peso": 3,
+    "deteccao": {
+      "seletores": [
+        "[itemprop=\"review\"]",
+        "[itemprop=\"aggregateRating\"]",
+        "[class*=\"review\" i]",
+        "[class*=\"avaliac\" i]"
+      ],
+      "palavras": [
+        "avaliações",
+        "avaliacoes",
+        "opiniões",
+        "opinioes",
+        "estrelas"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: UX Guidelines for Ecommerce Product Pages",
+        "url": "https://www.nngroup.com/articles/ecommerce-product-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Review snippet structured data",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/review-snippet",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O Google exige que a avaliação em dados estruturados esteja visível na página."
+  }
+]

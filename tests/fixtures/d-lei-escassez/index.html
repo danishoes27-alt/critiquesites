@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Oferta relâmpago</title></head>
+<body><main><h1>Oferta relâmpago</h1>
+<p>Só hoje: curso por R$ 97,00</p>
+<div id="cd" class="countdown">10:00:00</div>
+<p>Restam apenas 3 vagas</p>
+<p>Últimas unidades disponíveis</p>
+<span style="display:none">Oferta encerrada: de R$ 197</span>
+<script>
+var fim = Date.now() + 3600000;
+var el = document.getElementById('cd'), seg = 36000, passos = 0;
+var t = setInterval(function () {
+  seg -= 300; passos++;
+  var h = Math.floor(seg / 3600), m = Math.floor(seg % 3600 / 60), s = seg % 60;
+  el.textContent = [h, m, s].map(function (x) { return String(x).padStart(2, '0'); }).join(':');
+  if (passos >= 5) clearInterval(t);
+}, 100);
+</script></main></body></html>

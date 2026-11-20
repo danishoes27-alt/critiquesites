@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Oficina do Zé - interação ruim</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<header class="hero">
+  <h1>Oficina do Zé</h1>
+  <p>Conserto de bicicletas com hora marcada.</p>
+</header>
+<main>
+  <nav class="menu">
+    <ul>
+      <li><a href="/servicos.html">Serviços</a>
+        <ul class="submenu"><li><a href="/pneus.html">Pneus</a></li><li><a href="/freios.html">Freios</a></li></ul>
+      </li>
+      <li><a href="/contato.html">Contato</a></li>
+    </ul>
+  </nav>
+
+  <div class="caixa" onclick="abrirMenu()">Abrir o menu de serviços</div>
+  <span class="seta" onclick="proximo()">Próximo passo</span>
+  <a href="#">Fazer orçamento</a>
+  <a href="">Falar com a gente</a>
+  <a onclick="sair()">Sair da conta</a>
+
+  <div class="toast"></div>
+  <div id="mensagem-erro" hidden></div>
+
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">Bicicleta aro 29</div>
+      <div class="swiper-slide">Bicicleta infantil</div>
+    </div>
+  </div>
+
+  <form>
+    <input type="text" name="email" placeholder="Seu e-mail">
+    <input type="text" name="telefone" placeholder="Seu telefone">
+    <input type="password" name="senha" aria-label="Senha" onpaste="return false">
+    <button class="btn" type="button">Enviar</button>
+    <button class="btn" type="button" disabled>Aguarde</button>
+  </form>
+
+  <p class="pulsa">Promoção de freios até domingo.</p>
+  <video autoplay loop controls src="video.mp4"></video>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

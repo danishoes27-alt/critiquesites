@@ -1,0 +1,396 @@
+[
+  {
+    "id": "pagina-de-login",
+    "tipo_de_site": "area-de-membros",
+    "nome": "Entrada (login) clara",
+    "descricao": "A pessoa que já é membro quer entrar sem rodeios: campos de e-mail e senha com nome visível, botão claro e formulário que funciona com gerenciador de senhas.",
+    "obrigatoriedade": "essencial",
+    "peso": 9,
+    "deteccao": {
+      "seletores": [
+        "form input[type=\"password\"]",
+        "form input[type=\"email\"]",
+        "form label",
+        "form button[type=\"submit\"]"
+      ],
+      "palavras": [
+        "entrar",
+        "login",
+        "acessar",
+        "área do aluno",
+        "area do aluno",
+        "área de membros",
+        "area de membros"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "web.dev: Sign-in form best practices",
+        "url": "https://web.dev/articles/sign-in-form-best-practices",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "W3C WCAG 2.2: Understanding 3.3.2 Labels or Instructions",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html",
+        "licenca": "W3C Software and Document License (© W3C)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. A área logada fica fora do escopo da análise (SPEC §2); só a página pública de entrada é observada."
+  },
+  {
+    "id": "recuperar-senha",
+    "tipo_de_site": "area-de-membros",
+    "nome": "Esqueci minha senha",
+    "descricao": "Quem esquece a senha precisa de um caminho simples para recuperar o acesso. Sem isso o membro desiste ou aciona o suporte.",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"esqueci\" i]",
+        "a[href*=\"recuperar\" i]",
+        "a[href*=\"reset\" i]",
+        "a[href*=\"forgot\" i]"
+      ],
+      "palavras": [
+        "esqueci minha senha",
+        "recuperar senha",
+        "redefinir senha",
+        "esqueceu a senha"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "web.dev: Sign-in form best practices",
+        "url": "https://web.dev/articles/sign-in-form-best-practices",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "W3C WCAG 2.2: Understanding 3.3.8 Accessible Authentication (Minimum)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html",
+        "licenca": "W3C Software and Document License (© W3C)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. web.dev recomenda link para recuperar senha; WCAG 3.3.8 pede que a autenticação não dependa de teste cognitivo."
+  },
+  {
+    "id": "campo-de-senha-amigavel",
+    "tipo_de_site": "area-de-membros",
+    "nome": "Campo de senha amigável",
+    "descricao": "O campo de senha deve esconder o texto digitado, mas permitir mostrar a senha, colar e usar o gerenciador do navegador.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "input[type=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "button[aria-label*=\"senha\" i]"
+      ],
+      "palavras": [
+        "mostrar senha",
+        "ver senha",
+        "exibir senha"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "web.dev: Sign-in form best practices",
+        "url": "https://web.dev/articles/sign-in-form-best-practices",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "W3C WCAG 2.2: Understanding 3.3.8 Accessible Authentication (Minimum)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html",
+        "licenca": "W3C Software and Document License (© W3C)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. web.dev cita o botão de mostrar senha e o atributo autocomplete."
+  },
+  {
+    "id": "cadastro-e-primeiro-acesso",
+    "tipo_de_site": "area-de-membros",
+    "nome": "Cadastro e primeiro acesso",
+    "descricao": "Quem acabou de comprar precisa entender como criar ou ativar o acesso, com poucos campos e instruções claras.",
+    "obrigatoriedade": "esperada",
+    "peso": 6,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"cadastro\" i]",
+        "a[href*=\"registrar\" i]",
+        "form input[autocomplete=\"new-password\"]"
+      ],
+      "palavras": [
+        "primeiro acesso",
+        "criar conta",
+        "cadastre-se",
+        "cadastro",
+        "ativar acesso"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "web.dev: Sign-up form best practices",
+        "url": "https://web.dev/articles/sign-up-form-best-practices",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (código)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. web.dev: cadastro mínimo, uma coluna, sem campos duplicados."
+  },
+  {
+    "id": "conteudo-publico-antes-do-login",
+    "tipo_de_site": "area-de-membros",
+    "nome": "Explicação pública do que é a área",
+    "descricao": "Quem ainda não é membro precisa entender o que a área oferece sem ter de entrar. Muro de login antes de qualquer informação afasta visitantes.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "h1",
+        "section",
+        "[class*=\"beneficio\" i]"
+      ],
+      "palavras": [
+        "o que é",
+        "o que e",
+        "benefícios",
+        "beneficios",
+        "conheça",
+        "conheca",
+        "quero ser membro"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Trustworthiness in Web Design: 4 Credibility Factors",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Homepage Design: 5 Fundamental Principles",
+        "url": "https://www.nngroup.com/articles/homepage-design-principles/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "baixa",
+    "notas": "Peso inicial, a calibrar. NN/g lista \"sem muro de login antes do conteúdo básico\" entre os fatores de credibilidade."
+  },
+  {
+    "id": "suporte-e-contato",
+    "tipo_de_site": "area-de-membros",
+    "nome": "Suporte e contato",
+    "descricao": "O membro precisa de um canal para tirar dúvidas, relatar problemas, suspender ou cancelar.",
+    "obrigatoriedade": "essencial",
+    "peso": 7,
+    "deteccao": {
+      "seletores": [
+        "a[href^=\"mailto:\"]",
+        "a[href*=\"wa.me\"]",
+        "a[href*=\"suporte\" i]",
+        "a[href*=\"ajuda\" i]"
+      ],
+      "palavras": [
+        "suporte",
+        "ajuda",
+        "fale conosco",
+        "contato",
+        "whatsapp"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: 'Contact Us' Page Guidelines",
+        "url": "https://www.nngroup.com/articles/contact-us-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 4º, V (atendimento para dúvida, reclamação, suspensão ou cancelamento). Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "como-cancelar",
+    "tipo_de_site": "area-de-membros",
+    "nome": "Como cancelar a assinatura ou o acesso",
+    "descricao": "Quem paga assinatura espera saber como cancelar e desistir em até 7 dias, pelo mesmo meio usado na contratação, sem labirinto.",
+    "obrigatoriedade": "essencial",
+    "peso": 7,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"cancelar\" i]",
+        "a[href*=\"cancelamento\" i]",
+        "a[href*=\"arrependimento\" i]"
+      ],
+      "palavras": [
+        "cancelar",
+        "cancelamento",
+        "arrependimento",
+        "desistir",
+        "7 dias"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lei 8.078/1990 (Código de Defesa do Consumidor), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 5º, §1º e CDC art. 49. Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "termos-e-privacidade",
+    "tipo_de_site": "area-de-membros",
+    "nome": "Termos de uso e privacidade",
+    "descricao": "O membro entrega dados pessoais e de pagamento. Termos de uso e política de privacidade devem estar visíveis, inclusive na tela de entrada.",
+    "obrigatoriedade": "esperada",
+    "peso": 6,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"termos\" i]",
+        "a[href*=\"privacidade\" i]"
+      ],
+      "palavras": [
+        "termos de uso",
+        "política de privacidade",
+        "politica de privacidade",
+        "privacidade"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Lei 13.709/2018 (LGPD), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. LGPD art. 9º e Decreto 7.962/2013 art. 4º, I. Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "identificacao-do-fornecedor",
+    "tipo_de_site": "area-de-membros",
+    "nome": "Identificação do fornecedor (CNPJ e endereço)",
+    "descricao": "Se o acesso é vendido, a empresa responsável deve se identificar com nome empresarial, CNPJ ou CPF e meios de contato.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "footer",
+        "address"
+      ],
+      "palavras": [
+        "cnpj",
+        "razão social",
+        "razao social"
+      ],
+      "padroes_regex": [
+        "\\b\\d{2}\\.?\\d{3}\\.?\\d{3}/?\\d{4}-?\\d{2}\\b"
+      ],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 2º, I e II. Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "erros-de-login-claros",
+    "tipo_de_site": "area-de-membros",
+    "nome": "Mensagens de erro claras no login",
+    "descricao": "Quando o login falha, a pessoa precisa ver o que deu errado e como corrigir, em texto, e não só uma borda vermelha.",
+    "obrigatoriedade": "opcional",
+    "peso": 3,
+    "deteccao": {
+      "seletores": [],
+      "palavras": [
+        "senha incorreta",
+        "e-mail inválido",
+        "email invalido",
+        "tente novamente"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "nao"
+    },
+    "fonte": [
+      {
+        "nome": "W3C WCAG 2.2: Understanding 3.3.1 Error Identification",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html",
+        "licenca": "W3C Software and Document License (© W3C)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web.dev: Sign-in form best practices",
+        "url": "https://web.dev/articles/sign-in-form-best-practices",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (código)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "baixa",
+    "notas": "Peso inicial, a calibrar. O erro só aparece com interação e tentativa real de login, o que está fora do escopo; fica como pergunta ao dono do site."
+  }
+]

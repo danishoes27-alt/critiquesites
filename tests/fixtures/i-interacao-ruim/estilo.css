@@ -1,0 +1,11 @@
+body { font-family: Georgia, serif; margin: 0; color: #222; }
+.hero { min-height: 100vh; background: #eef; padding: 24px; }
+a:focus, button:focus { outline: none; }
+.menu ul { list-style: none; margin: 0; padding: 0; }
+.menu .submenu { display: none; }
+.menu li:hover > .submenu { display: block; }
+.btn { background: #246; color: #fff; border: 0; padding: 10px 16px; transition: box-shadow 0.3s ease; }
+.btn:focus-visible { box-shadow: 0 0 0 3px #36c; }
+button:disabled { opacity: 0.5; }
+.pulsa { animation: pulsa 2s infinite; }
+@keyframes pulsa { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }

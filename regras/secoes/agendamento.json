@@ -1,0 +1,550 @@
+[
+  {
+    "id": "servicos-oferecidos",
+    "tipo_de_site": "agendamento",
+    "nome": "Serviços oferecidos",
+    "descricao": "Antes de agendar, a pessoa quer ver quais serviços existem, com uma descrição curta de cada um e o que está incluso.",
+    "obrigatoriedade": "essencial",
+    "peso": 9,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"servicos\" i]",
+        "section[id*=\"servic\" i]",
+        "[class*=\"servico\" i]"
+      ],
+      "palavras": [
+        "serviços",
+        "servicos",
+        "tratamentos",
+        "procedimentos",
+        "consultas",
+        "o que fazemos"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Trustworthiness in Web Design: 4 Credibility Factors",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Cobertura completa dos serviços é fator de credibilidade no NN/g; Decreto 7.962/2013 art. 2º, III pede características do serviço ofertado online."
+  },
+  {
+    "id": "precos-dos-servicos",
+    "tipo_de_site": "agendamento",
+    "nome": "Preços dos serviços",
+    "descricao": "Preço escondido gera desconfiança. Mostrar valores, a partir de quanto ou como o preço é calculado ajuda a decidir.",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"preco\" i]",
+        "[class*=\"price\" i]",
+        "table"
+      ],
+      "palavras": [
+        "preço",
+        "preco",
+        "valor",
+        "a partir de",
+        "tabela de preços",
+        "tabela de precos"
+      ],
+      "padroes_regex": [
+        "R\\$\\s?\\d"
+      ],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Pricing information gives B2B sites a competitive advantage",
+        "url": "https://www.nngroup.com/articles/show-price/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Show Prices for Common Scenarios",
+        "url": "https://www.nngroup.com/articles/show-prices-for-common-scenarios/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Decreto 5.903/2006 (informação de preços ao consumidor), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/decreto/d5903.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. NN/g trata de B2B; a lógica foi estendida. O Decreto 5.903/2006 pede preço claro. Aviso, não parecer jurídico."
+  },
+  {
+    "id": "como-agendar",
+    "tipo_de_site": "agendamento",
+    "nome": "Botão e passos para agendar",
+    "descricao": "O caminho para marcar um horário deve ser óbvio: um botão visível dizendo o que acontece (por exemplo, \"Agendar consulta\") e poucos passos.",
+    "obrigatoriedade": "essencial",
+    "peso": 9,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"agendar\" i]",
+        "a[href*=\"agenda\" i]",
+        "a[href*=\"calendly\" i]",
+        "a[href*=\"wa.me\"]",
+        "button[class*=\"agend\" i]"
+      ],
+      "palavras": [
+        "agendar",
+        "agende",
+        "marcar horário",
+        "marcar horario",
+        "reservar",
+        "agendamento"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: \"Get Started\" Stops Users",
+        "url": "https://www.nngroup.com/articles/get-started/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Homepage Design: 5 Fundamental Principles",
+        "url": "https://www.nngroup.com/articles/homepage-design-principles/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Business Profile Help: Manage your local business links",
+        "url": "https://support.google.com/business/answer/6218037?hl=en",
+        "licenca": "© Google; termos de serviço do Google, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. NN/g critica rótulos vagos; o Google permite link de agendamento no perfil da empresa."
+  },
+  {
+    "id": "horarios-de-atendimento",
+    "tipo_de_site": "agendamento",
+    "nome": "Horários de atendimento",
+    "descricao": "O cliente quer saber em que dias e horas é atendido, para escolher um horário possível.",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "[itemprop=\"openingHours\"]",
+        "[class*=\"horario\" i]",
+        "[class*=\"hours\" i]"
+      ],
+      "palavras": [
+        "horário de atendimento",
+        "horario de atendimento",
+        "atendemos",
+        "segunda a sexta",
+        "sábado",
+        "sabado"
+      ],
+      "padroes_regex": [
+        "\\b\\d{1,2}\\s?(h|:\\d{2})\\b"
+      ],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Google Search Central: Local Business structured data",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/local-business",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: 'Contact Us' Page Guidelines",
+        "url": "https://www.nngroup.com/articles/contact-us-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. openingHoursSpecification é recomendada pelo Google; o NN/g recomenda informar horários."
+  },
+  {
+    "id": "localizacao-e-como-chegar",
+    "tipo_de_site": "agendamento",
+    "nome": "Localização e como chegar",
+    "descricao": "Se o atendimento é presencial, a pessoa precisa do endereço completo e de um mapa, com referências de acesso.",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "address",
+        "iframe[src*=\"google.com/maps\"]",
+        "a[href*=\"maps.google\" i]",
+        "a[href*=\"maps.app.goo.gl\"]"
+      ],
+      "palavras": [
+        "endereço",
+        "endereco",
+        "como chegar",
+        "localização",
+        "localizacao",
+        "estacionamento"
+      ],
+      "padroes_regex": [
+        "\\b\\d{5}-?\\d{3}\\b"
+      ],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Google Search Central: Local Business structured data",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/local-business",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Store Finders and Locators",
+        "url": "https://www.nngroup.com/articles/store-finders-and-locators/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Endereço é campo obrigatório nos dados de empresa local do Google."
+  },
+  {
+    "id": "politica-de-cancelamento",
+    "tipo_de_site": "agendamento",
+    "nome": "Política de cancelamento e remarcação",
+    "descricao": "O cliente quer saber antes de marcar: até quando pode cancelar ou remarcar, se há multa e como avisar. Condições e restrições devem estar claras.",
+    "obrigatoriedade": "essencial",
+    "peso": 7,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"cancelamento\" i]",
+        "[id*=\"cancel\" i]"
+      ],
+      "palavras": [
+        "cancelamento",
+        "remarcação",
+        "remarcacao",
+        "reagendar",
+        "cancelar",
+        "antecedência",
+        "antecedencia",
+        "multa"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lei 8.078/1990 (Código de Defesa do Consumidor), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 2º, V e VI e art. 5º aplicam-se à contratação online; CDC art. 31. Sem fonte específica de agendamento. Aviso, não parecer jurídico."
+  },
+  {
+    "id": "formulario-de-agendamento-acessivel",
+    "tipo_de_site": "agendamento",
+    "nome": "Formulário de agendamento claro",
+    "descricao": "Cada campo deve ter nome visível, só o necessário deve ser pedido e os erros precisam ser avisados com clareza para corrigir na hora.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "form label",
+        "form input[required]",
+        "input[autocomplete]",
+        "[role=\"alert\"]"
+      ],
+      "palavras": [
+        "nome",
+        "telefone",
+        "e-mail",
+        "data",
+        "horário",
+        "horario"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "W3C WCAG 2.2: Understanding 3.3.2 Labels or Instructions",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html",
+        "licenca": "W3C Software and Document License (© W3C)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "W3C WCAG 2.2: Understanding 3.3.1 Error Identification",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html",
+        "licenca": "W3C Software and Document License (© W3C)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web.dev: Sign-up form best practices",
+        "url": "https://web.dev/articles/sign-up-form-best-practices",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (código)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O script checa rótulos e campos obrigatórios; erros só aparecem com interação e ficam fora do alcance."
+  },
+  {
+    "id": "confirmacao-do-agendamento",
+    "tipo_de_site": "agendamento",
+    "nome": "Confirmação do agendamento",
+    "descricao": "Depois de marcar, a pessoa espera uma confirmação imediata na tela e por e-mail ou mensagem, com data, hora e local.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [],
+      "palavras": [
+        "confirmação",
+        "confirmacao",
+        "você receberá",
+        "voce recebera",
+        "agendamento confirmado"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "nao"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "baixa",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 4º, III e II. A confirmação só existe depois do envio e checkout real está fora do escopo; fica como pergunta ao dono do site."
+  },
+  {
+    "id": "contato-direto",
+    "tipo_de_site": "agendamento",
+    "nome": "Contato direto (WhatsApp e telefone)",
+    "descricao": "Nem todo mundo quer usar formulário. Um telefone ou WhatsApp ao alcance de um toque resolve dúvidas e imprevistos.",
+    "obrigatoriedade": "esperada",
+    "peso": 6,
+    "deteccao": {
+      "seletores": [
+        "a[href^=\"tel:\"]",
+        "a[href*=\"wa.me\"]",
+        "a[href*=\"api.whatsapp.com\"]",
+        "a[href^=\"mailto:\"]"
+      ],
+      "palavras": [
+        "whatsapp",
+        "telefone",
+        "fale conosco",
+        "contato"
+      ],
+      "padroes_regex": [
+        "\\(?\\d{2}\\)?\\s?9?\\d{4}[-\\s]?\\d{4}"
+      ],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 'Contact Us' Page Guidelines",
+        "url": "https://www.nngroup.com/articles/contact-us-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. NN/g pede telefone e e-mail reais; Decreto 7.962/2013 art. 4º, V pede canal de atendimento adequado."
+  },
+  {
+    "id": "profissionais-e-equipe",
+    "tipo_de_site": "agendamento",
+    "nome": "Profissionais e equipe",
+    "descricao": "Em serviços pessoais, quem atende importa. Nome, foto, formação ou experiência dos profissionais ajudam a confiar.",
+    "obrigatoriedade": "esperada",
+    "peso": 4,
+    "deteccao": {
+      "seletores": [
+        "[id*=\"equipe\" i]",
+        "[class*=\"team\" i]",
+        "[class*=\"profission\" i]"
+      ],
+      "palavras": [
+        "equipe",
+        "profissionais",
+        "nossa equipe",
+        "dr.",
+        "dra.",
+        "especialista"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 'About Us' Information on Corporate Websites",
+        "url": "https://www.nngroup.com/articles/about-us-information-on-websites/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Creating helpful, reliable, people-first content",
+        "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O Google pergunta se o visitante sabe quem criou o conteúdo e qual a experiência dessa pessoa."
+  },
+  {
+    "id": "depoimentos-e-avaliacoes",
+    "tipo_de_site": "agendamento",
+    "nome": "Depoimentos e avaliações",
+    "descricao": "Relatos de clientes anteriores reduzem a insegurança de quem vai marcar pela primeira vez.",
+    "obrigatoriedade": "esperada",
+    "peso": 4,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"depoimento\" i]",
+        "[class*=\"testimonial\" i]",
+        "blockquote",
+        "[itemprop=\"review\"]"
+      ],
+      "palavras": [
+        "depoimentos",
+        "avaliações",
+        "avaliacoes",
+        "o que dizem",
+        "clientes"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Social Proof in the User Experience",
+        "url": "https://www.nngroup.com/articles/social-proof-ux/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: 'About Us' Information on Corporate Websites",
+        "url": "https://www.nngroup.com/articles/about-us-information-on-websites/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. NN/g recomenda depoimentos honestos e equilibrados."
+  },
+  {
+    "id": "privacidade-dos-dados-do-cliente",
+    "tipo_de_site": "agendamento",
+    "nome": "Privacidade dos dados do cliente",
+    "descricao": "Agendar exige nome, telefone e às vezes dados de saúde. A pessoa espera saber como esses dados são usados e protegidos.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"privacidade\" i]",
+        "form a[href*=\"privacidade\" i]"
+      ],
+      "palavras": [
+        "política de privacidade",
+        "politica de privacidade",
+        "privacidade",
+        "lgpd"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Lei 13.709/2018 (LGPD), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. LGPD art. 9º. Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "perguntas-frequentes",
+    "tipo_de_site": "agendamento",
+    "nome": "Perguntas frequentes",
+    "descricao": "Respostas para dúvidas comuns (primeira consulta, documentos, formas de pagamento) reduzem mensagens repetidas.",
+    "obrigatoriedade": "opcional",
+    "peso": 3,
+    "deteccao": {
+      "seletores": [
+        "[id*=\"faq\" i]",
+        "[class*=\"faq\" i]",
+        "details > summary"
+      ],
+      "palavras": [
+        "perguntas frequentes",
+        "dúvidas",
+        "duvidas",
+        "faq"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: FAQs Still Deliver Great Value",
+        "url": "https://www.nngroup.com/articles/faqs-deliver-value/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. A fonte pede perguntas reais, agrupadas por assunto."
+  }
+]

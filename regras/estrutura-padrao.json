@@ -1,0 +1,989 @@
+[
+  {
+    "id": "estr-hero-tres-cards",
+    "categoria": "estrutura-padrao",
+    "titulo": "Abertura centralizada seguida de uma fileira de três cartões iguais",
+    "descricao": "A página abre com um bloco central (título, frase e botão) e logo abaixo vem uma fileira de três cartões idênticos, cada um com ícone, título e uma frase. É um esqueleto muito repetido, que serve a qualquer produto.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "html",
+      "metodo": "Acha a abertura (bloco com h1 nas primeiras seções) e verifica se logo depois há uma grade com 3 colunas e 3 filhos com a mesma estrutura de tags (ícone ou imagem, título, parágrafo) e larguras e alturas semelhantes. O modelo confirma na captura se a abertura é centralizada e se os cartões são intercambiáveis.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "abertura": "section ou header com h1, ou primeiro bloco com classe contendo hero",
+        "grade": "display grid com 3 trilhas de colunas, ou flex com 3 filhos de larguras iguais (diferença de até 10%)",
+        "filhos_iguais": "mesma sequência de tags filhas (ícone/imagem, título, texto) em pelo menos 3 irmãos",
+        "posicao": "a grade fica na primeira ou segunda seção após a abertura",
+        "nao_penaliza": "grades bento (cartões de tamanhos e formatos diferentes) e cartões com conteúdo claramente distinto",
+        "intensidade": "1 se abertura centralizada e 3 cartões com mesma largura e altura; 0,5 se só a grade bate"
+      }
+    },
+    "peso": 8,
+    "severidade": "tell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Varie a composição: mostre o produto de verdade, destaque um item e deixe os outros menores, ou use seções de formatos diferentes.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a seção {{trecho}} mostra uma abertura centralizada seguida de três cartões iguais ({{valor}}). Substitua a fileira de cartões por uma composição com um item em destaque e dois secundários de tamanhos diferentes, ou por uma captura real do produto ao lado do texto. NÃO mude o conteúdo textual nem as cores da marca. Pronto quando os blocos não tiverem a mesma largura e altura e a abertura não for a única composição centralizada da página.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells (hankimis)",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:C1",
+      "unslop-ui:hero-three-cards",
+      "hallmark:3",
+      "hallmark:8",
+      "impeccable:floor-proib-cards-iguais"
+    ],
+    "citacoes": [
+      "contagem",
+      "trecho"
+    ],
+    "notas": "Peso 8 e a heurística de grade de 3 colunas vêm do ai-design-tells (C1). A versão da unslop-ui diz que a estrutura exige julgamento (hero centralizado e CTA). Hallmark e Impeccable tratam cartões iguais como padrão a evitar. Grades bento são liberadas pelas fontes e não penalizam."
+  },
+  {
+    "id": "estr-cartoes-iguais-repetidos",
+    "categoria": "estrutura-padrao",
+    "titulo": "Várias fileiras de cartões iguais (ícone, título e frase) pela página",
+    "descricao": "Mais de uma seção repete o mesmo molde de cartões: ícone, título curto e uma frase vaga. A página vira uma lista de blocos intercambiáveis, sem hierarquia entre o que é principal e o que é detalhe.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Conta as grades ou listas com 3 ou mais irmãos de mesma assinatura estrutural (ícone ou imagem, título, parágrafo curto) no DOM final, sem contar a grade já usada em estr-hero-tres-cards.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "minimo_de_irmaos_por_grade": 3,
+        "minimo_de_grades_para_disparar": 2,
+        "assinatura": "sequência de tags e classes dos filhos diretos; texto do parágrafo até 25 palavras",
+        "intensidade": "min(1, (grades - 1) / 3)"
+      }
+    },
+    "peso": 5,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque parte das fileiras por outros formatos: lista simples, tabela, texto corrido com destaque, imagem do produto.",
+    "prompt_correcao": "No arquivo {{arquivo}}, as seções {{trecho}} repetem o mesmo molde de cartões ({{valor}} grades). Mantenha um molde de cartões e reescreva as outras seções com formatos diferentes (lista, comparação, captura do produto). NÃO apague informações nem mude títulos. Pronto quando no máximo uma grade de 3 ou mais cartões de mesma estrutura permanecer na página.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:floor-proib-cards-iguais",
+      "hallmark:3",
+      "unslop-heydamir:cards-iguais",
+      "unslop-heydamir:feature-emoji"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. A fonte principal (Impeccable) proíbe cartões iguais como estrutura de página sem número; o mínimo de 2 grades é proposto. Evita dupla contagem com estr-hero-tres-cards. Impeccable é usado só por leitura local, com crédito."
+  },
+  {
+    "id": "estr-card-dentro-de-card",
+    "categoria": "estrutura-padrao",
+    "titulo": "Cartão dentro de outro cartão",
+    "descricao": "Uma caixa com cantos arredondados, borda, fundo ou sombra aparece dentro de outra caixa do mesmo tipo. As molduras empilhadas pesam o visual e escondem o que é mais importante.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Marca como cartão todo elemento visível com border-radius maior que 0 e pelo menos um entre borda visível, fundo diferente do pai e sombra. Conta os cartões que têm outro cartão como descendente (até 3 níveis), exceto controles.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "moldura": "border-radius > 0 E (borda visível OU fundo diferente do pai OU box-shadow)",
+        "excecoes": [
+          "button",
+          "input",
+          "select",
+          "textarea",
+          "img",
+          "svg",
+          "video",
+          "role=button",
+          "elementos inline"
+        ],
+        "niveis_de_descendentes": 3,
+        "minimo_de_ocorrencias": 1,
+        "intensidade": "min(1, pares aninhados / total de cartões)"
+      }
+    },
+    "peso": 4,
+    "severidade": "tell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Deixe só uma moldura: o cartão de fora ou o de dentro. Separe os itens internos com espaço ou uma linha fina.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o cartão {{trecho}} contém outro cartão com moldura própria. Remova a moldura (borda, fundo e sombra) do elemento interno e use espaço ou uma linha fina para separar os itens. NÃO remova botões, campos nem imagens, e não mude o texto. Pronto quando nenhum elemento com moldura tiver outro elemento com moldura como descendente direto de conteúdo.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells (hankimis)",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:E4",
+      "hallmark:4",
+      "impeccable:floor-proib-cards-iguais",
+      "impeccable:dis-cards"
+    ],
+    "citacoes": [
+      "contagem",
+      "trecho"
+    ],
+    "notas": "Mínimo de 1 ocorrência e peso 4 vêm do ai-design-tells (E4). Hallmark trata como Floor e a skill Impeccable diz que cartões aninhados estão sempre errados. A lista de exceções (controles, mídia) é técnica, para evitar falso positivo com botões e campos dentro de cartões."
+  },
+  {
+    "id": "estr-centralizar-tudo",
+    "categoria": "estrutura-padrao",
+    "titulo": "Quase todos os blocos da página centralizados",
+    "descricao": "Títulos, textos, cartões e chamadas aparecem centralizados em praticamente todas as seções. Sem alternar com blocos alinhados à esquerda ou divididos em colunas, a página fica monótona e cansativa de ler.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Considera os blocos de topo da página (profundidade até 3 dentro do main) que têm texto. Conta os que têm text-align center, ou flex e grid centralizando o conteúdo em coluna, e divide pelo total.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "profundidade_maxima": 3,
+        "fracao_minima_centralizada": 0.6,
+        "fracao_alternativa_sites_ao_vivo": 0.5,
+        "dispara_se": "fração de blocos centralizados >= 0.6",
+        "intensidade": "(fração - 0.6) / 0.4, limitada a [0,1]"
+      }
+    },
+    "peso": 5,
+    "severidade": "tell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Alterne os alinhamentos: mantenha o centro para chamadas curtas e passe textos longos e listas para a esquerda ou para colunas.",
+    "prompt_correcao": "No arquivo {{arquivo}}, as seções do trecho {{trecho}} estão quase todas centralizadas ({{valor}} dos blocos). Alinhe à esquerda os textos longos e as listas, use duas colunas onde fizer sentido e mantenha o centro só para a chamada principal. NÃO mude o conteúdo nem as cores. Pronto quando menos de 60% dos blocos de topo tiverem conteúdo centralizado.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells (hankimis)",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:C2",
+      "unslop-ui:centered-everything",
+      "hallmark:F15"
+    ],
+    "citacoes": [
+      "numero",
+      "contagem"
+    ],
+    "notas": "Limiar de 60% e peso 5 vêm do ai-design-tells (C2); o repositório usa 50% para sites ao vivo (calibration.json), valor registrado nos parâmetros. Medido pelo repositório, sem valer como verdade universal. A unslop-ui chama o problema de real, mas menor, e o Hallmark F15 cita mais grupos centrados do que alinhados à esquerda."
+  },
+  {
+    "id": "estr-hero-centrado-empilhado",
+    "categoria": "estrutura-padrao",
+    "titulo": "Abertura toda empilhada e centralizada, sem visual ao lado",
+    "descricao": "Título, frase e botões ficam empilhados no mesmo eixo central, ocupando a tela inteira, sem imagem nem elemento visual ao lado. A primeira impressão é a mesma de milhares de páginas parecidas.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "css",
+      "metodo": "Em 1440x900, mede o centro horizontal do h1, da frase de apoio e do botão principal da abertura. Se os três ficam no mesmo eixo central e não há imagem, vídeo ou ilustração na mesma linha, marca. O modelo confirma se o resultado parece genérico.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "viewport": "1440x900",
+        "tolerancia_do_eixo_px": 24,
+        "elementos": [
+          "h1",
+          "frase de apoio (primeiro p)",
+          "botão principal"
+        ],
+        "visual_ao_lado": "img, video, svg ou canvas na mesma faixa vertical do texto, fora do eixo central",
+        "altura_hero_de_referencia": "92% da altura da tela",
+        "dispara_se": "três elementos no mesmo eixo E sem visual ao lado"
+      }
+    },
+    "peso": 5,
+    "severidade": "tell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Divida a abertura: texto de um lado e produto ou imagem real do outro, ou quebre o alinhamento de um dos elementos.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a abertura {{trecho}} tem título, frase e botão no mesmo eixo central, sem visual ao lado. Reorganize em duas colunas (texto à esquerda, captura real do produto ou imagem à direita) ou alinhe o texto à esquerda. NÃO mude os textos nem a oferta. Pronto quando, a 1440 px, o título e o botão não compartilharem o mesmo eixo central ou houver um visual na outra coluna.",
+    "fonte": [
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:hero-empilhado",
+      "hallmark:6b",
+      "hallmark:44a"
+    ],
+    "citacoes": [
+      "numero"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. A tolerância de 24 px para o eixo é proposta; o Hallmark (6b) fala de itens \"no mesmo eixo central\" e da altura de 92dvh, sem tolerância. Postura centralizada de propósito (pôster, página de produto simples) pode ser legítima, por isso a confirmação do modelo."
+  },
+  {
+    "id": "estr-ritmo-uniforme-de-secoes",
+    "categoria": "estrutura-padrao",
+    "titulo": "Todas as seções com a mesma altura de respiro, como um metrônomo",
+    "descricao": "As seções da página têm o mesmo espaçamento em cima e embaixo e são separadas sempre do mesmo jeito. A página ganha ritmo de metrônomo, sem seções mais soltas ou mais compactas conforme a importância.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Lê padding-top e padding-bottom computados de section, header e footer visíveis. Verifica se 3 ou mais têm exatamente o mesmo par de valores, e se a separação entre elas (fundo, linha ou espaço) é a mesma em todas.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "elementos": "section, header, footer visíveis",
+        "minimo_de_secoes_iguais": 3,
+        "dispara_se": "3 ou mais seções com o mesmo padding vertical (topo e base)",
+        "intensidade": "fração das seções que usam o par de padding mais comum"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Varie o respiro entre seções: mais folga para as principais, menos para as de apoio, e varie o jeito de separá-las.",
+    "prompt_correcao": "No arquivo {{arquivo}}, as seções {{trecho}} usam o mesmo padding vertical ({{valor}}). Varie o espaçamento entre 2 ou 3 níveis conforme a importância de cada seção e alterne a separação (cor de fundo, linha, só espaço). NÃO mude o conteúdo nem a ordem. Pronto quando no máximo 2 seções consecutivas compartilharem o mesmo par de padding.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells (hankimis)",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:D2",
+      "hallmark:9",
+      "hallmark:59"
+    ],
+    "citacoes": [
+      "numero",
+      "contagem"
+    ],
+    "notas": "Mínimo de 3 seções e peso 3 (smell) vêm do ai-design-tells (D2), medidos pelo repositório; no original a checagem olha classes py-N do Tailwind, aqui adaptada para valores computados. Hallmark 9 e 59 descrevem o mesmo sinal por julgamento."
+  },
+  {
+    "id": "estr-esqueleto-hero-beneficios-chamada",
+    "categoria": "estrutura-padrao",
+    "titulo": "Página que é só abertura, grade de benefícios e chamada final",
+    "descricao": "A página inteira segue o molde de abertura, grade de benefícios, faixa de chamada centralizada e rodapé, sem mostrar produto real, preço, perguntas, processo ou casos. É um esqueleto que serve para qualquer negócio.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "secoes",
+      "metodo": "Lista as seções de topo do main e classifica cada uma por heurística (abertura, grade de cartões, logos ou depoimentos, faixa de chamada com um botão, outras). Marca quando só aparecem abertura, grade de cartões e faixa de chamada final, com 5 seções ou menos. O modelo confirma lendo a ordem e o conteúdo.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "maximo_de_secoes": 5,
+        "sequencia_suspeita": [
+          "abertura",
+          "grade de cartões",
+          "faixa de chamada com 1 botão centralizada",
+          "rodapé"
+        ],
+        "tipos_de_secao_que_afastam_o_alerta": [
+          "captura do produto",
+          "preços",
+          "perguntas frequentes",
+          "processo em etapas",
+          "casos reais",
+          "formulário"
+        ]
+      }
+    },
+    "peso": 6,
+    "severidade": "tell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "landing-page",
+      "pagina-de-vendas",
+      "site-institucional"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Inclua seções que só o seu negócio poderia ter: o produto em uso, números reais, perguntas de clientes, etapas do serviço.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a página segue o molde abertura, grade de cartões, chamada final ({{valor}}). Acrescente pelo menos duas seções específicas do negócio (por exemplo, o produto em uso e perguntas frequentes) usando só informações já existentes no site, e reordene a chamada final. NÃO invente números, depoimentos nem clientes. Pronto quando a página tiver ao menos 2 tipos de seção fora do trio abertura, cartões e chamada.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:8",
+      "unslop-ui:hero-three-cards",
+      "unslop-heydamir:tpl-mesmo-layout"
+    ],
+    "citacoes": [
+      "contagem",
+      "trecho"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. Hallmark (gate 8) classifica por julgamento; unslop-ui descreve a faixa de CTA centralizada como parte do molde. O limite de 5 seções é proposto. Peso 6 é proposta, por ser um sinal de página inteira."
+  },
+  {
+    "id": "estr-abertura-com-numero-grande-e-metricas",
+    "categoria": "estrutura-padrao",
+    "titulo": "Abertura montada em volta de um número grande e métricas de apoio",
+    "descricao": "A primeira tela destaca um número enorme com legenda pequena e, ao lado, mais algumas métricas. Sem unidade, fonte ou contexto, o número soa como enfeite e não como informação.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "html",
+      "metodo": "Na primeira tela, procura 3 ou mais irmãos que repetem o par número grande (texto que só tem dígitos, vírgula, ponto, %, + ou sufixo k/M) e legenda curta. Também marca h1 formado só por número. O modelo julga se há unidade e fonte que deem sentido.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "numero_regex": "^[+-]?[\\d.,]+\\s?(%|k|K|M|mi|mil)?\\+?$",
+        "tamanho_minimo_do_numero_px": 32,
+        "minimo_de_irmaos": 3,
+        "area": "primeira dobra (1440x900)",
+        "dispara_se": "3 ou mais pares número+legenda na primeira dobra, ou h1 formado só por número"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque o número solto por uma frase que explique o que ele mede, com unidade e fonte, ou mostre o produto no lugar.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a abertura {{trecho}} usa números grandes soltos ({{valor}}). Reescreva cada número com unidade, período e fonte (por exemplo, \"o que mede e de onde vem\") ou mova-os para uma seção própria. NÃO invente números novos nem altere os existentes. Pronto quando cada número da abertura vier acompanhado de unidade e de fonte ou for removido dela.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:floor-proib-hero-metric",
+      "hallmark:46b",
+      "unslop-heydamir:stat-decorado"
+    ],
+    "citacoes": [
+      "trecho",
+      "numero"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. O tamanho mínimo de 32 px e o mínimo de 3 irmãos são propostos. O Hallmark aceita número solto no hero quando tem unidade e fonte. Impeccable proíbe o molde número grande, rótulo pequeno e estatísticas de apoio. Verificação de verdade dos números fica com outras categorias (conteúdo e confiança)."
+  },
+  {
+    "id": "estr-numeracao-de-secoes",
+    "categoria": "estrutura-padrao",
+    "titulo": "Seções numeradas 01, 02, 03 sem que a ordem importe",
+    "descricao": "Títulos ou rótulos de seção trazem numeração decorativa (01, 02, 03 ou 01 / 04) sem que exista uma sequência real a seguir. A numeração enfeita, mas não ajuda quem lê.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "html",
+      "metodo": "Procura textos curtos antes ou dentro de títulos de seção que casam com numeração (um ou dois dígitos, opcionalmente seguidos de barra, ponto ou traço) em 3 ou mais seções em sequência. Exclui listas ordenadas (ol) e blocos de passos com palavras como passo ou etapa, que o modelo confirma.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "regex": "^\\s*0?\\d{1,2}\\s*(\\/\\s*\\d{1,2}|[.\\-–—:])?\\s*$",
+        "minimo_de_secoes_em_sequencia": 3,
+        "excecoes": [
+          "ol",
+          "palavras passo, etapa, step perto do número"
+        ],
+        "dispara_se": "3 ou mais seções numeradas fora de lista de passos"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Remova a numeração das seções, a não ser que o leitor realmente precise seguir uma ordem.",
+    "prompt_correcao": "No arquivo {{arquivo}}, os rótulos do trecho {{trecho}} numeram seções ({{valor}}) sem uma sequência a seguir. Remova os números decorativos e deixe só os títulos; mantenha a numeração apenas em listas de passos reais. NÃO altere os títulos nem o conteúdo das seções. Pronto quando nenhuma seção fora de uma lista de passos tiver numeração 01, 02, 03.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:floor-proib-numeracao",
+      "hallmark:66"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. Impeccable proíbe numeração de seção, salvo quando a sequência carrega informação; Hallmark (66) cita a contagem 01 / 4 como texto decorativo, por julgamento. O mínimo de 3 seções é proposto."
+  },
+  {
+    "id": "estr-rotulo-curto-sobre-titulos",
+    "categoria": "estrutura-padrao",
+    "titulo": "Rótulo curto repetido acima dos títulos de cada seção",
+    "descricao": "Cada título de seção vem precedido de uma linha pequena que só anuncia o que o título já diz, ou de uma pílula do tipo Novo ou Lançamento. Ao apagar essa linha, a página não perde nenhuma informação.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "html",
+      "metodo": "Procura o irmão imediatamente anterior a h1 e h2 com texto curto, fonte menor que a do título e sem link, e conta em quantas seções isso se repete. Exclui legendas, rótulos de formulário, cabeçalhos de tabela, datas e autoria. O modelo aplica o teste de apagar a linha e verificar se algum fato se perde.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "maximo_de_palavras": 6,
+        "minimo_de_secoes_com_rotulo": 3,
+        "excecoes": [
+          "figcaption",
+          "th",
+          "label",
+          "nav",
+          "time",
+          "byline"
+        ],
+        "variacoes": [
+          "texto simples",
+          "pílula arredondada",
+          "numeração",
+          "etiqueta de categoria"
+        ],
+        "dispara_se": "rótulo curto acima de título em 3 ou mais seções"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Apague a linha de rótulo e, se havia algum fato nela, passe-o para o título ou para a frase seguinte.",
+    "prompt_correcao": "No arquivo {{arquivo}}, os títulos do trecho {{trecho}} têm uma linha curta de rótulo acima ({{valor}}). Remova essas linhas; se alguma trouxer informação que o título não tem, incorpore-a ao título ou ao texto seguinte. NÃO mude o título nem a estrutura das seções. Pronto quando nenhum título tiver um rótulo curto e inerte imediatamente acima dele.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:54",
+      "impeccable:floor-proib-eyebrow",
+      "unslop-heydamir:pill-badge-hero"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. O Hallmark (54) trata qualquer ocorrência como falha, por regra da casa; o limite de 3 seções e de 6 palavras é proposto para evitar punir um uso isolado. Impeccable proíbe o rótulo acima de título sem exceção. Rótulo em caixa-alta com espaçamento largo, como estilo de fonte, é tema de outras categorias."
+  },
+  {
+    "id": "estr-visual-vazio-no-lugar-de-imagem",
+    "categoria": "estrutura-padrao",
+    "titulo": "Bloco grande de gradiente ou cor onde deveria haver uma imagem",
+    "descricao": "Uma caixa grande, geralmente na abertura, mostra só um fundo de cor ou gradiente, sem foto, captura, vídeo ou ilustração. Parece que a imagem ficou para depois e o espaço ficou vazio.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Acha elementos visíveis de 300x200 px ou mais com fundo de cor ou gradiente e sem descendentes img, video, canvas, svg, nem texto, nem background-image com url.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "tamanho_minimo_px": "300x200",
+        "sem_conteudo": "nenhum img, video, canvas, svg, picture nem texto dentro",
+        "fundo": "background-color ou linear-gradient, radial-gradient, conic-gradient",
+        "excecoes": [
+          "separadores",
+          "elementos aria-hidden usados como fundo de outra caixa com texto"
+        ],
+        "dispara_se": "ao menos 1 caixa nessas condições"
+      }
+    },
+    "peso": 5,
+    "severidade": "tell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Coloque uma imagem real, uma captura do produto ou diminua o bloco; não deixe o espaço só com cor.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o bloco {{trecho}} ({{valor}}) é uma área grande só com cor ou gradiente. Substitua por uma imagem real do negócio ou captura do produto (com alt descritivo) ou remova o bloco e ajuste o layout. NÃO invente fotos de pessoas nem use ilustrações de banco. Pronto quando não restar bloco de 300x200 px ou mais sem imagem, vídeo ou texto.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:81",
+      "unslop-heydamir:tpl-visual-caixa"
+    ],
+    "citacoes": [
+      "numero",
+      "contagem"
+    ],
+    "notas": "Tamanho de 300x200 vem do Hallmark (gate 81), medido pelo repositório; confiança média no máximo. O gate original também cobre blocos marcados com atributo próprio do Hallmark (data-slot), que não se aplica a sites de terceiros."
+  },
+  {
+    "id": "estr-moldura-falsa-de-navegador",
+    "categoria": "estrutura-padrao",
+    "titulo": "Janela de navegador desenhada na mão em volta de uma imagem",
+    "descricao": "O visual do produto aparece dentro de uma janela de navegador ou de sistema desenhada com caixas: três bolinhas coloridas, uma barra de endereço falsa. É um enfeite repetido, que deixa a imagem com cara de maquete.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Procura uma linha com 3 círculos pequenos (6 a 16 px, border-radius 50%) nas cores vermelha, amarela e verde, ou uma barra com um campo arredondado contendo um endereço, no topo de uma caixa que envolve imagem ou conteúdo.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "circulos": {
+          "quantidade": 3,
+          "diametro_px": [
+            6,
+            16
+          ],
+          "matizes": "vermelho, amarelo e verde"
+        },
+        "barra_de_endereco": "elemento arredondado com texto no formato de domínio ou URL dentro de barra no topo de uma caixa",
+        "dispara_se": "trio de bolinhas ou barra de endereço desenhada em CSS"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Use uma captura de tela real em uma figura simples, sem janela desenhada em volta.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o bloco {{trecho}} desenha uma janela de navegador (bolinhas e barra de endereço) em volta do conteúdo. Remova a moldura decorativa e deixe só a captura de tela real do produto, em uma figura com legenda ou alt. NÃO apague a imagem nem mude o texto. Pronto quando não houver trio de bolinhas coloridas nem barra de endereço desenhada.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:47a",
+      "hallmark:47b"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. O Hallmark classifica o navegador desenhado como falha obrigatória (Floor) e molduras de telefone e laptop como reflexo; aqui a regra cobre só o caso mais claro e tem peso baixo, pois muitos sites bons usam esse recurso. Diâmetro de 6 a 16 px e as cores são propostos."
+  },
+  {
+    "id": "estr-produto-desenhado-no-lugar-de-captura",
+    "categoria": "estrutura-padrao",
+    "titulo": "Tela de produto desenhada com caixas em vez de captura real",
+    "descricao": "O site mostra o produto com uma interface fingida, montada com blocos, barras e círculos, em vez de uma captura do produto de verdade, mesmo quando o produto existe. Passa a impressão de maquete.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo olha a captura e o HTML da área de produto: procura uma interface montada com muitas caixas aninhadas sem texto real (barras de gráfico, avatares, linhas cinzas) e verifica se existe produto, aplicativo ou endereço que permitiria uma captura real.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "evidencias_para_citar": "trecho de HTML ou nome de classe da interface fingida",
+        "sinais": [
+          "muitos blocos aninhados sem texto",
+          "barras e círculos decorativos",
+          "dados genéricos"
+        ]
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque a interface fingida por uma captura real do produto em uso, com dados reais ou claramente de exemplo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o trecho {{trecho}} desenha uma interface falsa com caixas. Substitua por uma captura real do produto (imagem com alt descritivo). Se não houver produto para capturar, deixe um espaço neutro com legenda explicando que é exemplo. NÃO invente números ou clientes. Pronto quando a seção mostrar uma imagem real ou for removida.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:84",
+      "hallmark:47c",
+      "unslop-heydamir:reg-produto-real"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Julgamento puro (o próprio Hallmark classifica 84 e 47c como julgamento). A fonte unslop descreve o inverso, uma boa prévia, que parece o aplicativo real com dados plausíveis. Sem evidência citável no HTML, o achado é descartado pelo verificador."
+  },
+  {
+    "id": "estr-ilustracao-generica-de-banco",
+    "categoria": "estrutura-padrao",
+    "titulo": "Ilustração genérica de banco de imagens ou desenho vetorial de cena",
+    "descricao": "O site usa ilustrações de bibliotecas gratuitas muito conhecidas ou desenhos vetoriais de cena (pessoas, objetos, paisagens) como imagem principal. São visuais que servem a qualquer marca e não dizem nada do negócio.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "html",
+      "metodo": "Procura em src, srcset, URLs de fundo e nomes de arquivo termos de bibliotecas gratuitas de ilustração (undraw, storyset, drawkit) e SVGs inline de 120 px ou mais com 3 ou mais curvas ou 3 ou mais preenchimentos distintos e sem texto, exceto gráficos, mapas e logos.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "termos_em_urls": [
+          "undraw",
+          "storyset",
+          "drawkit"
+        ],
+        "svg_inline": {
+          "tamanho_minimo_px": 120,
+          "minimo_de_curvas": 3,
+          "minimo_de_preenchimentos": 3,
+          "sem_texto": true
+        },
+        "excecoes": [
+          "svg com class ou aria-label contendo gráfico, chart, mapa, map, diagrama, logo"
+        ],
+        "dispara_se": "ao menos 1 ilustração de biblioteca ou 1 svg de cena"
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque por fotos reais do negócio, capturas do produto ou composições tipográficas.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o elemento {{trecho}} usa uma ilustração genérica ({{valor}}). Troque por uma foto ou captura real do negócio (com alt descritivo) ou por um bloco tipográfico. NÃO use outra biblioteca de ilustrações. Pronto quando nenhuma imagem do trecho vier de undraw, storyset ou drawkit e não houver svg de cena sem texto com 120 px ou mais.",
+    "fonte": [
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-ui:stock-illustration",
+      "hallmark:80"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "A lista de bibliotecas e o peso baixo (1 de 3 no scanner) vêm do unslop-ui; o limite de 120 px, 3 curvas e 3 preenchimentos vem do Hallmark (gate 80). Ambos medidos pelos repositórios, sem valer como verdade universal. Peso 2 é proposta para compor as duas fontes."
+  },
+  {
+    "id": "estr-fechamento-com-cadastro-de-email",
+    "categoria": "estrutura-padrao",
+    "titulo": "Página que termina pedindo e-mail sem que seja a função dela",
+    "descricao": "A última seção antes do rodapé é um campo de e-mail com botão de inscrição, em um site cujo objetivo não é montar uma lista de contatos. É um fecho padrão, que não ajuda o visitante a fazer o que veio fazer.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "html",
+      "metodo": "Acha a última seção antes do footer e verifica se contém input type email (ou campo com nome de e-mail) e botão de envio. O modelo confirma se o objetivo principal do site deixa essa inscrição fora do lugar.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "secao_alvo": "última seção antes do footer",
+        "campo": "input[type=email], input[name*=mail]",
+        "botao": "button ou input submit",
+        "dispara_se": "cadastro de e-mail na última seção e tipo do site sem foco em lista de contatos"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "site-institucional",
+      "portfolio",
+      "catalogo",
+      "cardapio",
+      "agendamento",
+      "loja"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Feche a página com a ação que importa (contato, agendamento, compra) e deixe a inscrição de novidades só se houver uma razão clara.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a última seção {{trecho}} pede e-mail para inscrição. Troque o fecho pela ação principal do site (por exemplo, contato, agendamento ou compra) e mantenha a inscrição só se o site tiver uma newsletter real. NÃO apague o formulário de contato existente nem mude textos legais. Pronto quando a última seção antes do rodapé apresentar a ação principal do site.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:85"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. O Hallmark (85) marca fecho com cadastro de e-mail em página cuja função não é lista de e-mails; os tipos de site e a confirmação do modelo servem para evitar falso positivo."
+  },
+  {
+    "id": "estr-abertura-com-botoes-demais",
+    "categoria": "estrutura-padrao",
+    "titulo": "Abertura com botões demais ou dois botões cheios disputando atenção",
+    "descricao": "A primeira tela tem três ou mais botões, ou dois botões de mesmo peso visual lado a lado, e às vezes avatares ou selos embaixo. O visitante não sabe qual é a ação principal.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Na primeira dobra (1440x900), conta links e botões com aparência de botão (fundo preenchido ou borda, padding e raio) na abertura, e verifica se dois deles têm o mesmo fundo preenchido e estão lado a lado.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "viewport": "1440x900",
+        "minimo_de_botoes": 3,
+        "botoes_cheios_iguais_lado_a_lado": 2,
+        "extras": "fileira de avatares ou selos abaixo dos botões",
+        "dispara_se": "3 ou mais botões na abertura, ou 2 botões preenchidos idênticos lado a lado"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Deixe uma ação principal em destaque e uma secundária discreta (link ou botão de contorno).",
+    "prompt_correcao": "No arquivo {{arquivo}}, a abertura {{trecho}} tem {{valor}} botões de destaque. Mantenha um botão principal preenchido e transforme o segundo em link ou botão de contorno; remova os demais da abertura (podem ir para o menu). NÃO apague destinos de links. Pronto quando a abertura tiver no máximo 1 botão preenchido e 1 secundário.",
+    "fonte": [
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:muitos-botoes",
+      "hallmark:F4",
+      "hallmark:19"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Limiar de 3 botões vem do unslop (signs.md, sem peso definido); o caso de dois botões cheios vem do Hallmark (F4, de acabamento). Valores qualitativos nas fontes, por isso confiança média no máximo."
+  }
+]

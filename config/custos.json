@@ -1,0 +1,139 @@
+{
+  "versao": 1,
+  "aviso": "Preços e cotação mudam. Atualize este arquivo antes de publicar e sempre que quiser estimativas exatas. Os coeficientes de tokens foram MEDIDOS em 2026-11-19 pelo contador de contexto da sessão (ver docs/teste-de-acerto.md, seção de custo).",
+  "cotacao": {
+    "par": "USD/BRL",
+    "valor": 5.8889,
+    "tipo": "Dolar comercial, venda (serie 1 do SGS do Banco Central). Reconferido em 20/11/2026 (preparo do repositorio publico): o ultimo valor publicado continua o de 19/11/2026 (o de 20/11 ainda nao saiu); 17/11/2026: 5,7851 e 18/11/2026: 5,8102",
+    "data_cotacao": "2026-11-19",
+    "consultado_em": "2026-11-20",
+    "fonte": "Banco Central do Brasil, SGS serie 1",
+    "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.1/dados/ultimos/5?formato=json"
+  },
+  "precos": {
+    "fonte": "Anthropic, página oficial de preços da API",
+    "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+    "consultado_em": "2026-11-20",
+    "unidade": "US$ por milhão de tokens",
+    "modelos": {
+      "haiku-5-5": {
+        "nome": "Claude Haiku 5.5",
+        "entrada": 0.1,
+        "saida": 0.5,
+        "cache_leitura": 0.01,
+        "entrada_acima_100k": 0.5,
+        "saida_acima_100k": 2.5,
+        "limite_faixa_tokens": 100000
+      },
+      "sonnet-5-5": {
+        "nome": "Claude Sonnet 5.5",
+        "entrada": 2,
+        "saida": 10,
+        "cache_leitura": 0.1
+      },
+      "opus-5-5": {
+        "nome": "Claude Opus 5.5",
+        "entrada": 4,
+        "saida": 20,
+        "cache_leitura": 0.2
+      },
+      "fable-5-2": {
+        "nome": "Claude Fable 5.2",
+        "entrada": 8,
+        "saida": 40,
+        "cache_leitura": 0.2
+      }
+    }
+  },
+  "modelo_julgamento": "sonnet-5-5",
+  "modelo_resumos": "haiku-5-5",
+  "teto_reais": 2,
+  "referencia_do_berg_reais": {
+    "completo_minimo": 0.8,
+    "completo_maximo": 1
+  },
+  "estimativa_tokens": {
+    "confianca": "media (medida em 1 site real no modo rápido e 1 site local no completo; o pensamento interno do modelo não é visível ao contador)",
+    "instrucoes_skill_entrada": 4100,
+    "saidas_de_ferramentas_entrada": 3000,
+    "caracteres_por_token_pacote": 2.2,
+    "caracteres_por_token_julgamento": 3,
+    "rapido": {
+      "pacote_base": 14000,
+      "pacote_por_pagina": 300,
+      "pacote_teto": 16000,
+      "saida_base": 4000,
+      "saida_por_pagina": 50
+    },
+    "completo": {
+      "pacote_base": 14000,
+      "pacote_por_pagina": 800,
+      "pacote_teto": 40000,
+      "saida_base": 6500,
+      "saida_por_pagina": 20
+    },
+    "medicoes": {
+      "data": "2026-11-19",
+      "metodo": "contador de contexto da própria sessão (get_usage) antes e depois de ler o SKILL.md, ler o pacote e escrever o julgamento; consulta do contador = 974 tokens descontados",
+      "skill_md_tokens": 4100,
+      "rapido_site_real_1_pagina": {
+        "pacote_tokens": 19100,
+        "pacote_caracteres": 40623,
+        "julgamento_tokens_saida": 2400,
+        "julgamento_caracteres": 7171
+      },
+      "completo_site_local_12_paginas": {
+        "pacote_caracteres": 35551,
+        "pacote_tokens_aprox": 16700,
+        "observacao": "pacote medido; saída do julgamento estimada a partir do rápido"
+      }
+    }
+  },
+  "modulo_seo": {
+    "descricao": "Custo EXTRA do módulo \"Subir no Google\" (modo completo ou --seo), medido em 2026-11-20 com o mesmo método do pacote (caracteres / 2,2 por token).",
+    "pacote_extra_tokens": 2000,
+    "saida_extra_tokens": 800,
+    "medicao": {
+      "metodo": "analisar() em duas fixtures fictícias, com e sem o módulo; diferença do pacote.txt. A saída extra é ESTIMADA: ~90 tokens por crítica nova (texto curto + JSON) x 9 achados novos no pior caso.",
+      "site_com_muitos_problemas": {
+        "achados_sem_modulo": 20,
+        "achados_com_modulo": 29,
+        "pacote_tokens_sem": 7136,
+        "pacote_tokens_com": 9117,
+        "extra_entrada_tokens": 1981,
+        "extra_saida_tokens_estimada": 810
+      },
+      "site_bom": {
+        "achados_sem_modulo": 16,
+        "achados_com_modulo": 17,
+        "pacote_tokens_sem": 7293,
+        "pacote_tokens_com": 7535,
+        "extra_entrada_tokens": 242,
+        "extra_saida_tokens_estimada": 90
+      },
+      "tempo_extra_dos_scripts": "desprezível (as duas leituras com e sem o módulo levaram o mesmo tempo, na casa de 10 a 16 segundos)",
+      "custo_extra_reais_pior_caso": 0.07,
+      "custo_extra_reais_site_bom": 0.01,
+      "conta": "pior caso: 1981 x US$ 2/MTok + 810 x US$ 10/MTok = US$ 0,0121 x 5,8889 = R$ 0,071 (Sonnet 5.5)"
+    }
+  },
+  "camada_local": {
+    "descricao": "Custo EXTRA de uma análise quando a camada local opcional (pasta local/, D-028) está ativa, medido em 2026-11-20 com o mesmo método do pacote (caracteres / 2,2 por token). Sem a camada local o custo é o de rápido e completo acima.",
+    "pacote_extra_tokens": {
+      "minimo": 548,
+      "maximo": 1145
+    },
+    "saida_extra_tokens": "estimada: 5 respostas de heurística (~60 tokens cada) mais ~90 tokens por crítica nova",
+    "custo_extra_reais": {
+      "minimo": 0.02,
+      "maximo": 0.04
+    },
+    "medicao": {
+      "metodo": "analisar() sem e com a camada local em 3 sites fictícios (rápido e completo, 1 página, Lighthouse e axe fora nos dois lados); diferença do pacote.txt. As perguntas de julgamento da camada local entram nos critérios do pacote.",
+      "consultado_em": "2026-11-20",
+      "cotacao": "5.8889 (dólar comercial, venda, série 1 do SGS do Banco Central, último valor publicado: 19/11/2026)",
+      "preco_modelo": "Claude Sonnet 5.5: US$ 2 por milhão de tokens de entrada e US$ 10 de saída (página oficial de preços, conferida em 20/11/2026)"
+    },
+    "saida_extra_tokens_maximo": 480
+  }
+}

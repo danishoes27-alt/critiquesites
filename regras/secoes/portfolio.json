@@ -1,0 +1,421 @@
+[
+  {
+    "id": "projetos-em-destaque",
+    "tipo_de_site": "portfolio",
+    "nome": "Projetos em destaque",
+    "descricao": "O visitante quer ver trabalhos reais logo de cara. Poucos projetos bem escolhidos, alinhados ao tipo de trabalho que a pessoa quer fazer, valem mais que uma lista enorme.",
+    "obrigatoriedade": "essencial",
+    "peso": 9,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"projeto\" i]",
+        "[class*=\"portfolio\" i]",
+        "[class*=\"work\" i]",
+        "a[href*=\"projeto\" i]"
+      ],
+      "palavras": [
+        "projetos",
+        "portfólio",
+        "portfolio",
+        "trabalhos",
+        "cases"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 5 Steps to Creating a UX-Design Portfolio",
+        "url": "https://www.nngroup.com/articles/ux-design-portfolios/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. NN/g sugere 3 a 5 projetos em profundidade (\"qualidade acima de quantidade\"). A fonte é sobre portfólios de UX; extrapolado a outras áreas, por isso a confiança é média."
+  },
+  {
+    "id": "contexto-de-cada-projeto",
+    "tipo_de_site": "portfolio",
+    "nome": "Contexto de cada projeto",
+    "descricao": "Cada projeto precisa explicar o problema, qual foi o seu papel e o que foi feito. Só mostrar a imagem final não deixa ver como a pessoa pensa e trabalha.",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"case\" i] h2",
+        "article h2",
+        "section h3"
+      ],
+      "palavras": [
+        "desafio",
+        "problema",
+        "meu papel",
+        "solução",
+        "solucao",
+        "processo",
+        "resultado"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 5 Steps to Creating a UX-Design Portfolio",
+        "url": "https://www.nngroup.com/articles/ux-design-portfolios/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. NN/g lista problema, papel, solução, desafios e efeitos como conteúdo de um estudo de caso."
+  },
+  {
+    "id": "sobre-quem-faz",
+    "tipo_de_site": "portfolio",
+    "nome": "Sobre quem faz o trabalho",
+    "descricao": "Quem contrata quer saber quem é a pessoa por trás do trabalho: história, experiência e jeito de trabalhar, com foto e nome reais.",
+    "obrigatoriedade": "essencial",
+    "peso": 7,
+    "deteccao": {
+      "seletores": [
+        "#sobre",
+        "section[id*=\"sobre\" i]",
+        "a[href*=\"sobre\" i]"
+      ],
+      "palavras": [
+        "sobre mim",
+        "quem sou",
+        "sobre",
+        "minha história",
+        "minha historia"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Google Search Central: Creating helpful, reliable, people-first content",
+        "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: 'About Us' Information on Corporate Websites",
+        "url": "https://www.nngroup.com/articles/about-us-information-on-websites/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Páginas sobre o autor são sinal de confiança para o Google; NN/g trata de empresas, extrapolado a profissionais."
+  },
+  {
+    "id": "contato",
+    "tipo_de_site": "portfolio",
+    "nome": "Contato",
+    "descricao": "O portfólio existe para gerar conversas. O visitante deve achar e-mail, WhatsApp ou formulário em qualquer ponto da página.",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "a[href^=\"mailto:\"]",
+        "a[href*=\"wa.me\"]",
+        "a[href*=\"contato\" i]",
+        "#contato",
+        "form"
+      ],
+      "palavras": [
+        "contato",
+        "fale comigo",
+        "vamos conversar",
+        "e-mail",
+        "whatsapp"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 'Contact Us' Page Guidelines",
+        "url": "https://www.nngroup.com/articles/contact-us-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Trustworthiness in Web Design: 4 Credibility Factors",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Contato com meios reais, não só formulário, é recomendação do NN/g."
+  },
+  {
+    "id": "servicos-ou-especialidades",
+    "tipo_de_site": "portfolio",
+    "nome": "O que faço (serviços ou especialidades)",
+    "descricao": "Dizer em poucas palavras o que a pessoa faz e para quem ajuda o visitante a ver se tem o perfil que procura.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "[id*=\"servic\" i]",
+        "[class*=\"servic\" i]",
+        "h1 + p"
+      ],
+      "palavras": [
+        "serviços",
+        "servicos",
+        "o que eu faço",
+        "o que faço",
+        "especialidades",
+        "áreas de atuação"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Homepage Design: 5 Fundamental Principles",
+        "url": "https://www.nngroup.com/articles/homepage-design-principles/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Trustworthiness in Web Design: 4 Credibility Factors",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. NN/g: explicar o que o site oferece e cobrir os serviços por completo."
+  },
+  {
+    "id": "processo-e-bastidores",
+    "tipo_de_site": "portfolio",
+    "nome": "Processo e bastidores",
+    "descricao": "Rascunhos, etapas e ideias descartadas mostram como o trabalho é pensado, algo que quem contrata costuma querer ver.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"process\" i]",
+        "figure figcaption",
+        "ol li"
+      ],
+      "palavras": [
+        "processo",
+        "bastidores",
+        "rascunhos",
+        "etapas",
+        "pesquisa"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 5 Steps to Creating a UX-Design Portfolio",
+        "url": "https://www.nngroup.com/articles/ux-design-portfolios/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. NN/g pede visuais do processo, como esboços e pesquisas, e não só telas finais."
+  },
+  {
+    "id": "resultados-e-impacto",
+    "tipo_de_site": "portfolio",
+    "nome": "Resultados e impacto",
+    "descricao": "O que mudou depois do trabalho: números, relatos do cliente ou melhorias percebidas. Resultados mostram o valor de contratar.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"result\" i]",
+        "blockquote"
+      ],
+      "palavras": [
+        "resultados",
+        "impacto",
+        "aumentou",
+        "reduziu",
+        "cresceu"
+      ],
+      "padroes_regex": [
+        "\\b\\d+\\s?%"
+      ],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 5 Steps to Creating a UX-Design Portfolio",
+        "url": "https://www.nngroup.com/articles/ux-design-portfolios/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Portfolios for UX Researchers: Top 10 Recommendations",
+        "url": "https://www.nngroup.com/articles/ux-researcher-portfolio/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. NN/g recomenda mostrar efeitos nos usuários e no negócio."
+  },
+  {
+    "id": "imagens-com-descricao-acessivel",
+    "tipo_de_site": "portfolio",
+    "nome": "Imagens dos projetos com descrição",
+    "descricao": "Portfólios são cheios de imagens. Cada uma precisa de um texto alternativo curto que explique o que mostra, para quem não enxerga e para os buscadores.",
+    "obrigatoriedade": "esperada",
+    "peso": 4,
+    "deteccao": {
+      "seletores": [
+        "img",
+        "img[alt]",
+        "figure figcaption"
+      ],
+      "palavras": [],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "W3C WCAG 2.2: Understanding 1.1.1 Non-text Content",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html",
+        "licenca": "W3C Software and Document License (© W3C)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: SEO Starter Guide",
+        "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. WCAG 1.1.1 exige alternativa em texto; o guia do Google pede alt curto e descritivo."
+  },
+  {
+    "id": "depoimentos-de-clientes",
+    "tipo_de_site": "portfolio",
+    "nome": "Depoimentos de clientes",
+    "descricao": "Frases de quem já contratou, com nome e contexto, ajudam a confiar, principalmente quando o trabalho não pode ser mostrado por sigilo.",
+    "obrigatoriedade": "opcional",
+    "peso": 3,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"depoimento\" i]",
+        "[class*=\"testimonial\" i]",
+        "blockquote"
+      ],
+      "palavras": [
+        "depoimentos",
+        "o que dizem",
+        "clientes"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Social Proof in the User Experience",
+        "url": "https://www.nngroup.com/articles/social-proof-ux/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: 'About Us' Information on Corporate Websites",
+        "url": "https://www.nngroup.com/articles/about-us-information-on-websites/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "baixa",
+    "notas": "Peso inicial, a calibrar. NN/g recomenda depoimentos honestos e identificáveis; a ligação com portfólio é inferência nossa."
+  },
+  {
+    "id": "trabalhos-sob-sigilo",
+    "tipo_de_site": "portfolio",
+    "nome": "Aviso sobre trabalhos sob sigilo",
+    "descricao": "Quando o cliente não permite mostrar o trabalho, explicar isso e mostrar o processo, ou uma versão sem marca, é melhor que omitir.",
+    "obrigatoriedade": "opcional",
+    "peso": 2,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"confidencial\" i]",
+        "[class*=\"nda\" i]"
+      ],
+      "palavras": [
+        "confidencial",
+        "sigilo",
+        "nda",
+        "sob contrato"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 5 Steps to Creating a UX-Design Portfolio",
+        "url": "https://www.nngroup.com/articles/ux-design-portfolios/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "baixa",
+    "notas": "Peso inicial, a calibrar. NN/g sugere imagens de processo e informações censuradas ou genéricas para trabalhos sob NDA."
+  },
+  {
+    "id": "atualizacao-e-datas",
+    "tipo_de_site": "portfolio",
+    "nome": "Projetos com data e portfólio atualizado",
+    "descricao": "Datas nos projetos e revisões regulares mostram que o portfólio está vivo. Trabalhos muito antigos como destaque passam sensação de abandono.",
+    "obrigatoriedade": "opcional",
+    "peso": 2,
+    "deteccao": {
+      "seletores": [
+        "time",
+        "[class*=\"date\" i]",
+        "[class*=\"ano\" i]"
+      ],
+      "palavras": [
+        "2024",
+        "2025",
+        "2026",
+        "atualizado em"
+      ],
+      "padroes_regex": [
+        "\\b20\\d{2}\\b"
+      ],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: How to Maintain a UX Portfolio Over Time",
+        "url": "https://www.nngroup.com/articles/maintain-ux-portfolio/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "baixa",
+    "notas": "Peso inicial, a calibrar. NN/g recomenda revisão anual; o uso de datas nos projetos é inferência."
+  }
+]

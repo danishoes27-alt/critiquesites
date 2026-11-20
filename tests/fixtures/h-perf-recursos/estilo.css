@@ -1,0 +1,4 @@
+@font-face { font-family: "Sem Display"; src: url("/f1.woff2") format("woff2"); }
+@font-face { font-family: "Com Swap"; src: url("/f2.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Com Block"; src: url("/f3.woff2") format("woff2"); font-display: block; }
+body { font-family: "Sem Display", sans-serif; margin: 0; }

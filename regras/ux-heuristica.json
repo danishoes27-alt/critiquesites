@@ -1,0 +1,1782 @@
+[
+  {
+    "id": "ux-nielsen-01-status-do-sistema",
+    "categoria": "ux-heuristica",
+    "titulo": "Heurística 1: o site mostra o que está acontecendo",
+    "descricao": "A pessoa sempre sabe o que está acontecendo: se está carregando, se a ação funcionou, em que etapa está e em que página do site se encontra.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo pontua de 0 a 4 a heurística «Visibility of System Status» de Nielsen para o site, com base no pacote de evidências (trechos, contagens, capturas) e na lista de pontos a checar, justificando a nota em uma frase e apontando no máximo 3 problemas, cada um com severidade P0 a P3.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "escala": {
+          "min": 0,
+          "max": 4,
+          "ancora_0": "nenhum retorno depois das ações",
+          "ancora_4": "toda ação confirma e o andamento está sempre visível"
+        },
+        "pontos_a_checar": [
+          "indicador de carregamento ou progresso",
+          "confirmação visível depois de enviar um formulário ou clicar em comprar",
+          "página atual destacada no menu",
+          "etapas numeradas em fluxos longos",
+          "validação enquanto a pessoa digita"
+        ],
+        "nao_se_aplica_em": [],
+        "renormalizar_total_quando_na": true,
+        "total_maximo": 40,
+        "bandas_do_total": {
+          "36-40": "Excelente",
+          "28-35": "Bom",
+          "20-27": "Aceitável",
+          "12-19": "Ruim",
+          "0-11": "Crítico"
+        },
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        },
+        "nota_para_severidade": {
+          "0": "P1 (P0 se bloquear a tarefa)",
+          "1": "P1",
+          "2": "P2",
+          "3": "P3",
+          "4": "sem achado"
+        },
+        "limite_de_problemas_por_heuristica": 3
+      }
+    },
+    "peso": 5,
+    "severidade": "P1",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Dê retorno a cada ação: estado de carregando, mensagem de «enviado» e destaque da página atual.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a ação «{{trecho}}» não dá retorno claro ao usuário (nota {{valor}} de 4 na heurística de status do sistema). Acrescente estado de carregamento, mensagem de confirmação ou erro visível e destaque da página atual no menu, usando as classes e componentes já existentes. NÃO mude a lógica de envio, os textos legais nem o layout geral. Pronto quando, ao enviar o formulário ou clicar na ação, aparecer em até 1 segundo um estado de carregamento e, ao terminar, uma mensagem de sucesso ou erro legível por leitor de tela (role=status ou alert).",
+    "fonte": [
+      {
+        "nome": "Nielsen Norman Group: 10 Usability Heuristics for User Interface Design (Jakob Nielsen, 1994, revisto em 2024)",
+        "url": "https://www.nngroup.com/articles/ten-usability-heuristics/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-heuristica-1"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Escala 0 a 4 por heurística; as 10 valem igual (total de 40), como no critério do Impeccable. A banda do total (36-40 Excelente, 28-35 Bom, 20-27 Aceitável, 12-19 Ruim, 0-11 Crítico) e a regra de renormalizar quando uma heurística é n/a vêm do Impeccable; a conversão de nota em severidade do achado é do projeto. A heurística é de Jakob Nielsen (1994, página revista em 2024), descrita aqui em palavras do projeto."
+  },
+  {
+    "id": "ux-nielsen-02-linguagem-do-usuario",
+    "categoria": "ux-heuristica",
+    "titulo": "Heurística 2: o site fala a língua de quem visita",
+    "descricao": "Os termos, os ícones e a ordem das informações são os do visitante, não os de dentro da empresa. Jargão e siglas sem explicação criam barreira.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo pontua de 0 a 4 a heurística «Match Between the System and the Real World» de Nielsen para o site, com base no pacote de evidências (trechos, contagens, capturas) e na lista de pontos a checar, justificando a nota em uma frase e apontando no máximo 3 problemas, cada um com severidade P0 a P3.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "escala": {
+          "min": 0,
+          "max": 4,
+          "ancora_0": "jargão puro, só quem é da empresa entende",
+          "ancora_4": "fala a língua do público em todo o site"
+        },
+        "pontos_a_checar": [
+          "termos do dia a dia no lugar de jargão interno",
+          "ordem das informações na lógica de quem decide",
+          "ícones e metáforas reconhecíveis",
+          "siglas explicadas na primeira vez",
+          "rótulos de menu que o público entende"
+        ],
+        "nao_se_aplica_em": [],
+        "renormalizar_total_quando_na": true,
+        "total_maximo": 40,
+        "bandas_do_total": {
+          "36-40": "Excelente",
+          "28-35": "Bom",
+          "20-27": "Aceitável",
+          "12-19": "Ruim",
+          "0-11": "Crítico"
+        },
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        },
+        "nota_para_severidade": {
+          "0": "P1 (P0 se bloquear a tarefa)",
+          "1": "P1",
+          "2": "P2",
+          "3": "P3",
+          "4": "sem achado"
+        },
+        "limite_de_problemas_por_heuristica": 3
+      }
+    },
+    "peso": 5,
+    "severidade": "P1",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque termos internos pelos que o cliente usa e explique siglas na primeira vez que aparecem.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o termo «{{trecho}}» é jargão para o público (nota {{valor}} de 4 em correspondência com o mundo real). Troque por palavras que o cliente usa, com a lista de termos que eu fornecer (pergunte se faltar), e explique siglas na primeira ocorrência. NÃO mude nomes oficiais de produtos, URLs nem a estrutura do menu sem eu confirmar. Pronto quando nenhum rótulo de menu, botão ou título tiver sigla ou termo técnico sem explicação para o público definido.",
+    "fonte": [
+      {
+        "nome": "Nielsen Norman Group: 10 Usability Heuristics for User Interface Design (Jakob Nielsen, 1994, revisto em 2024)",
+        "url": "https://www.nngroup.com/articles/ten-usability-heuristics/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-heuristica-2"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Escala 0 a 4 por heurística; as 10 valem igual (total de 40), como no critério do Impeccable. A banda do total (36-40 Excelente, 28-35 Bom, 20-27 Aceitável, 12-19 Ruim, 0-11 Crítico) e a regra de renormalizar quando uma heurística é n/a vêm do Impeccable; a conversão de nota em severidade do achado é do projeto. A heurística é de Jakob Nielsen (1994, página revista em 2024), descrita aqui em palavras do projeto."
+  },
+  {
+    "id": "ux-nielsen-03-controle-e-liberdade",
+    "categoria": "ux-heuristica",
+    "titulo": "Heurística 3: dá para desfazer, cancelar e sair",
+    "descricao": "A pessoa consegue voltar atrás sem punição: fechar um aviso, cancelar um passo, limpar filtros, sair de um fluxo longo e retomar do início.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo pontua de 0 a 4 a heurística «User Control and Freedom» de Nielsen para o site, com base no pacote de evidências (trechos, contagens, capturas) e na lista de pontos a checar, justificando a nota em uma frase e apontando no máximo 3 problemas, cada um com severidade P0 a P3.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "escala": {
+          "min": 0,
+          "max": 4,
+          "ancora_0": "a pessoa fica presa, sem como voltar",
+          "ancora_4": "desfazer, cancelar, voltar e sair em todo lugar"
+        },
+        "pontos_a_checar": [
+          "janelas e avisos que fecham com X e Esc",
+          "botão de cancelar ou voltar em formulários de várias etapas",
+          "limpar filtros e buscas",
+          "caminho de saída em fluxos longos",
+          "desfazer em ações reversíveis"
+        ],
+        "nao_se_aplica_em": [],
+        "renormalizar_total_quando_na": true,
+        "total_maximo": 40,
+        "bandas_do_total": {
+          "36-40": "Excelente",
+          "28-35": "Bom",
+          "20-27": "Aceitável",
+          "12-19": "Ruim",
+          "0-11": "Crítico"
+        },
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        },
+        "nota_para_severidade": {
+          "0": "P1 (P0 se bloquear a tarefa)",
+          "1": "P1",
+          "2": "P2",
+          "3": "P3",
+          "4": "sem achado"
+        },
+        "limite_de_problemas_por_heuristica": 3
+      }
+    },
+    "peso": 5,
+    "severidade": "P1",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Inclua em cada janela, etapa ou filtro uma saída clara: fechar, voltar, cancelar ou limpar.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o componente «{{trecho}}» prende o usuário (nota {{valor}} de 4 em controle e liberdade). Acrescente botão de fechar ou cancelar visível, fechamento por Esc nas janelas e um jeito de voltar à etapa anterior sem perder dados. NÃO mude a lógica de negócio nem remova etapas. Pronto quando toda janela, etapa e filtro tiver uma saída acionável por mouse e teclado e o dado digitado se mantiver ao voltar.",
+    "fonte": [
+      {
+        "nome": "Nielsen Norman Group: 10 Usability Heuristics for User Interface Design (Jakob Nielsen, 1994, revisto em 2024)",
+        "url": "https://www.nngroup.com/articles/ten-usability-heuristics/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-heuristica-3"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Escala 0 a 4 por heurística; as 10 valem igual (total de 40), como no critério do Impeccable. A banda do total (36-40 Excelente, 28-35 Bom, 20-27 Aceitável, 12-19 Ruim, 0-11 Crítico) e a regra de renormalizar quando uma heurística é n/a vêm do Impeccable; a conversão de nota em severidade do achado é do projeto. A heurística é de Jakob Nielsen (1994, página revista em 2024), descrita aqui em palavras do projeto."
+  },
+  {
+    "id": "ux-nielsen-04-consistencia-e-padroes",
+    "categoria": "ux-heuristica",
+    "titulo": "Heurística 4: o site é coerente e segue o que todo mundo já conhece",
+    "descricao": "A mesma coisa tem o mesmo nome, o mesmo estilo e o mesmo comportamento em todas as páginas, e o site respeita convenções conhecidas (logo leva ao início, link parece link).",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo pontua de 0 a 4 a heurística «Consistency and Standards» de Nielsen para o site, com base no pacote de evidências (trechos, contagens, capturas) e na lista de pontos a checar, justificando a nota em uma frase e apontando no máximo 3 problemas, cada um com severidade P0 a P3.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "escala": {
+          "min": 0,
+          "max": 4,
+          "ancora_0": "parece vários sites costurados",
+          "ancora_4": "sistema coeso e previsível"
+        },
+        "pontos_a_checar": [
+          "mesmo termo para o mesmo conceito",
+          "botões e links com estilo igual em todo o site",
+          "convenções respeitadas (logo, busca, carrinho)",
+          "comportamento previsível em páginas parecidas",
+          "consistência visual entre seções"
+        ],
+        "nao_se_aplica_em": [],
+        "renormalizar_total_quando_na": true,
+        "total_maximo": 40,
+        "bandas_do_total": {
+          "36-40": "Excelente",
+          "28-35": "Bom",
+          "20-27": "Aceitável",
+          "12-19": "Ruim",
+          "0-11": "Crítico"
+        },
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        },
+        "nota_para_severidade": {
+          "0": "P1 (P0 se bloquear a tarefa)",
+          "1": "P1",
+          "2": "P2",
+          "3": "P3",
+          "4": "sem achado"
+        },
+        "limite_de_problemas_por_heuristica": 3
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Padronize nomes, estilos de botão e comportamentos repetidos e siga as convenções de navegação.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o elemento «{{trecho}}» foge do padrão usado no resto do site (nota {{valor}} de 4 em consistência). Alinhe nome, estilo e comportamento ao padrão já existente nas outras páginas, reaproveitando as classes atuais. NÃO crie estilos novos, não renomeie páginas nem mude a identidade visual. Pronto quando o mesmo conceito tiver o mesmo rótulo e o mesmo estilo em todas as páginas amostradas.",
+    "fonte": [
+      {
+        "nome": "Nielsen Norman Group: 10 Usability Heuristics for User Interface Design (Jakob Nielsen, 1994, revisto em 2024)",
+        "url": "https://www.nngroup.com/articles/ten-usability-heuristics/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-heuristica-4"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Escala 0 a 4 por heurística; as 10 valem igual (total de 40), como no critério do Impeccable. A banda do total (36-40 Excelente, 28-35 Bom, 20-27 Aceitável, 12-19 Ruim, 0-11 Crítico) e a regra de renormalizar quando uma heurística é n/a vêm do Impeccable; a conversão de nota em severidade do achado é do projeto. A heurística é de Jakob Nielsen (1994, página revista em 2024), descrita aqui em palavras do projeto."
+  },
+  {
+    "id": "ux-nielsen-05-prevencao-de-erros",
+    "categoria": "ux-heuristica",
+    "titulo": "Heurística 5: o site evita o erro antes que aconteça",
+    "descricao": "O melhor aviso de erro é o que nunca aparece: campos com o formato certo, confirmação antes de apagar ou pagar, valores padrão sensatos e rascunho salvo.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo pontua de 0 a 4 a heurística «Error Prevention» de Nielsen para o site, com base no pacote de evidências (trechos, contagens, capturas) e na lista de pontos a checar, justificando a nota em uma frase e apontando no máximo 3 problemas, cada um com severidade P0 a P3.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "escala": {
+          "min": 0,
+          "max": 4,
+          "ancora_0": "erros fáceis de cometer, sem proteção",
+          "ancora_4": "erros quase impossíveis por causa das restrições"
+        },
+        "pontos_a_checar": [
+          "campos com tipo e máscara adequados (e-mail, telefone, CEP)",
+          "confirmação antes de ações irreversíveis",
+          "valores padrão úteis",
+          "restrições que impedem entradas impossíveis",
+          "rascunho ou recuperação de dados digitados"
+        ],
+        "nao_se_aplica_em": [],
+        "renormalizar_total_quando_na": true,
+        "total_maximo": 40,
+        "bandas_do_total": {
+          "36-40": "Excelente",
+          "28-35": "Bom",
+          "20-27": "Aceitável",
+          "12-19": "Ruim",
+          "0-11": "Crítico"
+        },
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        },
+        "nota_para_severidade": {
+          "0": "P1 (P0 se bloquear a tarefa)",
+          "1": "P1",
+          "2": "P2",
+          "3": "P3",
+          "4": "sem achado"
+        },
+        "limite_de_problemas_por_heuristica": 3
+      }
+    },
+    "peso": 5,
+    "severidade": "P1",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Use campos do tipo certo, avise antes de ações sem volta e guarde o que a pessoa já digitou.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o campo ou ação «{{trecho}}» permite erro evitável (nota {{valor}} de 4 em prevenção de erros). Use o tipo e a máscara certos do campo, acrescente confirmação clara antes de ações sem volta e preserve o que o usuário digitou. NÃO mude regras de negócio nem remova campos. Pronto quando cada campo tiver o type certo, a ação destrutiva pedir confirmação nomeando o que será afetado e o formulário mantiver os dados após um erro.",
+    "fonte": [
+      {
+        "nome": "Nielsen Norman Group: 10 Usability Heuristics for User Interface Design (Jakob Nielsen, 1994, revisto em 2024)",
+        "url": "https://www.nngroup.com/articles/ten-usability-heuristics/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-heuristica-5"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Escala 0 a 4 por heurística; as 10 valem igual (total de 40), como no critério do Impeccable. A banda do total (36-40 Excelente, 28-35 Bom, 20-27 Aceitável, 12-19 Ruim, 0-11 Crítico) e a regra de renormalizar quando uma heurística é n/a vêm do Impeccable; a conversão de nota em severidade do achado é do projeto. A heurística é de Jakob Nielsen (1994, página revista em 2024), descrita aqui em palavras do projeto."
+  },
+  {
+    "id": "ux-nielsen-06-reconhecer-em-vez-de-lembrar",
+    "categoria": "ux-heuristica",
+    "titulo": "Heurística 6: dá para reconhecer em vez de ter que lembrar",
+    "descricao": "Opções, rótulos e ajuda ficam à vista. A pessoa não precisa decorar o caminho nem lembrar o que viu em outra tela. Ícones sozinhos, sem texto, exigem memória.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo pontua de 0 a 4 a heurística «Recognition Rather Than Recall» de Nielsen para o site, com base no pacote de evidências (trechos, contagens, capturas) e na lista de pontos a checar, justificando a nota em uma frase e apontando no máximo 3 problemas, cada um com severidade P0 a P3.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "escala": {
+          "min": 0,
+          "max": 4,
+          "ancora_0": "tudo depende de memorizar caminhos",
+          "ancora_4": "tudo é descobrível à vista"
+        },
+        "pontos_a_checar": [
+          "ícones acompanhados de rótulo",
+          "menus que mostram as opções principais",
+          "itens recentes, sugestões ou preenchimento automático",
+          "ajuda perto do campo",
+          "informação da etapa anterior visível quando necessária"
+        ],
+        "nao_se_aplica_em": [],
+        "renormalizar_total_quando_na": true,
+        "total_maximo": 40,
+        "bandas_do_total": {
+          "36-40": "Excelente",
+          "28-35": "Bom",
+          "20-27": "Aceitável",
+          "12-19": "Ruim",
+          "0-11": "Crítico"
+        },
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        },
+        "nota_para_severidade": {
+          "0": "P1 (P0 se bloquear a tarefa)",
+          "1": "P1",
+          "2": "P2",
+          "3": "P3",
+          "4": "sem achado"
+        },
+        "limite_de_problemas_por_heuristica": 3
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Ponha rótulo em ícones, mostre as opções principais e repita a informação importante onde ela é usada.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o elemento «{{trecho}}» exige que o usuário lembre algo (nota {{valor}} de 4 em reconhecer em vez de lembrar). Acrescente rótulo de texto aos ícones, deixe as opções principais visíveis e repita aqui a informação necessária da etapa anterior. NÃO remova ícones, não mude a estrutura do menu nem os estilos globais. Pronto quando todo ícone clicável tiver texto visível ou nome acessível e nenhuma etapa depender de informação que só aparece em outra tela.",
+    "fonte": [
+      {
+        "nome": "Nielsen Norman Group: 10 Usability Heuristics for User Interface Design (Jakob Nielsen, 1994, revisto em 2024)",
+        "url": "https://www.nngroup.com/articles/ten-usability-heuristics/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-heuristica-6"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Escala 0 a 4 por heurística; as 10 valem igual (total de 40), como no critério do Impeccable. A banda do total (36-40 Excelente, 28-35 Bom, 20-27 Aceitável, 12-19 Ruim, 0-11 Crítico) e a regra de renormalizar quando uma heurística é n/a vêm do Impeccable; a conversão de nota em severidade do achado é do projeto. A heurística é de Jakob Nielsen (1994, página revista em 2024), descrita aqui em palavras do projeto."
+  },
+  {
+    "id": "ux-nielsen-07-flexibilidade-e-eficiencia",
+    "categoria": "ux-heuristica",
+    "titulo": "Heurística 7: há caminhos rápidos para quem já conhece",
+    "descricao": "Quem volta sempre encontra atalhos (teclado, busca, favoritos, ações em lote) sem que isso atrapalhe quem está começando. Pode não se aplicar a páginas de venda e portfólio.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo pontua de 0 a 4 a heurística «Flexibility and Efficiency of Use» de Nielsen para o site, com base no pacote de evidências (trechos, contagens, capturas) e na lista de pontos a checar, justificando a nota em uma frase e apontando no máximo 3 problemas, cada um com severidade P0 a P3.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "escala": {
+          "min": 0,
+          "max": 4,
+          "ancora_0": "caminho único e rígido",
+          "ancora_4": "vários caminhos e recursos para quem tem experiência"
+        },
+        "pontos_a_checar": [
+          "busca presente quando há muito conteúdo",
+          "atalhos de teclado ou foco bem ordenado",
+          "filtros e ordenação em listas",
+          "ações em lote quando há listas longas",
+          "preenchimento automático em formulários"
+        ],
+        "nao_se_aplica_em": [
+          "landing-page",
+          "pagina-de-vendas",
+          "link-na-bio",
+          "portfolio"
+        ],
+        "renormalizar_total_quando_na": true,
+        "total_maximo": 40,
+        "bandas_do_total": {
+          "36-40": "Excelente",
+          "28-35": "Bom",
+          "20-27": "Aceitável",
+          "12-19": "Ruim",
+          "0-11": "Crítico"
+        },
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        },
+        "nota_para_severidade": {
+          "0": "P1 (P0 se bloquear a tarefa)",
+          "1": "P1",
+          "2": "P2",
+          "3": "P3",
+          "4": "sem achado"
+        },
+        "limite_de_problemas_por_heuristica": 3
+      }
+    },
+    "peso": 5,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "site-institucional",
+      "blog",
+      "catalogo",
+      "loja",
+      "cardapio",
+      "agendamento",
+      "area-de-membros"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Acrescente busca, filtros e atalhos nas áreas de uso repetido, sem esconder o caminho simples.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a lista ou fluxo «{{trecho}}» tem um único caminho, lento para quem volta sempre (nota {{valor}} de 4 em flexibilidade e eficiência). Acrescente busca ou filtro e preenchimento automático nos formulários, mantendo o caminho simples como está. NÃO esconda recursos atuais nem mude a identidade visual. Pronto quando houver ao menos uma forma rápida de achar ou repetir a ação principal e o caminho básico continuar funcionando sem ela.",
+    "fonte": [
+      {
+        "nome": "Nielsen Norman Group: 10 Usability Heuristics for User Interface Design (Jakob Nielsen, 1994, revisto em 2024)",
+        "url": "https://www.nngroup.com/articles/ten-usability-heuristics/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-heuristica-7"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Escala 0 a 4 por heurística; as 10 valem igual (total de 40), como no critério do Impeccable. A banda do total (36-40 Excelente, 28-35 Bom, 20-27 Aceitável, 12-19 Ruim, 0-11 Crítico) e a regra de renormalizar quando uma heurística é n/a vêm do Impeccable; a conversão de nota em severidade do achado é do projeto. A heurística é de Jakob Nielsen (1994, página revista em 2024), descrita aqui em palavras do projeto; fica «n/a» em páginas de persuasão ou experiência, como no Impeccable."
+  },
+  {
+    "id": "ux-nielsen-08-estetica-minimalista",
+    "categoria": "ux-heuristica",
+    "titulo": "Heurística 8: cada tela mostra só o que importa",
+    "descricao": "Cada tela traz só a informação necessária para aquele passo, com hierarquia clara e cor com propósito. Decoração e blocos extras não disputam atenção com o conteúdo.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo pontua de 0 a 4 a heurística «Aesthetic and Minimalist Design» de Nielsen para o site, com base no pacote de evidências (trechos, contagens, capturas) e na lista de pontos a checar, justificando a nota em uma frase e apontando no máximo 3 problemas, cada um com severidade P0 a P3.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "escala": {
+          "min": 0,
+          "max": 4,
+          "ancora_0": "tudo compete com tudo",
+          "ancora_4": "cada elemento justifica a sua presença"
+        },
+        "pontos_a_checar": [
+          "apenas o necessário em cada passo",
+          "hierarquia visual clara",
+          "cor usada com função",
+          "decoração que não compete com o conteúdo",
+          "texto enxuto, sem repetição"
+        ],
+        "nao_se_aplica_em": [],
+        "renormalizar_total_quando_na": true,
+        "total_maximo": 40,
+        "bandas_do_total": {
+          "36-40": "Excelente",
+          "28-35": "Bom",
+          "20-27": "Aceitável",
+          "12-19": "Ruim",
+          "0-11": "Crítico"
+        },
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        },
+        "nota_para_severidade": {
+          "0": "P1 (P0 se bloquear a tarefa)",
+          "1": "P1",
+          "2": "P2",
+          "3": "P3",
+          "4": "sem achado"
+        },
+        "limite_de_problemas_por_heuristica": 3
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Tire o que não ajuda a pessoa a decidir ou agir e deixe um ponto de maior destaque por tela.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o bloco «{{trecho}}» compete com o conteúdo principal sem acrescentar nada (nota {{valor}} de 4 em design minimalista). Remova ou reduza elementos que não ajudam a decidir ou agir e deixe um único ponto de maior destaque na seção. NÃO remova informação necessária para decidir, nem mude textos legais ou a navegação. Pronto quando a seção tiver um foco visual claro e cada elemento restante tiver função que eu consiga explicar em uma frase.",
+    "fonte": [
+      {
+        "nome": "Nielsen Norman Group: 10 Usability Heuristics for User Interface Design (Jakob Nielsen, 1994, revisto em 2024)",
+        "url": "https://www.nngroup.com/articles/ten-usability-heuristics/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-heuristica-8"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Escala 0 a 4 por heurística; as 10 valem igual (total de 40), como no critério do Impeccable. A banda do total (36-40 Excelente, 28-35 Bom, 20-27 Aceitável, 12-19 Ruim, 0-11 Crítico) e a regra de renormalizar quando uma heurística é n/a vêm do Impeccable; a conversão de nota em severidade do achado é do projeto. A heurística é de Jakob Nielsen (1994, página revista em 2024), descrita aqui em palavras do projeto."
+  },
+  {
+    "id": "ux-nielsen-09-recuperar-de-erros",
+    "categoria": "ux-heuristica",
+    "titulo": "Heurística 9: os erros são explicados e fáceis de corrigir",
+    "descricao": "Quando algo dá errado, a mensagem é simples, diz o que houve e como resolver, aparece perto do problema e não apaga o que a pessoa digitou.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo pontua de 0 a 4 a heurística «Help Users Recognize, Diagnose, and Recover from Errors» de Nielsen para o site, com base no pacote de evidências (trechos, contagens, capturas) e na lista de pontos a checar, justificando a nota em uma frase e apontando no máximo 3 problemas, cada um com severidade P0 a P3.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "escala": {
+          "min": 0,
+          "max": 4,
+          "ancora_0": "erros enigmáticos",
+          "ancora_4": "aponta o problema, sugere a correção e preserva o trabalho"
+        },
+        "pontos_a_checar": [
+          "mensagem em linguagem simples, sem código técnico",
+          "diz qual é o problema e como corrigir",
+          "aparece junto do campo com erro",
+          "não apaga os dados digitados",
+          "página 404 e de erro com saída útil"
+        ],
+        "nao_se_aplica_em": [],
+        "renormalizar_total_quando_na": true,
+        "total_maximo": 40,
+        "bandas_do_total": {
+          "36-40": "Excelente",
+          "28-35": "Bom",
+          "20-27": "Aceitável",
+          "12-19": "Ruim",
+          "0-11": "Crítico"
+        },
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        },
+        "nota_para_severidade": {
+          "0": "P1 (P0 se bloquear a tarefa)",
+          "1": "P1",
+          "2": "P2",
+          "3": "P3",
+          "4": "sem achado"
+        },
+        "limite_de_problemas_por_heuristica": 3
+      }
+    },
+    "peso": 5,
+    "severidade": "P1",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Escreva cada erro dizendo o que houve e como corrigir, perto do campo, sem apagar o que foi digitado.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a mensagem «{{trecho}}» não ajuda a corrigir o erro (nota {{valor}} de 4 em recuperação de erros). Reescreva dizendo o que houve e como corrigir, em linguagem simples, mostrando-a junto do campo e mantendo os dados digitados. NÃO mostre códigos internos, não mude a validação nem o fluxo. Pronto quando cada mensagem de erro disser o problema e a ação para corrigir, ficar ao lado do campo com aria-describedby e o formulário preservar os valores.",
+    "fonte": [
+      {
+        "nome": "Nielsen Norman Group: 10 Usability Heuristics for User Interface Design (Jakob Nielsen, 1994, revisto em 2024)",
+        "url": "https://www.nngroup.com/articles/ten-usability-heuristics/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-heuristica-9"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Escala 0 a 4 por heurística; as 10 valem igual (total de 40), como no critério do Impeccable. A banda do total (36-40 Excelente, 28-35 Bom, 20-27 Aceitável, 12-19 Ruim, 0-11 Crítico) e a regra de renormalizar quando uma heurística é n/a vêm do Impeccable; a conversão de nota em severidade do achado é do projeto. A heurística é de Jakob Nielsen (1994, página revista em 2024), descrita aqui em palavras do projeto."
+  },
+  {
+    "id": "ux-nielsen-10-ajuda-e-documentacao",
+    "categoria": "ux-heuristica",
+    "titulo": "Heurística 10: a ajuda é fácil de achar e útil",
+    "descricao": "Quando a pessoa precisa de ajuda, encontra rápido: instruções curtas, FAQ, busca e dicas no lugar em que a dúvida surge. Pode não se aplicar a páginas de venda e portfólio.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo pontua de 0 a 4 a heurística «Help and Documentation» de Nielsen para o site, com base no pacote de evidências (trechos, contagens, capturas) e na lista de pontos a checar, justificando a nota em uma frase e apontando no máximo 3 problemas, cada um com severidade P0 a P3.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "escala": {
+          "min": 0,
+          "max": 4,
+          "ancora_0": "nenhuma ajuda",
+          "ancora_4": "ajuda excelente, no momento e no lugar certos"
+        },
+        "pontos_a_checar": [
+          "ajuda pesquisável ou FAQ acessível",
+          "instruções curtas e por tarefa",
+          "dica perto do ponto da dúvida",
+          "link de ajuda e contato visível",
+          "ajuda que não tira a pessoa do que fazia"
+        ],
+        "nao_se_aplica_em": [
+          "landing-page",
+          "pagina-de-vendas",
+          "link-na-bio",
+          "portfolio"
+        ],
+        "renormalizar_total_quando_na": true,
+        "total_maximo": 40,
+        "bandas_do_total": {
+          "36-40": "Excelente",
+          "28-35": "Bom",
+          "20-27": "Aceitável",
+          "12-19": "Ruim",
+          "0-11": "Crítico"
+        },
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        },
+        "nota_para_severidade": {
+          "0": "P1 (P0 se bloquear a tarefa)",
+          "1": "P1",
+          "2": "P2",
+          "3": "P3",
+          "4": "sem achado"
+        },
+        "limite_de_problemas_por_heuristica": 3
+      }
+    },
+    "peso": 5,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "site-institucional",
+      "blog",
+      "catalogo",
+      "loja",
+      "cardapio",
+      "agendamento",
+      "area-de-membros"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Ponha dicas curtas onde surgem as dúvidas e um link de ajuda ou FAQ visível no menu ou rodapé.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o ponto «{{trecho}}» gera dúvida sem ajuda por perto (nota {{valor}} de 4 em ajuda e documentação). Acrescente uma dica curta ao lado, usando as respostas que eu fornecer, e um link de ajuda ou FAQ no menu ou rodapé. NÃO crie páginas longas de documentação nem mude o layout. Pronto quando as 3 dúvidas mais prováveis dessa tela tiverem resposta em até 1 clique e o link de ajuda estiver visível em todas as páginas.",
+    "fonte": [
+      {
+        "nome": "Nielsen Norman Group: 10 Usability Heuristics for User Interface Design (Jakob Nielsen, 1994, revisto em 2024)",
+        "url": "https://www.nngroup.com/articles/ten-usability-heuristics/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-heuristica-10"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Escala 0 a 4 por heurística; as 10 valem igual (total de 40), como no critério do Impeccable. A banda do total (36-40 Excelente, 28-35 Bom, 20-27 Aceitável, 12-19 Ruim, 0-11 Crítico) e a regra de renormalizar quando uma heurística é n/a vêm do Impeccable; a conversão de nota em severidade do achado é do projeto. A heurística é de Jakob Nielsen (1994, página revista em 2024), descrita aqui em palavras do projeto; fica «n/a» em páginas de persuasão ou experiência, como no Impeccable."
+  },
+  {
+    "id": "ux-carga-01-foco-unico",
+    "categoria": "ux-heuristica",
+    "titulo": "Carga cognitiva 1: foco único na tarefa principal",
+    "descricao": "Cada tela tem uma tarefa principal, e nada disputa com ela. Se tudo parece igualmente importante, a pessoa não sabe por onde começar.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo responde sim ou não à pergunta «Qual é a única coisa que a pessoa deve fazer nesta tela, e ela é a mais evidente?» com base nas evidências do script (contagens e capturas); cada «não» conta como uma falha do checklist de carga cognitiva e vira achado com severidade P0 a P3.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "pergunta": "Qual é a única coisa que a pessoa deve fazer nesta tela, e ela é a mais evidente?",
+        "resposta": [
+          "passa",
+          "falha"
+        ],
+        "evidencia_do_script": [
+          "numero de elementos de mesmo peso visual na primeira tela",
+          "numero de botoes de destaque"
+        ],
+        "pontuacao_conjunta_do_checklist": {
+          "0-1 falhas": "carga baixa",
+          "2-3 falhas": "carga moderada",
+          "4 ou mais falhas": "carga alta (correcao critica)"
+        },
+        "memoria_de_trabalho": {
+          "ok": "ate 4 itens",
+          "limite": "5 a 7 itens",
+          "sobrecarga": "8 ou mais"
+        },
+        "maximo_de_opcoes_por_decisao": 4,
+        "maximo_de_itens_por_grupo": 4,
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        }
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Escolha a ação principal de cada tela e reduza o destaque de todo o resto.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a tela «{{trecho}}» tem {{valor}} elementos disputando atenção. Defina uma ação principal, dê a ela o maior destaque e reduza o peso visual dos demais com as classes já existentes. NÃO remova conteúdo nem mude textos legais. Pronto quando, ao semicerrar os olhos, a ação principal for o elemento mais evidente da primeira tela.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-carga-cognitiva-1"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Os 8 itens do checklist, a regra de 4 itens por grupo e por decisão, a faixa de memória de trabalho (4 ok, 5 a 7 no limite, 8 ou mais sobrecarga) e a pontuação conjunta (0-1 falhas baixa, 2-3 moderada, 4 ou mais alta) vêm do Impeccable. Alta carga conjunta sobe a severidade dos achados para P1. O script só fornece contagens como evidência; quem julga é o modelo."
+  },
+  {
+    "id": "ux-carga-02-chunking",
+    "categoria": "ux-heuristica",
+    "titulo": "Carga cognitiva 2: informação em pequenos grupos",
+    "descricao": "A informação vem em grupos pequenos, de até 4 itens, que dá para ler de uma vez. Listas longas sem divisão cansam e são abandonadas.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo responde sim ou não à pergunta «Existe alguma lista ou menu com mais de 4 itens sem divisão em grupos?» com base nas evidências do script (contagens e capturas); cada «não» conta como uma falha do checklist de carga cognitiva e vira achado com severidade P0 a P3.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "pergunta": "Existe alguma lista ou menu com mais de 4 itens sem divisão em grupos?",
+        "resposta": [
+          "passa",
+          "falha"
+        ],
+        "evidencia_do_script": [
+          "tamanho dos maiores grupos de itens (menu, lista, cartoes)"
+        ],
+        "pontuacao_conjunta_do_checklist": {
+          "0-1 falhas": "carga baixa",
+          "2-3 falhas": "carga moderada",
+          "4 ou mais falhas": "carga alta (correcao critica)"
+        },
+        "memoria_de_trabalho": {
+          "ok": "ate 4 itens",
+          "limite": "5 a 7 itens",
+          "sobrecarga": "8 ou mais"
+        },
+        "maximo_de_opcoes_por_decisao": 4,
+        "maximo_de_itens_por_grupo": 4,
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        }
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Divida listas longas em grupos de até 4 itens, com um título curto em cada grupo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a lista «{{trecho}}» tem {{valor}} itens sem divisão. Divida em grupos de até 4 itens com título curto, mantendo todos os itens. NÃO remova itens, não mude os links nem as classes globais. Pronto quando nenhum grupo visível tiver mais de 4 itens sem subtítulo ou divisão.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-carga-cognitiva-2"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Os 8 itens do checklist, a regra de 4 itens por grupo e por decisão, a faixa de memória de trabalho (4 ok, 5 a 7 no limite, 8 ou mais sobrecarga) e a pontuação conjunta (0-1 falhas baixa, 2-3 moderada, 4 ou mais alta) vêm do Impeccable. Alta carga conjunta sobe a severidade dos achados para P1. O script só fornece contagens como evidência; quem julga é o modelo."
+  },
+  {
+    "id": "ux-carga-03-agrupamento",
+    "categoria": "ux-heuristica",
+    "titulo": "Carga cognitiva 3: o que é relacionado fica junto",
+    "descricao": "Itens que têm relação ficam juntos e separados dos demais, pela distância, pelo fundo ou por uma linha. Sem isso, a pessoa precisa deduzir o que pertence a quê.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo responde sim ou não à pergunta «Dá para ver, sem ler, quais itens pertencem ao mesmo grupo?» com base nas evidências do script (contagens e capturas); cada «não» conta como uma falha do checklist de carga cognitiva e vira achado com severidade P0 a P3.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "pergunta": "Dá para ver, sem ler, quais itens pertencem ao mesmo grupo?",
+        "resposta": [
+          "passa",
+          "falha"
+        ],
+        "evidencia_do_script": [
+          "espacamento entre itens do mesmo grupo versus entre grupos"
+        ],
+        "pontuacao_conjunta_do_checklist": {
+          "0-1 falhas": "carga baixa",
+          "2-3 falhas": "carga moderada",
+          "4 ou mais falhas": "carga alta (correcao critica)"
+        },
+        "memoria_de_trabalho": {
+          "ok": "ate 4 itens",
+          "limite": "5 a 7 itens",
+          "sobrecarga": "8 ou mais"
+        },
+        "maximo_de_opcoes_por_decisao": 4,
+        "maximo_de_itens_por_grupo": 4,
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        }
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Aproxime os itens do mesmo grupo e aumente o espaço entre os grupos.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o bloco «{{trecho}}» mistura itens de grupos diferentes (problema: {{valor}}). Ajuste espaçamento e, se preciso, um título ou linha para que o espaço entre grupos seja maior que dentro de cada grupo. NÃO mude o conteúdo nem a ordem dos itens. Pronto quando o espaço entre grupos for visivelmente maior que o espaço entre itens do mesmo grupo.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-carga-cognitiva-3"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Os 8 itens do checklist, a regra de 4 itens por grupo e por decisão, a faixa de memória de trabalho (4 ok, 5 a 7 no limite, 8 ou mais sobrecarga) e a pontuação conjunta (0-1 falhas baixa, 2-3 moderada, 4 ou mais alta) vêm do Impeccable. Alta carga conjunta sobe a severidade dos achados para P1. O script só fornece contagens como evidência; quem julga é o modelo."
+  },
+  {
+    "id": "ux-carga-04-hierarquia-visual",
+    "categoria": "ux-heuristica",
+    "titulo": "Carga cognitiva 4: o mais importante salta aos olhos",
+    "descricao": "O que importa mais tem mais destaque (tamanho, peso, contraste, posição). O teste é semicerrar os olhos e ver se a ordem de leitura faz sentido.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo responde sim ou não à pergunta «Ao semicerrar os olhos, o que se destaca primeiro é o que deveria?» com base nas evidências do script (contagens e capturas); cada «não» conta como uma falha do checklist de carga cognitiva e vira achado com severidade P0 a P3.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "pergunta": "Ao semicerrar os olhos, o que se destaca primeiro é o que deveria?",
+        "resposta": [
+          "passa",
+          "falha"
+        ],
+        "evidencia_do_script": [
+          "tamanhos e pesos de titulo e texto",
+          "contraste do elemento principal"
+        ],
+        "pontuacao_conjunta_do_checklist": {
+          "0-1 falhas": "carga baixa",
+          "2-3 falhas": "carga moderada",
+          "4 ou mais falhas": "carga alta (correcao critica)"
+        },
+        "memoria_de_trabalho": {
+          "ok": "ate 4 itens",
+          "limite": "5 a 7 itens",
+          "sobrecarga": "8 ou mais"
+        },
+        "maximo_de_opcoes_por_decisao": 4,
+        "maximo_de_itens_por_grupo": 4,
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        }
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Aumente o contraste do que é principal e reduza o do que é de apoio.",
+    "prompt_correcao": "No arquivo {{arquivo}}, na seção «{{trecho}}» o elemento mais forte não é o mais importante (problema: {{valor}}). Ajuste tamanho, peso ou contraste para que o item principal seja o primeiro a ser notado, usando a escala de tamanhos já existente. NÃO mude cores da marca, conteúdo nem a ordem das seções. Pronto quando, no teste de semicerrar os olhos, a ordem de atenção coincidir com a ordem de importância definida por mim.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-carga-cognitiva-4"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Os 8 itens do checklist, a regra de 4 itens por grupo e por decisão, a faixa de memória de trabalho (4 ok, 5 a 7 no limite, 8 ou mais sobrecarga) e a pontuação conjunta (0-1 falhas baixa, 2-3 moderada, 4 ou mais alta) vêm do Impeccable. Alta carga conjunta sobe a severidade dos achados para P1. O script só fornece contagens como evidência; quem julga é o modelo."
+  },
+  {
+    "id": "ux-carga-05-uma-coisa-por-vez",
+    "categoria": "ux-heuristica",
+    "titulo": "Carga cognitiva 5: uma decisão de cada vez",
+    "descricao": "A tela pede uma decisão por vez. Formulários e fluxos que cobram várias decisões juntas aumentam o esforço e o abandono.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo responde sim ou não à pergunta «A pessoa precisa decidir várias coisas ao mesmo tempo nesta tela?» com base nas evidências do script (contagens e capturas); cada «não» conta como uma falha do checklist de carga cognitiva e vira achado com severidade P0 a P3.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "pergunta": "A pessoa precisa decidir várias coisas ao mesmo tempo nesta tela?",
+        "resposta": [
+          "passa",
+          "falha"
+        ],
+        "evidencia_do_script": [
+          "numero de campos obrigatorios por tela",
+          "numero de decisoes por etapa"
+        ],
+        "pontuacao_conjunta_do_checklist": {
+          "0-1 falhas": "carga baixa",
+          "2-3 falhas": "carga moderada",
+          "4 ou mais falhas": "carga alta (correcao critica)"
+        },
+        "memoria_de_trabalho": {
+          "ok": "ate 4 itens",
+          "limite": "5 a 7 itens",
+          "sobrecarga": "8 ou mais"
+        },
+        "maximo_de_opcoes_por_decisao": 4,
+        "maximo_de_itens_por_grupo": 4,
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        }
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Quebre decisões múltiplas em etapas curtas, uma por vez, ou ofereça um padrão sensato.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a tela «{{trecho}}» exige {{valor}} decisões ao mesmo tempo. Divida em etapas com uma decisão cada ou defina valores padrão sensatos, mantendo todos os dados coletados. NÃO remova campos exigidos pelo negócio nem mude o envio final. Pronto quando cada etapa tiver uma decisão principal e o resumo final mostrar todas as escolhas.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-carga-cognitiva-5"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Os 8 itens do checklist, a regra de 4 itens por grupo e por decisão, a faixa de memória de trabalho (4 ok, 5 a 7 no limite, 8 ou mais sobrecarga) e a pontuação conjunta (0-1 falhas baixa, 2-3 moderada, 4 ou mais alta) vêm do Impeccable. Alta carga conjunta sobe a severidade dos achados para P1. O script só fornece contagens como evidência; quem julga é o modelo."
+  },
+  {
+    "id": "ux-carga-06-escolhas-minimas",
+    "categoria": "ux-heuristica",
+    "titulo": "Carga cognitiva 6: poucas escolhas por decisão",
+    "descricao": "Em cada decisão, até 4 opções visíveis. Acima disso, agrupe, filtre ou sugira uma opção recomendada.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo responde sim ou não à pergunta «Alguma decisão mostra mais de 4 opções ao mesmo tempo, sem agrupar ou recomendar?» com base nas evidências do script (contagens e capturas); cada «não» conta como uma falha do checklist de carga cognitiva e vira achado com severidade P0 a P3.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "pergunta": "Alguma decisão mostra mais de 4 opções ao mesmo tempo, sem agrupar ou recomendar?",
+        "resposta": [
+          "passa",
+          "falha"
+        ],
+        "evidencia_do_script": [
+          "numero de opcoes visiveis por decisao (planos, filtros, menus)"
+        ],
+        "pontuacao_conjunta_do_checklist": {
+          "0-1 falhas": "carga baixa",
+          "2-3 falhas": "carga moderada",
+          "4 ou mais falhas": "carga alta (correcao critica)"
+        },
+        "memoria_de_trabalho": {
+          "ok": "ate 4 itens",
+          "limite": "5 a 7 itens",
+          "sobrecarga": "8 ou mais"
+        },
+        "maximo_de_opcoes_por_decisao": 4,
+        "maximo_de_itens_por_grupo": 4,
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        }
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Reduza para até 4 opções visíveis, agrupe o restante e destaque a recomendada.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a decisão «{{trecho}}» mostra {{valor}} opções. Reduza para até 4 opções visíveis, agrupe as demais em «ver mais» e marque a opção recomendada que eu indicar. NÃO exclua opções nem mude preços. Pronto quando nenhuma decisão mostrar mais de 4 opções ao mesmo tempo.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-carga-cognitiva-6"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Os 8 itens do checklist, a regra de 4 itens por grupo e por decisão, a faixa de memória de trabalho (4 ok, 5 a 7 no limite, 8 ou mais sobrecarga) e a pontuação conjunta (0-1 falhas baixa, 2-3 moderada, 4 ou mais alta) vêm do Impeccable. Alta carga conjunta sobe a severidade dos achados para P1. O script só fornece contagens como evidência; quem julga é o modelo."
+  },
+  {
+    "id": "ux-carga-07-memoria-de-trabalho",
+    "categoria": "ux-heuristica",
+    "titulo": "Carga cognitiva 7: a pessoa não precisa lembrar de outra tela",
+    "descricao": "A pessoa não precisa guardar na cabeça o que viu antes. Até 4 itens a lembrar é tranquilo, de 5 a 7 está no limite e 8 ou mais sobrecarrega.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo responde sim ou não à pergunta «Quantas informações de telas anteriores a pessoa precisa lembrar para decidir aqui?» com base nas evidências do script (contagens e capturas); cada «não» conta como uma falha do checklist de carga cognitiva e vira achado com severidade P0 a P3.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "pergunta": "Quantas informações de telas anteriores a pessoa precisa lembrar para decidir aqui?",
+        "resposta": [
+          "passa",
+          "falha"
+        ],
+        "evidencia_do_script": [
+          "informacoes necessarias que so aparecem em outra pagina ou etapa"
+        ],
+        "pontuacao_conjunta_do_checklist": {
+          "0-1 falhas": "carga baixa",
+          "2-3 falhas": "carga moderada",
+          "4 ou mais falhas": "carga alta (correcao critica)"
+        },
+        "memoria_de_trabalho": {
+          "ok": "ate 4 itens",
+          "limite": "5 a 7 itens",
+          "sobrecarga": "8 ou mais"
+        },
+        "maximo_de_opcoes_por_decisao": 4,
+        "maximo_de_itens_por_grupo": 4,
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        }
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Repita, na tela da decisão, as informações de que a pessoa precisa e mostre um resumo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a etapa «{{trecho}}» exige lembrar {{valor}} itens de telas anteriores. Mostre aí um resumo com as informações necessárias para decidir, usando os dados já existentes. NÃO duplique a lógica de cálculo nem mude o fluxo. Pronto quando a decisão puder ser tomada sem voltar a outra tela e o número de itens a lembrar for de 4 ou menos.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-carga-cognitiva-7"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Os 8 itens do checklist, a regra de 4 itens por grupo e por decisão, a faixa de memória de trabalho (4 ok, 5 a 7 no limite, 8 ou mais sobrecarga) e a pontuação conjunta (0-1 falhas baixa, 2-3 moderada, 4 ou mais alta) vêm do Impeccable. Alta carga conjunta sobe a severidade dos achados para P1. O script só fornece contagens como evidência; quem julga é o modelo."
+  },
+  {
+    "id": "ux-carga-08-divulgacao-progressiva",
+    "categoria": "ux-heuristica",
+    "titulo": "Carga cognitiva 8: a complexidade aparece só quando precisa",
+    "descricao": "Detalhes avançados ficam escondidos atrás de «ver mais» ou de uma segunda etapa, e só aparecem quando a pessoa quer. O básico fica limpo.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo responde sim ou não à pergunta «Há opções ou textos avançados ocupando espaço de quem só quer o básico?» com base nas evidências do script (contagens e capturas); cada «não» conta como uma falha do checklist de carga cognitiva e vira achado com severidade P0 a P3.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "pergunta": "Há opções ou textos avançados ocupando espaço de quem só quer o básico?",
+        "resposta": [
+          "passa",
+          "falha"
+        ],
+        "evidencia_do_script": [
+          "blocos longos e opcoes raras visiveis desde o inicio"
+        ],
+        "pontuacao_conjunta_do_checklist": {
+          "0-1 falhas": "carga baixa",
+          "2-3 falhas": "carga moderada",
+          "4 ou mais falhas": "carga alta (correcao critica)"
+        },
+        "memoria_de_trabalho": {
+          "ok": "ate 4 itens",
+          "limite": "5 a 7 itens",
+          "sobrecarga": "8 ou mais"
+        },
+        "maximo_de_opcoes_por_decisao": 4,
+        "maximo_de_itens_por_grupo": 4,
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        }
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Esconda o avançado atrás de «ver mais» ou de uma segunda etapa e deixe o essencial à vista.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o bloco «{{trecho}}» mostra detalhes avançados desde o início (problema: {{valor}}). Coloque-os atrás de um controle «ver mais» acessível por teclado, deixando visível só o essencial. NÃO remova conteúdo nem torne inacessível por leitor de tela. Pronto quando o essencial couber sem rolagem e o avançado abrir e fechar com mouse e teclado.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-carga-cognitiva-8"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Os 8 itens do checklist, a regra de 4 itens por grupo e por decisão, a faixa de memória de trabalho (4 ok, 5 a 7 no limite, 8 ou mais sobrecarga) e a pontuação conjunta (0-1 falhas baixa, 2-3 moderada, 4 ou mais alta) vêm do Impeccable. Alta carga conjunta sobe a severidade dos achados para P1. O script só fornece contagens como evidência; quem julga é o modelo."
+  },
+  {
+    "id": "ux-persona-alex-power-user",
+    "categoria": "ux-heuristica",
+    "titulo": "Persona Alex: especialista que não tolera passo inútil",
+    "descricao": "Imagine Alex, que já conhece esse tipo de produto e quer eficiência. O site respeita o tempo dele ou o obriga a passos desnecessários?",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo percorre mentalmente o site na pele da persona Alex, com base no pacote de evidências, e lista até 3 pontos em que ela travaria, cada um com severidade P0 a P3 e trecho citado.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "persona": "Alex",
+        "perfil": "Experiente, quer rapidez e controle, rejeita passos desnecessários.",
+        "sinais_de_alerta": [
+          "tour ou onboarding obrigatório",
+          "ausência de atalhos de teclado",
+          "ação feita item por item quando caberia em lote",
+          "janela que não fecha com Esc"
+        ],
+        "maximo_de_pontos": 3,
+        "quando_usar": "só para os tipos de site listados, como no Impeccable (marketing: Jordan, Riley, Casey; e-commerce: Casey, Riley, Jordan; formulário: Jordan, Sam, Casey; painel: Alex, Sam)",
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        }
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "area-de-membros"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Deixe tutoriais opcionais, ofereça atalhos e permita ações em lote.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o fluxo «{{trecho}}» atrapalha quem já conhece o produto ({{valor}}). Torne o tutorial opcional, acrescente atalho de teclado ou ação em lote para a tarefa repetida e feche janelas com Esc. NÃO remova o caminho guiado para iniciantes. Pronto quando a tarefa repetida puder ser feita em no máximo 2 passos e sem tutorial obrigatório.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-persona-alex"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "As 5 personas e os sinais de alerta vêm do Impeccable (descritos em palavras do projeto); a escolha por tipo de site segue o mapa dele, ajustado aos tipos desta skill (mapeamento do projeto). Persona é um ângulo de leitura, não prova de problema. Sam complementa as medições de acessibilidade, sem repetir os achados do axe. "
+  },
+  {
+    "id": "ux-persona-jordan-primeiro-uso",
+    "categoria": "ux-heuristica",
+    "titulo": "Persona Jordan: quem chega pela primeira vez",
+    "descricao": "Imagine Jordan, que nunca usou esse tipo de produto e precisa de guia. Dá para entender o que fazer sem ajuda e sem conhecer o jargão?",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo percorre mentalmente o site na pele da persona Jordan, com base no pacote de evidências, e lista até 3 pontos em que ela travaria, cada um com severidade P0 a P3 e trecho citado.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "persona": "Jordan",
+        "perfil": "Nunca usou esse tipo de produto e precisa ser conduzido.",
+        "sinais_de_alerta": [
+          "navegação só com ícones",
+          "jargão sem explicação",
+          "nenhuma ajuda visível",
+          "próximo passo ambíguo"
+        ],
+        "maximo_de_pontos": 3,
+        "quando_usar": "só para os tipos de site listados, como no Impeccable (marketing: Jordan, Riley, Casey; e-commerce: Casey, Riley, Jordan; formulário: Jordan, Sam, Casey; painel: Alex, Sam)",
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        }
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "landing-page",
+      "pagina-de-vendas",
+      "site-institucional",
+      "portfolio",
+      "link-na-bio",
+      "blog",
+      "loja",
+      "cardapio",
+      "catalogo",
+      "agendamento"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Explique os termos, mostre o próximo passo e ponha ajuda à vista.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o trecho «{{trecho}}» confunde quem chega pela primeira vez ({{valor}}). Troque jargão por palavras simples, deixe o próximo passo explícito e coloque ajuda visível perto. NÃO mude preços, fluxo de compra nem a identidade visual. Pronto quando uma pessoa sem contexto conseguir dizer, lendo a tela, o que é o produto e qual é o próximo passo.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-persona-jordan"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "As 5 personas e os sinais de alerta vêm do Impeccable (descritos em palavras do projeto); a escolha por tipo de site segue o mapa dele, ajustado aos tipos desta skill (mapeamento do projeto). Persona é um ângulo de leitura, não prova de problema. Sam complementa as medições de acessibilidade, sem repetir os achados do axe. "
+  },
+  {
+    "id": "ux-persona-sam-acessibilidade",
+    "categoria": "ux-heuristica",
+    "titulo": "Persona Sam: leitor de tela, teclado e zoom",
+    "descricao": "Imagine Sam, que usa leitor de tela, só teclado e zoom de 200%. Dá para concluir a tarefa sem mouse e sem depender de cor? Complementa, sem repetir, as medições de acessibilidade.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo percorre mentalmente o site na pele da persona Sam, com base no pacote de evidências, e lista até 3 pontos em que ela travaria, cada um com severidade P0 a P3 e trecho citado.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "persona": "Sam",
+        "perfil": "Usa leitor de tela e/ou só teclado e amplia a tela até 200%.",
+        "sinais_de_alerta": [
+          "ação possível só com clique",
+          "foco invisível",
+          "cor como único sinal",
+          "campo sem rótulo",
+          "tempo limite sem possibilidade de ampliar"
+        ],
+        "maximo_de_pontos": 3,
+        "quando_usar": "só para os tipos de site listados, como no Impeccable (marketing: Jordan, Riley, Casey; e-commerce: Casey, Riley, Jordan; formulário: Jordan, Sam, Casey; painel: Alex, Sam)",
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        }
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "agendamento",
+      "area-de-membros"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Garanta teclado, foco visível, rótulos e sinais que não dependam só da cor.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o trecho «{{trecho}}» impede a conclusão sem mouse ou sem ver cor ({{valor}}). Torne a ação acionável por teclado, deixe o foco visível, associe rótulo ao campo e acrescente texto ou ícone onde a cor era o único sinal. NÃO mude o layout visual além do necessário. Pronto quando a tarefa puder ser concluída só com teclado, a 200% de zoom, e nenhum sinal depender apenas de cor.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-persona-sam"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "As 5 personas e os sinais de alerta vêm do Impeccable (descritos em palavras do projeto); a escolha por tipo de site segue o mapa dele, ajustado aos tipos desta skill (mapeamento do projeto). Persona é um ângulo de leitura, não prova de problema. Sam complementa as medições de acessibilidade, sem repetir os achados do axe. "
+  },
+  {
+    "id": "ux-persona-riley-estresse",
+    "categoria": "ux-heuristica",
+    "titulo": "Persona Riley: quem testa os limites",
+    "descricao": "Imagine Riley, que testa casos extremos: campo vazio, texto enorme, emoji, voltar e atualizar no meio do fluxo. O site aguenta sem quebrar nem perder dados?",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo percorre mentalmente o site na pele da persona Riley, com base no pacote de evidências, e lista até 3 pontos em que ela travaria, cada um com severidade P0 a P3 e trecho citado.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "persona": "Riley",
+        "perfil": "Testa limites: vazio, textos longos, caracteres estranhos, atualizar no meio do fluxo.",
+        "sinais_de_alerta": [
+          "falha silenciosa",
+          "erro que quebra a tela",
+          "estado vazio sem orientação",
+          "perda de dados ao atualizar"
+        ],
+        "maximo_de_pontos": 3,
+        "quando_usar": "só para os tipos de site listados, como no Impeccable (marketing: Jordan, Riley, Casey; e-commerce: Casey, Riley, Jordan; formulário: Jordan, Sam, Casey; painel: Alex, Sam)",
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        }
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "landing-page",
+      "pagina-de-vendas",
+      "site-institucional",
+      "portfolio",
+      "link-na-bio",
+      "loja",
+      "cardapio",
+      "catalogo"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Trate vazio, texto longo e erro com mensagens úteis e preserve os dados em atualizações.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o trecho «{{trecho}}» quebra ou perde dados em caso extremo ({{valor}}). Trate o estado vazio com orientação, limite ou quebre textos longos sem estourar o layout e preserve o que foi digitado ao atualizar. NÃO mude regras de negócio. Pronto quando, com campo vazio, texto de 500 caracteres e atualização no meio do fluxo, a tela não quebrar e não perder dados.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-persona-riley"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "As 5 personas e os sinais de alerta vêm do Impeccable (descritos em palavras do projeto); a escolha por tipo de site segue o mapa dele, ajustado aos tipos desta skill (mapeamento do projeto). Persona é um ângulo de leitura, não prova de problema. Sam complementa as medições de acessibilidade, sem repetir os achados do axe. "
+  },
+  {
+    "id": "ux-persona-casey-mobile",
+    "categoria": "ux-heuristica",
+    "titulo": "Persona Casey: celular, polegar e interrupções",
+    "descricao": "Imagine Casey, no celular, com um polegar só, sendo interrompido e com conexão lenta. As ações importantes estão ao alcance e o progresso se mantém?",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo percorre mentalmente o site na pele da persona Casey, com base no pacote de evidências, e lista até 3 pontos em que ela travaria, cada um com severidade P0 a P3 e trecho citado.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "persona": "Casey",
+        "perfil": "Usa o celular com um polegar, é interrompido com frequência e tem conexão lenta.",
+        "sinais_de_alerta": [
+          "ação principal fora do alcance do polegar",
+          "estado perdido ao voltar ou ao ser interrompido",
+          "campo de texto onde caberia seleção",
+          "alvos de toque menores que 44 pt"
+        ],
+        "maximo_de_pontos": 3,
+        "quando_usar": "só para os tipos de site listados, como no Impeccable (marketing: Jordan, Riley, Casey; e-commerce: Casey, Riley, Jordan; formulário: Jordan, Sam, Casey; painel: Alex, Sam)",
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        }
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "landing-page",
+      "pagina-de-vendas",
+      "site-institucional",
+      "portfolio",
+      "link-na-bio",
+      "blog",
+      "loja",
+      "cardapio",
+      "catalogo",
+      "agendamento"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Deixe a ação principal ao alcance do polegar, alvos de 44 pt ou mais e preserve o progresso.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o trecho «{{trecho}}» é difícil de usar no celular ({{valor}}). Aumente os alvos de toque para pelo menos 44 pt, coloque a ação principal ao alcance do polegar, troque campo de texto por seleção onde couber e preserve o progresso ao voltar. NÃO mude o desktop nem a identidade visual. Pronto quando, a 390 px de largura, todo alvo tiver 44 pt ou mais e o progresso se mantiver depois de sair e voltar.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-persona-casey"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "As 5 personas e os sinais de alerta vêm do Impeccable (descritos em palavras do projeto); a escolha por tipo de site segue o mapa dele, ajustado aos tipos desta skill (mapeamento do projeto). Persona é um ângulo de leitura, não prova de problema. Sam complementa as medições de acessibilidade, sem repetir os achados do axe. O alvo de 44 pt vem do Impeccable."
+  },
+  {
+    "id": "ux-jornada-emocional",
+    "categoria": "ux-heuristica",
+    "titulo": "Jornada emocional: pico, fim e vales de frustração",
+    "descricao": "Avalia como a pessoa se sente ao longo do uso: onde está o melhor momento, como termina e se há trechos de frustração ou insegurança (pagamento, dados) sem tranquilização.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo identifica o momento de maior valor (pico), o último momento da jornada principal (fim) e vales de frustração ou risco, e diz se há tranquilização nos momentos de alto risco; pontua de 0 a 4.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "pontos": [
+          "pico: o melhor momento e se ele aparece cedo",
+          "fim: como termina a jornada principal (confirmação, proximo passo)",
+          "vales: atritos, esperas e erros",
+          "tranquilizacao em momentos de risco (pagamento, dados pessoais)"
+        ],
+        "escala": {
+          "min": 0,
+          "max": 4,
+          "ancora_0": "jornada frustrante e sem acolhimento",
+          "ancora_4": "pico forte, final claro, sem vales e com tranquilização nos pontos de risco"
+        },
+        "severidade_do_achado": {
+          "P0": "bloqueante: impede a pessoa de concluir a tarefa; corrigir já",
+          "P1": "maior: causa dificuldade ou confusão significativa (teste: a pessoa abriria um chamado de suporte?); corrigir antes de publicar",
+          "P2": "menor: incômodo que tem contorno; corrigir na próxima rodada",
+          "P3": "polimento: sem efeito real para a pessoa; se houver tempo"
+        }
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Reforce o final da jornada (confirmação e próximo passo) e tranquilize a pessoa nos momentos de risco.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o momento «{{trecho}}» tem frustração ou insegurança sem acolhimento (nota {{valor}} de 4 na jornada emocional). Acrescente uma confirmação clara ao final da tarefa com o próximo passo e uma frase de tranquilização perto de pagamento ou coleta de dados, usando informações que eu confirmar. NÃO prometa o que não existe nem mude o fluxo de compra. Pronto quando a jornada principal terminar com confirmação e próximo passo e todo ponto de pagamento ou coleta de dados tiver uma frase de tranquilização verdadeira.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:critique-jornada-emocional"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "A dimensão «jornada emocional» (regra do pico e do fim, vales emocionais, tranquilização em momentos de alto risco) vem do Impeccable. A escala 0 a 4 e o limite de pontos são do projeto. Limiar inicial, a calibrar no teste de acerto."
+  }
+]

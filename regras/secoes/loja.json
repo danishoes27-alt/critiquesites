@@ -1,0 +1,714 @@
+[
+  {
+    "id": "identificacao-do-fornecedor",
+    "tipo_de_site": "loja",
+    "nome": "Nome da empresa e CNPJ/CPF",
+    "descricao": "Quem compra online quer saber de quem está comprando. O nome empresarial e o CNPJ (ou CPF) devem aparecer em local de destaque e fácil de ver, normalmente no rodapé.",
+    "obrigatoriedade": "essencial",
+    "peso": 10,
+    "deteccao": {
+      "seletores": [
+        "footer",
+        "address",
+        "[itemtype*=\"Organization\" i]"
+      ],
+      "palavras": [
+        "cnpj",
+        "razão social",
+        "razao social",
+        "cpf"
+      ],
+      "padroes_regex": [
+        "\\b\\d{2}\\.?\\d{3}\\.?\\d{3}/?\\d{4}-?\\d{2}\\b"
+      ],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Merchant Center Help: Editorial and professional requirements",
+        "url": "https://support.google.com/merchants/answer/6150244?hl=en",
+        "licenca": "© Google; termos de serviço do Google, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "alta",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 2º, I. O Merchant Center também pede dados da empresa coerentes com o cadastro. Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "endereco-e-meios-de-contato",
+    "tipo_de_site": "loja",
+    "nome": "Endereço e meios de contato",
+    "descricao": "A loja deve mostrar endereço físico e eletrônico e formas de contato, como e-mail, telefone ou WhatsApp. Sem isso o cliente não sabe a quem recorrer se algo der errado.",
+    "obrigatoriedade": "essencial",
+    "peso": 9,
+    "deteccao": {
+      "seletores": [
+        "address",
+        "a[href^=\"mailto:\"]",
+        "a[href^=\"tel:\"]",
+        "a[href*=\"wa.me\"]",
+        "a[href*=\"contato\" i]"
+      ],
+      "palavras": [
+        "endereço",
+        "endereco",
+        "contato",
+        "fale conosco",
+        "telefone",
+        "e-mail",
+        "whatsapp"
+      ],
+      "padroes_regex": [
+        "\\(?\\d{2}\\)?\\s?9?\\d{4}[-\\s]?\\d{4}"
+      ],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Merchant Center Help: Editorial and professional requirements",
+        "url": "https://support.google.com/merchants/answer/6150244?hl=en",
+        "licenca": "© Google; termos de serviço do Google, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: 'Contact Us' Page Guidelines",
+        "url": "https://www.nngroup.com/articles/contact-us-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "alta",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 2º, II. O Google pede contato claro e igual ao informado no cadastro da loja. Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "descricao-do-produto-e-fotos",
+    "tipo_de_site": "loja",
+    "nome": "Descrição e fotos do produto",
+    "descricao": "Cada produto precisa de fotos boas, mais de um ângulo, e descrição com as características principais, inclusive riscos à saúde ou segurança quando houver.",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"gallery\" i] img",
+        "[itemprop=\"description\"]",
+        "h1",
+        "picture img"
+      ],
+      "palavras": [
+        "descrição",
+        "descricao",
+        "características",
+        "caracteristicas",
+        "especificações",
+        "especificacoes"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: UX Guidelines for Ecommerce Product Pages",
+        "url": "https://www.nngroup.com/articles/ecommerce-product-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 2º, III (características essenciais) e orientações do NN/g sobre fotos. O script mede presença; qualidade é julgamento."
+  },
+  {
+    "id": "preco-total-sem-surpresas",
+    "tipo_de_site": "loja",
+    "nome": "Preço claro, com custos extras discriminados",
+    "descricao": "O preço deve ser claro e incluir ou separar frete, seguros e outras taxas. Custos que só aparecem no final são o principal motivo de desistência na compra.",
+    "obrigatoriedade": "essencial",
+    "peso": 9,
+    "deteccao": {
+      "seletores": [
+        "[itemprop=\"price\"]",
+        "[class*=\"preco\" i]",
+        "[class*=\"price\" i]"
+      ],
+      "palavras": [
+        "preço",
+        "preco",
+        "frete",
+        "taxa",
+        "total",
+        "parcelas"
+      ],
+      "padroes_regex": [
+        "R\\$\\s?\\d"
+      ],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Merchant Center Help: Checkout requirements and best practices",
+        "url": "https://support.google.com/merchants/answer/9158778?hl=en",
+        "licenca": "© Google; termos de serviço do Google, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Baymard Institute: Cart Abandonment Rate (2026): reasons for abandonment",
+        "url": "https://baymard.com/lists/cart-abandonment-rate",
+        "licenca": "© Baymard Institute; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "alta",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 2º, IV. Na pesquisa da Baymard, custos extras altos lideram a lista de motivos de abandono. O Google exige preço que não suba no checkout. Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "formas-de-pagamento",
+    "tipo_de_site": "loja",
+    "nome": "Formas de pagamento",
+    "descricao": "Antes de pôr no carrinho, a pessoa quer saber se pode pagar do jeito dela: Pix, cartão, boleto e parcelamento. Poucos meios de pagamento afastam compradores.",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"pagamento\" i]",
+        "[class*=\"payment\" i]",
+        "img[alt*=\"pix\" i]",
+        "img[alt*=\"visa\" i]",
+        "img[alt*=\"boleto\" i]"
+      ],
+      "palavras": [
+        "formas de pagamento",
+        "pix",
+        "cartão",
+        "cartao",
+        "boleto",
+        "parcelamento",
+        "parcele"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Merchant Center Help: Checkout requirements and best practices",
+        "url": "https://support.google.com/merchants/answer/9158778?hl=en",
+        "licenca": "© Google; termos de serviço do Google, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Baymard Institute: Cart Abandonment Rate (2026): reasons for abandonment",
+        "url": "https://baymard.com/lists/cart-abandonment-rate",
+        "licenca": "© Baymard Institute; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "alta",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 2º, V (formas de pagamento). Baymard lista meios de pagamento insuficientes entre os motivos de abandono. Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "custo-do-frete",
+    "tipo_de_site": "loja",
+    "nome": "Custo do frete antes do checkout",
+    "descricao": "Muita gente procura o valor do frete já na página do produto, antes de adicionar ao carrinho. Uma estimativa ou calculadora de CEP evita surpresa.",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "input[name*=\"cep\" i]",
+        "[class*=\"frete\" i]",
+        "[class*=\"shipping\" i]"
+      ],
+      "palavras": [
+        "frete",
+        "calcular frete",
+        "cep",
+        "frete grátis",
+        "frete gratis"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Baymard Institute: Product Pages Need to Show Estimated Shipping Costs",
+        "url": "https://baymard.com/blog/show-shipping-costs-on-product-pages",
+        "licenca": "© Baymard Institute; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Baymard: 64% procuram frete na página do produto e 43% dos sites não mostram. Decreto 7.962/2013 art. 2º, IV trata de despesas de entrega."
+  },
+  {
+    "id": "prazo-de-entrega",
+    "tipo_de_site": "loja",
+    "nome": "Prazo de entrega",
+    "descricao": "O cliente quer saber quando recebe. Mostrar uma data ou intervalo de dias para chegar é mais útil do que dizer só o tipo de envio.",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"prazo\" i]",
+        "[class*=\"entrega\" i]",
+        "[class*=\"delivery\" i]"
+      ],
+      "palavras": [
+        "prazo de entrega",
+        "entrega em",
+        "dias úteis",
+        "dias uteis",
+        "chega em",
+        "receba"
+      ],
+      "padroes_regex": [
+        "\\b\\d{1,2}\\s*(a|-|at[ée])\\s*\\d{1,2}\\s*dias"
+      ],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Baymard Institute: Use Delivery Date, Not Shipping Speed",
+        "url": "https://baymard.com/research-articles/shipping-speed-vs-delivery-date",
+        "licenca": "© Baymard Institute; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "alta",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 2º, V (prazo de entrega). Baymard recomenda data estimada por opção de envio. Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "trocas-e-devolucoes",
+    "tipo_de_site": "loja",
+    "nome": "Política de trocas e devoluções",
+    "descricao": "A pessoa quer saber o que acontece se o produto não servir: prazo, como devolver e quem paga o frete. Deve estar em uma página própria, escrita em linguagem simples e com link no rodapé.",
+    "obrigatoriedade": "essencial",
+    "peso": 9,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"troca\" i]",
+        "a[href*=\"devolu\" i]",
+        "a[href*=\"reembolso\" i]",
+        "footer a[href*=\"politica\" i]"
+      ],
+      "palavras": [
+        "trocas e devoluções",
+        "trocas e devolucoes",
+        "política de troca",
+        "politica de troca",
+        "devolução",
+        "devolucao",
+        "reembolso"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Google Merchant Center Help: Editorial and professional requirements",
+        "url": "https://support.google.com/merchants/answer/6150244?hl=en",
+        "licenca": "© Google; termos de serviço do Google, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Merchant Center Help: Set up your return policies for Shopping ads and free listings",
+        "url": "https://support.google.com/merchants/answer/14011730?hl=en",
+        "licenca": "© Google; termos de serviço do Google, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Baymard Institute: Have Direct Links to Returns and Shipping Info",
+        "url": "https://baymard.com/research-articles/footer-needs-return-shipping-links",
+        "licenca": "© Baymard Institute; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O Google pede política completa e fácil de achar (prazo, método, custos). Baymard recomenda link próprio no rodapé e na página do produto."
+  },
+  {
+    "id": "direito-de-arrependimento",
+    "tipo_de_site": "loja",
+    "nome": "Direito de arrependimento (7 dias)",
+    "descricao": "Em compra feita fora da loja física, o consumidor pode desistir em até 7 dias. O site deve informar de forma clara como exercer esse direito, preferencialmente pelo mesmo canal usado na compra.",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"arrependimento\" i]",
+        "a[href*=\"devolu\" i]"
+      ],
+      "palavras": [
+        "arrependimento",
+        "7 dias",
+        "sete dias",
+        "desistir da compra",
+        "desistência",
+        "desistencia"
+      ],
+      "padroes_regex": [
+        "\\b7\\s*dias\\b"
+      ],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lei 8.078/1990 (Código de Defesa do Consumidor), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "alta",
+    "notas": "Peso inicial, a calibrar. CDC art. 49 e Decreto 7.962/2013 art. 5º. Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "atendimento-ao-cliente",
+    "tipo_de_site": "loja",
+    "nome": "Canal de atendimento (SAC)",
+    "descricao": "O cliente precisa de um canal para tirar dúvida, reclamar, suspender ou cancelar. O site deve confirmar o recebimento do pedido de atendimento e responder em até cinco dias.",
+    "obrigatoriedade": "essencial",
+    "peso": 7,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"atendimento\" i]",
+        "a[href*=\"sac\" i]",
+        "a[href*=\"contato\" i]",
+        "a[href*=\"wa.me\"]"
+      ],
+      "palavras": [
+        "atendimento",
+        "sac",
+        "fale conosco",
+        "ajuda",
+        "suporte"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: 'Contact Us' Page Guidelines",
+        "url": "https://www.nngroup.com/articles/contact-us-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "alta",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 4º, V e VI e parágrafo único. O script só confirma o canal; o tempo de resposta não é medido. Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "pagamento-seguro-e-confianca",
+    "tipo_de_site": "loja",
+    "nome": "Sinais de pagamento seguro",
+    "descricao": "Desconfiança com os dados do cartão faz muita gente largar a compra. O site deve usar HTTPS, deixar claro o pagamento seguro e informar como protege os dados.",
+    "obrigatoriedade": "esperada",
+    "peso": 6,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"seguro\" i]",
+        "[class*=\"secure\" i]",
+        "img[alt*=\"seguro\" i]",
+        "img[alt*=\"ssl\" i]"
+      ],
+      "palavras": [
+        "compra segura",
+        "pagamento seguro",
+        "site seguro",
+        "ssl",
+        "dados protegidos"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Google Merchant Center Help: Checkout requirements and best practices",
+        "url": "https://support.google.com/merchants/answer/9158778?hl=en",
+        "licenca": "© Google; termos de serviço do Google, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Baymard Institute: Cart Abandonment Rate (2026): reasons for abandonment",
+        "url": "https://baymard.com/lists/cart-abandonment-rate",
+        "licenca": "© Baymard Institute; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. HTTPS é verificado por script no endereço; selos visuais são só um sinal. Decreto 7.962/2013 art. 4º, VII (mecanismos de segurança eficazes)."
+  },
+  {
+    "id": "avaliacoes-de-clientes",
+    "tipo_de_site": "loja",
+    "nome": "Avaliações de clientes",
+    "descricao": "Opiniões de quem comprou ajudam a decidir. Valem mais quando mostram também comentários negativos e indicam se a compra foi confirmada.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "[itemprop=\"review\"]",
+        "[itemprop=\"aggregateRating\"]",
+        "[class*=\"review\" i]",
+        "[class*=\"avaliac\" i]"
+      ],
+      "palavras": [
+        "avaliações",
+        "avaliacoes",
+        "opiniões",
+        "opinioes",
+        "compra verificada",
+        "estrelas"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: UX Guidelines for Ecommerce Product Pages",
+        "url": "https://www.nngroup.com/articles/ecommerce-product-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Review snippet structured data",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/review-snippet",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Social Proof in the User Experience",
+        "url": "https://www.nngroup.com/articles/social-proof-ux/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O Google pede avaliações visíveis na página e proíbe agregar avaliações de outros sites."
+  },
+  {
+    "id": "estoque-e-disponibilidade",
+    "tipo_de_site": "loja",
+    "nome": "Disponibilidade do produto",
+    "descricao": "O cliente quer saber se o produto está disponível, principalmente por cor e tamanho, antes de pôr no carrinho.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "[itemprop=\"availability\"]",
+        "[class*=\"estoque\" i]",
+        "[class*=\"stock\" i]"
+      ],
+      "palavras": [
+        "em estoque",
+        "indisponível",
+        "indisponivel",
+        "esgotado",
+        "avise-me"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: UX Guidelines for Ecommerce Product Pages",
+        "url": "https://www.nngroup.com/articles/ecommerce-product-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Merchant Center Help: Checkout requirements and best practices",
+        "url": "https://support.google.com/merchants/answer/9158778?hl=en",
+        "licenca": "© Google; termos de serviço do Google, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O Google exige que a disponibilidade seja igual na página do produto e no checkout."
+  },
+  {
+    "id": "busca-e-filtros",
+    "tipo_de_site": "loja",
+    "nome": "Busca e filtros de produtos",
+    "descricao": "Em lojas com vários produtos, busca visível e filtros por categoria, preço e marca ajudam a achar o que se procura.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "input[type=\"search\"]",
+        "[role=\"search\"]",
+        "[class*=\"filter\" i]",
+        "[class*=\"filtro\" i]"
+      ],
+      "palavras": [
+        "buscar",
+        "filtrar",
+        "ordenar",
+        "categorias"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Search: Visible and Simple",
+        "url": "https://www.nngroup.com/articles/search-visible-and-simple/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: UX Guidelines for Ecommerce Homepages, Category Pages, and Product Listing Pages",
+        "url": "https://www.nngroup.com/articles/ecommerce-homepages-listing-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Defining Helpful Filter Categories and Values for Better UX",
+        "url": "https://www.nngroup.com/articles/filter-categories-values/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Prioridade de filtros gerais (preço, marca, avaliação) vem do NN/g."
+  },
+  {
+    "id": "termos-e-resumo-do-contrato",
+    "tipo_de_site": "loja",
+    "nome": "Termos de compra e resumo do contrato",
+    "descricao": "Antes de fechar a compra, a pessoa espera um resumo das condições, com destaque para o que limita seus direitos, e um link para os termos de uso.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"termos\" i]",
+        "a[href*=\"condicoes\" i]",
+        "footer a[href*=\"politica\" i]"
+      ],
+      "palavras": [
+        "termos de uso",
+        "termos e condições",
+        "termos e condicoes",
+        "condições de compra",
+        "condicoes de compra"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 4º, I (resumo do contrato antes da contratação). Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "politica-de-privacidade",
+    "tipo_de_site": "loja",
+    "nome": "Política de privacidade",
+    "descricao": "Lojas coletam nome, endereço, CPF e dados de pagamento. A pessoa espera um texto claro sobre o uso desses dados e como falar com o responsável.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"privacidade\" i]",
+        "a[href*=\"privacy\" i]"
+      ],
+      "palavras": [
+        "política de privacidade",
+        "politica de privacidade",
+        "privacidade",
+        "lgpd"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Lei 13.709/2018 (LGPD), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. LGPD art. 9º (acesso facilitado às informações sobre o tratamento). Aviso, não parecer jurídico; a decisão é do dono do site."
+  }
+]

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:">
+<meta name="generator" content="critiquesites {{VERSAO_SKILL}}">
+<title>{{TITULO}}</title>
+<style>
+{{CSS}}
+</style>
+</head>
+<body>
+<main>
+{{CORPO}}
+</main>
+<script>
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button.copiar');if(!b)return;var t=document.getElementById(b.getAttribute('data-alvo'));if(!t)return;var txt=t.textContent;(navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){b.textContent='Copiado'},function(){var r=document.createRange();r.selectNodeContents(t);var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selecionado: aperte Ctrl+C'})});
+</script>
+</body>
+</html>

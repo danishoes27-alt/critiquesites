@@ -1,0 +1,969 @@
+[
+  {
+    "id": "mov-mesma-entrada-em-tudo",
+    "categoria": "visual-movimento",
+    "titulo": "A mesma animação de entrada repetida em quase tudo ao rolar",
+    "descricao": "Textos, cartões e imagens aparecem com o mesmo efeito (surgir de leve subindo, por exemplo) ao rolar a página. Quando tudo se move do mesmo jeito, o movimento deixa de chamar atenção para o que importa.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Conta elementos visíveis com o mesmo animation-name (ou a mesma classe de revelação) e marcadores de bibliotecas de animação por rolagem (atributos data-aos, classes wow e animate__, ou classes adicionadas por IntersectionObserver). Dispara quando a mesma entrada aparece em vários elementos.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "minimo_de_elementos_com_a_mesma_entrada": 4,
+        "marcadores": [
+          "data-aos",
+          "classes wow, animate__",
+          "animation-name idêntico",
+          "opacity 0 com transform inicial idêntico"
+        ],
+        "dispara_se": "a mesma animação de entrada em 4 ou mais elementos",
+        "intensidade": "min(1, elementos / 12)"
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Use movimento em um ou dois momentos que importam e deixe o resto estático.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o trecho {{trecho}} aplica a mesma animação de entrada em {{valor}} elementos. Mantenha a animação só na abertura e em um destaque e remova dos demais, deixando o conteúdo visível por padrão. NÃO mude o conteúdo, e mantenha o respeito a prefers-reduced-motion. Pronto quando no máximo 3 elementos da página usarem a mesma animação de entrada.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells (hankimis)",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:F1",
+      "unslop-ui:fade-in-animations",
+      "impeccable:floor-movimento",
+      "impeccable:ani-tese"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Limiar de 4 elementos e peso 4 (smell) vêm do ai-design-tells (F1), medidos pelo repositório; confiança média no máximo. A unslop-ui coloca a prioridade como \"menor\" nos dados dela. Impeccable pede um momento autoral em vez de entrada idêntica em todas as seções."
+  },
+  {
+    "id": "mov-varias-coreografias-de-rolagem",
+    "categoria": "visual-movimento",
+    "titulo": "Elementos entrando de direções e estilos diferentes, sem regra única",
+    "descricao": "Cada parte da página aparece de um jeito: uns surgem de baixo, outros da esquerda, outros crescem. Sem um padrão único, o movimento parece desordenado e distrai.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Lista os estilos distintos de entrada (combinação de animation-name, direção do transform inicial e tipo: fade, slide, zoom, rotação) usados em elementos que animam ao entrar na tela e conta quantos padrões diferentes existem.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "agrupamento": "animation-name e transform inicial (translateX, translateY, scale, rotate)",
+        "maximo_de_padroes_distintos": 2,
+        "dispara_se": "mais de 2 padrões de entrada diferentes na mesma página",
+        "intensidade": "min(1, (padrões - 2) / 4)"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Escolha um único padrão de entrada (mesma direção e duração) para todos os elementos que animam.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a página usa {{valor}} estilos diferentes de entrada ao rolar (trecho {{trecho}}). Padronize em um único estilo, com a mesma direção, duração e curva, em todos os elementos que animam. NÃO adicione novas animações. Pronto quando a página tiver no máximo 2 padrões de entrada distintos.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:F8",
+      "unslop-heydamir:entrada-caotica"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. Hallmark (F8, acabamento) diz mais de um padrão de coreografia de rolagem; unslop descreve entradas caóticas de direções diferentes. O limite de 2 padrões é proposto. Atenção: esta regra pode disparar junto com mov-mesma-entrada-em-tudo em sentidos opostos; o relatório deve mostrar só a mais forte para não punir duas vezes."
+  },
+  {
+    "id": "mov-transicao-em-tudo",
+    "categoria": "visual-movimento",
+    "titulo": "Transição aplicada a todas as propriedades de uma vez",
+    "descricao": "O CSS manda animar qualquer mudança (transition all) em vez de listar o que deve mudar. O navegador anima propriedades que ninguém queria animar, o que gera efeitos estranhos e trabalho extra.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Percorre o CSS (folhas e estilos inline) e os estilos computados, conta declarações transition-property: all e atalhos transition com a palavra all, e registra seletor e arquivo.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "padroes": [
+          "transition-property: all",
+          "transition: all ...",
+          "classe utilitária transition-all"
+        ],
+        "minimo_de_ocorrencias": 1,
+        "dispara_se": "ao menos 1 ocorrência em regra aplicada a elemento do site",
+        "intensidade": "min(1, ocorrências / 5)"
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Liste só as propriedades que devem animar, como color, background-color, opacity e transform.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a regra {{trecho}} usa transition: all. Troque por uma lista das propriedades realmente animadas (por exemplo color, background-color, opacity, transform) com a mesma duração e curva. NÃO mude o visual final do hover. Pronto quando nenhuma regra do arquivo usar transition: all ou transition-property: all.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:10a",
+      "web-design-guidelines:CMD-ANI-03",
+      "web-design-guidelines:AG-AN-45",
+      "unslop-heydamir:transition-all-scale"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Presença verificável por script, com seletor como evidência. O Hallmark trata como falha obrigatória (Floor) e o Vercel como proibição (NEVER), mas o peso 4 e a confiança média são propostas conservadoras, porque a prática é muito comum em sites bons."
+  },
+  {
+    "id": "mov-animar-propriedades-de-layout",
+    "categoria": "visual-movimento",
+    "titulo": "Animação de largura, altura ou posição em vez de transformações",
+    "descricao": "O CSS anima width, height, top ou left (e às vezes margens e paddings). Isso obriga o navegador a recalcular o layout a cada quadro e costuma gerar movimento travado, principalmente no celular.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Percorre transition-property e animation (incluindo @keyframes) e lista as propriedades animadas. Marca width, height, top, left, right, bottom, margin e padding.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "propriedades_marcadas": [
+          "width",
+          "height",
+          "top",
+          "left",
+          "right",
+          "bottom",
+          "margin",
+          "padding"
+        ],
+        "excecoes": [
+          "transições de height em abrir e fechar de sanfona, quando o modelo confirmar que é intencional"
+        ],
+        "dispara_se": "ao menos 1 transição ou animação com essas propriedades",
+        "intensidade": "min(1, ocorrências / 5)"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Prefira animar transform e opacity para movimentos de posição e tamanho.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a regra {{trecho}} anima {{valor}}. Reescreva a animação usando transform (translate ou scale) e opacity, com a mesma duração. NÃO mude o resultado visual final nem a duração. Pronto quando nenhuma regra animar width, height, top, left, margin ou padding.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "MDN Web Docs, Desempenho de animações CSS e JavaScript",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/CSS_JavaScript_animation_performance",
+        "licenca": "norma pública/documentação (MDN: texto CC-BY-SA 2.5, exemplos de código CC0)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:10a",
+      "hallmark:10b",
+      "web-design-guidelines:CMD-ANI-02",
+      "web-design-guidelines:AG-AN-44",
+      "unslop-heydamir:animar-layout"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Presença verificável por script. Hallmark (10a) trata como falha obrigatória para width, height, top e left, e como reflexo para margin e padding (10b). A documentação do MDN sobre desempenho de animações dá o contexto técnico."
+  },
+  {
+    "id": "mov-sem-reduced-motion",
+    "categoria": "visual-movimento",
+    "titulo": "Animações sem alternativa para quem pediu menos movimento",
+    "descricao": "O site tem animações e transformações, mas não tem nenhuma regra que reduza o movimento para quem ativou essa opção no aparelho. Pessoas com sensibilidade a movimento podem sentir tontura ou desconforto.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Verifica se o CSS tem @keyframes, animation ou transform animado e, ao mesmo tempo, nenhuma regra @media (prefers-reduced-motion: reduce) (nem no JS via matchMedia).",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "gatilhos": [
+          "@keyframes",
+          "animation-name diferente de none",
+          "transition de transform"
+        ],
+        "protecao_esperada": "@media (prefers-reduced-motion: reduce) com animação reduzida ou removida",
+        "dispara_se": "há animação e não há nenhuma proteção"
+      }
+    },
+    "peso": 6,
+    "severidade": "tell",
+    "selo": "regra",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Adicione uma regra para reduzir ou desligar o movimento espacial quando o visitante pedir menos movimento.",
+    "prompt_correcao": "No arquivo {{arquivo}}, as animações do trecho {{trecho}} não têm tratamento para prefers-reduced-motion. Adicione @media (prefers-reduced-motion: reduce) que remova deslocamentos, zooms e loops, mantendo mudanças simples de cor ou opacidade. NÃO desligue todo o CSS com animation: none em tudo nem mude o visual para quem não pediu. Pronto quando houver a media query e o movimento espacial parar com a opção ativada.",
+    "fonte": [
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "WCAG 2.2, Animation from Interactions (2.3.3)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html",
+        "licenca": "norma pública/documentação (W3C Document License; páginas Understanding sob Permission to Use WAI Material)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "MDN Web Docs, prefers-reduced-motion",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion",
+        "licenca": "norma pública/documentação (MDN: texto CC-BY-SA 2.5, exemplos de código CC0)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-ui:reduced-motion",
+      "hallmark:27",
+      "web-design-guidelines:CMD-ANI-01",
+      "web-design-guidelines:AG-AN-41",
+      "impeccable:ani-reduced-motion",
+      "impeccable:aud-a11y-reduced-motion"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Fundamento: WCAG 2.2, critério 2.3.3 (nível AAA, recomendado) e documentação do MDN sobre prefers-reduced-motion. Por ser AAA, confiança média e não alta. A acessibilidade geral é tratada em outra categoria; aqui a regra só avalia o movimento."
+  },
+  {
+    "id": "mov-easing-com-quique",
+    "categoria": "visual-movimento",
+    "titulo": "Efeito de quique ou elástico em elementos simples da interface",
+    "descricao": "Botões, menus e cartões usam curvas que passam do ponto final e voltam (efeito mola ou quique). Em interface comum, isso soa infantil e cansa, em vez de dar sensação de acabamento.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Lê transition-timing-function e animation-timing-function e procura cubic-bezier com y1 ou y2 fora do intervalo de 0 a 1 (ultrapassa o destino), funções linear() com valores acima de 1 e nomes como bounce, elastic ou spring em classes e keyframes.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "criterio_matematico": "cubic-bezier(x1, y1, x2, y2) com y1 > 1, y1 < 0, y2 > 1 ou y2 < 0",
+        "nomes": [
+          "bounce",
+          "elastic",
+          "spring",
+          "overshoot"
+        ],
+        "excecoes": [
+          "animação em um único elemento de personalidade da marca, confirmada pelo modelo"
+        ],
+        "dispara_se": "ao menos 1 uso em estado de interface (hover, foco, menu, modal)"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Use uma curva de desaceleração suave, sem passar do ponto final.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a regra {{trecho}} usa uma curva com quique ({{valor}}). Troque por uma curva de desaceleração suave, como cubic-bezier(0.22, 1, 0.36, 1), mantendo a duração. NÃO mude o que anima nem a duração. Pronto quando nenhuma transição de estado usar cubic-bezier com valores de y fora do intervalo de 0 a 1.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:12",
+      "unslop-heydamir:spring-bounce",
+      "impeccable:ani-easing",
+      "impeccable:qui-movimento"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "O critério matemático (curva que ultrapassa 1 ou fica abaixo de 0) é uma tradução técnica de \"overshoot\" para detecção. Hallmark permite quique em um elemento de personalidade; por isso a exceção. Impeccable cita o id bounce-easing no detector."
+  },
+  {
+    "id": "mov-hover-igual-em-todos",
+    "categoria": "visual-movimento",
+    "titulo": "O mesmo efeito de ampliar ou subir em todos os cartões ao passar o mouse",
+    "descricao": "Todos os cartões e botões crescem ou sobem do mesmo jeito ao passar o mouse, às vezes com imagem que dá zoom ou gira, ou até em elementos que nem são clicáveis. O efeito vira reflexo, não resposta útil.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Lê as regras :hover do CSS e coleta transforms de escala ou deslocamento. Marca quando o mesmo transform aparece em 3 ou mais seletores distintos de cartões, quando uma imagem ganha escala ou rotação no hover, e quando há :hover com transform em elemento não interativo (sem link, botão ou role).",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "transformacoes": [
+          "scale",
+          "translateY",
+          "rotate"
+        ],
+        "minimo_de_seletores_com_o_mesmo_efeito": 3,
+        "outros_gatilhos": [
+          "imagem com scale ou rotate no hover",
+          "hover com transform em elemento não interativo"
+        ],
+        "dispara_se": "algum dos gatilhos"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Use um sinal discreto por elemento (cor, sombra ou sublinhado) no contêiner, só em coisas clicáveis.",
+    "prompt_correcao": "No arquivo {{arquivo}}, as regras {{trecho}} aplicam o mesmo efeito de transform no hover ({{valor}}). Troque por uma mudança discreta de cor, borda ou sombra, apenas em elementos clicáveis, sem escalar imagens. NÃO remova o feedback de foco por teclado. Pronto quando nenhum transform de escala idêntico for repetido em 3 ou mais seletores e nenhuma imagem escalar no hover.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:11",
+      "unslop-heydamir:transition-all-scale",
+      "unslop-ui:fade-in-animations"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. O mínimo de 3 seletores é proposto; as fontes descrevem o sinal sem número. A unslop-ui lista hover:scale-1xx como assinatura de animação genérica (prioridade menor). Hallmark (11) classifica metade do item como julgamento."
+  },
+  {
+    "id": "mov-loop-infinito-sem-funcao",
+    "categoria": "visual-movimento",
+    "titulo": "Animação em repetição infinita sem função, como pulsar ou brilhar parado",
+    "descricao": "Elementos pulsam, piscam ou brilham sem parar sem que nada esteja carregando ou ao vivo. O movimento constante rouba atenção do conteúdo e faz a página parecer inquieta.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "css",
+      "metodo": "Lista elementos visíveis com animation-iteration-count infinite (ou classes animate-pulse, animate-ping) e exclui os que são indicadores de carregamento, esqueletos, barras de progresso e marcadores de transmissão ao vivo. O modelo confirma o caso dos restantes.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "gatilhos": [
+          "animation-iteration-count: infinite",
+          "classes animate-pulse e animate-ping",
+          "transform ou box-shadow em loop"
+        ],
+        "excecoes": [
+          "spinner de carregamento",
+          "skeleton",
+          "progresso",
+          "indicador de ao vivo"
+        ],
+        "minimo_de_ocorrencias": 1,
+        "dispara_se": "ao menos 1 loop infinito decorativo"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Remova o loop ou deixe-o só em elementos que indicam algo ao vivo ou em carregamento.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o elemento {{trecho}} tem animação infinita ({{valor}}) sem função de carregamento ou transmissão ao vivo. Remova a repetição ou rode a animação uma única vez. NÃO mexa em spinners e esqueletos de carregamento. Pronto quando nenhum elemento decorativo tiver animation-iteration-count infinite.",
+    "fonte": [
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:motion-pulse",
+      "unslop-heydamir:parallax-loop",
+      "web-design-guidelines:CMD-ANI-08",
+      "impeccable:ani-loops"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Sinal qualitativo nas fontes (sem número), por isso a detecção usa presença e exceções de papel. A parte de acessibilidade (loop sem controle de pausa por mais de 5 segundos) está em mov-movimento-automatico-sem-pausa."
+  },
+  {
+    "id": "mov-movimento-automatico-sem-pausa",
+    "categoria": "visual-movimento",
+    "titulo": "Carrossel, letreiro ou animação automática sem botão de pausar",
+    "descricao": "Algo se move sozinho por mais de 5 segundos (carrossel que troca de slide, letreiro que rola) e não há controle visível para pausar, parar ou esconder. Quem tem dificuldade de leitura ou de atenção não consegue acompanhar.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "js",
+      "metodo": "Tira duas leituras do DOM com intervalo maior que 5 segundos e marca regiões cujo texto, posição ou transform muda sozinho (carrossel, marquee, ticker). Procura nelas um botão visível de pausar ou parar, ou pausa ao passar o mouse e ao focar. O modelo confirma o caso.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "intervalo_entre_leituras_s": 6,
+        "duracao_que_dispara_s": 5,
+        "controles_esperados": [
+          "botão com texto, aria-label ou título contendo pausar, pause, parar, stop",
+          "botão play/pause com aria-pressed"
+        ],
+        "dispara_se": "conteúdo que muda sozinho por mais de 5 s, em paralelo a outro conteúdo, sem controle de pausa"
+      }
+    },
+    "peso": 6,
+    "severidade": "tell",
+    "selo": "regra",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Adicione um botão de pausa visível e pause o movimento ao passar o mouse ou focar no conteúdo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o componente {{trecho}} se move sozinho por mais de 5 segundos sem controle de pausa. Adicione um botão de pausar e continuar visível, acessível por teclado, e pause também ao passar o mouse e ao focar. NÃO mude o conteúdo dos slides. Pronto quando um botão de pausa funcionar e o movimento parar ao focar.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, Pause, Stop, Hide (2.2.2)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html",
+        "licenca": "norma pública/documentação (W3C Document License; páginas Understanding sob Permission to Use WAI Material)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:18",
+      "web-design-guidelines:CMD-ANI-07",
+      "web-design-guidelines:AG-AN-49"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Fundamento: WCAG 2.2, critério 2.2.2 (nível A): movimento automático com mais de 5 segundos precisa de mecanismo de pausar, parar ou ocultar, salvo se essencial. Limiar de 5 s é da norma, confiança média só pela dificuldade de detectar o controle. Modo completo por exigir duas leituras com tempo de espera."
+  },
+  {
+    "id": "mov-parallax-e-rolagem-sequestrada",
+    "categoria": "visual-movimento",
+    "titulo": "Efeito de paralaxe ou rolagem controlada pela página",
+    "descricao": "Imagens e blocos se movem em velocidade diferente do resto ao rolar, ou a rolagem é assumida pela página (travada, suavizada ou usada para trocar seções). Esses efeitos costumam atrapalhar a leitura e o controle de quem navega.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "js",
+      "metodo": "Procura bibliotecas e padrões de paralaxe ou rolagem sequestrada (rellax, jarallax, locomotive-scroll, scrollmagic, atributos data-speed ou data-parallax, background-attachment fixed, listeners de scroll que alteram transform). O modelo confirma se o efeito domina a experiência.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "assinaturas": [
+          "rellax",
+          "jarallax",
+          "locomotive-scroll",
+          "scrollmagic",
+          "data-parallax",
+          "data-speed",
+          "background-attachment: fixed",
+          "listener de scroll alterando transform"
+        ],
+        "minimo_de_ocorrencias": 1
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Deixe a rolagem natural e use movimento só como apoio, em um momento específico.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o trecho {{trecho}} usa paralaxe ou rolagem controlada ({{valor}}). Remova o efeito e deixe a rolagem nativa, mantendo imagens e textos nas posições finais. NÃO mude o conteúdo nem a ordem das seções. Pronto quando nenhum elemento mudar de posição por listener de scroll e nenhum background-attachment fixed permanecer.",
+    "fonte": [
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-ui:fade-in-animations",
+      "unslop-heydamir:parallax-scroll",
+      "impeccable:ani-tese"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. A lista de assinaturas é proposta a partir das descrições das fontes, que citam paralaxe e \"scrolljacking\" sem exemplos de código. Impeccable lista paralaxe e scroll reveal genéricos entre os efeitos a evitar quando não vêm do produto."
+  },
+  {
+    "id": "mov-duracao-fora-da-faixa",
+    "categoria": "visual-movimento",
+    "titulo": "Transições longas demais em respostas simples, como passar o mouse",
+    "descricao": "Mudanças simples de estado (hover, foco, abrir menu) demoram meio segundo ou mais, e as entradas de destaque passam de 800 ms. A interface parece lenta e pesada.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Lê transition-duration e animation-duration (somando o atraso) de regras de :hover, :focus, :active e de elementos de menu, e compara com os limites.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "duracao_maxima_de_estado_ms": 500,
+        "duracao_maxima_de_entrada_ms": 800,
+        "faixas_de_referencia_ms": {
+          "retorno_imediato": "100 a 150",
+          "mudanca_de_estado": "150 a 300",
+          "layout_ou_vista": "300 a 500",
+          "entrada_de_destaque": "500 a 800"
+        },
+        "dispara_se": "transição de estado acima de 500 ms ou entrada acima de 800 ms"
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Reduza as durações para a faixa de 150 a 300 ms em estados e de 300 a 500 ms em transições maiores.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a regra {{trecho}} tem duração de {{valor}}. Reduza para 150 a 300 ms em hover e foco e para 300 a 500 ms em abertura de menus e vistas, mantendo a curva. NÃO remova a transição nem mude o efeito. Pronto quando nenhuma transição de estado passar de 500 ms nem entrada de destaque de 800 ms.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:ani-duracao",
+      "unslop-heydamir:tok-motion",
+      "design-review:DR-INT-04"
+    ],
+    "citacoes": [
+      "numero"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. As faixas vêm do Impeccable (animate.md: 100 a 150, 150 a 300, 300 a 500, 500 a 800 ms), do unslop (tokens: feedback 120 a 180 ms, menus 160 a 220, entradas 300 a 500) e do design-review (150 a 200 ms). As fontes divergem entre si e são recomendações, não medições; os tetos de 500 e 800 ms são interpretação conservadora e propostos."
+  },
+  {
+    "id": "mov-conteudo-invisivel-sem-js",
+    "categoria": "visual-movimento",
+    "titulo": "Texto que só aparece depois de um script rodar",
+    "descricao": "Trechos de texto começam invisíveis (transparência zero ou escondidos) e só ficam visíveis quando um script de animação executa. Se o script falhar, atrasar ou for bloqueado, o visitante, os buscadores e os leitores de tela veem uma página em branco.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Renderiza a página uma vez sem JavaScript e uma vez normalmente. Lista nós de texto visíveis no estado final e com opacity 0, visibility hidden ou deslocados para fora da área visível no estado sem JavaScript, e soma as palavras afetadas.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "comparacao": "versão sem JavaScript x DOM final",
+        "criterio_oculto_sem_js": "opacity <= 0.01, visibility hidden ou clip, em elemento que no final está visível",
+        "minimo_de_palavras_afetadas": 5,
+        "excecoes": [
+          "elementos com @starting-style",
+          "animações em CSS que começam sozinhas",
+          "regras escopadas em classe .js"
+        ],
+        "dispara_se": "ao menos 5 palavras visíveis no final ficam invisíveis sem JavaScript"
+      }
+    },
+    "peso": 5,
+    "severidade": "tell",
+    "selo": "fato",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Deixe o conteúdo visível por padrão e esconda só quando o JavaScript estiver ativo, ou anime a partir do estado visível.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o trecho {{trecho}} começa com opacity 0 ou visibility hidden e depende de JavaScript para aparecer. Deixe o conteúdo visível por padrão e aplique o estado escondido apenas sob uma classe adicionada por script (por exemplo .js), ou use @starting-style. NÃO mude a animação para quem tem JavaScript. Pronto quando, com JavaScript desligado, todo o texto da página ficar visível.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:62",
+      "impeccable:ani-conteudo-visivel"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. O mínimo de 5 palavras é proposto; o Hallmark (62, falha obrigatória) detecta por CSS, sem número. Comparar versões sem JavaScript dobra a renderização, por isso só no modo completo. Relação com a regra de leitura de três versões da página (SPEC §4.2)."
+  },
+  {
+    "id": "mov-video-autoplay-mal-configurado",
+    "categoria": "visual-movimento",
+    "titulo": "Vídeo que começa sozinho sem silêncio, sem poster ou sem reprodução em linha",
+    "descricao": "Um vídeo com início automático não está silenciado, não tem imagem de capa ou não está marcado para tocar em linha no celular. Os navegadores bloqueiam o vídeo com som, e a abertura pode ficar vazia ou piscar.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Para cada video com autoplay, verifica os atributos muted, playsinline e poster. Para vídeos na primeira dobra, sem poster, marca como aviso.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "atributos_obrigatorios_com_autoplay": [
+          "muted",
+          "playsinline"
+        ],
+        "atributo_esperado_na_primeira_dobra": "poster",
+        "dispara_se": "video[autoplay] sem muted, ou sem playsinline, ou na primeira dobra sem poster"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Use autoplay com muted, loop e playsinline e coloque uma imagem de capa (poster).",
+    "prompt_correcao": "No arquivo {{arquivo}}, o vídeo {{trecho}} tem autoplay mas falta {{valor}}. Adicione muted, playsinline e um poster com imagem leve, mantendo loop se já existir. NÃO ative o som nem mude o vídeo. Pronto quando todo video com autoplay tiver muted e playsinline, e os da primeira dobra tiverem poster.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "MDN Web Docs, Guia de autoplay",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Autoplay",
+        "licenca": "norma pública/documentação (MDN: texto CC-BY-SA 2.5, exemplos de código CC0)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:28a",
+      "hallmark:28b",
+      "web-design-guidelines:CMD-PER-07",
+      "web-design-guidelines:AG-PF-93"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Presença de atributos é verificável. A política de autoplay dos navegadores está descrita na documentação do MDN. O Hallmark trata autoplay sem muted como falha e a falta de poster como reflexo (aceita abaixo da dobra)."
+  },
+  {
+    "id": "mov-gif-animado-no-lugar-de-video",
+    "categoria": "visual-movimento",
+    "titulo": "GIF animado pesado onde um vídeo curto serviria",
+    "descricao": "Uma animação aparece como arquivo GIF, formato muito mais pesado que um vídeo curto, e ainda não respeita preferências de movimento. A página fica mais lenta sem ganho visual.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "imagens",
+      "metodo": "Lista img e fundos CSS cujo arquivo termina em .gif, mede o tamanho do arquivo por HEAD e as dimensões exibidas, e ignora pixels de rastreamento e ícones pequenos.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "extensao": ".gif",
+        "largura_exibida_minima_px": 200,
+        "peso_minimo_kb": 100,
+        "dispara_se": "GIF exibido com 200 px ou mais de largura e pesando 100 KB ou mais"
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque o GIF por um vídeo curto (mp4 ou webm) com muted, loop e playsinline, e uma imagem estática de reserva.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o GIF {{trecho}} ({{valor}}) deve virar vídeo. Converta para mp4 e webm, use video autoplay muted loop playsinline com poster e inclua uma imagem estática para quem prefere menos movimento. NÃO mude as dimensões exibidas. Pronto quando a página não carregar mais o arquivo GIF e o vídeo tocar em loop mudo.",
+    "fonte": [
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "web-design-guidelines:CMD-PER-07",
+      "web-design-guidelines:CMD-AP-13"
+    ],
+    "citacoes": [
+      "numero",
+      "trecho"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. A fonte (Vercel) recomenda vídeo no lugar de GIF sem fixar tamanhos; os limites de 200 px e 100 KB são propostos. Parte da avaliação de peso de imagens é de outra categoria (performance)."
+  },
+  {
+    "id": "mov-cascata-de-atrasos-longa",
+    "categoria": "visual-movimento",
+    "titulo": "Efeito cascata com atrasos longos, fazendo o visitante esperar",
+    "descricao": "Uma lista ou grade aparece item por item com atrasos crescentes, e o último só surge depois de muito tempo. A cascata atrasa a leitura e é usada até em seções que não são listas.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Agrupa irmãos com animation-delay ou transition-delay crescentes e mede quantos itens entram em cascata e o maior atraso acumulado.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "maximo_de_itens_em_cascata": 6,
+        "passo_de_referencia_ms": "40 a 60",
+        "atraso_total_maximo_ms": 360,
+        "dispara_se": "mais de 6 itens em cascata ou atraso total acima de 360 ms"
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Limite a cascata a poucos itens e a passos curtos, ou mostre tudo de uma vez.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a lista {{trecho}} aparece em cascata com atraso total de {{valor}}. Limite a cascata a 6 itens, com passo de 40 a 60 ms, ou remova o atraso. NÃO mude a ordem nem o conteúdo da lista. Pronto quando o maior atraso acumulado for de no máximo 360 ms.",
+    "fonte": [
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:tok-motion",
+      "impeccable:ani-stagger"
+    ],
+    "citacoes": [
+      "numero"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. O unslop (tokens.md) sugere passo de 40 a 60 ms com no máximo seis itens, o que dá cerca de 360 ms no total, valor derivado aqui. O Impeccable pede cascata só quando a lista aparece como lista e atraso total limitado, sem número."
+  }
+]

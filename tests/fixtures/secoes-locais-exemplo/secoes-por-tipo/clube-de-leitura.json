@@ -1,0 +1,56 @@
+[
+  {
+    "id": "proximo-livro",
+    "tipo_de_site": "x",
+    "nome": "Próximo livro do clube de exemplo",
+    "descricao": "Seção fictícia usada só nos testes do mecanismo da camada local.",
+    "obrigatoriedade": "essencial",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [],
+      "palavras": [
+        "proximo livro"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Exemplo inventado para teste",
+        "url": "https://exemplo.test/guia",
+        "licenca": "fictícia",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "confianca": "media",
+    "notas": ""
+  },
+  {
+    "id": "encontros-do-mes",
+    "tipo_de_site": "x",
+    "nome": "Encontros do mês do clube de exemplo",
+    "descricao": "Seção fictícia usada só nos testes do mecanismo da camada local.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [],
+      "palavras": [
+        "encontros do mes"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Exemplo inventado para teste",
+        "url": "https://exemplo.test/guia",
+        "licenca": "fictícia",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "confianca": "media",
+    "notas": ""
+  }
+]

@@ -1,0 +1,1183 @@
+[
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Os Core Web Vitals oficiais usam dados de visitantes reais (75º percentil); o script só vê laboratório, então nunca afirmar \"o site reprova nos Core Web Vitals\". Medição de laboratório (Lighthouse, 1 execução, mobile emulado) varia de uma rodada para outra; usar faixas, não o valor exato. Entre 2,5 s e 4 s é \"precisa melhorar\" (intensidade parcial).",
+    "id": "perf-lcp-acima-do-limite",
+    "categoria": "performance",
+    "titulo": "Maior elemento da página demora a aparecer (LCP)",
+    "descricao": "O LCP mede quanto tempo leva para o maior bloco visível (imagem ou texto) aparecer. Até 2,5 segundos é bom; acima de 4 segundos é ruim. Aqui medimos em laboratório, não com visitantes reais.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lighthouse",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o Lighthouse na página (mobile emulado) e lê o valor do LCP em ms; compara com os limiares oficiais.",
+      "parametros": {
+        "audit_ids": [
+          "largest-contentful-paint"
+        ],
+        "limiar_bom_ms": 2500,
+        "limiar_ruim_ms": 4000,
+        "perfil": "mobile emulado",
+        "tipo_de_dado": "laboratório"
+      }
+    },
+    "peso": 8,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Deixe a imagem principal carregar primeiro: sem lazy loading, com tamanho certo e enviada logo no HTML.",
+    "prompt_correcao": "No arquivo {{arquivo}}, otimize o elemento LCP {{trecho}} (hoje {{valor}} ms): remova loading=\"lazy\" se for imagem, adicione fetchpriority=\"high\", comprima a imagem e garanta que o src esteja no HTML. Não mude o conteúdo nem o layout. Pronto quando o Lighthouse mobile mostrar LCP de 2,5 s ou menos.",
+    "fonte": [
+      {
+        "nome": "web.dev: Largest Contentful Paint (LCP)",
+        "url": "https://web.dev/articles/lcp",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (código), conforme rodapé do web.dev e Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web.dev: Web Vitals",
+        "url": "https://web.dev/articles/vitals",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (código), conforme rodapé do web.dev e Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web.dev: Otimizar o LCP",
+        "url": "https://web.dev/articles/optimize-lcp",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (código), conforme rodapé do web.dev e Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "lighthouse:largest-contentful-paint"
+    ],
+    "citacoes": [
+      "numero"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "No Lighthouse o CLS cobre só o carregamento inicial, não o uso completo da página. Medição de laboratório (Lighthouse, 1 execução, mobile emulado) varia de uma rodada para outra; usar faixas, não o valor exato.",
+    "id": "perf-cls-acima-do-limite",
+    "categoria": "performance",
+    "titulo": "Layout pula durante o carregamento (CLS)",
+    "descricao": "O CLS mede o quanto o conteúdo se mexe sozinho enquanto a página carrega. Até 0,1 é bom; acima de 0,25 é ruim. Imagens sem tamanho, fontes que trocam e anúncios que entram são as causas mais comuns.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lighthouse",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o Lighthouse na página (mobile emulado) e lê o valor do CLS; compara com os limiares oficiais.",
+      "parametros": {
+        "audit_ids": [
+          "cumulative-layout-shift"
+        ],
+        "limiar_bom": 0.1,
+        "limiar_ruim": 0.25,
+        "perfil": "mobile emulado",
+        "tipo_de_dado": "laboratório"
+      }
+    },
+    "peso": 7,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Reserve espaço para imagens, vídeos e anúncios (width e height ou aspect-ratio) e evite inserir conteúdo acima do que já aparece.",
+    "prompt_correcao": "No arquivo {{arquivo}}, reduza o deslocamento de layout causado por {{trecho}} (CLS hoje {{valor}}): defina width e height (ou aspect-ratio) nos elementos que carregam depois e reserve espaço para embeds. Não mude o design. Pronto quando o Lighthouse mobile mostrar CLS de 0,1 ou menos.",
+    "fonte": [
+      {
+        "nome": "web.dev: Cumulative Layout Shift (CLS)",
+        "url": "https://web.dev/articles/cls",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (código), conforme rodapé do web.dev e Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web.dev: Otimizar o CLS",
+        "url": "https://web.dev/articles/optimize-cls",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (código), conforme rodapé do web.dev e Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "lighthouse:cumulative-layout-shift"
+    ],
+    "citacoes": [
+      "numero"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "O INP (limite de 200 ms bom e 500 ms ruim) é métrica de visitantes reais e não pode ser medido por script sem interação real; esta regra NÃO afirma o INP, só o TBT de laboratório. Medição de laboratório (Lighthouse, 1 execução, mobile emulado) varia de uma rodada para outra; usar faixas, não o valor exato.",
+    "id": "perf-tbt-bloqueio-da-thread",
+    "categoria": "performance",
+    "titulo": "JavaScript trava a página por tempo demais (TBT)",
+    "descricao": "O TBT soma o tempo em que a página fica \"congelada\" durante o carregamento, sem responder a cliques e toques. Em celular, até 200 ms é bom e acima de 600 ms é ruim.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lighthouse",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o Lighthouse (mobile emulado) e lê o TBT em ms; compara com os limiares da documentação.",
+      "parametros": {
+        "audit_ids": [
+          "total-blocking-time"
+        ],
+        "limiar_bom_ms": 200,
+        "limiar_ruim_ms": 600,
+        "perfil": "mobile emulado"
+      }
+    },
+    "peso": 6,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Reduza e adie o JavaScript pesado: carregue só o necessário no início e divida tarefas longas.",
+    "prompt_correcao": "No arquivo {{arquivo}}, reduza o bloqueio causado pelo script {{trecho}} (TBT hoje {{valor}} ms): adie com defer, carregue sob demanda o que não é essencial e remova código não usado. Não quebre as funções existentes. Pronto quando o Lighthouse mobile mostrar TBT de 200 ms ou menos.",
+    "fonte": [
+      {
+        "nome": "Lighthouse: Total Blocking Time",
+        "url": "https://developer.chrome.com/docs/lighthouse/performance/lighthouse-total-blocking-time",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web.dev: Interaction to Next Paint (INP)",
+        "url": "https://web.dev/articles/inp",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (código), conforme rodapé do web.dev e Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "lighthouse:total-blocking-time"
+    ],
+    "citacoes": [
+      "numero"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Caso de teste nº 1 (SPEC §11.2): o HTML cru tem 31 img e 30 com lazy; o DOM final tem 57 e 45. As duas contagens vão no achado. Imagens acima da dobra COM lazy são o problema oposto, tratado em perf-lcp-imagem-com-lazy.",
+    "id": "perf-lazy-loading-contagem",
+    "categoria": "performance",
+    "titulo": "Quantas imagens usam carregamento preguiçoso (lazy)",
+    "descricao": "Imagens abaixo da primeira tela devem usar loading=\"lazy\" para não pesar no início. Este item conta quantas imagens usam e quantas não usam, no HTML cru e no DOM final, e nunca diz \"sem lazy loading\" se existir alguma com lazy.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "imagens",
+      "detectavel_por_script": "sim",
+      "metodo": "Conta os <img> (e iframes) com loading=lazy, loading=eager e sem atributo, no HTML cru e no DOM final, separando acima e abaixo da primeira tela; devolve as duas contagens com seletor e exemplos.",
+      "parametros": {
+        "versoes": [
+          "cru",
+          "final"
+        ],
+        "seletor": "img",
+        "contar": [
+          "total",
+          "com_loading_lazy",
+          "com_loading_eager",
+          "sem_atributo_loading",
+          "abaixo_da_dobra_sem_lazy",
+          "acima_da_dobra_com_lazy"
+        ],
+        "dobra": "caixa do elemento começa acima da altura da janela usada na captura (desktop 1440 e mobile 390)",
+        "tambem_contar": "iframe[loading=lazy]",
+        "reportar_sempre_as_duas_contagens": true,
+        "regra_de_redacao": "NUNCA afirmar \"sem lazy loading\" se com_loading_lazy for maior que 0 em qualquer versão",
+        "gerar_achado_quando": "abaixo_da_dobra_sem_lazy maior que 0 (imagens abaixo da dobra sem lazy)"
+      }
+    },
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "fato",
+    "confianca": "alta",
+    "correcao": "Use loading=\"lazy\" nas imagens que ficam abaixo da primeira tela, e deixe sem lazy as que aparecem logo ao abrir.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione loading=\"lazy\" às imagens abaixo da primeira tela, como {{trecho}} ({{valor}} imagens). Não coloque lazy na imagem principal nem nas que aparecem sem rolar a página, e não mude src, width ou height. Pronto quando a contagem de imagens abaixo da dobra sem lazy for zero no DOM final.",
+    "fonte": [
+      {
+        "nome": "web.dev: Carregamento preguiçoso de imagens no navegador",
+        "url": "https://web.dev/articles/browser-level-image-lazy-loading",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (código), conforme rodapé do web.dev e Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web.dev: Otimizar o LCP",
+        "url": "https://web.dev/articles/optimize-lcp",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (código), conforme rodapé do web.dev e Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "vercel-web-interface-guidelines:CMD-IMG-02",
+      "vercel-web-interface-guidelines:AG-PF-89",
+      "caso-de-teste-1:45-de-57-lazy"
+    ],
+    "citacoes": [
+      "contagem",
+      "numero"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "No Lighthouse 13 a auditoria lcp-lazy-loaded foi absorvida pelo insight lcp-discovery-insight. Rodar de novo o DOM final: lazy colocado por JavaScript depois do carregamento só aparece lá.",
+    "id": "perf-lcp-imagem-com-lazy",
+    "categoria": "performance",
+    "titulo": "Imagem principal carregando com lazy (atrasa a página)",
+    "descricao": "A imagem que aparece logo ao abrir a página não deve usar loading=\"lazy\": o navegador espera para confirmar que ela está na tela e atrasa o que mais importa.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "imagens",
+      "detectavel_por_script": "sim",
+      "metodo": "Identifica o elemento LCP com PerformanceObserver no Playwright; se for img (ou estiver acima da dobra) com loading=lazy, registra o seletor e quantas imagens acima da dobra têm lazy.",
+      "parametros": {
+        "identificar_lcp": "PerformanceObserver largest-contentful-paint",
+        "falha_se": "loading=lazy no elemento LCP ou em img acima da dobra",
+        "lighthouse_ids": [
+          "lcp-lazy-loaded",
+          "lcp-discovery-insight"
+        ],
+        "versoes": [
+          "cru",
+          "final"
+        ]
+      }
+    },
+    "peso": 7,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Tire o loading=\"lazy\" da imagem principal (a que aparece sem rolar a página).",
+    "prompt_correcao": "No arquivo {{arquivo}}, remova loading=\"lazy\" da imagem principal {{trecho}} e, se fizer sentido, adicione fetchpriority=\"high\". Não mexa nas outras imagens abaixo da dobra nem em src, width ou height. Pronto quando o elemento LCP não tiver loading=lazy.",
+    "fonte": [
+      {
+        "nome": "web.dev: Otimizar o LCP",
+        "url": "https://web.dev/articles/optimize-lcp",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (código), conforme rodapé do web.dev e Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web.dev: Carregamento preguiçoso de imagens no navegador",
+        "url": "https://web.dev/articles/browser-level-image-lazy-loading",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (código), conforme rodapé do web.dev e Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lighthouse 13: auditorias substituídas por insights",
+        "url": "https://developer.chrome.com/blog/lighthouse-13-0",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:28a",
+      "lighthouse:lcp-lazy-loaded",
+      "vercel-web-interface-guidelines:CMD-IMG-03"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Ausência de fetchpriority não é erro por si só; é recomendação. Quando o LCP é texto, a regra não se aplica.",
+    "id": "perf-lcp-imagem-sem-prioridade",
+    "categoria": "performance",
+    "titulo": "Imagem principal difícil de achar ou sem prioridade",
+    "descricao": "Se a imagem principal só aparece no HTML depois do JavaScript, ou é um fundo de CSS, o navegador a descobre tarde. Dar fetchpriority=\"high\" a uma ou duas imagens também ajuda a carregar logo.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "imagens",
+      "detectavel_por_script": "sim",
+      "metodo": "No elemento LCP, confere se o src/srcset está no HTML cru (não só em data-src, JS ou background-image CSS) e se há fetchpriority=high; registra também quantas imagens têm fetchpriority=high.",
+      "parametros": {
+        "checagens": [
+          "src ou srcset presente no HTML cru",
+          "fetchpriority=high no LCP",
+          "LCP não é background-image CSS sem preload"
+        ],
+        "max_recomendado_fetchpriority_high": 2,
+        "lighthouse_ids": [
+          "prioritize-lcp-image",
+          "lcp-discovery-insight"
+        ]
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Coloque a imagem principal direto no HTML (<img src>) e adicione fetchpriority=\"high\" nela.",
+    "prompt_correcao": "No arquivo {{arquivo}}, faça a imagem principal {{trecho}} aparecer no HTML como <img src=\"...\"> (não só por CSS ou JavaScript) e adicione fetchpriority=\"high\" apenas nela. Não use fetchpriority=\"high\" em mais de duas imagens e não mude o visual. Pronto quando o src estiver no HTML cru e o LCP tiver fetchpriority=high.",
+    "fonte": [
+      {
+        "nome": "web.dev: Otimizar o LCP",
+        "url": "https://web.dev/articles/optimize-lcp",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (código), conforme rodapé do web.dev e Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web.dev: Prioridade de busca (Fetch Priority)",
+        "url": "https://web.dev/articles/fetch-priority",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (código), conforme rodapé do web.dev e Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lighthouse 13: auditorias substituídas por insights",
+        "url": "https://developer.chrome.com/blog/lighthouse-13-0",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "lighthouse:prioritize-lcp-image",
+      "vercel-web-interface-guidelines:CMD-IMG-03"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "A auditoria unsized-images continua existindo no Lighthouse 13 como diagnóstico separado.",
+    "id": "perf-imagem-sem-dimensoes",
+    "categoria": "performance",
+    "titulo": "Imagens sem largura e altura definidas",
+    "descricao": "Sem width e height (ou aspect-ratio), o navegador não reserva espaço para a imagem e o conteúdo pula quando ela chega. Isso piora o CLS.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "imagens",
+      "detectavel_por_script": "sim",
+      "metodo": "No DOM final, conta <img> visíveis sem width e height no HTML e sem aspect-ratio nem tamanho fixo no CSS computado; devolve contagem e seletores.",
+      "parametros": {
+        "atributos": [
+          "width",
+          "height"
+        ],
+        "aceitar_alternativa": "aspect-ratio no CSS",
+        "ignorar": [
+          "svg inline",
+          "img com display:none"
+        ],
+        "lighthouse_ids": [
+          "unsized-images"
+        ]
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Adicione width e height em cada imagem (ou aspect-ratio no CSS) para o espaço ficar reservado.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione width e height reais à imagem {{trecho}} (ou aspect-ratio no CSS), mantendo a proporção do arquivo. Não mude o tamanho exibido nem o src. Pronto quando o Lighthouse não listar a imagem em unsized-images.",
+    "fonte": [
+      {
+        "nome": "web.dev: Otimizar o CLS",
+        "url": "https://web.dev/articles/optimize-cls",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (código), conforme rodapé do web.dev e Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web.dev: Cumulative Layout Shift (CLS)",
+        "url": "https://web.dev/articles/cls",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (código), conforme rodapé do web.dev e Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "lighthouse:unsized-images",
+      "vercel-web-interface-guidelines:CMD-IMG-01",
+      "vercel-web-interface-guidelines:CMD-AP-07",
+      "vercel-web-interface-guidelines:AG-PF-90"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "O limite de 4 KiB vem da página da auditoria antiga (uses-responsive-images), hoje dentro do insight image-delivery-insight do Lighthouse 13, que pode ter cálculo ligeiramente diferente.",
+    "id": "perf-imagem-maior-que-o-exibido",
+    "categoria": "performance",
+    "titulo": "Imagem muito maior do que o espaço em que aparece",
+    "descricao": "Mandar uma foto de 3000 pixels para um espaço de 400 pixels desperdiça dados. O ideal é servir tamanhos diferentes para cada tela (srcset).",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "imagens",
+      "detectavel_por_script": "sim",
+      "metodo": "Compara o tamanho natural de cada img com o tamanho exibido vezes a densidade da tela e estima o excesso em KiB; cruza com o insight image-delivery-insight do Lighthouse.",
+      "parametros": {
+        "excesso_minimo_kib": 4,
+        "comparar": "tamanho natural vs (tamanho exibido x devicePixelRatio)",
+        "lighthouse_ids": [
+          "image-delivery-insight",
+          "uses-responsive-images"
+        ],
+        "sugerir": "srcset e sizes"
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Gere versões menores da imagem e use srcset e sizes para cada tela pegar o tamanho certo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, em {{trecho}}, adicione versões menores da imagem e use srcset e sizes (ou redimensione para {{valor}} px de largura) conforme o tamanho em que ela aparece. Não corte nem deforme a imagem. Pronto quando o Lighthouse não listar a imagem em image-delivery-insight.",
+    "fonte": [
+      {
+        "nome": "Lighthouse: Dimensionar imagens corretamente",
+        "url": "https://developer.chrome.com/docs/lighthouse/performance/uses-responsive-images",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lighthouse 13: auditorias substituídas por insights",
+        "url": "https://developer.chrome.com/blog/lighthouse-13-0",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "lighthouse:uses-responsive-images"
+    ],
+    "citacoes": [
+      "trecho",
+      "numero",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "A fonte diz que WebP e AVIF \"geralmente comprimem melhor\", sem dar percentual; por isso não prometemos economia. O corte de 20 KiB é critério nosso, para evitar ruído com ícones pequenos.",
+    "id": "perf-imagem-formato-pouco-eficiente",
+    "categoria": "performance",
+    "titulo": "Imagens pesadas em JPEG ou PNG (formatos antigos)",
+    "descricao": "WebP e AVIF costumam comprimir melhor que JPEG e PNG, deixando a página mais leve. Imagens grandes nos formatos antigos são candidatas a troca.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "imagens",
+      "detectavel_por_script": "sim",
+      "metodo": "Lista <img> e fundos de CSS com arquivo jpg/jpeg/png acima de um peso mínimo (HEAD ou tamanho da resposta) e que não têm versão webp/avif em <picture> ou srcset.",
+      "parametros": {
+        "formatos_modernos": [
+          "webp",
+          "avif"
+        ],
+        "formatos_antigos": [
+          "jpg",
+          "jpeg",
+          "png"
+        ],
+        "ignorar_abaixo_kib": 20,
+        "observacao_limiar": "o limite de 20 KiB é nosso, não do Google"
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Converta as imagens grandes para WebP ou AVIF, mantendo o JPEG ou PNG como reserva dentro de <picture>.",
+    "prompt_correcao": "No arquivo {{arquivo}}, converta a imagem {{trecho}} ({{valor}} KiB) para WebP ou AVIF e use <picture> com o formato antigo como alternativa. Não mude a aparência visível nem o tamanho exibido. Pronto quando a imagem for servida em WebP/AVIF e ficar mais leve que o original.",
+    "fonte": [
+      {
+        "nome": "web.dev: Escolher o formato de imagem certo",
+        "url": "https://web.dev/articles/choose-the-right-image-format",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (código), conforme rodapé do web.dev e Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lighthouse 13: auditorias substituídas por insights",
+        "url": "https://developer.chrome.com/blog/lighthouse-13-0",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "lighthouse:modern-image-formats",
+      "lighthouse:uses-optimized-images"
+    ],
+    "citacoes": [
+      "trecho",
+      "numero",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Exemplo da fonte: um GIF de 3,7 MB virou 551 KB em MP4. Cada caso varia.",
+    "id": "perf-gif-animado",
+    "categoria": "performance",
+    "titulo": "GIF animado onde um vídeo seria bem mais leve",
+    "descricao": "GIFs animados costumam ser enormes. Um vídeo curto (MP4 ou WebM), com autoplay, mudo e em loop, parece igual e pesa uma fração.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "imagens",
+      "detectavel_por_script": "sim",
+      "metodo": "Acha <img> e fundos de CSS cujo arquivo é GIF com mais de um quadro, registra o peso e o seletor.",
+      "parametros": {
+        "extensoes": [
+          "gif"
+        ],
+        "so_animados": true,
+        "lighthouse_ids": [
+          "efficient-animated-content",
+          "image-delivery-insight"
+        ],
+        "alternativa": "<video autoplay muted loop playsinline> com MP4 e WebM"
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Troque o GIF por um vídeo curto (<video autoplay muted loop playsinline>) em MP4 e WebM.",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque o GIF animado {{trecho}} por <video autoplay muted loop playsinline> com fontes WebM e MP4 gerados a partir do GIF. Mantenha o tamanho exibido e um poster. Não mude o resto da seção. Pronto quando não houver GIF animado carregado e o vídeo tocar sem som.",
+    "fonte": [
+      {
+        "nome": "web.dev: Trocar GIFs por vídeos",
+        "url": "https://web.dev/articles/replace-gifs-with-videos",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (código), conforme rodapé do web.dev e Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lighthouse: Usar vídeo para conteúdo animado",
+        "url": "https://developer.chrome.com/docs/lighthouse/performance/efficient-animated-content",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "lighthouse:efficient-animated-content",
+      "vercel-web-interface-guidelines:CMD-PER-07",
+      "vercel-web-interface-guidelines:CMD-AP-13"
+    ],
+    "citacoes": [
+      "trecho",
+      "numero"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Trocar para swap pode causar uma pequena mudança de layout quando a fonte chega; o web.dev sugere font-display: optional e fonte reserva com tamanho ajustado para evitar isso.",
+    "id": "perf-fonte-sem-font-display",
+    "categoria": "performance",
+    "titulo": "Fonte personalizada sem font-display",
+    "descricao": "Sem font-display, o navegador pode deixar o texto invisível até a fonte chegar. Com swap, optional ou fallback, ele mostra um texto provisório e o site parece mais rápido.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "detectavel_por_script": "sim",
+      "metodo": "Varre os @font-face do CSS carregado e as URLs do Google Fonts: marca @font-face sem font-display (ou com block/auto) e URLs de fonte sem o parâmetro display=.",
+      "parametros": {
+        "valores_aceitos": [
+          "swap",
+          "optional",
+          "fallback"
+        ],
+        "url_google_fonts_parametro": "display=",
+        "lighthouse_ids": [
+          "font-display-insight",
+          "font-display"
+        ]
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Adicione font-display: swap (ou optional) em cada @font-face, ou &display=swap na URL do Google Fonts.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione font-display: swap ao @font-face {{trecho}} (ou &display=swap na URL do Google Fonts). Não troque a fonte nem os pesos. Pronto quando o Lighthouse não reportar font-display-insight.",
+    "fonte": [
+      {
+        "nome": "Lighthouse: font-display",
+        "url": "https://developer.chrome.com/docs/lighthouse/performance/font-display",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lighthouse 13: auditorias substituídas por insights",
+        "url": "https://developer.chrome.com/blog/lighthouse-13-0",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web.dev: Otimizar o CLS",
+        "url": "https://web.dev/articles/optimize-cls",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (código), conforme rodapé do web.dev e Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "lighthouse:font-display",
+      "vercel-web-interface-guidelines:CMD-PER-06",
+      "vercel-web-interface-guidelines:AG-PF-92"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "O CSS principal costuma precisar ser bloqueante; a regra pesa pela quantidade e pelo tempo, e não diz que \"o site é lento\" só por existir. A documentação da auditoria não dá limite numérico.",
+    "id": "perf-recurso-bloqueia-renderizacao",
+    "categoria": "performance",
+    "titulo": "Scripts e estilos que seguram a primeira imagem da tela",
+    "descricao": "Scripts no <head> sem async ou defer, e CSS que bloqueia a pintura, fazem o navegador esperar antes de mostrar qualquer coisa. Quanto mais itens assim, mais demora a página aparecer.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "detectavel_por_script": "sim",
+      "metodo": "No HTML cru, conta <script src> no <head> sem async, defer ou type=module e <link rel=stylesheet> sem media específico, com URL e tamanho quando disponível.",
+      "parametros": {
+        "scripts": "head > script[src]:not([async]):not([defer]):not([type=module])",
+        "estilos": "link[rel~=stylesheet]:not([media=\"print\"])",
+        "lighthouse_ids": [
+          "render-blocking-insight",
+          "render-blocking-resources"
+        ],
+        "versoes": [
+          "cru"
+        ]
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Adicione defer aos scripts do <head> e deixe no CSS crítico só o que a primeira tela precisa.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione defer (ou async, se for independente) ao script {{trecho}} do <head> e carregue de forma não bloqueante o CSS que a primeira tela não usa. Não mude a ordem de scripts que dependem um do outro. Pronto quando o Lighthouse não listar o recurso em render-blocking-insight.",
+    "fonte": [
+      {
+        "nome": "Lighthouse: Eliminar recursos que bloqueiam a renderização",
+        "url": "https://developer.chrome.com/docs/lighthouse/performance/render-blocking-resources",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lighthouse 13: auditorias substituídas por insights",
+        "url": "https://developer.chrome.com/blog/lighthouse-13-0",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "lighthouse:render-blocking-resources"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "A página cita também uma meta de 1.600 KiB, que usamos só como informação. A página lida não diz se a auditoria mudou no Lighthouse 13. Medição de laboratório (Lighthouse, 1 execução, mobile emulado) varia de uma rodada para outra; usar faixas, não o valor exato.",
+    "id": "perf-peso-total-da-pagina",
+    "categoria": "performance",
+    "titulo": "Página pesada demais (bytes transferidos)",
+    "descricao": "O Lighthouse marca páginas que baixam mais de 5.000 KiB (cerca de 5 MB) no total. Em celular com internet lenta, isso é tempo e franquia de dados gastos.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lighthouse",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o Lighthouse e soma os bytes de todas as requisições da página; lista os maiores arquivos.",
+      "parametros": {
+        "audit_ids": [
+          "total-byte-weight"
+        ],
+        "limiar_kib": 5000,
+        "meta_recomendada_kib_informativa": 1600
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Comprima as imagens e vídeos maiores, remova scripts que não usa e carregue o resto sob demanda.",
+    "prompt_correcao": "No arquivo {{arquivo}}, reduza o peso de {{trecho}} ({{valor}} KiB): comprima ou redimensione imagens, troque vídeos pesados por versões menores e remova bibliotecas sem uso. Não tire conteúdo visível. Pronto quando o total transferido ficar abaixo de 5.000 KiB no Lighthouse.",
+    "fonte": [
+      {
+        "nome": "Lighthouse: Evitar cargas de rede enormes",
+        "url": "https://developer.chrome.com/docs/lighthouse/performance/total-byte-weight",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "lighthouse:total-byte-weight"
+    ],
+    "citacoes": [
+      "numero"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "A auditoria foi absorvida pelo insight \"Optimize DOM size\" no Lighthouse 13; os limites 800 e 1.400 vêm da página antiga e podem ter mudado.",
+    "id": "perf-dom-grande",
+    "categoria": "performance",
+    "titulo": "Página com elementos HTML demais",
+    "descricao": "Páginas com milhares de elementos deixam o navegador mais lento para montar, estilizar e rolar. O Lighthouse avisa a partir de cerca de 800 elementos e trata como erro perto de 1.400.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lighthouse",
+      "detectavel_por_script": "sim",
+      "metodo": "Conta os elementos do DOM final e a profundidade; compara com os limiares históricos da documentação do Lighthouse.",
+      "parametros": {
+        "audit_ids": [
+          "dom-size-insight",
+          "dom-size"
+        ],
+        "aviso_elementos": 800,
+        "erro_elementos": 1400,
+        "contar": "document.querySelectorAll(\"*\").length"
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Simplifique o HTML: tire camadas de div sem função e carregue listas longas aos poucos.",
+    "prompt_correcao": "No arquivo {{arquivo}}, simplifique a estrutura de {{trecho}} (hoje {{valor}} elementos no DOM): remova wrappers sem função e carregue listas longas por partes. Não mude o visual nem o conteúdo. Pronto quando o número de elementos do DOM diminuir e ficar abaixo de 1.400.",
+    "fonte": [
+      {
+        "nome": "Lighthouse: Evitar tamanho excessivo de DOM",
+        "url": "https://developer.chrome.com/docs/lighthouse/performance/dom-size",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lighthouse 13: auditorias substituídas por insights",
+        "url": "https://developer.chrome.com/blog/lighthouse-13-0",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "lighthouse:dom-size",
+      "vercel-web-interface-guidelines:CMD-PER-01"
+    ],
+    "citacoes": [
+      "numero"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Só vale quando a entrada é uma URL: em pasta, ZIP ou código colado os cabeçalhos vêm do servidor temporário local e não dizem nada sobre a hospedagem real.",
+    "id": "perf-sem-compressao-de-texto",
+    "categoria": "performance",
+    "titulo": "HTML, CSS e JS enviados sem compressão",
+    "descricao": "Textos como HTML, CSS e JavaScript viajam bem menores se o servidor os comprimir (brotli ou gzip). O Lighthouse ignora arquivos abaixo de 1,4 KiB e economia inferior a 10%.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lighthouse",
+      "detectavel_por_script": "sim",
+      "metodo": "Lê o cabeçalho content-encoding das respostas de texto (html, css, js, json, svg) acima de 1,4 KiB e estima o ganho com gzip; marca as sem br, gzip nem deflate.",
+      "parametros": {
+        "audit_ids": [
+          "uses-text-compression",
+          "document-latency-insight"
+        ],
+        "tamanho_minimo_kib": 1.4,
+        "ganho_minimo_relativo": 0.1,
+        "encodings_aceitos": [
+          "br",
+          "gzip",
+          "deflate"
+        ],
+        "so_para_entrada": "url"
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Ative a compressão (brotli, com gzip de reserva) no servidor ou na hospedagem.",
+    "prompt_correcao": "No arquivo {{arquivo}} (configuração do servidor ou hospedagem), ative compressão brotli com gzip de reserva para os tipos text/html, text/css, application/javascript, application/json e image/svg+xml ({{trecho}}). Não mude o conteúdo servido. Pronto quando as respostas de texto trouxerem content-encoding br ou gzip.",
+    "fonte": [
+      {
+        "nome": "Lighthouse: Ativar a compressão de texto",
+        "url": "https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lighthouse 13: auditorias substituídas por insights",
+        "url": "https://developer.chrome.com/blog/lighthouse-13-0",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "lighthouse:uses-text-compression"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "A fonte diz que mais longo nem sempre é melhor; um ano é só o exemplo dela. O Lighthouse 13 trocou a auditoria pelo insight use-cache-insight. Só vale quando a entrada é uma URL: em pasta, ZIP ou código colado os cabeçalhos vêm do servidor temporário local e não dizem nada sobre a hospedagem real.",
+    "id": "perf-cache-de-arquivos-estaticos",
+    "categoria": "performance",
+    "titulo": "Arquivos estáticos sem cache no navegador",
+    "descricao": "Imagens, fontes, scripts e estilos que não mudam devem ficar guardados no navegador por bastante tempo (ex.: um ano, com o nome do arquivo mudando quando ele muda). Assim, quem volta ao site baixa muito menos.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lighthouse",
+      "detectavel_por_script": "sim",
+      "metodo": "Lê os cabeçalhos cache-control e expires das respostas de imagem, fonte, script, estilo e mídia (status 200, 203 ou 206) e lista as sem política de cache ou com validade muito curta.",
+      "parametros": {
+        "audit_ids": [
+          "use-cache-insight",
+          "uses-long-cache-ttl"
+        ],
+        "tipos": [
+          "image",
+          "font",
+          "script",
+          "stylesheet",
+          "media"
+        ],
+        "status": [
+          200,
+          203,
+          206
+        ],
+        "exemplo_recomendado": "Cache-Control: max-age=31536000 em arquivos com hash no nome",
+        "so_para_entrada": "url"
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Configure cache longo (cache-control com max-age alto) para arquivos com versão no nome.",
+    "prompt_correcao": "No arquivo {{arquivo}} (configuração do servidor ou hospedagem), defina Cache-Control: public, max-age=31536000, immutable para os arquivos estáticos com hash no nome ({{trecho}}). Não aplique cache longo ao HTML. Pronto quando os arquivos estáticos trouxerem cache-control com validade longa.",
+    "fonte": [
+      {
+        "nome": "Lighthouse: Servir ativos estáticos com política de cache eficiente",
+        "url": "https://developer.chrome.com/docs/lighthouse/performance/uses-long-cache-ttl",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lighthouse 13: auditorias substituídas por insights",
+        "url": "https://developer.chrome.com/blog/lighthouse-13-0",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "lighthouse:uses-long-cache-ttl"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Confiança média porque a latência depende de onde a análise roda. Medição de laboratório (Lighthouse, 1 execução, mobile emulado) varia de uma rodada para outra; usar faixas, não o valor exato. Só vale quando a entrada é uma URL: em pasta, ZIP ou código colado os cabeçalhos vêm do servidor temporário local e não dizem nada sobre a hospedagem real.",
+    "id": "perf-servidor-lento",
+    "categoria": "performance",
+    "titulo": "Servidor demora para responder o HTML",
+    "descricao": "Se o servidor leva mais de 600 ms para devolver o primeiro byte do HTML, tudo o mais começa atrasado. A medida considera só a resposta do servidor, sem redirecionamentos.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lighthouse",
+      "detectavel_por_script": "sim",
+      "metodo": "Lê no Lighthouse o tempo até o primeiro byte do documento principal (resposta do servidor) e compara com o limite de 600 ms.",
+      "parametros": {
+        "audit_ids": [
+          "server-response-time",
+          "document-latency-insight"
+        ],
+        "limiar_ms": 600,
+        "so_para_entrada": "url"
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Peça à hospedagem para reduzir o tempo de resposta: cache de página, servidor mais perto ou CDN.",
+    "prompt_correcao": "No arquivo {{arquivo}} (servidor ou hospedagem), reduza o tempo de resposta do HTML de {{valor}} ms para menos de 600 ms: ative cache de página ou use CDN. Não mude o conteúdo. Pronto quando o Lighthouse não reportar server-response-time acima de 600 ms.",
+    "fonte": [
+      {
+        "nome": "Lighthouse: Reduzir o tempo de resposta inicial do servidor",
+        "url": "https://developer.chrome.com/docs/lighthouse/performance/server-response-time",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lighthouse 13: auditorias substituídas por insights",
+        "url": "https://developer.chrome.com/blog/lighthouse-13-0",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "lighthouse:server-response-time"
+    ],
+    "citacoes": [
+      "numero"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Só vale quando a entrada é uma URL: em pasta, ZIP ou código colado os cabeçalhos vêm do servidor temporário local e não dizem nada sobre a hospedagem real.",
+    "id": "perf-redirecionamentos-multiplos",
+    "categoria": "performance",
+    "titulo": "Página passa por dois ou mais redirecionamentos",
+    "descricao": "Cada redirecionamento (http para https, sem www para com www, barra final) soma uma espera antes de a página começar. O Lighthouse reprova quando há dois ou mais; um só passa.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lighthouse",
+      "detectavel_por_script": "sim",
+      "metodo": "Registra a cadeia de redirecionamentos da URL pedida até a página final (status 301, 302, 307, 308) e conta os saltos.",
+      "parametros": {
+        "audit_ids": [
+          "redirects",
+          "document-latency-insight"
+        ],
+        "falha_se_saltos_maior_ou_igual": 2,
+        "so_para_entrada": "url"
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Faça a URL antiga ir direto ao endereço final, em um único redirecionamento.",
+    "prompt_correcao": "No arquivo {{arquivo}} (servidor ou hospedagem), faça {{trecho}} redirecionar direto para a URL final {{valor}} em um único salto (301). Não crie redirecionamentos novos nem mude outras rotas. Pronto quando a cadeia de redirecionamentos tiver no máximo um salto.",
+    "fonte": [
+      {
+        "nome": "Lighthouse: Evitar vários redirecionamentos de página",
+        "url": "https://developer.chrome.com/docs/lighthouse/performance/redirects",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lighthouse 13: auditorias substituídas por insights",
+        "url": "https://developer.chrome.com/blog/lighthouse-13-0",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "lighthouse:redirects"
+    ],
+    "citacoes": [
+      "numero",
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "No Lighthouse 13 a auditoria virou o insight third-parties-insight, e o limite de 250 ms vem da página antiga. Medir por domínio ajuda a apontar o culpado.",
+    "id": "perf-terceiros-travam-a-pagina",
+    "categoria": "performance",
+    "titulo": "Scripts de terceiros ocupam muito tempo da página",
+    "descricao": "Chat, anúncios, rastreadores e botões sociais rodam no mesmo processador da sua página. Quando juntos passam de 250 ms de bloqueio, a página responde mais devagar.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lighthouse",
+      "detectavel_por_script": "sim",
+      "metodo": "Soma o tempo de bloqueio da thread principal dos scripts de outros domínios no Lighthouse e lista os maiores por domínio.",
+      "parametros": {
+        "audit_ids": [
+          "third-parties-insight",
+          "third-party-summary"
+        ],
+        "limiar_bloqueio_ms": 250
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Remova os scripts de terceiros de que você não precisa e carregue os demais com atraso (defer ou só depois de interação).",
+    "prompt_correcao": "No arquivo {{arquivo}}, remova ou adie o script de terceiros {{trecho}} ({{valor}} ms de bloqueio): carregue-o com defer ou só após a primeira interação. Não retire ferramentas que a pessoa disse que precisa (ex.: análise de visitas). Pronto quando o bloqueio total de terceiros ficar abaixo de 250 ms no Lighthouse.",
+    "fonte": [
+      {
+        "nome": "Lighthouse: Reduzir o impacto de código de terceiros",
+        "url": "https://developer.chrome.com/docs/lighthouse/performance/third-party-summary",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lighthouse 13: auditorias substituídas por insights",
+        "url": "https://developer.chrome.com/blog/lighthouse-13-0",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "lighthouse:third-party-summary"
+    ],
+    "citacoes": [
+      "trecho",
+      "numero"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "notas": "Código \"não usado na abertura\" pode ser usado depois, em cliques e outras páginas; por isso confiança média. Medição de laboratório (Lighthouse, 1 execução, mobile emulado) varia de uma rodada para outra; usar faixas, não o valor exato.",
+    "id": "perf-javascript-nao-usado",
+    "categoria": "performance",
+    "titulo": "Arquivos JavaScript com muito código que não é usado",
+    "descricao": "Bibliotecas inteiras baixadas para usar uma parte só deixam a página mais pesada. O Lighthouse marca arquivos com mais de 20 KiB de código não usado na abertura da página.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lighthouse",
+      "detectavel_por_script": "sim",
+      "metodo": "Mede a cobertura de código dos scripts carregados e lista os arquivos com mais de 20 KiB de código não executado.",
+      "parametros": {
+        "audit_ids": [
+          "unused-javascript"
+        ],
+        "limiar_kib_por_arquivo": 20,
+        "ferramenta": "cobertura do Chromium (Playwright)"
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Troque bibliotecas grandes por versões menores ou importe só o que usa.",
+    "prompt_correcao": "No arquivo {{arquivo}}, reduza o JavaScript não usado do pacote {{trecho}} ({{valor}} KiB): importe apenas as partes usadas, divida o código por página ou troque por uma alternativa menor. Não quebre funções existentes. Pronto quando o Lighthouse não listar esse arquivo em unused-javascript.",
+    "fonte": [
+      {
+        "nome": "Lighthouse: Remover código JavaScript não usado",
+        "url": "https://developer.chrome.com/docs/lighthouse/performance/unused-javascript",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "lighthouse:unused-javascript"
+    ],
+    "citacoes": [
+      "trecho",
+      "numero"
+    ]
+  }
+]

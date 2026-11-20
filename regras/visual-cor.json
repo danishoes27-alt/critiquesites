@@ -1,0 +1,875 @@
+[
+  {
+    "id": "cor-roxo-indigo-padrao",
+    "categoria": "visual-cor",
+    "titulo": "Cor de destaque no índigo/violeta de fábrica",
+    "descricao": "A cor de destaque do site (botões, links, topo) é um dos tons de índigo ou violeta que as bibliotecas prontas trazem de fábrica. Passa a impressão de modelo sem personalização. Um roxo de marca própria, usado de propósito, não conta.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Lê as cores computadas de fundo, texto de destaque, borda e preenchimento de SVG, normaliza para hex e compara com a lista exata da rampa índigo/violeta/roxo/fúcsia. Também procura no HTML nomes de classes utilitárias equivalentes. Cor roxa que não está na lista (roxo de marca) não dispara.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "hex_exatos": [
+          "#6366f1",
+          "#4f46e5",
+          "#4338ca",
+          "#818cf8",
+          "#a5b4fc",
+          "#8b5cf6",
+          "#7c3aed",
+          "#6d28d9",
+          "#a78bfa",
+          "#c4b5fd",
+          "#a855f7",
+          "#9333ea",
+          "#7e22ce",
+          "#c084fc",
+          "#d8b4fe",
+          "#d946ef",
+          "#c026d3"
+        ],
+        "comparacao": "igualdade exata do hex normalizado, sem tolerância",
+        "regex_classes": "(bg|text|from|via|to|border|ring|fill|stroke|decoration|outline)-(indigo|violet|purple|fuchsia)-(400|500|600|700|800)",
+        "onde_olhar": [
+          "botão primário",
+          "links",
+          "fundo do hero",
+          "título destacado",
+          "ícones"
+        ],
+        "intensidade": "proporção dos elementos de destaque medidos que usam cor da lista (0 a 1)"
+      }
+    },
+    "peso": 9,
+    "severidade": "tell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Escolha uma cor de marca própria (vinda do produto, do logotipo ou do assunto do site) e use-a como variável, em vez do índigo/violeta padrão.",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque a cor {{valor}} (usada em {{trecho}}) por uma cor de marca própria, definida uma vez como variável CSS (por exemplo --cor-marca) e reaproveitada em botões, links e destaques. Não altere o contraste mínimo de 4,5:1 do texto, nem o resto da paleta. Pronto quando nenhum hex da rampa índigo/violeta aparecer como cor principal e a cor nova vier da variável.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:A1",
+      "unslop-ui:ai-purple",
+      "hallmark:gate-74",
+      "unslop-heydamir:tok-accent"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Peso 9 e a lista de 17 hex vêm do ai-design-tells (A1), que calibrou em 202 sites e diz que roxo de marca (ex.: #635bff) não é sinal. unslop-ui limita as classes aos tons 400 a 800 (tons 200/300 passam) e dá o mesmo peso máximo (high). Confiança média: medida em amostra de um único repositório. Créditos de craft (fonte própria, tokens) devem atenuar."
+  },
+  {
+    "id": "cor-gradiente-azul-roxo",
+    "categoria": "visual-cor",
+    "titulo": "Gradiente do azul para o roxo (ou rosa/ciano)",
+    "descricao": "Fundos, botões ou cartões usam um degradê que vai do azul ao roxo, ou do roxo ao rosa/ciano. É um visual muito repetido em páginas prontas e, sozinho, não diz nada sobre a marca.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Percorre background-image e classes de gradiente no DOM final. Converte cada parada de cor para matiz e dispara se há uma parada azul e outra roxa no mesmo gradiente, ou um par de classes from/via/to do tipo roxo para azul/rosa/ciano/céu. Gradientes que são só padrão (linhas finas, grades, pontos) são ignorados.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "faixa_matiz_azul_graus": [
+          200,
+          240
+        ],
+        "faixa_matiz_roxo_graus": [
+          255,
+          300
+        ],
+        "regex_classes": "from-(purple|violet|indigo|fuchsia)-\\d{2,3}(\\s+via-\\w+-\\d{2,3})?\\s+to-(blue|indigo|pink|cyan|sky)-\\d{2,3}",
+        "onde_olhar": [
+          "hero",
+          "botões",
+          "cartões",
+          "item ativo da navegação"
+        ],
+        "ignorar": [
+          "gradientes de padrão decorativo",
+          "degradê de escurecimento sobre foto"
+        ]
+      }
+    },
+    "peso": 7,
+    "severidade": "tell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque o degradê por uma cor chapada da marca, ou por um degradê discreto dentro de uma única matiz.",
+    "prompt_correcao": "No arquivo {{arquivo}}, substitua o gradiente {{trecho}} por uma cor chapada de marca (variável CSS) ou por um degradê suave dentro de uma única matiz. Mantenha o texto legível (contraste de 4,5:1) e não mude o layout. Pronto quando nenhum gradiente da página misturar azul e roxo/rosa/ciano.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:A2",
+      "unslop-ui:purple-blue-gradient",
+      "hallmark:gate-2a",
+      "unslop-heydamir:grad-roxo-azul"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Peso 7 e faixas de matiz (200-240 e 255-300) vêm do ai-design-tells (A2). unslop-ui trata como high; hallmark como Floor. Hallmark também inclui roxo-rosa e ciano sobre fundo escuro. Se a marca for de fato azul-e-roxa, o modelo pode anular na zona cinza."
+  },
+  {
+    "id": "cor-sem-tokens-semanticos",
+    "categoria": "visual-cor",
+    "titulo": "Cores soltas da rampa padrão, sem nomes de uso",
+    "descricao": "O site espalha classes de cor da rampa padrão (como azul-500 ou cinza-600) e não define nenhuma variável com o papel da cor (ação, perigo, fundo). A cor não tem sistema por trás, só valores soltos.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Conta as classes utilitárias de cor da rampa padrão no HTML final e verifica se o CSS declara alguma variável de cor com papel (cor, marca, destaque, ação, superfície, perigo). Dispara com 4 ou mais classes e nenhuma variável.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "regex_classes": "^(bg|text|border|ring)-[a-z]+-\\d{2,3}$",
+        "minimo_classes": 4,
+        "regex_variaveis": "--(color|brand|accent|action|surface|fg|bg|danger|primary)[\\w-]*\\s*:",
+        "condicao": "classes >= 4 E nenhuma variável semântica declarada"
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Defina variáveis com o papel de cada cor (ação, fundo, texto, perigo) e use-as no lugar dos valores soltos.",
+    "prompt_correcao": "No arquivo {{arquivo}}, crie variáveis CSS com o papel de cada cor (por exemplo --cor-acao, --cor-fundo, --cor-texto, --cor-perigo) e troque as classes soltas como {{trecho}} por elas. Não mude as cores visíveis nem o layout. Pronto quando houver ao menos uma variável de cor por papel e menos de 4 classes de rampa padrão restantes no HTML.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:A3",
+      "hallmark:gate-74",
+      "hallmark:gate-48",
+      "design-review:DR-COR-01",
+      "impeccable:aud-theme-hardcoded"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Limiar de 4 classes e regex de variáveis do ai-design-tells (A3, peso 4 smell). Só se aplica quando o site usa classes utilitárias; em CSS escrito à mão a regra não dispara."
+  },
+  {
+    "id": "cor-pills-multicoloridas",
+    "categoria": "visual-cor",
+    "titulo": "Etiquetas (pills) em três ou mais cores diferentes",
+    "descricao": "Uma fileira de etiquetas ou selos de status em cores vivas diferentes (âmbar, azul, vermelho, verde). Quando tudo tem cor, a cor para de significar alguma coisa.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Seleciona elementos em formato de pílula (raio 9999px ou rounded-full) com texto de até 28 caracteres, agrupa suas cores de fundo/texto/borda por família cromática e conta as famílias. Dispara com 3 ou mais famílias na mesma página.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "formato_pilula": "border-radius >= 9999px ou classe rounded-full",
+        "max_caracteres_texto": 28,
+        "minimo_familias": 3,
+        "familias": [
+          "vermelho",
+          "laranja",
+          "âmbar",
+          "amarelo",
+          "verde",
+          "azul",
+          "roxo",
+          "rosa"
+        ],
+        "ignorar_cinzas": true
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Limite as etiquetas a uma ou duas famílias de cor e reserve a cor viva para um aviso de verdade.",
+    "prompt_correcao": "No arquivo {{arquivo}}, reduza as etiquetas {{trecho}} a no máximo duas famílias de cor: use um tom neutro para as comuns e a cor de destaque só para a que realmente precisa de atenção. Não mude textos nem tamanhos. Pronto quando as etiquetas da página usarem no máximo 2 famílias cromáticas.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:A4",
+      "design-review:DR-COR-06",
+      "unslop-heydamir:pill-contador-brilho"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Limiares (3 famílias, 28 caracteres) do ai-design-tells A4, que os derivou de dois manifestos de produção, não de calibração ampla. Painéis de status com semântica clara (verde ok, vermelho erro) podem ser legítimos: o modelo revisa."
+  },
+  {
+    "id": "cor-paleta-arco-iris",
+    "categoria": "visual-cor",
+    "titulo": "Paleta com cores demais, sem uma cor dominante",
+    "descricao": "O site usa muitas famílias de cor vivas ao mesmo tempo, em fundos, botões, ícones e títulos, sem uma cor de marca clara. O olho não sabe onde olhar. O ideal das fontes é de 2 a 3 cores mais os neutros.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "css",
+      "metodo": "Conta famílias de matiz distintas entre elementos de destaque (fundos de seção e de cartão, botões, ícones coloridos, bordas, títulos) com croma OKLCH acima de 0,04. Ignora etiquetas (cobertas por outra regra), imagens e gráficos. O modelo confirma se a variedade é intencional (marca multicolorida).",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "croma_oklch_minimo": 0.04,
+        "minimo_familias": 5,
+        "agrupamento": "matiz em famílias de 30 graus",
+        "ignorar": [
+          "pills",
+          "imagens",
+          "gráficos",
+          "ilustrações"
+        ],
+        "referencia_fontes": "2 a 3 cores mais neutros (design-review); 1 a 2 (impeccable)"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Escolha uma cor principal e no máximo uma de apoio; use neutros para todo o resto.",
+    "prompt_correcao": "No arquivo {{arquivo}}, reduza a paleta a uma cor principal, no máximo uma de apoio e neutros. Troque as cores extras ({{valor}}) por neutros ou pela cor principal, mantendo cores semânticas de erro/sucesso se existirem. Não altere textos nem a estrutura. Pronto quando a página tiver no máximo 3 famílias de matiz fora os neutros.",
+    "fonte": [
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "design-review:DR-COR-06",
+      "impeccable:dis-paleta",
+      "impeccable:qui-paleta"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto: as fontes dizem 2 a 3 (design-review) e \"1 a 2, não 5 a 7\" (impeccable); 5 famílias e agrupamento de 30 graus são proposta nossa. O croma 0,04 é o corte de \"cromático\" usado no código do hallmark. Marcas legitimamente coloridas podem disparar."
+  },
+  {
+    "id": "cor-neutros-sem-tom",
+    "categoria": "visual-cor",
+    "titulo": "Preto e branco puros ou cinzas sem nenhum tom",
+    "descricao": "O fundo ou o texto principal usam preto ou branco absolutos e todos os cinzas são neutros puros, sem leve tom quente ou frio da marca. A página fica seca, com cara de padrão. Efeito sutil, então pesa pouco.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Converte fundo da página, superfícies, texto e bordas para OKLCH. Dispara se todos os neutros relevantes têm croma abaixo de 0,005 e existe uma cor de destaque, ou se o fundo da página é #000 puro, ou se o texto principal é #000 sobre fundo #fff.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "croma_oklch_neutro_minimo": 0.005,
+        "fundo_preto_puro": "#000000",
+        "texto_preto_sobre_branco": [
+          "#000000",
+          "#ffffff"
+        ],
+        "pre_condicao": "existe cor de destaque (croma OKLCH >= 0,08)"
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Dê aos cinzas e ao fundo um leve tom da cor da marca (quente ou frio) em vez de preto e branco absolutos.",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque {{valor}} (preto ou branco puro / cinza sem tom) por neutros com leve tom da cor de marca, definidos como variáveis (fundo, superfície, texto, borda). Não mude o contraste mínimo de 4,5:1 nem os layouts. Pronto quando nenhum fundo ou texto principal usar #000/#fff puros e os neutros tiverem croma de pelo menos 0,005.",
+    "fonte": [
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:gate-7a",
+      "hallmark:gate-7b",
+      "hallmark:gate-22",
+      "unslop-heydamir:tok-neutros",
+      "impeccable:qui-cinzas-tingidas"
+    ],
+    "citacoes": [
+      "trecho",
+      "numero"
+    ],
+    "notas": "Croma 0,005 vem do hallmark (gate 22). A condição de preto/branco puro como fundo e texto principal é proposta nossa: limiar inicial, a calibrar no teste de acerto, porque branco puro de fundo é comum em sites bons. O impeccable diz que cinza neutro é válido (colorize) e o hallmark isenta o gênero minimalista, por isso confiança baixa e peso 2."
+  },
+  {
+    "id": "cor-acento-em-area-grande",
+    "categoria": "visual-cor",
+    "titulo": "Cor de destaque ocupando uma parte grande da tela",
+    "descricao": "A cor mais forte do site cobre uma fatia grande da primeira tela, em vez de ficar em poucos pontos de atenção. Quando a cor está em todo lugar, nada se destaca.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "css",
+      "metodo": "No screenshot de 1280x800 da home, identifica a cor de destaque (a de maior croma no botão primário e nos links) e mede a fração de pixels próximos dela. Também marca títulos de 48px ou mais escritos na cor de destaque. O modelo decide se a cor chapada é postura de marca intencional.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "viewport": "1280x800",
+        "aviso_fracao": 0.05,
+        "forte_fracao": 0.08,
+        "titulo_display_minimo_px": 48,
+        "tolerancia_cor": "a calibrar",
+        "referencia_menos_rigida": "regra dos 10% do impeccable (neutros dominam, cor é acento)"
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Reserve a cor de destaque para botão principal, links e um ou dois sinais; deixe grandes áreas em neutros.",
+    "prompt_correcao": "No arquivo {{arquivo}}, reduza o uso da cor de destaque {{valor}} em áreas grandes ({{trecho}}): troque fundos largos e títulos enormes por neutros e deixe a cor só no botão principal e em poucos sinais. Não mude textos nem a estrutura. Pronto quando a cor de destaque cobrir no máximo 5% da primeira tela (1280x800).",
+    "fonte": [
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:gate-23",
+      "unslop-heydamir:tudo-destacado",
+      "unslop-heydamir:reg-um-brilhante",
+      "impeccable:cor-acento-regiao",
+      "impeccable:qui-neutros",
+      "design-review:DR-COR-06"
+    ],
+    "citacoes": [
+      "numero"
+    ],
+    "notas": "Números do hallmark (gate 23): 5% da área de visão como aviso, 8% como falha no render, 30% tolerado em estilo atmosférico; título de 48px+ na cor de destaque. É postura de gosto do hallmark, não norma: sites de marca chapada (ex.: fundo todo colorido) são legítimos, por isso confiança baixa."
+  },
+  {
+    "id": "cor-gradiente-repetido",
+    "categoria": "visual-cor",
+    "titulo": "Gradientes repetidos em várias partes da página",
+    "descricao": "Degradês aparecem em vários lugares ao mesmo tempo (topo, botões, cartões, destaques). A orientação das fontes é no máximo um gradiente discreto, e nunca em texto corrido.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Conta elementos visíveis cujo fundo computado é um gradiente (linear, radial ou cônico), distintos entre si. Ignora gradientes de escurecimento sobre foto (de transparente para preto) e padrões decorativos finos. Dispara com 3 ou mais elementos.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "minimo_elementos": 3,
+        "tipos": [
+          "linear-gradient",
+          "radial-gradient",
+          "conic-gradient"
+        ],
+        "ignorar": [
+          "degradê de transparente para preto sobre imagem",
+          "padrões de linhas ou pontos"
+        ],
+        "onde_olhar": [
+          "hero",
+          "botões",
+          "cartões",
+          "cabeçalho"
+        ]
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Mantenha no máximo um gradiente discreto e troque os demais por cores chapadas.",
+    "prompt_correcao": "No arquivo {{arquivo}}, deixe no máximo um gradiente discreto na página e troque os outros ({{trecho}}) por cores chapadas da paleta. Não mexa em degradês de escurecimento sobre fotos. Pronto quando restar no máximo 1 elemento com fundo em degradê (fora os escurecimentos sobre foto).",
+    "fonte": [
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-ui:gradient-many-surfaces",
+      "unslop-heydamir:grad-roxo-azul",
+      "impeccable:qui-decoracao"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "unslop-ui diz máximo de um gradiente discreto (e marca como julgamento, sem número de detecção). O limiar de 3 elementos é proposta nossa: limiar inicial, a calibrar no teste de acerto. O gradiente azul/roxo tem regra própria (cor-gradiente-azul-roxo); o texto em gradiente também (tipo-texto-gradiente)."
+  },
+  {
+    "id": "cor-cinza-sobre-fundo-colorido",
+    "categoria": "visual-cor",
+    "titulo": "Texto cinza sobre fundo colorido",
+    "descricao": "Há texto em cinza neutro sobre cartões ou faixas coloridas. O cinza fica \"sujo\" e sem vida em cima da cor. O mais bonito é usar um tom mais escuro da própria cor ou branco/preto com transparência.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Para cada nó de texto visível, compara a cor do texto com o fundo efetivo. Dispara quando o texto é cinza de croma baixo e luminosidade intermediária e o fundo é cromático. Contraste insuficiente é tratado pelo axe, não aqui.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "texto_croma_oklch_maximo": 0.04,
+        "texto_luminosidade_oklch": [
+          0.3,
+          0.85
+        ],
+        "fundo_croma_oklch_minimo": 0.08,
+        "excluir": [
+          "texto branco puro ou preto puro",
+          "texto sobre imagem"
+        ]
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Em fundos coloridos, use um tom da própria cor (mais escuro ou mais claro) ou branco/preto com transparência no texto secundário.",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque o texto cinza {{valor}} sobre o fundo colorido {{trecho}} por um tom derivado da cor do fundo (ou branco/preto com transparência). Não altere tamanhos nem o contraste mínimo de 4,5:1. Pronto quando nenhum texto de croma baixo ficar sobre fundo colorido.",
+    "fonte": [
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:gate-41",
+      "impeccable:floor-contraste",
+      "impeccable:qui-nunca-cinza-sobre-cor"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Croma 0,04 (neutro) e 0,08 (cromático) vêm do código do hallmark; a faixa de luminosidade 0,3-0,85 para \"cinza intermediário\" é proposta nossa: limiar inicial, a calibrar no teste de acerto."
+  },
+  {
+    "id": "cor-look-creme-terracota",
+    "categoria": "visual-cor",
+    "titulo": "Combinação de moda: papel creme, serifada e acento terracota",
+    "descricao": "Fundo creme, título em fonte com serifa e um acento terracota aparecem juntos. É uma fórmula muito repetida quando ninguém definiu uma identidade. Se a marca escolheu isso de propósito, não é problema.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "css",
+      "metodo": "Mede os três sinais juntos: fundo da página em creme (luminosidade OKLCH alta e matiz 55 a 105), cor de destaque terracota (matiz 15 a 55 com croma alto) e fonte de título da lista de serifadas de moda. Só dispara com os três ao mesmo tempo; o modelo confere se há fonte e marca próprias.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "fundo_oklch": {
+          "L_minimo": 0.9,
+          "C_minimo": 0.006,
+          "matiz_graus": [
+            55,
+            105
+          ]
+        },
+        "acento_oklch": {
+          "C_minimo": 0.08,
+          "matiz_graus": [
+            15,
+            55
+          ]
+        },
+        "serifadas_de_moda": [
+          "Fraunces",
+          "Playfair Display",
+          "Cormorant",
+          "Lora",
+          "Crimson",
+          "Newsreader",
+          "DM Serif"
+        ],
+        "exige": "os três sinais"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Se o visual não veio de uma decisão da marca, parta de uma cor e de uma tipografia ligadas ao assunto do site.",
+    "prompt_correcao": "No arquivo {{arquivo}}, revise a combinação fundo creme + serifada de moda + acento terracota ({{valor}}). Se não houver motivo de marca, defina uma paleta e uma fonte de título próprias ligadas ao assunto do site, em variáveis CSS. Não mude textos, seções nem contraste mínimo de 4,5:1. Pronto quando no máximo dois dos três sinais continuarem juntos, ou houver justificativa de marca registrada.",
+    "fonte": [
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:gate-65",
+      "impeccable:nw-calibracao"
+    ],
+    "citacoes": [
+      "numero"
+    ],
+    "notas": "Faixas de matiz e luminosidade do código do hallmark (gate 65, Reflex, dispensável se o brief pedir). Lista de serifadas vem do impeccable (nw-faces-banidas). É gosto das duas ferramentas, sem calibração pública: confiança baixa. Não afirma autoria, só repetição de fórmula."
+  },
+  {
+    "id": "cor-decorativa-sem-funcao",
+    "categoria": "visual-cor",
+    "titulo": "Cor usada só como enfeite, sem papel claro",
+    "descricao": "As cores não seguem uma lógica: a mesma cor serve de botão e de enfeite, ou vários elementos recebem destaque ao mesmo tempo. Cor deve indicar ação, estado ou hierarquia, não decorar.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo olha o screenshot e o resumo de cores e responde: a cor de ação é usada só para ação? Um elemento carrega o destaque principal e o resto é discreto? A mesma cor tem sempre o mesmo significado? Responde com trechos citados ou marca como não verificável.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "perguntas": [
+          "a cor da ação principal aparece em enfeites?",
+          "há mais de um elemento disputando o destaque?",
+          "a mesma cor muda de significado entre telas?"
+        ],
+        "evidencia_minima": "citar 2 trechos ou elementos concretos"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Defina o papel de cada cor (ação, estado, destaque) e remova a cor que só decora.",
+    "prompt_correcao": "No arquivo {{arquivo}}, reveja o uso de cor em {{trecho}}: deixe a cor de ação apenas em botões e links de ação, escolha um único elemento por tela para o destaque principal e deixe o resto em neutros. Não troque a cor de marca nem o conteúdo. Pronto quando cada cor da página tiver um papel único e nomeado em variável CSS.",
+    "fonte": [
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:cor-decoracao",
+      "impeccable:cor-acao-primaria",
+      "unslop-heydamir:tudo-destacado",
+      "unslop-heydamir:reg-chrome-quieto",
+      "design-review:DR-COR-03"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Julgamento puro: as fontes não dão número. O modelo só pode afirmar com trecho citado."
+  },
+  {
+    "id": "cor-grafico-arco-iris",
+    "categoria": "visual-cor",
+    "titulo": "Gráficos coloridos demais, sem destaque nem acessibilidade",
+    "descricao": "Os gráficos usam barras ou linhas em muitas cores vivas, ou em vários tons da mesma cor sem destaque, e a cor é o único jeito de separar as séries. Isso dificulta a leitura, inclusive para quem enxerga cores de forma diferente.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "Se a página tiver gráficos (svg, canvas ou biblioteca de gráfico), o modelo avalia no screenshot: quantas cores, se há um destaque claro, se rótulos, formas ou padrões separam as séries além da cor. Sem gráficos, a regra não se aplica.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "pre_condicao": "a página contém gráfico (svg, canvas ou biblioteca de gráfico)",
+        "perguntas": [
+          "mais de 5 cores vivas lado a lado?",
+          "a série importante se destaca?",
+          "cor é o único código?"
+        ]
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Use uma cor de destaque para a série importante, neutros para o resto e rótulos diretos, e confirme que a leitura não depende só da cor.",
+    "prompt_correcao": "No arquivo {{arquivo}}, ajuste o gráfico {{trecho}}: destaque só a série principal com a cor da marca, use neutros nas outras e adicione rótulos diretos ou padrões para que a leitura não dependa só da cor. Não altere os dados. Pronto quando houver no máximo uma cor viva em destaque e cada série puder ser identificada sem a cor.",
+    "fonte": [
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:graf-arco-iris",
+      "unslop-heydamir:graf-tons-accent",
+      "vercel-web-interface-guidelines:AG-DS-104",
+      "impeccable:cor-dados"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Julgamento: sem número nas fontes. A orientação de paletas para daltonismo é MUST no AGENTS.md da Vercel Labs."
+  },
+  {
+    "id": "cor-modo-escuro-liberado",
+    "categoria": "visual-cor",
+    "titulo": "Tema escuro sozinho não é sinal de visual genérico",
+    "descricao": "Informativo, sem pontuação: um site em tema escuro não é penalizado por isso. Só entram na avaliação os brilhos, gradientes e neutros dentro dele, que têm regras próprias.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "Não pontua. Serve de aviso ao motor e ao modelo para não tratar a presença de tema escuro (ou de pesquisa por color-scheme escuro) como sinal de padrão.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "pontua": false,
+        "motivo": "liberado pelas fontes"
+      }
+    },
+    "peso": 0,
+    "severidade": "info",
+    "selo": "opiniao",
+    "confianca": "alta",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Nenhuma correção: tema escuro é uma escolha válida.",
+    "prompt_correcao": "Nenhuma correção necessária no arquivo {{arquivo}}: o tema escuro não é problema. Se quiser melhorar, confira apenas que a elevação das superfícies usa degraus de luminosidade e que o contraste do texto continua acima de 4,5:1. Pronto quando nada for alterado por causa do tema escuro.",
+    "fonte": [
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-ui:cleared-*"
+    ],
+    "citacoes": [],
+    "notas": "O unslop-ui lista modo escuro sem brilho como \"liberado\", e o scanner o ignora de propósito. Peso 0 e severidade info."
+  }
+]

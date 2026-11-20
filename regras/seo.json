@@ -1,0 +1,1339 @@
+[
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Só vê \"vago\" quando bate com a lista; julgar se o título descreve bem a página é zona cinza do modelo. A existência no DOM final também aparece em a11y-titulo-da-pagina-ausente; aqui o foco é o HTML cru e o uso como link nos resultados.",
+    "id": "seo-titulo-ausente-ou-vazio",
+    "categoria": "seo",
+    "titulo": "Página sem título, com título vazio ou vago",
+    "descricao": "O título (elemento title) é o que o Google usa como link nos resultados de busca. Toda página precisa de um, descritivo; títulos como \"Home\" ou \"Perfil\" não dizem nada.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo",
+      "detectavel_por_script": "sim",
+      "metodo": "Lê o <title> no HTML cru e no DOM final: marca ausente, vazio (só espaços) e presente só depois do JavaScript; sinaliza títulos vagos de uma lista curta.",
+      "parametros": {
+        "seletor": "head > title",
+        "versoes": [
+          "cru",
+          "final"
+        ],
+        "falha_se": [
+          "ausente",
+          "vazio",
+          "presente só no final"
+        ],
+        "vagos_exemplos": [
+          "Home",
+          "Profile",
+          "Perfil",
+          "Início",
+          "Página inicial",
+          "Sem título",
+          "Untitled",
+          "Document"
+        ],
+        "vagos_confianca": "media"
+      }
+    },
+    "peso": 7,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Coloque um <title> único e descritivo em cada página, com o nome da marca no começo ou no fim.",
+    "prompt_correcao": "No arquivo {{arquivo}}, defina o <title> da página com um texto que descreva o conteúdo (por exemplo \"{{valor}}\"), incluindo o nome da marca de forma curta. Não coloque lista de palavras-chave nem copie o título de outras páginas. Pronto quando o <title> existir no HTML cru, não for vazio e for diferente do das outras páginas.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Links de título (title)",
+        "url": "https://developers.google.com/search/docs/appearance/title-link",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "vercel-web-interface-guidelines:AG-CA-61"
+    ],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "ATENÇÃO: os 50 a 60 caracteres são heurística do mercado. O Google diz que não há limite de tamanho e que o corte depende da largura do dispositivo. Nunca afirmar \"o Google exige\". Peso mínimo de propósito.",
+    "id": "seo-titulo-tamanho-heuristica",
+    "categoria": "seo",
+    "titulo": "Título muito longo (heurística de tamanho)",
+    "descricao": "O Google não fixa um limite de caracteres para o título, mas corta o que não cabe na largura da tela. Por convenção do mercado, títulos acima de cerca de 60 caracteres tendem a ser cortados.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo",
+      "detectavel_por_script": "sim",
+      "metodo": "Conta os caracteres do <title> do DOM final e marca os que passam do limite prático.",
+      "parametros": {
+        "limite_pratico_caracteres": 60,
+        "origem_do_limite": "heurística do mercado, não é regra do Google"
+      }
+    },
+    "peso": 1,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "correcao": "Se puder, deixe o título mais curto e coloque a informação principal no começo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, reescreva o <title> ({{trecho}}, {{valor}} caracteres) em cerca de 60 caracteres ou menos, com a informação principal no começo. Não mude o sentido nem tire a marca. Pronto quando o título tiver até 60 caracteres e continuar descrevendo a página.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Links de título (title)",
+        "url": "https://developers.google.com/search/docs/appearance/title-link",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "numero",
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Depende de haver 2 ou mais páginas na amostra (rápido: até 8). Com 1 página, não se aplica.",
+    "id": "seo-titulo-repetido-entre-paginas",
+    "categoria": "seo",
+    "titulo": "Várias páginas com o mesmo título",
+    "descricao": "O Google recomenda um título próprio para cada página. Títulos iguais ou só com o nome do site em todas as páginas deixam os resultados de busca todos parecidos.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo",
+      "detectavel_por_script": "sim",
+      "metodo": "Compara o <title> normalizado (minúsculas, espaços colapsados) das páginas amostradas e lista os grupos com duas ou mais páginas iguais.",
+      "parametros": {
+        "min_paginas_no_grupo": 2,
+        "ignorar": [
+          "páginas de erro 404",
+          "páginas de paginação com mesmo título base"
+        ],
+        "versoes": [
+          "final"
+        ]
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Dê um título diferente a cada página, que descreva o conteúdo dela.",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque o <title> repetido ({{trecho}}) por um texto exclusivo desta página, descrevendo o conteúdo dela. Não mude o título das outras páginas. Pronto quando nenhuma página amostrada compartilhar o mesmo <title>.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Links de título (title)",
+        "url": "https://developers.google.com/search/docs/appearance/title-link",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "O Google diz que não há limite de tamanho e que o corte depende da tela; por isso não medimos comprimento. Também não afirmar que a description muda o ranking: a fonte não diz isso. Se faltar, o Google gera o resumo sozinho.",
+    "id": "seo-meta-description-ausente-ou-repetida",
+    "categoria": "seo",
+    "titulo": "Meta description ausente, vazia ou igual em várias páginas",
+    "descricao": "A meta description pode virar o resumo mostrado abaixo do título nos resultados. O Google recomenda uma descrição própria e fiel ao conteúdo de cada página, sem lista de palavras-chave. Ela não é fator de ranking.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo",
+      "detectavel_por_script": "sim",
+      "metodo": "Lê meta[name=description] no HTML cru e no DOM final; marca ausente, vazia e descrições idênticas em duas ou mais páginas amostradas.",
+      "parametros": {
+        "seletor": "meta[name=\"description\"]",
+        "versoes": [
+          "cru",
+          "final"
+        ],
+        "falha_se": [
+          "ausente",
+          "vazia",
+          "igual em 2 ou mais páginas"
+        ],
+        "sem_limite_de_tamanho": true
+      }
+    },
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Escreva uma descrição curta e única para cada página, resumindo o que ela traz.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione <meta name=\"description\" content=\"{{valor}}\"> no <head>, com 1 ou 2 frases que resumam esta página. Não use lista de palavras-chave nem repita a de outras páginas. Pronto quando a meta description existir, não for vazia e for única entre as páginas amostradas.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Snippets e meta description",
+        "url": "https://developers.google.com/search/docs/appearance/snippet",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Caso de teste nº 1 (SPEC §11.2): a página tem WebSite, WebPage, Product, Offer, FAQPage e VideoObject; afirmar \"sem dados estruturados\" é proibido. O Google aceita os três formatos e prefere JSON-LD; ter markup não garante resultado rico. O Google encerrou o resultado rico de FAQ em maio de 2026 (documentação retirada): FAQPage só é listado. Product exige name mais uma de review, aggregateRating ou offers.",
+    "id": "seo-dados-estruturados-presentes",
+    "categoria": "seo",
+    "titulo": "Dados estruturados: quais existem e o que falta",
+    "descricao": "Dados estruturados (JSON-LD, microdata ou RDFa) ajudam o Google a entender a página. Esta regra lista os tipos encontrados no HTML cru e no DOM final e confere as propriedades pedidas pelo Google nos tipos comuns.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "jsonld",
+      "detectavel_por_script": "sim",
+      "metodo": "Procura JSON-LD, microdata e RDFa no HTML cru e no DOM final, lista os @type (inclusive dentro de @graph) e confere propriedades obrigatórias e recomendadas dos tipos comuns; só afirma \"sem dados estruturados\" se não houver nenhum formato em nenhuma das duas versões.",
+      "parametros": {
+        "versoes": [
+          "cru",
+          "final"
+        ],
+        "seletores": {
+          "json-ld": "script[type=\"application/ld+json\"]",
+          "microdata": "[itemscope][itemtype]",
+          "rdfa": "[typeof]"
+        },
+        "extrair_tipos": "@type (com @graph e listas), itemtype, typeof",
+        "afirmar_ausencia_somente_se": "nenhum dos três formatos em nenhuma das duas versões",
+        "reportar": [
+          "formatos_por_versao",
+          "tipos_por_versao",
+          "propriedades_faltando_por_tipo"
+        ],
+        "tipos_conferidos": {
+          "Product": {
+            "obrigatorias": [
+              "name",
+              "uma entre review, aggregateRating ou offers"
+            ],
+            "recomendadas": [
+              "aggregateRating",
+              "offers",
+              "review"
+            ]
+          },
+          "Offer": {
+            "obrigatorias": [
+              "price (ou priceSpecification.price)"
+            ],
+            "recomendadas": [
+              "priceCurrency",
+              "availability",
+              "priceValidUntil"
+            ]
+          },
+          "VideoObject": {
+            "obrigatorias": [
+              "name",
+              "thumbnailUrl",
+              "uploadDate"
+            ],
+            "recomendadas": [
+              "description",
+              "contentUrl",
+              "embedUrl",
+              "duration"
+            ]
+          },
+          "WebSite": {
+            "obrigatorias": [
+              "name",
+              "url"
+            ],
+            "recomendadas": [
+              "alternateName"
+            ],
+            "so_na_home": true
+          },
+          "Organization": {
+            "obrigatorias": [],
+            "recomendadas": [
+              "name",
+              "url",
+              "logo",
+              "sameAs",
+              "address",
+              "telephone",
+              "contactPoint",
+              "email",
+              "description"
+            ]
+          },
+          "Article": {
+            "obrigatorias": [],
+            "recomendadas": [
+              "headline",
+              "image",
+              "datePublished",
+              "dateModified",
+              "author"
+            ]
+          },
+          "LocalBusiness": {
+            "obrigatorias": [
+              "name",
+              "address"
+            ],
+            "recomendadas": [
+              "geo",
+              "openingHoursSpecification",
+              "telephone",
+              "url",
+              "priceRange"
+            ]
+          },
+          "FAQPage": {
+            "conferir_propriedades": false,
+            "motivo": "o Google encerrou o resultado rico de FAQ em maio de 2026; só listamos o tipo"
+          }
+        },
+        "outros_tipos": "WebPage e demais tipos são listados, mas sem conferência de propriedades"
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "fato",
+    "confianca": "alta",
+    "correcao": "Adicione dados estruturados em JSON-LD para o tipo de página que você tem e complete as propriedades que faltam.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione ou complete o JSON-LD do tipo {{trecho}} com as propriedades que faltam ({{valor}}), usando só dados que aparecem na página. Não invente avaliações, preços nem datas e não remova os tipos que já existem. Pronto quando o JSON-LD for válido e o medidor jsonld não listar propriedades faltando para esse tipo.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Introdução a dados estruturados",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Diretrizes gerais de dados estruturados",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/sd-policies",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Product (snippet)",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/product-snippet",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: VideoObject",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/video",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Organization",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/organization",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Article",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/article",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: LocalBusiness",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/local-business",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Nome do site (WebSite)",
+        "url": "https://developers.google.com/search/docs/appearance/site-names",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: FAQPage (resultado rico encerrado)",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/faqpage",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "caso-de-teste-1:WebSite-WebPage-Product-Offer-FAQPage-VideoObject"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Só o JSON.parse é afirmado como fato. Exigir @context é convenção do JSON-LD/schema.org; confira os exemplos do Google.",
+    "id": "seo-jsonld-com-erro-de-sintaxe",
+    "categoria": "seo",
+    "titulo": "JSON-LD com erro de sintaxe ou sem tipo",
+    "descricao": "Se o bloco JSON-LD tem vírgula sobrando, aspas erradas ou não diz de que tipo é, o Google não consegue usá-lo. Esta regra aponta os blocos que nem sequer são lidos como JSON.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "jsonld",
+      "detectavel_por_script": "sim",
+      "metodo": "Faz JSON.parse do conteúdo de cada script application/ld+json (HTML cru e DOM final) e registra os que falham, com a posição do erro, e os objetos sem @type.",
+      "parametros": {
+        "seletor": "script[type=\"application/ld+json\"]",
+        "falha_se": [
+          "JSON.parse lança erro",
+          "objeto raiz sem @type"
+        ],
+        "versoes": [
+          "cru",
+          "final"
+        ]
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "fato",
+    "confianca": "alta",
+    "correcao": "Corrija o JSON-LD (use um validador de JSON) e confira que cada objeto tem @type.",
+    "prompt_correcao": "No arquivo {{arquivo}}, corrija o bloco JSON-LD {{trecho}} para que seja JSON válido e cada objeto tenha @context e @type. Não mude os valores. Pronto quando JSON.parse ler o bloco sem erro e o medidor jsonld não listar falhas.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Introdução a dados estruturados",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Diretrizes gerais de dados estruturados",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/sd-policies",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Preço de aparecer só em texto oculto (ex.: \"oferta encerrada R$ 89\") não prova divergência: vira pergunta, nunca \"preço errado\". Preços em moedas ou formatos diferentes exigem confirmação.",
+    "id": "seo-dados-estruturados-nao-batem-com-a-pagina",
+    "categoria": "seo",
+    "titulo": "Dados estruturados dizem algo que a página não mostra",
+    "descricao": "O Google pede que os dados estruturados descrevam o que a pessoa realmente vê na página. Preço, nome ou vídeo marcados no código e ausentes do texto visível podem ser considerados enganosos.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "jsonld",
+      "detectavel_por_script": "parcial",
+      "metodo": "Compara price, name e título de vídeo do JSON-LD com o texto visível e não-clone do DOM final (aceita 9,90 igual a 9.90); texto oculto não conta como visível; o que não bate vai à zona cinza do modelo.",
+      "parametros": {
+        "campos": [
+          "Offer.price",
+          "Product.name",
+          "VideoObject.name"
+        ],
+        "texto_de_comparacao": "visível e não-clone, DOM final",
+        "normalizar_numeros": true,
+        "texto_oculto_conta": false
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Faça os dados estruturados mostrarem os mesmos valores que aparecem na página.",
+    "prompt_correcao": "No arquivo {{arquivo}}, alinhe o JSON-LD ao conteúdo visível: o campo {{trecho}} diz \"{{valor}}\" e a página mostra outro valor. Corrija o JSON-LD (ou a página, se o erro for nela) para ficarem iguais. Não invente dados. Pronto quando o valor do JSON-LD aparecer no texto visível da página.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Diretrizes gerais de dados estruturados",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/sd-policies",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "caso-de-teste-1:preco-R$9,90"
+    ],
+    "citacoes": [
+      "numero",
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Não ter canonical não é erro fatal: o Google usa outros sinais. Peso baixo.",
+    "id": "seo-canonical-ausente",
+    "categoria": "seo",
+    "titulo": "Página sem link canonical para si mesma",
+    "descricao": "O link canonical diz ao Google qual é o endereço preferido da página. O Google recomenda que cada página preferida aponte para si mesma, o que evita confusão com versões duplicadas (parâmetros, www, http).",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo",
+      "detectavel_por_script": "sim",
+      "metodo": "Procura link[rel~=canonical] no HTML cru e no DOM final; marca ausente nas duas versões.",
+      "parametros": {
+        "seletor": "link[rel~=\"canonical\"]",
+        "versoes": [
+          "cru",
+          "final"
+        ],
+        "falha_se": "ausente nas duas versões"
+      }
+    },
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Adicione <link rel=\"canonical\"> com o endereço completo da própria página.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione no <head> <link rel=\"canonical\" href=\"{{valor}}\"> com a URL absoluta e preferida desta página. Não aponte para outra página e não coloque mais de um canonical. Pronto quando existir exatamente um link canonical, absoluto, no HTML cru.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: URLs duplicadas e canonical",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Canonical para outro domínio pode ser legítimo (sites que republicam conteúdo); só informamos. Diferença entre cru e final é tratada em seo-metadados-diferem-entre-html-cru-e-final.",
+    "id": "seo-canonical-conflitante",
+    "categoria": "seo",
+    "titulo": "Link canonical duplicado, relativo ou apontando para lugar problemático",
+    "descricao": "Mais de um canonical, endereço relativo ou canonical que leva a uma página inexistente ou redirecionada confundem o Google, que pode ignorar a sua indicação.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo",
+      "detectavel_por_script": "sim",
+      "metodo": "Confere no HTML cru e no DOM final: mais de um link canonical, href relativo ou com fragmento, e se o destino responde 200 (não 3xx, 4xx nem 5xx) e não está bloqueado no robots.txt.",
+      "parametros": {
+        "falha_se": [
+          "mais de um canonical",
+          "href relativo",
+          "href com #fragmento",
+          "destino com status diferente de 200",
+          "destino bloqueado no robots.txt"
+        ],
+        "versoes": [
+          "cru",
+          "final"
+        ],
+        "canonical_para_outro_dominio": "apenas informar"
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Deixe um único canonical, com endereço completo, apontando para uma página que responde normalmente.",
+    "prompt_correcao": "No arquivo {{arquivo}}, deixe apenas um <link rel=\"canonical\"> no <head>, com URL absoluta ({{valor}}) de uma página que responde 200. Não use fragmento (#) nem endereço relativo. Pronto quando houver exatamente um canonical, absoluto, apontando para status 200.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: URLs duplicadas e canonical",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "O script não sabe se é de propósito; a mensagem deve pedir confirmação (páginas de agradecimento, áreas privadas e rascunhos costumam usar noindex de propósito). Para o Google ver o noindex, a página não pode estar bloqueada no robots.txt.",
+    "id": "seo-noindex-na-pagina",
+    "categoria": "seo",
+    "titulo": "Página pede para ficar fora do Google (noindex)",
+    "descricao": "A marcação noindex, no HTML ou no cabeçalho, tira a página dos resultados do Google. Se não foi de propósito (por exemplo, sobrou de um site em construção), a página nunca aparecerá na busca.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo",
+      "detectavel_por_script": "sim",
+      "metodo": "Lê meta[name=robots] e meta[name=googlebot] no HTML cru e no DOM final e o cabeçalho X-Robots-Tag da resposta; marca noindex e none, e marca separadamente noindex que só aparece depois do JavaScript.",
+      "parametros": {
+        "fontes": [
+          "meta[name=robots]",
+          "meta[name=googlebot]",
+          "header X-Robots-Tag"
+        ],
+        "valores": [
+          "noindex",
+          "none"
+        ],
+        "versoes": [
+          "cru",
+          "final"
+        ],
+        "aviso_extra": "noindex só no final (JS): o Google pode não rodar o JS nessas páginas"
+      }
+    },
+    "peso": 8,
+    "severidade": "P1",
+    "selo": "fato",
+    "confianca": "alta",
+    "correcao": "Se a página deve aparecer no Google, tire o noindex. Se for de propósito, ignore este aviso.",
+    "prompt_correcao": "No arquivo {{arquivo}}, remova o noindex de {{trecho}} (meta robots ou cabeçalho X-Robots-Tag), caso a página deva aparecer no Google. Não mude outras diretivas nem páginas que devem ficar ocultas. Pronto quando nem o HTML cru nem os cabeçalhos trouxerem noindex para esta URL.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Meta tag robots e X-Robots-Tag",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Noções básicas de JavaScript e SEO",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "O robots.txt controla o acesso de rastreadores; não serve para esconder páginas do Google (para isso, noindex). Se o próprio crawler da skill respeita o robots.txt, ele não consegue analisar as demais páginas: avisar. Não confundir com a regra informativa de rastreadores de IA.",
+    "id": "seo-robots-txt-bloqueia-o-site-todo",
+    "categoria": "seo",
+    "titulo": "robots.txt proíbe o site inteiro para os buscadores",
+    "descricao": "Uma linha \"Disallow: /\" no grupo geral (ou do Googlebot) pede que os buscadores não leiam nenhuma página. Em um site que deve aparecer no Google, quase sempre é erro ou sobra de ambiente de testes.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "robots",
+      "detectavel_por_script": "sim",
+      "metodo": "Lê /robots.txt e aplica as regras ao agente * e ao Googlebot; marca Disallow: / sem Allow que reabra caminhos.",
+      "parametros": {
+        "caminho": "/robots.txt",
+        "agentes": [
+          "*",
+          "Googlebot"
+        ],
+        "falha_se": "Disallow: / sem exceção em Allow",
+        "robots_ausente": "sem problema (nada é proibido)",
+        "tratar_5xx": "avisar que o robots.txt não pôde ser lido"
+      }
+    },
+    "peso": 9,
+    "severidade": "P0",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Se o site deve aparecer no Google, troque \"Disallow: /\" por uma regra que permita as páginas públicas.",
+    "prompt_correcao": "No arquivo {{arquivo}} (robots.txt), troque a linha {{trecho}} por regras que permitam as páginas públicas (por exemplo \"Disallow:\" vazio para o agente *), mantendo bloqueadas só as áreas privadas. Não apague as linhas Sitemap. Pronto quando o robots.txt não tiver \"Disallow: /\" para o agente * nem para o Googlebot.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Introdução ao robots.txt",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/robots/intro",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Criar o robots.txt",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/robots/create-robots-txt",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "O Google diz que sitemap não é obrigatório nem garante rastreamento ou indexação. Mensagem deve deixar isso claro; peso mínimo. Só vale para URL (em pasta/ZIP o arquivo pode existir só localmente).",
+    "id": "seo-sitemap-ausente",
+    "categoria": "seo",
+    "titulo": "Sem sitemap.xml encontrado",
+    "descricao": "O sitemap lista as páginas que você quer no Google. Não é obrigatório: sites pequenos e bem ligados por links costumam dispensar. Ajuda mais em sites grandes, novos ou com muitas imagens e vídeos.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo",
+      "detectavel_por_script": "sim",
+      "metodo": "Procura Sitemap: no robots.txt e tenta /sitemap.xml e /sitemap_index.xml; confere se o arquivo responde 200 e é XML de sitemap.",
+      "parametros": {
+        "locais": [
+          "linhas Sitemap: do robots.txt",
+          "/sitemap.xml",
+          "/sitemap_index.xml"
+        ],
+        "paginas_abaixo_das_quais_dispensavel": 500,
+        "origem_do_numero": "a página do Google diz que sites com cerca de 500 páginas ou menos podem dispensar"
+      }
+    },
+    "peso": 1,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Se o site é grande ou novo, publique um sitemap.xml e indique no robots.txt; em site pequeno, é opcional.",
+    "prompt_correcao": "No arquivo {{arquivo}}, gere um sitemap.xml com as URLs públicas (uma por <url><loc>) e adicione a linha \"Sitemap: {{valor}}\" ao robots.txt. Não inclua páginas com noindex nem redirecionadas. Pronto quando /sitemap.xml responder 200 em XML válido e estiver citado no robots.txt.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Visão geral de sitemaps",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "numero"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "notas": "Faz requisições extras: só no modo completo. Amostra de 20 endereços; o resultado é uma amostra, não o sitemap inteiro.",
+    "id": "seo-sitemap-com-urls-problematicas",
+    "categoria": "seo",
+    "titulo": "Sitemap lista endereços quebrados, redirecionados ou com noindex",
+    "descricao": "O sitemap deve listar só os endereços preferidos, que respondem normalmente. Endereços que dão erro, redirecionam ou pedem noindex mostram ao Google um mapa desatualizado.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo",
+      "detectavel_por_script": "sim",
+      "metodo": "Lê o sitemap, sorteia até 20 endereços com semente fixa e confere status HTTP (200 esperado), redirecionamento, noindex e canonical diferente da própria URL; respeita o intervalo entre acessos.",
+      "parametros": {
+        "amostra_max": 20,
+        "semente": "hash do sitemap",
+        "falha_se": [
+          "status 3xx, 4xx ou 5xx",
+          "noindex",
+          "canonical diferente da URL listada"
+        ],
+        "intervalo_min_s": 1
+      }
+    },
+    "peso": 3,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Tire do sitemap os endereços com erro, redirecionados ou com noindex, e liste só as versões finais.",
+    "prompt_correcao": "No arquivo {{arquivo}} (sitemap.xml), remova ou corrija a URL {{trecho}} (status {{valor}}): liste só endereços finais que respondem 200, sem noindex. Não apague URLs válidas. Pronto quando todas as URLs amostradas do sitemap responderem 200 sem noindex.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Visão geral de sitemaps",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: URLs duplicadas e canonical",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Códigos HTTP e erros de rede",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/http-network-errors",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Só links verificados na amostra; mensagem deve dizer \"de N links verificados\". O Google trata 429 como sinal de excesso de requisições, não de página inexistente. Em pasta/ZIP, links que dependem do servidor real podem aparecer quebrados: tratar como \"não verificável\".",
+    "id": "seo-links-internos-quebrados",
+    "categoria": "seo",
+    "titulo": "Links internos que levam a páginas com erro",
+    "descricao": "Links do próprio site que dão erro (página não encontrada, erro do servidor) frustram quem clica e dificultam o Google. Endereços 404 e 410 são retirados do índice com o tempo.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "links",
+      "detectavel_por_script": "sim",
+      "metodo": "Coleta os links internos únicos das páginas amostradas e confere o status (HEAD, com GET se o HEAD falhar), respeitando intervalo e limite; conta como quebrado 404, 410, outros 4xx de conteúdo e 5xx.",
+      "parametros": {
+        "limite_links": {
+          "rapido": 50,
+          "completo": 200
+        },
+        "intervalo_min_s": 1,
+        "quebrado_se": [
+          "404",
+          "410",
+          "5xx",
+          "timeout"
+        ],
+        "nao_quebrado": [
+          "401",
+          "403 (pode ser bloqueio de robô)",
+          "429 (excesso de pedidos)"
+        ],
+        "seguir_redirecionamentos": "até 10 saltos"
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "fato",
+    "confianca": "alta",
+    "correcao": "Corrija ou remova os links que levam a páginas com erro, ou crie o redirecionamento.",
+    "prompt_correcao": "No arquivo {{arquivo}}, corrija o link {{trecho}} que leva a uma página com status {{valor}}: aponte para o endereço certo ou remova o link. Não mude os links que funcionam. Pronto quando o endereço responder 200 (ou a cadeia de redirecionamento terminar em 200).",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Códigos HTTP e erros de rede",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/http-network-errors",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho",
+      "numero",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "notas": "Sites externos às vezes bloqueiam robôs e respondem 403 ou 999 mesmo estando no ar: nesses casos, não afirmar que está quebrado. Só no modo completo (muitos acessos a terceiros).",
+    "id": "seo-links-externos-quebrados",
+    "categoria": "seo",
+    "titulo": "Links para outros sites que não funcionam mais",
+    "descricao": "Links para outros sites que dão 404 ou erro passam descuido e deixam a pessoa sem saída. É menos grave que um link interno quebrado.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "links",
+      "detectavel_por_script": "sim",
+      "metodo": "Confere o status de até 100 links externos únicos (HEAD, depois GET), com intervalo entre acessos ao mesmo host; conta 404, 410 e 5xx como quebrados.",
+      "parametros": {
+        "limite_links": 100,
+        "intervalo_min_s_por_host": 1,
+        "quebrado_se": [
+          "404",
+          "410",
+          "5xx",
+          "timeout repetido"
+        ],
+        "nao_quebrado": [
+          "401",
+          "403",
+          "429",
+          "999 (LinkedIn)"
+        ]
+      }
+    },
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "fato",
+    "confianca": "media",
+    "correcao": "Atualize ou remova os links externos que não funcionam mais.",
+    "prompt_correcao": "No arquivo {{arquivo}}, atualize ou remova o link externo {{trecho}} (status {{valor}}). Não mexa nos links que funcionam. Pronto quando o endereço responder 200 ou o link for removido.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Códigos HTTP e erros de rede",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/http-network-errors",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Links criados por JavaScript valem se o resultado final tiver <a href>. Âncoras internas (#secao) legítimas não entram.",
+    "id": "seo-link-que-o-google-nao-segue",
+    "categoria": "seo",
+    "titulo": "Links que o Google não consegue seguir",
+    "descricao": "O Google só segue com segurança links na forma <a href=\"endereço\">. Link que depende só de clique em JavaScript, sem href ou com javascript: no endereço, pode deixar páginas sem ser descobertas.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "links",
+      "detectavel_por_script": "sim",
+      "metodo": "No DOM final, lista <a> sem href, com href vazio, \"#\" com onclick ou javascript:, e elementos com role=link ou routerLink sem <a href> correspondente.",
+      "parametros": {
+        "seletores": [
+          "a:not([href])",
+          "a[href=\"\"]",
+          "a[href^=\"javascript:\"]",
+          "a[href=\"#\"][onclick]",
+          "[role=\"link\"]:not(a)",
+          "[routerLink]"
+        ],
+        "versoes": [
+          "final"
+        ],
+        "ignorar": [
+          "links de âncora para ids existentes na página",
+          "botões de menu com role button"
+        ]
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Use <a href=\"/endereco-real\"> para navegação; deixe botões só para ações.",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque {{trecho}} por <a href=\"{{valor}}\"> com o endereço real de destino, mantendo texto e classes. Não mude a navegação que já usa <a href> válido. Pronto quando o elemento for um <a> com href real que o medidor de links aceite.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Links rastreáveis",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/links-crawlable",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "vercel-web-interface-guidelines:CMD-NAV-02",
+      "vercel-web-interface-guidelines:CMD-AP-05",
+      "vercel-web-interface-guidelines:AG-SN-27"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "A lista da documentação do Lighthouse é em inglês; os equivalentes em português são nossa tradução (confiança média). Chamadas de ação específicas (\"Comprar agora\") não são genéricas.",
+    "id": "seo-texto-de-link-generico",
+    "categoria": "seo",
+    "titulo": "Links com texto genérico (clique aqui, saiba mais)",
+    "descricao": "O texto do link diz ao Google e a quem lê o que há do outro lado. \"Clique aqui\" ou \"saiba mais\" não dizem nada; o texto deve descrever o destino.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "links",
+      "detectavel_por_script": "sim",
+      "metodo": "Conta links visíveis e não-clone cujo texto (sem aria-label) é igual a uma frase de uma lista de textos genéricos, em português e inglês.",
+      "parametros": {
+        "lista_ptbr": [
+          "clique aqui",
+          "clique",
+          "saiba mais",
+          "leia mais",
+          "veja mais",
+          "ver mais",
+          "continue lendo",
+          "aqui",
+          "mais"
+        ],
+        "lista_ingles_lighthouse": [
+          "click here",
+          "click this",
+          "go",
+          "here",
+          "this",
+          "learn more",
+          "start",
+          "right here",
+          "more"
+        ],
+        "ignorar_se": "aria-label ou aria-labelledby descritivo",
+        "exclui_chamadas_de_acao_especificas": [
+          "Comprar",
+          "Agendar",
+          "Quero o plano Pro"
+        ]
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Troque o texto por algo que diga o destino, como \"ver planos e preços\".",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque o texto do link {{trecho}} por uma descrição do destino (por exemplo \"{{valor}}\"). Não mude o href nem o visual. Pronto quando o texto do link, lido sozinho, indicar para onde ele vai.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Links rastreáveis",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/links-crawlable",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lighthouse: Links com texto descritivo",
+        "url": "https://developer.chrome.com/docs/lighthouse/seo/link-text",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "lighthouse:link-text"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Se a imagem importa para a busca é julgamento; o script só diz que ela não é indexável. O limite de 20% da primeira tela é nosso.",
+    "id": "seo-imagem-importante-so-como-fundo-css",
+    "categoria": "seo",
+    "titulo": "Imagem de destaque colocada só como fundo de CSS",
+    "descricao": "O Google não indexa imagens usadas como background-image no CSS. Se a foto principal de um produto ou página existir só assim, ela não entra na busca por imagens.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "imagens",
+      "detectavel_por_script": "sim",
+      "metodo": "No DOM final, acha blocos grandes (mais de 20% da primeira tela) com background-image url(...) que não têm nenhum <img> equivalente na mesma seção.",
+      "parametros": {
+        "area_minima_da_primeira_tela": 0.2,
+        "origem_do_limite": "nosso, para ignorar texturas e enfeites",
+        "ignorar": [
+          "gradientes",
+          "padrões repetidos",
+          "svg decorativo"
+        ],
+        "versoes": [
+          "final"
+        ]
+      }
+    },
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Se a imagem é conteúdo (produto, pessoa, lugar), use <img> com alt, em vez de fundo de CSS.",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque o background-image de {{trecho}} por um <img src alt=\"{{valor}}\"> com object-fit: cover, mantendo o mesmo visual. Não troque fundos puramente decorativos. Pronto quando a imagem de conteúdo for um <img> com alt e o visual continuar igual.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Boas práticas para imagens",
+        "url": "https://developers.google.com/search/docs/appearance/google-images",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Não se aplica a sites com um só idioma. A checagem de retorno recíproco exige abrir as outras versões, por isso só no modo completo.",
+    "id": "seo-hreflang-com-erro",
+    "categoria": "seo",
+    "titulo": "Versões de idioma (hreflang) com erro",
+    "descricao": "Em sites com versões em vários idiomas, o hreflang liga as páginas. Cada versão precisa listar a si mesma, as outras precisam apontar de volta, e os códigos de idioma e região precisam ser válidos.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo",
+      "detectavel_por_script": "sim",
+      "metodo": "Lê link[rel=alternate][hreflang] e confere: autorreferência, código de idioma válido (ISO 639-1 com região opcional), URL absoluta, x-default e (no modo completo) se cada alternativa aponta de volta.",
+      "parametros": {
+        "seletor": "link[rel=\"alternate\"][hreflang]",
+        "checagens": [
+          "autorreferência",
+          "código válido",
+          "URL completa com protocolo",
+          "x-default presente",
+          "retorno recíproco (só completo)"
+        ],
+        "so_aplica_se": "houver pelo menos um hreflang"
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Corrija o hreflang: inclua a própria página na lista, use códigos válidos (pt-BR) e faça as versões apontarem entre si.",
+    "prompt_correcao": "No arquivo {{arquivo}}, corrija os <link rel=\"alternate\" hreflang=\"...\"> de {{trecho}}: inclua a própria página, use códigos válidos (por exemplo pt-BR), URLs absolutas e o mesmo conjunto em todas as versões, mais x-default. Não mude as URLs das páginas. Pronto quando cada versão listar a si mesma e as outras apontarem de volta.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Versões localizadas (hreflang)",
+        "url": "https://developers.google.com/search/docs/specialty/international/localized-versions",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Título e description definidos por JavaScript são aceitos pelo Google: viram só aviso informativo. Canonical e noindex via JS merecem atenção porque o Google pode não rodar o JS em páginas com noindex.",
+    "id": "seo-metadados-diferem-entre-html-cru-e-final",
+    "categoria": "seo",
+    "titulo": "Título, canonical ou robots mudam depois do JavaScript",
+    "descricao": "O Google consegue rodar JavaScript, mas recomenda declarar o canonical já no HTML original e não depender de JavaScript para colocar noindex. Esta regra mostra o que muda entre o HTML cru e a página final.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo",
+      "detectavel_por_script": "sim",
+      "metodo": "Compara title, meta description, link canonical e meta robots entre o HTML cru e o DOM final; registra cada campo que muda.",
+      "parametros": {
+        "campos": [
+          "title",
+          "meta[name=description]",
+          "link[rel=canonical]",
+          "meta[name=robots]"
+        ],
+        "gravidade_por_campo": {
+          "title": "informativo (o Google aceita JS)",
+          "meta[name=description]": "informativo",
+          "link[rel=canonical]": "aviso",
+          "meta[name=robots]": "aviso"
+        },
+        "versoes": [
+          "cru",
+          "final"
+        ]
+      }
+    },
+    "peso": 3,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Coloque canonical e meta robots já no HTML que o servidor envia, e use JavaScript só para o que realmente muda.",
+    "prompt_correcao": "No arquivo {{arquivo}}, declare {{trecho}} (canonical e meta robots) diretamente no HTML enviado pelo servidor, com o mesmo valor que o JavaScript usa hoje ({{valor}}). Não remova o JavaScript que atualiza o título. Pronto quando o HTML cru e o DOM final tiverem o mesmo canonical e meta robots.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Noções básicas de JavaScript e SEO",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "O Google diz que maiúsculas diferentes contam como URLs diferentes e pede consistência; não exige minúsculas. Mudar URLs de um site já indexado exige redirecionamentos.",
+    "id": "seo-url-pouco-amigavel",
+    "categoria": "seo",
+    "titulo": "Endereços difíceis de ler (underline, #/ ou parâmetros demais)",
+    "descricao": "O Google recomenda endereços legíveis, com palavras separadas por hífen, sem ID de sessão na URL e sem depender do # para trocar de conteúdo.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo",
+      "detectavel_por_script": "sim",
+      "metodo": "Examina as URLs internas descobertas e marca: underline no caminho, roteamento por #/ ou #!, ID de sessão na query, e mistura de maiúsculas e minúsculas no caminho.",
+      "parametros": {
+        "padroes": {
+          "underline_no_caminho": "/[^?#]*_",
+          "roteamento_por_hash": "#!?/",
+          "id_de_sessao": "[?&](sessionid|sid|phpsessid|jsessionid)=",
+          "maiusculas_no_caminho": "/[^?#]*[A-Z]"
+        },
+        "versoes": [
+          "final"
+        ]
+      }
+    },
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Prefira endereços com palavras separadas por hífen e sem ID de sessão ou #/ para trocar de página.",
+    "prompt_correcao": "No arquivo {{arquivo}}, ajuste a URL {{trecho}} para usar palavras separadas por hífen e minúsculas (por exemplo {{valor}}), mantendo um redirecionamento 301 da antiga. Não quebre links existentes. Pronto quando a nova URL responder 200 e a antiga redirecionar com 301.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Estrutura de URLs",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/url-structure",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "notas": "Confiança baixa: o crawler só amostra (até 30 páginas no completo), então uma página pode estar ligada por páginas que não visitamos. Dizer \"não achamos link nas páginas visitadas\".",
+    "id": "seo-paginas-sem-link-interno",
+    "categoria": "seo",
+    "titulo": "Páginas do sitemap que nenhum link interno alcança",
+    "descricao": "O Google recomenda que toda página que você quer ver encontrada tenha ao menos um link vindo de outra página do site. Páginas \"órfãs\" dependem só do sitemap para serem descobertas.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "links",
+      "detectavel_por_script": "sim",
+      "metodo": "Compara as URLs do sitemap com os links internos encontrados pelo crawler (amostra) e lista as URLs do sitemap que nenhuma página amostrada aponta.",
+      "parametros": {
+        "fontes": [
+          "sitemap.xml",
+          "links internos do crawler"
+        ],
+        "profundidade_max": 3,
+        "limite_urls_sitemap": 200
+      }
+    },
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "baixa",
+    "correcao": "Ligue as páginas importantes a partir do menu, do rodapé ou de páginas relacionadas.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione um link com texto descritivo para a página {{trecho}} a partir de uma página relacionada ou do menu. Não crie links repetidos nem mude a navegação existente. Pronto quando o crawler encontrar pelo menos um link interno apontando para a página.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Links rastreáveis",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/links-crawlable",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Visão geral de sitemaps",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  }
+]

@@ -1,0 +1,906 @@
+[
+  {
+    "id": "sup-sombra-difusa-padrao",
+    "categoria": "visual-superficie",
+    "titulo": "Sombra difusa genérica repetida em vários elementos",
+    "descricao": "Vários cartões e botões usam a mesma sombra suave e esfumaçada de fábrica (tipo shadow-lg), sem relação com a luz ou a hierarquia da página. A sombra vira enfeite padrão.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Conta no DOM final as classes shadow-md/lg/xl/2xl e os box-shadow com preto de transparência 0,1 a 0,2. Dispara com 3 ou mais ocorrências de qualquer um dos dois tipos.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "regex_classes": "^shadow-(md|lg|xl|2xl)$",
+        "regex_box_shadow": "rgba\\(0,\\s*0,\\s*0,\\s*0?\\.0?[12]\\d*\\)",
+        "minimo_ocorrencias": 3,
+        "excluir": [
+          "box-shadow inset",
+          "sombras de foco (outline simulado)"
+        ]
+      }
+    },
+    "peso": 5,
+    "severidade": "tell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Defina um ou dois níveis de elevação com propósito (por exemplo cartão em repouso e menu flutuante) e use só eles.",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque as sombras genéricas {{valor}} por no máximo dois níveis de elevação definidos em variáveis CSS (um pequeno para cartões, um flutuante para menus), com sombra neutra tingida do fundo. Não mude cores nem layout. Pronto quando a página tiver no máximo 2 valores de box-shadow distintos e menos de 3 ocorrências de sombra preta a 10-20%.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:E1",
+      "design-review:DR-COM-06",
+      "unslop-heydamir:tok-profundidade",
+      "vercel-web-interface-guidelines:AG-DS-100"
+    ],
+    "citacoes": [
+      "contagem",
+      "trecho"
+    ],
+    "notas": "Limiar de 3 ocorrências e padrão rgba(0,0,0,0.1 a 0.2) do ai-design-tells (E1, peso 5). O design-review pede um ou dois níveis. A Vercel Labs sugere sombras em camadas (luz ambiente + direta) como alternativa. Confiança média: calibração de um único repositório."
+  },
+  {
+    "id": "sup-brilho-neon-glow",
+    "categoria": "visual-superficie",
+    "titulo": "Brilho colorido (glow) em sombras, bordas ou texto",
+    "descricao": "Sombras que \"brilham\" em volta de botões, cartões ou textos, em cor viva e sem deslocamento, bordas neon e orbes borrados atrás do conteúdo. Brilho não é profundidade; é efeito de moda.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Procura box-shadow colorido sem deslocamento (x=0, y=0) com desfoque maior que 20px, drop-shadow e text-shadow coloridos, bordas neon com sombra da mesma cor e pseudo-elementos absolutos com filter blur acima de 40px. A cor precisa ser cromática (croma OKLCH acima de 0,04).",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "box_shadow_sem_deslocamento": {
+          "x_px": 0,
+          "y_px": 0,
+          "blur_minimo_px": 20,
+          "croma_oklch_minimo": 0.04,
+          "alfa_minimo": 0.05
+        },
+        "orbe_desfocado": {
+          "seletor": "::before, ::after com position absolute ou fixed",
+          "blur_minimo_px": 40
+        },
+        "outras_propriedades": [
+          "filter: drop-shadow colorido",
+          "text-shadow colorido",
+          "borda com box-shadow da mesma cor"
+        ]
+      }
+    },
+    "peso": 6,
+    "severidade": "tell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque o brilho por sombra neutra com deslocamento e desfoque suaves, ou por diferença de luminosidade entre superfícies.",
+    "prompt_correcao": "No arquivo {{arquivo}}, remova o brilho colorido de {{trecho}} (box-shadow sem deslocamento, drop-shadow ou text-shadow coloridos, bordas neon) e use uma sombra neutra com deslocamento ou nenhuma sombra. Não mude tamanhos, cores de texto nem o conteúdo. Pronto quando nenhuma sombra cromática com blur maior que 20px e sem deslocamento sobrar na página.",
+    "fonte": [
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-ui:neon-glow",
+      "hallmark:gate-29",
+      "unslop-heydamir:brilho-colorido",
+      "unslop-heydamir:borda-neon",
+      "impeccable:floor-profundidade"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Números (blur acima de 20px, deslocamento zero, croma acima de 0,04; orbe acima de 40px) vêm do código do hallmark (gate 29, Reflex). unslop-ui marca como medium; impeccable lista \"glow shadows\" entre os achados imediatos. Blobs e malhas de fundo NÃO entram aqui: unslop-ui os libera (ver sup-estilos-liberados-info). O peso 6 é nosso, pela convergência de quatro fontes."
+  },
+  {
+    "id": "sup-estilos-liberados-info",
+    "categoria": "visual-superficie",
+    "titulo": "Vidro fosco, grade bento e fundo em malha não são problema sozinhos",
+    "descricao": "Informativo, sem pontuação: vidro fosco (glassmorphism), grades tipo bento e fundos em malha, blob ou aurora, isolados, não são tratados como sinal de visual genérico. Só o brilho colorido e outros defeitos próprios são avaliados.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "Não pontua. Serve de aviso: a presença de backdrop-filter blur, de grade bento ou de fundo em malha/blob, por si só, não gera achado. O motor registra a contagem apenas como contexto no relatório.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "pontua": false,
+        "contexto_registrado": [
+          "contagem de backdrop-filter blur",
+          "presença de grade bento",
+          "presença de fundo em malha ou blob"
+        ]
+      }
+    },
+    "peso": 0,
+    "severidade": "info",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Nenhuma correção: estes estilos são escolhas válidas quando combinam com a identidade.",
+    "prompt_correcao": "Nenhuma correção necessária no arquivo {{arquivo}} só por usar vidro fosco, grade bento ou fundo em malha. Se quiser conferir, verifique apenas se o texto sobre o vidro mantém contraste de 4,5:1 e se não há brilho colorido associado ({{trecho}}). Pronto quando nada for removido apenas por ser um desses estilos.",
+    "fonte": [
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "ai-design-tells",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-ui:cleared-*",
+      "ai-design-tells:E2",
+      "unslop-heydamir:vidro-sombra",
+      "unslop-heydamir:blobs-hero"
+    ],
+    "citacoes": [],
+    "notas": "Decisão de conflito entre fontes: unslop-ui liberou glassmorphism, bento, malha/blob/aurora e modo escuro; o ai-design-tells pontua 3 ou mais backdrop-blur (E2, peso 4 smell); hallmark (gate 29) e heydamir tratam blobs e lavagens atrás do texto como sinal. Seguimos a liberação (peso 0). O que ainda pontua é o brilho colorido (sup-brilho-neon-glow)."
+  },
+  {
+    "id": "sup-raio-unico-em-tudo",
+    "categoria": "visual-superficie",
+    "titulo": "Um único raio de canto em tudo",
+    "descricao": "Cartões, botões, campos e imagens usam o mesmo arredondamento, sem hierarquia entre peças grandes e pequenas. É um sinal de que o raio veio de um padrão e não de uma escolha.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Coleta os valores de border-radius maiores que zero em elementos visíveis (e classes rounded-*). Dispara se existe um único valor distinto e ele aparece 5 ou mais vezes. Quadrados (raio zero em tudo) não disparam.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "valores_distintos": 1,
+        "minimo_usos": 5,
+        "ignorar": [
+          "raio 0",
+          "50% em avatares e ícones"
+        ],
+        "credito_de_craft": "3 ou mais raios distintos organizados por papel (botão, cartão, painel)"
+      }
+    },
+    "peso": 4,
+    "severidade": "tell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Crie uma escala de raios por papel (campos e botões menores, cartões médios, painéis maiores) em variáveis.",
+    "prompt_correcao": "No arquivo {{arquivo}}, defina uma escala de raios por papel em variáveis CSS (por exemplo botões e campos 8px, cartões 12px, painéis 16px) e troque o raio único {{valor}} por ela. Não mude cores nem tamanhos. Pronto quando a página usar pelo menos 2 valores de raio distintos com papéis claros e nenhum filho tiver raio maior que o pai.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:C3",
+      "design-review:DR-COM-05",
+      "unslop-heydamir:tok-raio"
+    ],
+    "citacoes": [
+      "contagem",
+      "numero"
+    ],
+    "notas": "Limiar (um único valor usado 5 ou mais vezes) do ai-design-tells (C3, peso 4). O design-review e o heydamir dão escalas de exemplo (4/8/12 px; 4-6, 8-10, 12-16, 14-20 px). Hierarquia de raio é crédito de craft na fórmula do Tell Score."
+  },
+  {
+    "id": "sup-pilula-em-tudo",
+    "categoria": "visual-superficie",
+    "titulo": "Cantos muito arredondados (pílula) em cartões e contêineres",
+    "descricao": "Cartões, caixas e imagens têm cantos de pílula ou muito arredondados, e não só etiquetas e botões. Quando tudo é redondo, o formato deixa de dizer alguma coisa.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Conta elementos que não são controles (botão, campo, chip, tag, badge, status) com border-radius de 9999px ou mais, ou classes rounded-2xl/3xl/full em cartões e contêineres. Ignora elementos de até 48px (avatares e ícones). Dispara com 5 ou mais elementos ou seletores.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "radius_pilula": ">= 9999px",
+        "regex_classes": "rounded-(2xl|3xl|full)",
+        "regex_seletor_controle": "btn|button|cta|input|select|textarea|switch|toggle|control|chip|pill|tag|badge|status",
+        "tamanho_ignorado_px": 48,
+        "minimo_elementos": 5
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Reserve o formato de pílula para controles e use o raio de cartão (12 a 16px) nas caixas e imagens.",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque os cantos de pílula ou muito arredondados de {{trecho}} pelo raio de cartão da escala (12 a 16px), mantendo a pílula só em botões e etiquetas. Não mude cores nem tamanhos. Pronto quando no máximo 4 elementos que não são controles tiverem raio de pílula.",
+    "fonte": [
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-ui:rounded-everything",
+      "hallmark:F7",
+      "unslop-heydamir:pill-em-tudo",
+      "impeccable:qui-raios"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Limiar de 5 elementos não-controle e regex de controles vêm do hallmark (F7 Finish). Regex rounded-2xl/3xl/full e a supressão para elementos pequenos vêm do unslop-ui; o corte de 48px é proposta nossa (limiar inicial, a calibrar no teste de acerto) por isso confiança baixa."
+  },
+  {
+    "id": "sup-card-dentro-de-card",
+    "categoria": "visual-superficie",
+    "titulo": "Cartão dentro de cartão (caixa dentro de caixa)",
+    "descricao": "Uma caixa com borda, fundo ou sombra aparece dentro de outra caixa também emoldurada. A moldura dupla pesa e confunde a hierarquia; uma moldura externa com lista simples resolve.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Marca como cartão um div/section/article/li/aside/form/ul com a classe card, ou com raio maior que zero e (borda, fundo próprio ou sombra). Percorre a árvore e conta cartões que têm outro cartão como ancestral. Dispara com 1 ou mais.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "tags_cartao": [
+          "div",
+          "section",
+          "article",
+          "li",
+          "aside",
+          "form",
+          "ul"
+        ],
+        "criterio": "classe card OU (border-radius > 0 E (borda visível OU fundo distinto OU box-shadow))",
+        "minimo_aninhados": 1,
+        "ignorar": [
+          "campos de formulário",
+          "botões",
+          "avatares",
+          "etiquetas pequenas"
+        ]
+      }
+    },
+    "peso": 5,
+    "severidade": "tell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Mantenha só a moldura externa e separe os itens internos com linhas finas ou espaço.",
+    "prompt_correcao": "No arquivo {{arquivo}}, remova a moldura (borda, fundo ou sombra) do cartão interno {{trecho}} e separe os itens com divisórias finas ou espaço, mantendo o cartão externo. Não mude o conteúdo nem as cores da marca. Pronto quando nenhum cartão tiver outro cartão emoldurado como filho.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:E4",
+      "hallmark:gate-4",
+      "impeccable:floor-proib-cards-iguais",
+      "impeccable:dis-cards"
+    ],
+    "citacoes": [
+      "contagem",
+      "trecho"
+    ],
+    "notas": "Peso 4 do ai-design-tells (E4, limiar 1 ou mais); reforçado a 5 porque hallmark o trata como Floor e impeccable diz que cartões aninhados \"sempre estão errados\". Falsos positivos possíveis em caixas de formulário dentro de modais: o modelo pode anular. Tema próximo (cartões iguais de ícone+título) pertence à categoria de estrutura."
+  },
+  {
+    "id": "sup-card-shadcn-padrao",
+    "categoria": "visual-superficie",
+    "titulo": "Cartão idêntico ao do tema padrão do shadcn/Tailwind",
+    "descricao": "Os cartões usam a combinação de fábrica de borda fina, fundo de cartão, sombra pequena e cantos de 0,5rem, em tons de cinza-ardósia, sem personalização. Parece o exemplo da documentação.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "html",
+      "metodo": "Procura no HTML e CSS o trio de classes de cartão padrão, o baseColor padrão e o raio padrão. O modelo olha o screenshot e responde se o cartão se distingue do cartão da documentação do shadcn.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "regex_trio_classes": "rounded-lg border bg-card text-card-foreground shadow-sm",
+        "regex_base_color": "\"baseColor\"\\s*:\\s*\"(slate|zinc|gray|neutral|stone)\"",
+        "regex_raio_padrao": "--radius:\\s*0\\.5rem",
+        "pergunta_ao_modelo": "o cartão se distingue do cartão padrão da documentação do shadcn?"
+      }
+    },
+    "peso": 6,
+    "severidade": "tell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Personalize o tema do componente (raio, borda, sombra e cores de superfície) para refletir a identidade do site.",
+    "prompt_correcao": "No arquivo {{arquivo}}, personalize os cartões {{trecho}}: defina raio, borda, sombra e cores de superfície próprios nas variáveis do tema, em vez dos valores padrão (--radius: 0.5rem, tons de ardósia). Não mude o conteúdo nem a estrutura. Pronto quando o cartão for visualmente diferente do cartão da documentação do shadcn e o trio de classes padrão não aparecer sem alteração.",
+    "fonte": [
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-ui:shadcn-default-card",
+      "hallmark:gate-74"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "unslop-ui coloca como high (peso 3 de 3) e prioridade 1 em tells.md; o peso 6 é conversão nossa para a escala do ai-design-tells (high ≈ 6, medium ≈ 4, low ≈ 2). Detalhe: no scanner original o padrão baseColor só dispara em arquivo de extensão lida, não em components.json. shadcn e Tailwind bem personalizados são liberados pelo repositório."
+  },
+  {
+    "id": "sup-borda-lateral-colorida",
+    "categoria": "visual-superficie",
+    "titulo": "Faixa colorida grossa só no lado esquerdo de cartões e avisos",
+    "descricao": "Cartões, itens de lista, avisos ou citações com uma barra de cor grossa só em um dos lados. É uma decoração muito repetida; o aviso funciona melhor com ícone, cor de fundo suave ou texto.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Em cartões, itens de lista, callouts e alertas, procura border-left (ou border-inline-start) com espessura acima de 1px e cor cromática, enquanto os outros lados têm borda fina ou nenhuma.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "espessura_minima_px": 2,
+        "lados": [
+          "border-left",
+          "border-inline-start"
+        ],
+        "croma_oklch_minimo": 0.04,
+        "outros_lados_maximo_px": 1,
+        "elementos": [
+          "cartão",
+          "li",
+          "callout",
+          "alerta",
+          "blockquote"
+        ]
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque a faixa lateral por um fundo suave, um ícone ou apenas por título em negrito.",
+    "prompt_correcao": "No arquivo {{arquivo}}, remova a borda lateral colorida de {{trecho}} (border-left de {{valor}}) e sinalize o destaque com fundo suave, ícone ou negrito. Não mude o texto nem a posição do bloco. Pronto quando nenhum cartão, item ou aviso tiver borda lateral colorida de 2px ou mais com os outros lados finos.",
+    "fonte": [
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:floor-proib-border-lateral",
+      "hallmark:gate-3"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "O impeccable proíbe borda colorida lateral acima de 1px (detector \"side-tab\", sem critérios descritos nos arquivos lidos); o hallmark cita \"borda lateral colorida grossa\" dentro do gate 3. Espessura mínima de 2px = \"acima de 1px\". Número de croma 0,04 é o corte cromático do código do hallmark."
+  },
+  {
+    "id": "sup-sombra-dura-offset",
+    "categoria": "visual-superficie",
+    "titulo": "Sombra dura com deslocamento e sem desfoque",
+    "descricao": "Caixas com sombra sólida deslocada (por exemplo 4px 4px sem desfoque). É um estilo próprio (neobrutalismo), válido quando o site inteiro é assim; fora disso parece enfeite solto.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "css",
+      "metodo": "Procura box-shadow externo com deslocamento diferente de zero e blur igual a zero. O modelo verifica se o restante do site segue um estilo neobrutalista coerente (bordas grossas, cores chapadas); se sim, anula.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "regex_box_shadow": "\\b[1-9]\\d*px\\s+[1-9]\\d*px\\s+0(px)?\\b",
+        "exceto": "estilo neobrutalista coerente em todo o site"
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Use sombra suave neutra, ou assuma o estilo duro em todos os elementos.",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque a sombra dura {{valor}} de {{trecho}} por uma sombra suave neutra, a menos que o site inteiro siga estilo neobrutalista, caso em que a aplique de forma consistente. Não mude cores nem textos. Pronto quando houver coerência: ou nenhuma sombra dura, ou todas as caixas seguem o mesmo estilo.",
+    "fonte": [
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:floor-proib-sombra-dura"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Fonte única (craft-floor do impeccable: proibido fora de mundo neobrutalista). Sem número de calibração: confiança baixa e peso 2. A regex é nossa."
+  },
+  {
+    "id": "sup-cards-irmaos-inconsistentes",
+    "categoria": "visual-superficie",
+    "titulo": "Cartões irmãos com raio, borda ou sombra diferentes",
+    "descricao": "Cartões lado a lado, que deveriam ser iguais, têm cantos, bordas ou sombras diferentes entre si. Dá aparência de montagem sem cuidado.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Agrupa filhos diretos de um mesmo contêiner com estrutura parecida (3 ou mais irmãos com a mesma classe-base) e compara border-radius, box-shadow e largura de borda computados. Dispara se algum valor difere entre eles; intensidade é a fração de irmãos fora do valor mais comum.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "minimo_irmaos": 3,
+        "propriedades": [
+          "border-radius",
+          "box-shadow",
+          "border-width"
+        ],
+        "excluir": [
+          "estado hover",
+          "cartão em destaque marcado por classe própria"
+        ]
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Faça os cartões do mesmo grupo usarem a mesma classe de estilo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, faça os cartões {{trecho}} usarem a mesma classe (mesmo raio, borda e sombra), mantendo um cartão em destaque só se for intencional. Não mude o conteúdo nem os tamanhos. Pronto quando todos os irmãos do grupo tiverem os mesmos valores computados de border-radius, box-shadow e borda.",
+    "fonte": [
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "design-review:DR-COM-02"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Fonte única (design-review, DR-COM-02: cartões com mesmo raio, sombra e padding). O padding fica com a categoria de espaçamento. A definição de \"3 ou mais irmãos\" é proposta nossa: limiar inicial, a calibrar no teste de acerto."
+  },
+  {
+    "id": "sup-decoracao-sem-funcao",
+    "categoria": "visual-superficie",
+    "titulo": "Bordas, sombras e fundos que não servem à hierarquia",
+    "descricao": "Há molduras, sombras, fundos e texturas que não ajudam a separar nem a destacar nada: estão ali só para enfeitar. Quanto mais enfeite, menos o conteúdo se destaca.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo olha o screenshot e pergunta, para 3 elementos concretos: se eu remover esta borda, sombra ou fundo, a hierarquia piora? Se não piora, é decoração. Responde citando o elemento ou marca como não verificável.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "teste": "remover o efeito e ver se a hierarquia piora",
+        "evidencia_minima": "citar 2 elementos com seletor ou trecho",
+        "exemplos_alvo": [
+          "borda em volta de tudo",
+          "sombra em cartões sem elevação real",
+          "fundos em faixas alternadas sem agrupar nada"
+        ]
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Remova bordas, sombras e fundos que não separam nem destacam nada.",
+    "prompt_correcao": "No arquivo {{arquivo}}, remova ou simplifique as molduras, sombras e fundos de {{trecho}} que não ajudam a hierarquia, usando espaço e alinhamento no lugar. Não troque por outra tendência (vidro, grão, neon). Pronto quando cada borda, sombra ou fundo restante tiver uma função clara de separar ou destacar.",
+    "fonte": [
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:dis-decoracao",
+      "impeccable:qui-decoracao",
+      "impeccable:lay-profundidade",
+      "impeccable:nw-cromado-generico",
+      "unslop-heydamir:reg-nao-trocar-tendencia"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Julgamento puro; as fontes não dão número. O modelo só pode afirmar com trecho citado."
+  },
+  {
+    "id": "sup-fundo-grade-ou-pontos",
+    "categoria": "visual-superficie",
+    "titulo": "Grade de linhas ou pontos como fundo decorativo",
+    "descricao": "O fundo da primeira tela ou das seções usa uma grade de linhas finas ou pontos só como textura. Costuma ser um enfeite que se repete em páginas prontas e não ajuda a ler.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "css",
+      "metodo": "Procura background-image com repeating-linear-gradient, gradientes de 1px em grade ou radial-gradient de pontos de 1px com background-size em px, ou SVG de padrão, em hero ou seções. O modelo confere se é textura decorativa ou parte do conteúdo (ex.: gráfico, mapa).",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "regex_css": "repeating-linear-gradient|linear-gradient\\([^)]*\\b1px\\b|radial-gradient\\(circle[^)]*\\b1px\\b",
+        "exige": "background-size definido em px",
+        "onde_olhar": [
+          "hero",
+          "seções de largura total"
+        ],
+        "exceto": [
+          "canvas ou SVG com dados reais"
+        ]
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque a grade por cor chapada ou por uma imagem que mostre algo do assunto.",
+    "prompt_correcao": "No arquivo {{arquivo}}, remova o fundo em grade ou pontos {{trecho}} e use uma cor chapada da paleta (ou uma imagem real do assunto). Não mude textos nem a estrutura da seção. Pronto quando nenhum hero ou seção usar grade de linhas ou pontos como textura decorativa.",
+    "fonte": [
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:blobs-hero",
+      "hallmark:gate-47c"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Heydamir cita blobs, orbes, grades e linhas brilhantes atrás do hero; hallmark cita \"grade decorativa sem canvas\" (julgamento). A regex é proposta nossa: limiar inicial, a calibrar no teste de acerto. Blobs e malhas ficam liberados (ver sup-estilos-liberados-info)."
+  },
+  {
+    "id": "sup-navegador-sem-tema",
+    "categoria": "visual-superficie",
+    "titulo": "Seleção de texto, cursor e barra de rolagem sem a cor do site",
+    "descricao": "O site tem paleta própria, mas a seleção de texto, o cursor de digitação e a barra de rolagem continuam na cor padrão do navegador. Detalhe fino, de acabamento.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Em páginas que declaram variáveis de cor, verifica se existe alguma regra ::selection, caret-color ou scrollbar-color. Dispara se nenhuma das três existe.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "propriedades_esperadas": [
+          "::selection",
+          "caret-color",
+          "scrollbar-color"
+        ],
+        "pre_condicao": "a página declara variáveis de cor (paleta)"
+      }
+    },
+    "peso": 1,
+    "severidade": "smell",
+    "selo": "fato",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Defina ::selection, caret-color e scrollbar-color com as cores da marca.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione ::selection (fundo e texto), caret-color e scrollbar-color usando as variáveis da paleta {{valor}}. Não mude outras cores nem o contraste mínimo de 4,5:1 na seleção. Pronto quando as três propriedades estiverem definidas com cores da marca.",
+    "fonte": [
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:F16",
+      "impeccable:floor-superficies-navegador"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Checagem de acabamento (Finish no hallmark). Sem número de calibração: peso 1 e confiança baixa."
+  },
+  {
+    "id": "sup-raio-aninhado-errado",
+    "categoria": "visual-superficie",
+    "titulo": "Cantos de dentro mais arredondados que os da caixa de fora",
+    "descricao": "Um elemento dentro de um cartão tem cantos mais arredondados que o próprio cartão. Os cantos deveriam seguir o desenho da caixa externa; do contrário o encaixe fica torto.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Para cada par pai-filho em que ambos têm raio maior que zero e o filho tem borda ou fundo próprio, compara o raio. Dispara se o raio do filho é maior que o do pai.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "condicao": "raio_filho > raio_pai",
+        "ambos_com_raio_maior_que_zero": true,
+        "filho_com": "borda ou fundo próprio",
+        "referencia_ideal": "raio interno = raio externo menos o espaçamento (mínimo 4px)"
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "fato",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Use raio interno igual ao raio externo menos o espaço entre as caixas.",
+    "prompt_correcao": "No arquivo {{arquivo}}, ajuste o raio de {{trecho}} para ser igual ao raio do cartão externo menos o espaçamento entre eles (mínimo 4px). Não mude tamanhos nem cores. Pronto quando nenhum elemento interno tiver raio maior que o do cartão que o contém.",
+    "fonte": [
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "vercel-web-interface-guidelines:AG-DS-102",
+      "unslop-heydamir:tok-raio"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "AGENTS.md da Vercel Labs (SHOULD): raio do filho menor ou igual ao do pai, concêntricos. Heydamir: raio interno = externo menos padding, mínimo 4. Só a violação \"maior que o pai\" é medida; a regra concêntrica exata fica no texto de correção."
+  },
+  {
+    "id": "sup-moldura-de-janela-falsa",
+    "categoria": "visual-superficie",
+    "titulo": "Janela de navegador ou de aparelho desenhada à mão no lugar de uma captura",
+    "descricao": "A página mostra o \"produto\" dentro de uma barra de janela com três bolinhas, moldura de celular ou de terminal montadas com caixas de código. Uma captura real do produto convence mais.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "html",
+      "metodo": "Procura classes e seletores de moldura (barra de navegador, bolinhas de janela, moldura de telefone, terminal) e três círculos pequenos vizinhos em vermelho, amarelo e verde no topo de uma caixa. O modelo confere se o conteúdo dentro é real ou desenhado.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "regex_classe_barra": "(browser|window|mac|osx)[-_]?(bar|chrome|dots|controls)|traffic[-_]?light|title[-_]?bar|window[-_]?(dots|buttons)|url[-_]?(bar|pill)",
+        "regex_classe_aparelho": "phone[-_]?(frame|mock(up)?)|device[-_]?frame|\\bnotch\\b|terminal[-_]?(chrome|frame|bar|dots|header)|(ide|editor)[-_]?(chrome|frame)|(browser|window)[-_]?frame",
+        "tres_circulos": "três elementos redondos de até 16px, vizinhos, com matizes vermelho, amarelo e verde",
+        "aceita": "uma moldura com conteúdo real (captura ou vídeo do produto)"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque a moldura desenhada por uma captura real do produto, sem moldura ou com uma moldura simples.",
+    "prompt_correcao": "No arquivo {{arquivo}}, substitua a moldura desenhada {{trecho}} por uma captura real do produto (img com alt descritivo), sem barra de janela falsa. Não mude textos nem a ordem das seções. Pronto quando nenhuma barra de janela, bolinhas ou moldura de aparelho feita em HTML/CSS aparecer sem conteúdo real dentro.",
+    "fonte": [
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:gate-47a",
+      "hallmark:gate-47b",
+      "unslop-heydamir:reg-produto-real"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "As regex de classes são do código do hallmark (check47; 47a Floor, 47b Reflex, aceita uma moldura com conteúdo real). A detecção por três círculos coloridos é proposta nossa: limiar inicial, a calibrar no teste de acerto, por isso confiança baixa."
+  }
+]

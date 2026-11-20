@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Home</title>
+<meta name="description" content="Descrição do cru.">
+<link rel="canonical" href="/pagina#topo">
+<link rel="canonical" href="https://exemplo.test/outra">
+<link rel="alternate" hreflang="pt-BR" href="https://exemplo.test/">
+<link rel="alternate" hreflang="xx_yy" href="https://exemplo.test/xx/">
+<link rel="alternate" hreflang="en" href="/en/">
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.title = 'Título definido por JavaScript';
+  document.querySelector('meta[name="description"]').setAttribute('content', 'Descrição do final.');
+});
+</script>
+</head>
+<body>
+<main>
+<h1>Início</h1>
+<p><a href="/Pagina_Antiga.html?sessionid=abc123">Página antiga</a> <a href="/#/rota">Rota por hash</a> <a href="/loja/Camisetas">Camisetas</a></p>
+<p><a href="javascript:void(0)">Abrir</a> <a href="#" onclick="abrir()">Menu</a> <a class="btn" onclick="ir()">Sem href</a> <a name="ancora">Âncora</a></p>
+<div role="link" tabindex="0" onclick="ir()">Div link</div>
+<p><a href="/sobre.html">Saiba mais</a> <a href="/contato.html">Clique aqui</a> <a href="/sobre.html" aria-label="Saiba mais sobre a empresa">Saiba mais</a></p>
+</main>
+</body>
+</html>

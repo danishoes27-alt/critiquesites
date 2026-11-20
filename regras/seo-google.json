@@ -1,0 +1,747 @@
+[
+  {
+    "modo": [
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "seo-google",
+    "id": "seo-h1-ausente",
+    "tipos_de_site": [
+      "*"
+    ],
+    "titulo": "Página sem título principal (H1) visível",
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "descricao": "Heurística: um título principal (H1) visível diz a quem chega, e ao leitor de tela, do que a página trata. O Google diz que a ordem e o número de títulos não importam para a busca, então isto não é uma exigência do Google.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo-google",
+      "detectavel_por_script": "sim",
+      "metodo": "Lê, para cada página, a quantidade de H1 visíveis e que não são clones no DOM final (medidor seo)."
+    },
+    "correcao": "Coloque um H1 claro, uma vez por página, com o assunto principal em linguagem simples.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a página não tem um título principal (H1) visível. Adicione um único <h1> com o assunto da página em linguagem simples, perto do topo, sem copiar texto de outro site. Pronto quando houver exatamente um H1 visível e a página continuar igual no resto.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Guia inicial de SEO",
+        "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-20"
+      },
+      {
+        "nome": "web.dev: HTML semântico (títulos)",
+        "url": "https://web.dev/learn/html/headings-and-sections",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Heurística; o Google não exige H1. Peso baixo."
+  },
+  {
+    "modo": [
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "seo-google",
+    "id": "seo-viewport-ausente",
+    "tipos_de_site": [
+      "*"
+    ],
+    "titulo": "Página sem meta viewport adequada para celular",
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "descricao": "Sem a tag meta viewport com largura definida, celulares mostram a página em largura de computador e encolhida, o que atrapalha a leitura e o uso. O Google indexa pela versão para celular; a tag em si não é citada nas páginas do Google lidas, por isso a confiança é média.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo-google",
+      "detectavel_por_script": "sim",
+      "metodo": "Procura meta name=viewport no DOM final e confere se o conteúdo tem width= e initial-scale menor que 1."
+    },
+    "correcao": "Adicione <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> no <head>.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione dentro do <head> a linha <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> (sem bloquear o zoom). Pronto quando a tag existir uma vez e a página abrir em largura de celular, sem rolagem lateral.",
+    "fonte": [
+      {
+        "nome": "Chrome para desenvolvedores (Lighthouse): auditoria da meta viewport",
+        "url": "https://developer.chrome.com/docs/lighthouse/pwa/viewport",
+        "licenca": "CC BY 4.0, segundo o site do Chrome para desenvolvedores",
+        "data_consulta": "2026-11-20"
+      },
+      {
+        "nome": "Google Search Central: indexação mobile-first",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "modo": [
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "seo-google",
+    "id": "seo-open-graph-incompleto",
+    "tipos_de_site": [
+      "*"
+    ],
+    "titulo": "Prévia de compartilhamento (Open Graph) incompleta",
+    "peso": 1,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "descricao": "O protocolo Open Graph define quatro propriedades obrigatórias (og:title, og:type, og:image, og:url) para a prévia ao compartilhar o link. Isto NÃO muda a posição no Google: afeta como o link aparece em redes e mensageiros.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo-google",
+      "detectavel_por_script": "sim",
+      "metodo": "Lê as metas property=og:* do DOM final de cada página e lista quais das quatro obrigatórias faltam."
+    },
+    "correcao": "Acrescente as metas og:title, og:type, og:image e og:url no <head> de cada página.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione no <head> as metas Open Graph que faltam: og:title (nome da página), og:type (por exemplo website), og:image (endereço de uma imagem sua, em tamanho de compartilhamento) e og:url (endereço completo da página). Use somente imagem e texto seus. Pronto quando as quatro existirem com valor e a prévia do link mostrar título e imagem.",
+    "fonte": [
+      {
+        "nome": "The Open Graph protocol",
+        "url": "https://ogp.me/",
+        "licenca": "Especificação aberta (Open Web Foundation Agreement)",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Não afeta posição no Google; peso mínimo."
+  },
+  {
+    "modo": [
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "seo-google",
+    "id": "seo-produto-sem-dado-estruturado",
+    "tipos_de_site": [
+      "loja",
+      "catalogo",
+      "pagina-de-vendas"
+    ],
+    "titulo": "Site de venda sem dados estruturados de produto",
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "descricao": "Dados estruturados Product (nome mais preço, avaliação ou nota) ajudam o Google a entender o produto e podem habilitar resultados enriquecidos. O Google não garante que apareçam.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo-google",
+      "detectavel_por_script": "sim",
+      "metodo": "Confere, em todas as páginas lidas (cru e final), se algum JSON-LD, microdata ou RDFa traz o tipo Product (medidor jsonld)."
+    },
+    "correcao": "Adicione dados estruturados Product (JSON-LD) nas páginas de produto, com nome e preço reais.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione um bloco <script type=\"application/ld+json\"> com o tipo Product: name, description, image e offers (price, priceCurrency BRL, availability), usando só os dados reais do produto da página. Pronto quando o JSON for válido e os valores forem iguais aos que a pessoa vê na página.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: dados estruturados de Product (snippet de produto)",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/product-snippet",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "modo": [
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "seo-google",
+    "id": "seo-produto-sem-oferta-ou-avaliacao",
+    "tipos_de_site": [
+      "*"
+    ],
+    "titulo": "Product sem offers, review ou aggregateRating",
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "alta",
+    "descricao": "Para o snippet de produto o Google pede name e pelo menos um entre offers, review e aggregateRating. Product sem nenhum deles não cumpre o mínimo documentado.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo-google",
+      "detectavel_por_script": "sim",
+      "metodo": "Quando há Product no DOM final, confere as propriedades de primeiro nível encontradas (medidor jsonld)."
+    },
+    "correcao": "Inclua offers (com preço) ou review/aggregateRating reais no Product.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o JSON-LD do tipo Product não tem offers, review nem aggregateRating. Adicione offers com price, priceCurrency e availability reais (ou avaliações reais, nunca inventadas). Pronto quando o Product tiver name mais pelo menos um desses três.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: dados estruturados de Product (snippet de produto)",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/product-snippet",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "modo": [
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "seo-google",
+    "id": "seo-artigo-sem-dado-estruturado",
+    "tipos_de_site": [
+      "blog"
+    ],
+    "titulo": "Blog sem dados estruturados de artigo",
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "descricao": "Em artigos, o Google recomenda datePublished e dateModified no dado estruturado, iguais às datas visíveis na página.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo-google",
+      "detectavel_por_script": "sim",
+      "metodo": "Procura os tipos Article, BlogPosting ou NewsArticle nos dados estruturados do site (medidor jsonld)."
+    },
+    "correcao": "Adicione JSON-LD Article/BlogPosting com headline, author e datePublished.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione um JSON-LD do tipo BlogPosting com headline, author (nome real), datePublished e dateModified iguais às datas visíveis no artigo. Pronto quando o JSON for válido e as datas baterem com as do texto.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: datas de publicação",
+        "url": "https://developers.google.com/search/docs/appearance/publication-dates",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "modo": [
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "seo-google",
+    "id": "seo-organizacao-ou-negocio-sem-dado-estruturado",
+    "tipos_de_site": [
+      "site-institucional",
+      "cardapio",
+      "agendamento"
+    ],
+    "titulo": "Negócio sem dados estruturados de organização ou negócio local",
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "descricao": "Organization não tem propriedades obrigatórias, mas o Google recomenda informar nome, url, logo, contato e endereço; LocalBusiness exige name e address.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo-google",
+      "detectavel_por_script": "sim",
+      "metodo": "Procura Organization ou algum tipo de negócio local (LocalBusiness e subtipos) no JSON-LD do site (medidor jsonld)."
+    },
+    "correcao": "Adicione JSON-LD Organization ou LocalBusiness na página inicial.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione na página inicial um JSON-LD do tipo LocalBusiness (ou Organization se não houver endereço) com name, url, logo, telephone e address reais. Não invente avaliações. Pronto quando o JSON for válido e os dados forem iguais aos do rodapé.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: dados estruturados de Organization",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/organization",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-20"
+      },
+      {
+        "nome": "Google Search Central: dados estruturados de negócio local",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/local-business",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "modo": [
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "seo-google",
+    "id": "seo-termo-do-title-fora-do-h1",
+    "tipos_de_site": [
+      "*"
+    ],
+    "titulo": "O assunto do title não aparece no H1",
+    "peso": 1,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "descricao": "Heurística de intenção: o termo que o title parece querer ranquear não aparece no H1. Pode ser proposital. A skill não sabe o volume de busca nem a posição: isso é não verificável sem dados do Search Console.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo-google",
+      "detectavel_por_script": "sim",
+      "metodo": "Tira o nome do site do title (parte antes de | – — ou :), pega as palavras significativas e confere se alguma aparece no H1 visível."
+    },
+    "correcao": "Alinhe o H1 com o assunto do title, em linguagem natural.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o H1 não menciona o assunto principal do title. Reescreva o H1 para dizer o mesmo assunto em linguagem natural, para pessoas, sem repetir palavras à força. Pronto quando title e H1 tratarem do mesmo assunto.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Guia inicial de SEO",
+        "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-20"
+      },
+      {
+        "nome": "Google Search Central: criando conteúdo útil, confiável e feito para pessoas",
+        "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Heurística; sem dado de busca real."
+  },
+  {
+    "modo": [
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "seo-google",
+    "id": "seo-termo-do-title-fora-do-texto",
+    "tipos_de_site": [
+      "*"
+    ],
+    "titulo": "Palavras do title não aparecem no texto da página",
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "descricao": "Heurística de intenção: algumas palavras do assunto do title não aparecem no texto visível, então o conteúdo pode não entregar o que o title promete.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo-google",
+      "detectavel_por_script": "sim",
+      "metodo": "Compara as palavras significativas do title com o texto visível (sem clones) e lista as ausentes; só avalia páginas com pelo menos 50 palavras."
+    },
+    "correcao": "Escreva no texto o que o title promete, com exemplos e detalhes reais.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o texto da página não cobre as palavras do title. Escreva em linguagem natural o que o title promete, com informação real do negócio e sem copiar texto de outros sites. Pronto quando o assunto do title for explicado no texto da página.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Guia inicial de SEO",
+        "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-20"
+      },
+      {
+        "nome": "Google Search Central: criando conteúdo útil, confiável e feito para pessoas",
+        "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "modo": [
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "seo-google",
+    "id": "seo-eeat-autor-ausente",
+    "tipos_de_site": [
+      "blog"
+    ],
+    "titulo": "Artigo sem autor identificado",
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "media",
+    "descricao": "O Google orienta deixar claro quem criou o conteúdo, com assinatura e link para informações do autor, onde o leitor espera. É sinal de confiança (E-E-A-T), não um fator medido por nós.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo-google",
+      "detectavel_por_script": "sim",
+      "metodo": "Em páginas que parecem artigo, procura meta author, rel=author, itemprop=author ou texto do tipo \"Por Nome\"."
+    },
+    "correcao": "Mostre quem escreveu, com link para uma página sobre a pessoa.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione a assinatura do autor (nome real) no início ou no fim do artigo, com link para uma página que explique quem é a pessoa. Não use nome falso nem credencial inventada. Pronto quando o autor aparecer de forma visível em cada artigo.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: criando conteúdo útil, confiável e feito para pessoas",
+        "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "modo": [
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "seo-google",
+    "id": "seo-eeat-data-ausente",
+    "tipos_de_site": [
+      "blog"
+    ],
+    "titulo": "Artigo sem data visível",
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "media",
+    "descricao": "O Google recomenda mostrar uma data visível (\"Publicado\" ou \"Atualizado\") e, em artigos, usar datePublished e dateModified iguais às da página. Nunca altere a data só para parecer novo.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo-google",
+      "detectavel_por_script": "sim",
+      "metodo": "Em páginas que parecem artigo, procura <time datetime>, itemprop de data ou texto \"Publicado em\"."
+    },
+    "correcao": "Mostre a data de publicação e, se mudar, a de atualização.",
+    "prompt_correcao": "No arquivo {{arquivo}}, mostre a data real de publicação (e a de atualização, se houver) perto do título, usando <time datetime>. Pronto quando cada artigo mostrar uma data visível e igual à do dado estruturado.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: datas de publicação",
+        "url": "https://developers.google.com/search/docs/appearance/publication-dates",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "modo": [
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "seo-google",
+    "id": "seo-eeat-pagina-sobre-ausente",
+    "tipos_de_site": [
+      "site-institucional",
+      "blog",
+      "loja",
+      "catalogo",
+      "pagina-de-vendas",
+      "cardapio",
+      "agendamento",
+      "portfolio",
+      "landing-page"
+    ],
+    "titulo": "Sem página ou link \"Sobre\" ou \"Quem somos\"",
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "descricao": "Heurística de confiança: mostrar quem está por trás do site ajuda visitantes e atende à orientação do Google de deixar claro quem criou o conteúdo. Não é exigência do Google.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo-google",
+      "detectavel_por_script": "sim",
+      "metodo": "Procura link interno visível com texto sobre/quem somos/nossa história ou caminho /sobre, /quem-somos, /about."
+    },
+    "correcao": "Crie uma página \"Sobre\" com quem é a pessoa ou equipe e linke no menu.",
+    "prompt_correcao": "No projeto {{arquivo}}, crie uma página \"Sobre\" com quem é a pessoa ou a equipe, a experiência real e um contato, e linke no menu e no rodapé. Use só informação verdadeira. Pronto quando houver um link visível \"Sobre\" na página inicial.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: criando conteúdo útil, confiável e feito para pessoas",
+        "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "citacoes": [
+      "contagem"
+    ]
+  },
+  {
+    "modo": [
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "seo-google",
+    "id": "seo-eeat-sem-fontes-citadas",
+    "tipos_de_site": [
+      "blog"
+    ],
+    "titulo": "Texto longo sem nenhum link para fontes",
+    "peso": 1,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "descricao": "Heurística: artigos que afirmam fatos costumam citar fontes. Esta página tem texto longo e nenhum link externo. Pode ser opinião pessoal e estar tudo certo.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo-google",
+      "detectavel_por_script": "sim",
+      "metodo": "Em páginas que parecem artigo com pelo menos 400 palavras, conta links externos visíveis e dispara com zero."
+    },
+    "correcao": "Cite as fontes de números e afirmações, com link.",
+    "prompt_correcao": "No arquivo {{arquivo}}, onde o texto citar números, estudos ou afirmações, adicione link para a fonte original e diga qual é. Não copie trechos longos da fonte. Pronto quando cada número importante tiver fonte.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: criando conteúdo útil, confiável e feito para pessoas",
+        "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "citacoes": [
+      "contagem"
+    ]
+  },
+  {
+    "modo": [
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "seo-google",
+    "id": "seo-local-dados-estruturados-ausentes",
+    "tipos_de_site": [
+      "*"
+    ],
+    "titulo": "Negócio local sem dados estruturados de LocalBusiness",
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "descricao": "O site mostra telefone e endereço, mas não declara LocalBusiness. O Google pede name e address e recomenda telephone, horário e geo. Não garante nenhum recurso.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo-google",
+      "detectavel_por_script": "sim",
+      "metodo": "Aplica só se houver telefone e endereço visíveis (ou tipo de site local); procura LocalBusiness e subtipos no JSON-LD."
+    },
+    "correcao": "Adicione JSON-LD LocalBusiness com nome, endereço, telefone e horário reais.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione um JSON-LD LocalBusiness com name, address (PostalAddress), telephone, url e openingHoursSpecification reais, iguais aos do rodapé e do Perfil da Empresa no Google. Pronto quando o JSON for válido e os dados baterem com a página.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: dados estruturados de negócio local",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/local-business",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "modo": [
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "seo-google",
+    "id": "seo-local-dados-estruturados-incompletos",
+    "tipos_de_site": [
+      "*"
+    ],
+    "titulo": "LocalBusiness sem name ou address",
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "alta",
+    "descricao": "Para LocalBusiness o Google exige name e address. Sem um deles o dado não cumpre o mínimo documentado.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo-google",
+      "detectavel_por_script": "sim",
+      "metodo": "Quando há LocalBusiness (ou subtipo), confere se as propriedades de primeiro nível incluem name e address."
+    },
+    "correcao": "Complete o LocalBusiness com name e address.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o JSON-LD de negócio local está sem name ou address. Complete com o nome e o endereço postal reais. Pronto quando ambos existirem e baterem com a página.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: dados estruturados de negócio local",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/local-business",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "modo": [
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "seo-google",
+    "id": "seo-local-telefone-ou-endereco-divergente",
+    "tipos_de_site": [
+      "*"
+    ],
+    "titulo": "Telefones ou CEPs diferentes entre páginas",
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "media",
+    "descricao": "Heurística de consistência (NAP: nome, endereço e telefone): o site mostra mais de um telefone ou mais de um CEP. Pode ser legítimo (fixo e WhatsApp, duas filiais). O Google pede informação completa e correta no Perfil da Empresa; manter igual ao site evita confusão.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo-google",
+      "detectavel_por_script": "sim",
+      "metodo": "Extrai telefones brasileiros e CEPs do texto visível de todas as páginas lidas e dispara quando há mais de um valor distinto."
+    },
+    "correcao": "Use os mesmos dados de contato em todas as páginas e no Perfil da Empresa.",
+    "prompt_correcao": "No projeto {{arquivo}}, confira os telefones e endereços que aparecem em páginas diferentes e deixe os mesmos dados em todas, iguais aos do Perfil da Empresa no Google. Se houver duas filiais ou dois canais (fixo e WhatsApp), rotule cada um. Pronto quando cada dado de contato tiver um único valor por finalidade.",
+    "fonte": [
+      {
+        "nome": "Ajuda do Perfil da Empresa no Google: dicas para melhorar o ranking local",
+        "url": "https://support.google.com/business/answer/7091",
+        "licenca": "Conteúdo de ajuda do Google (consulta apenas)",
+        "data_consulta": "2026-11-20"
+      },
+      {
+        "nome": "Google Search Central: dados estruturados de negócio local",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/local-business",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "modo": [
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "seo-google",
+    "id": "seo-local-telefone-sem-link",
+    "tipos_de_site": [
+      "*"
+    ],
+    "titulo": "Telefone escrito mas sem link de ligação",
+    "peso": 1,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "descricao": "O telefone aparece como texto e não há nenhum link tel: nem WhatsApp. No celular, um link tel: permite ligar com um toque. Heurística de facilidade de contato.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo-google",
+      "detectavel_por_script": "sim",
+      "metodo": "Aplica só a sites locais; dispara se há telefone visível e nenhum link tel: ou WhatsApp."
+    },
+    "correcao": "Troque o número escrito por um link tel: (e WhatsApp, se atender).",
+    "prompt_correcao": "No arquivo {{arquivo}}, transforme o telefone em link <a href=\"tel:+55DDDNUMERO\"> (somente dígitos) e, se atender por WhatsApp, adicione também o link do WhatsApp. Pronto quando tocar no número no celular abrir a ligação.",
+    "fonte": [
+      {
+        "nome": "IETF RFC 3966: esquema de URI tel:",
+        "url": "https://www.rfc-editor.org/rfc/rfc3966",
+        "licenca": "IETF Trust (texto de RFC livre para consulta)",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "modo": [
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "seo-google",
+    "id": "seo-local-sem-mapa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "titulo": "Endereço sem mapa incorporado",
+    "peso": 1,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "descricao": "O site mostra endereço mas não incorpora um mapa. É heurística de ajuda ao visitante, não exigência do Google.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo-google",
+      "detectavel_por_script": "sim",
+      "metodo": "Aplica só a sites locais com endereço visível; dispara se nenhuma página tem iframe de mapa (Google Maps ou OpenStreetMap)."
+    },
+    "correcao": "Incorpore um mapa na página de contato.",
+    "prompt_correcao": "No arquivo {{arquivo}}, na página de contato, incorpore um mapa (iframe do Google Maps ou do OpenStreetMap) com o endereço real e título descritivo no iframe. Pronto quando o mapa aparecer e o endereço continuar escrito em texto.",
+    "fonte": [
+      {
+        "nome": "Google Maps Platform: Embed API (como incorporar um mapa)",
+        "url": "https://developers.google.com/maps/documentation/embed/get-started",
+        "licenca": "Conteúdo do Google Developers (consulta apenas)",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "citacoes": [
+      "contagem"
+    ]
+  },
+  {
+    "modo": [
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "seo-google",
+    "id": "seo-local-perfil-empresa-conferir",
+    "tipos_de_site": [
+      "*"
+    ],
+    "titulo": "Conferir o Perfil da Empresa no Google",
+    "peso": 0,
+    "severidade": "info",
+    "selo": "nao-verificavel",
+    "confianca": "alta",
+    "descricao": "O Perfil da Empresa no Google exige login, e a skill nunca acessa. Quem decide a posição local, segundo o Google, são relevância, distância e destaque; informação completa e correta ajuda. Confira lá: nome, endereço, telefone, horário, categoria e fotos iguais ao site.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "seo-google",
+      "detectavel_por_script": "sim",
+      "metodo": "Aviso fixo para sites locais: a skill não acessa o Perfil da Empresa (exige login) e só orienta o que a pessoa deve conferir."
+    },
+    "correcao": "Entre no Perfil da Empresa no Google e confira se nome, endereço, telefone e horário são iguais aos do site.",
+    "prompt_correcao": "Este item não tem correção no código. Abra o seu Perfil da Empresa no Google e confira se nome, endereço, telefone, horário e categoria são iguais aos do site. Pronto quando tudo bater.",
+    "fonte": [
+      {
+        "nome": "Ajuda do Perfil da Empresa no Google: dicas para melhorar o ranking local",
+        "url": "https://support.google.com/business/answer/7091",
+        "licenca": "Conteúdo de ajuda do Google (consulta apenas)",
+        "data_consulta": "2026-11-20"
+      }
+    ],
+    "citacoes": [
+      "contagem"
+    ]
+  }
+]

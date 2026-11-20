@@ -1,0 +1,1575 @@
+[
+  {
+    "id": "hype-transforme-seu",
+    "padrao": "transforme (o|a|os|as|seu|sua|seus|suas) ",
+    "exemplo": "Transforme seu negócio com a gente",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "unslop-ui (Neil Roberts / Carter Johnson)",
+      "url": "https://github.com/iamneilroberts/claude-skills",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-turbine",
+    "padrao": "turbine (o|a|os|as|seu|sua|seus|suas)",
+    "exemplo": "Turbine suas vendas",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "unslop-ui (Neil Roberts / Carter Johnson)",
+      "url": "https://github.com/iamneilroberts/claude-skills",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-impulsione",
+    "padrao": "impulsione (o|a|os|as|seu|sua|seus|suas)",
+    "exemplo": "Impulsione sua marca",
+    "tipo": "hype",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "hype-desbloqueie",
+    "padrao": "desbloqueie (o|a|todo|todos|seu|sua)",
+    "exemplo": "Desbloqueie todo o potencial da sua equipe",
+    "tipo": "hype",
+    "peso": 4,
+    "fonte": {
+      "nome": "ai-design-tells (Han Kim / IOV Labs)",
+      "url": "https://github.com/hankimis/ai-design-tells",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-todo-potencial",
+    "padrao": "(todo|pleno|m[aá]ximo) (o )?(seu )?potencial",
+    "exemplo": "Alcance todo o seu potencial",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "hype-libere-o-poder",
+    "padrao": "(libere|desencadeie|desperte) (o poder|todo o|a for[cç]a|o potencial)",
+    "exemplo": "Libere o poder dos seus dados",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "unslop-ui (Neil Roberts / Carter Johnson)",
+      "url": "https://github.com/iamneilroberts/claude-skills",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-revolucione",
+    "padrao": "revolucion(e|a|ando|ar|[aá]ri[oa]s?)",
+    "exemplo": "Uma plataforma revolucionária",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "unslop (Damir Sokolovsky / heydamir)",
+      "url": "https://heydamir.design/unslop",
+      "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-game-changer",
+    "padrao": "game[- ]?changer|divisor de [aá]guas|muda(r|ndo)? o jogo",
+    "exemplo": "Um verdadeiro game changer",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "unslop-ui (Neil Roberts / Carter Johnson)",
+      "url": "https://github.com/iamneilroberts/claude-skills",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-proximo-nivel",
+    "padrao": "pr[oó]ximo n[ií]vel",
+    "exemplo": "Leve seu negócio ao próximo nível",
+    "tipo": "hype",
+    "peso": 4,
+    "fonte": {
+      "nome": "unslop-ui (Neil Roberts / Carter Johnson)",
+      "url": "https://github.com/iamneilroberts/claude-skills",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-fluido-integrado",
+    "padrao": "(de forma|de maneira) (fluida|perfeita|cont[ií]nua)|perfeitamente integrad|integra[cç][aã]o (perfeita|fluida)",
+    "exemplo": "Integra-se de forma fluida ao seu dia a dia",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "ai-design-tells (Han Kim / IOV Labs)",
+      "url": "https://github.com/hankimis/ai-design-tells",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-sem-esforco",
+    "padrao": "sem (nenhum )?esfor[cç]o",
+    "exemplo": "Gerencie tudo sem esforço",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "unslop-ui (Neil Roberts / Carter Johnson)",
+      "url": "https://github.com/iamneilroberts/claude-skills",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-sem-complicacao",
+    "padrao": "sem (complica[cç][oõ]es|dor de cabe[cç]a|burocracia|preocupa[cç][oõ]es)",
+    "exemplo": "Sem dor de cabeça para você",
+    "tipo": "hype",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "hype-reimagine",
+    "padrao": "reimagin(e|a|ando|ar|ado|ada|amos)",
+    "exemplo": "Reimagine a forma de vender",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "ai-design-tells (Han Kim / IOV Labs)",
+      "url": "https://github.com/hankimis/ai-design-tells",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-futuro",
+    "padrao": "construa o futuro|o futuro (chegou|[eé] agora|come[cç]a (aqui|agora|hoje))",
+    "exemplo": "O futuro começa aqui",
+    "tipo": "hype",
+    "peso": 4,
+    "fonte": {
+      "nome": "ai-design-tells (Han Kim / IOV Labs)",
+      "url": "https://github.com/hankimis/ai-design-tells",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-tudo-em-um",
+    "padrao": "tudo[- ]em[- ]um|all[- ]in[- ]one",
+    "exemplo": "A plataforma tudo em um",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "ai-design-tells (Han Kim / IOV Labs)",
+      "url": "https://github.com/hankimis/ai-design-tells",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-tudo-que-precisa",
+    "padrao": "tudo (o )?que (voc[eê]|sua empresa|seu neg[oó]cio) precisa|para todas as suas necessidades",
+    "exemplo": "Tudo o que você precisa em um só lugar",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-solucao-completa",
+    "padrao": "(solu[cç][aã]o|plataforma) (completa|definitiva|ideal)",
+    "exemplo": "A solução completa para sua empresa",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "hype-nova-geracao",
+    "padrao": "(nova|pr[oó]xima|[uú]ltima) gera[cç][aã]o",
+    "exemplo": "Tecnologia de nova geração",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "ai-design-tells (Han Kim / IOV Labs)",
+      "url": "https://github.com/hankimis/ai-design-tells",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-eleve",
+    "padrao": "eleve (o|a|os|as|seu|sua|seus|suas)",
+    "exemplo": "Eleve sua presença digital",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "ai-design-tells (Han Kim / IOV Labs)",
+      "url": "https://github.com/hankimis/ai-design-tells",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-inovador",
+    "padrao": "inovador(a|es|as)?|inova[cç][aã]o de ponta",
+    "exemplo": "Uma solução inovadora",
+    "tipo": "hype",
+    "peso": 2,
+    "fonte": {
+      "nome": "Forbes Brasil: 3 jargões corporativos tão usados que perderam o sentido",
+      "url": "https://forbes.com.br/carreira/2025/01/comunicacao-3-jargoes-corporativos-tao-usados-que-perderam-o-sentido/",
+      "licenca": "Artigo público sem licença aberta; só a palavra citada como exemplo"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-disrupcao",
+    "padrao": "disrup[cç][aã]o|disruptiv[oa]s?",
+    "exemplo": "Tecnologia disruptiva",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "Forbes Brasil: 3 jargões corporativos tão usados que perderam o sentido",
+      "url": "https://forbes.com.br/carreira/2025/01/comunicacao-3-jargoes-corporativos-tao-usados-que-perderam-o-sentido/",
+      "licenca": "Artigo público sem licença aberta; só a palavra citada como exemplo"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-sinergia",
+    "padrao": "sinergia|sin[eé]rgic[oa]s?",
+    "exemplo": "Gere sinergia entre as áreas",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "Forbes Brasil: 3 jargões corporativos tão usados que perderam o sentido",
+      "url": "https://forbes.com.br/carreira/2025/01/comunicacao-3-jargoes-corporativos-tao-usados-que-perderam-o-sentido/",
+      "licenca": "Artigo público sem licença aberta; só a palavra citada como exemplo"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-empoderar",
+    "padrao": "empodera|empodere",
+    "exemplo": "Empodere sua equipe",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "Fast Company Brasil: Na hora de rever os valores da empresa, evite cometer este grande erro",
+      "url": "https://fastcompanybrasil.com/worklife/na-hora-de-rever-os-valores-da-empresa-evite-cometer-este-grande-erro/",
+      "licenca": "Artigo público sem licença aberta; só a palavra citada como exemplo"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-mudanca-de-paradigma",
+    "padrao": "mudan[cç]a de paradigma|quebra(r)? (de )?paradigmas?",
+    "exemplo": "Uma mudança de paradigma no setor",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "Fast Company Brasil: Na hora de rever os valores da empresa, evite cometer este grande erro",
+      "url": "https://fastcompanybrasil.com/worklife/na-hora-de-rever-os-valores-da-empresa-evite-cometer-este-grande-erro/",
+      "licenca": "Artigo público sem licença aberta; só a palavra citada como exemplo"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-holistico",
+    "padrao": "hol[ií]stic[oa]s?",
+    "exemplo": "Uma abordagem holística",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-estado-da-arte",
+    "padrao": "estado da arte|state[- ]of[- ]the[- ]art|tecnologia de ponta|cutting[- ]edge",
+    "exemplo": "Tecnologia de ponta",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-classe-mundial",
+    "padrao": "classe mundial|world[- ]class|padr[aã]o mundial|n[ií]vel mundial",
+    "exemplo": "Atendimento de classe mundial",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-lider-de-mercado",
+    "padrao": "l[ií]der (de|no|do|em) (mercado|segmento|setor)|refer[eê]ncia (no|do|em) (mercado|segmento|setor)|l[ií]der absoluto",
+    "exemplo": "Somos líder de mercado",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "SHIFT Communications: Are Clichés Killing How You Communicate?",
+      "url": "https://www.shiftcomm.com/insights/cliches-killing-communicate",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-qualidade-superior",
+    "padrao": "qualidade (superior|incompar[aá]vel|inigual[aá]vel|premium|garantida)|alta qualidade",
+    "exemplo": "Produtos de alta qualidade",
+    "tipo": "hype",
+    "peso": 2,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-excelencia",
+    "padrao": "excel[eê]ncia",
+    "exemplo": "Buscamos a excelência em tudo",
+    "tipo": "hype",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "hype-unico-diferenciado",
+    "padrao": "[uú]nic[oa] no mercado|[uú]nic[oa] e exclusiv[oa]|experi[eê]ncia [uú]nica|solu[cç][aã]o [uú]nica|diferenciad[oa]s?",
+    "exemplo": "Uma experiência única",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-superlativos-vagos",
+    "padrao": "incr[ií]ve(l|is)|fant[aá]stic[oa]s?|extraordin[aá]ri[oa]s?|espetacular(es)?|sensaciona(l|is)|maravilhos[oa]s?",
+    "exemplo": "Resultados incríveis",
+    "tipo": "hype",
+    "peso": 2,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-alavancar",
+    "padrao": "alavanc(ar|e|a|ando|amos|agem)|alavanque",
+    "exemplo": "Alavanque seus resultados",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-guru-ninja",
+    "padrao": "\\bguru|\\bninjas?\\b|rock ?stars?",
+    "exemplo": "Nosso time de ninjas do marketing",
+    "tipo": "hype",
+    "peso": 2,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-impactante-imersivo",
+    "padrao": "impactante|imersiv[oa]s?",
+    "exemplo": "Uma experiência imersiva e impactante",
+    "tipo": "hype",
+    "peso": 2,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-magico",
+    "padrao": "m[aá]gic[oa]s?|como m[aá]gica|toque de m[aá]gica",
+    "exemplo": "Descubra a mágica do atendimento",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "unslop (Damir Sokolovsky / heydamir)",
+      "url": "https://heydamir.design/unslop",
+      "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-mais-que-nunca",
+    "padrao": "mais (do )?que nunca",
+    "exemplo": "Agora, mais do que nunca, você precisa disso",
+    "tipo": "hype",
+    "peso": 2,
+    "fonte": {
+      "nome": "OneUpWeb: The Cringiest & Most Overused Words in Marketing",
+      "url": "https://www.oneupweb.com/blog/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-fora-da-caixa",
+    "padrao": "fora da caixa|fora do quadrado|out of the box",
+    "exemplo": "Pensamos fora da caixa",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-conteudo-e-rei",
+    "padrao": "conte[uú]do [eé] (o )?rei|content is king",
+    "exemplo": "Conteúdo é rei",
+    "tipo": "hype",
+    "peso": 2,
+    "fonte": {
+      "nome": "Digiday: 25 Marketing Cliches You Should Avoid at All Costs",
+      "url": "https://digiday.com/brands/25-marketing-cliches-avoid-costs/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-dados-novo-petroleo",
+    "padrao": "dados s[aã]o o novo petr[oó]leo|data is the new oil",
+    "exemplo": "Dados são o novo petróleo",
+    "tipo": "hype",
+    "peso": 2,
+    "fonte": {
+      "nome": "Digiday: 25 Marketing Cliches You Should Avoid at All Costs",
+      "url": "https://digiday.com/brands/25-marketing-cliches-avoid-costs/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-mover-o-ponteiro",
+    "padrao": "mov(er|e|em|emos) o ponteiro|movimentar o ponteiro|move the needle",
+    "exemplo": "Isso move o ponteiro do negócio",
+    "tipo": "hype",
+    "peso": 2,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-ir-alem",
+    "padrao": "(vamos|v[aá]|vai|indo) (muito )?al[eé]m (do|da|de)|al[eé]m do esperado|supera(r|mos)? (as )?expectativas",
+    "exemplo": "Vamos além do esperado",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-sob-medida-para-voce",
+    "padrao": "solu[cç][oõ]es? (sob medida|personalizadas?|customizadas?|exclusivas?) para (voc[eê]|(o )?seu neg[oó]cio|(a )?sua empresa)",
+    "exemplo": "Soluções sob medida para o seu negócio",
+    "tipo": "hype",
+    "peso": 2,
+    "fonte": {
+      "nome": "Digiday: 25 Marketing Cliches You Should Avoid at All Costs",
+      "url": "https://digiday.com/brands/25-marketing-cliches-avoid-costs/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-orientado-a-resultados",
+    "padrao": "orientad[oa]s? (a|para|por) (resultados|dados)|focad[oa]s? (em|no) (resultados?|cliente)|centrad[oa] n[oa] cliente|foco (no|em) (cliente|resultados)",
+    "exemplo": "Atendimento focado em resultados",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-profissionais-qualificados",
+    "padrao": "(profissionais|equipe|time) (altamente )?(qualificad|capacitad|experiente|especializad)",
+    "exemplo": "Equipe altamente qualificada",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-dedicados-a",
+    "padrao": "dedicad[oa]s? (a|em) (oferecer|fornecer|proporcionar|entregar|atender)",
+    "exemplo": "Somos dedicados a oferecer o melhor",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-nos-orgulhamos",
+    "padrao": "nos orgulhamos|temos orgulho (de|em)|orgulho em (servir|oferecer)",
+    "exemplo": "Nos orgulhamos do nosso trabalho",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-apaixonados",
+    "padrao": "(somos|[eé]) apaixonad[oa]s? (por|pelo|pela|pelos|pelas)|paix[aã]o (por|em) (servir|entregar|inovar|o que fazemos)",
+    "exemplo": "Somos apaixonados pelo que fazemos",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "hype-compromisso-qualidade",
+    "padrao": "compromisso com a (qualidade|excel[eê]ncia|satisfa[cç][aã]o)|qualidade e compromisso|compromisso e qualidade",
+    "exemplo": "Compromisso com a qualidade",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "hype-satisfacao-garantida",
+    "padrao": "satisfa[cç][aã]o (garantida|total)|sua satisfa[cç][aã]o [eé] (a )?nossa (prioridade|miss[aã]o|meta)",
+    "exemplo": "Sua satisfação é a nossa prioridade",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "hype-melhor-do-mercado",
+    "padrao": "o melhor (do|no) mercado|melhores? pre[cç]os? do mercado|a melhor (op[cç][aã]o|solu[cç][aã]o|escolha) (do|para)",
+    "exemplo": "O melhor do mercado",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "hype-guia-definitivo",
+    "padrao": "guia definitivo|solu[cç][aã]o definitiva|ultimate guide",
+    "exemplo": "O guia definitivo para vender mais",
+    "tipo": "hype",
+    "peso": 2,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-ideal-para-voce",
+    "padrao": "(ideal|perfeit[oa]) para (voc[eê]|(o )?seu neg[oó]cio|(a )?sua empresa|todos)",
+    "exemplo": "Perfeito para o seu negócio",
+    "tipo": "hype",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "hype-poder-da-ia",
+    "padrao": "(impulsionad|alimentad|movid|potencializad)[oa]s? (por|pela) (ia|intelig[eê]ncia artificial)|(ai|ia)[- ]powered|powered by ai|com o poder d[ae] (a )?(ia|intelig[eê]ncia artificial)",
+    "exemplo": "Plataforma impulsionada por IA",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "ai-design-tells (Han Kim / IOV Labs)",
+      "url": "https://github.com/hankimis/ai-design-tells",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-emoji-brilho-foguete",
+    "padrao": "✨|🚀|🪄|🤖",
+    "exemplo": "Novo ✨ recurso",
+    "tipo": "hype",
+    "peso": 2,
+    "fonte": {
+      "nome": "unslop (Damir Sokolovsky / heydamir)",
+      "url": "https://heydamir.design/unslop",
+      "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-mude-sua-vida",
+    "padrao": "(mude|transforme|revolucione) (a )?sua vida|vida dos sonhos|realize (seus|o seu) sonhos?",
+    "exemplo": "Transforme sua vida",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "hype-ultima-chance",
+    "padrao": "[uú]ltima chance|[uú]ltimas (unidades|vagas)|oferta imperd[ií]vel|imperd[ií]vel|n[aã]o perca (essa|esta) (chance|oportunidade)",
+    "exemplo": "Oferta imperdível",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "hype-descubra-o-poder",
+    "padrao": "(descubra|conhe[cç]a) o poder (d[aeo]s?|do|da)",
+    "exemplo": "Descubra o poder da automação",
+    "tipo": "hype",
+    "peso": 3,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "hype-mergulhe",
+    "padrao": "mergulhe (no|na|em|de cabe[cç]a)|embarque (em|nessa|nesta) (jornada|aventura|experi[eê]ncia)",
+    "exemplo": "Mergulhe no universo do design",
+    "tipo": "hype",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "vago-solucoes-adjetivadas",
+    "padrao": "solu[cç][oõ]es (personalizadas|completas|integradas|inteligentes|eficientes|inovadoras|sob medida|de ponta)",
+    "exemplo": "Oferecemos soluções completas",
+    "tipo": "vago",
+    "peso": 3,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "vago-fazer-diferenca",
+    "padrao": "fa(z|zer|zemos|zendo) (toda )?a diferen[cç]a|diferencial competitivo|nosso diferencial [eé]",
+    "exemplo": "Fazemos a diferença na vida das pessoas",
+    "tipo": "vago",
+    "peso": 3,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "vago-temos-coberto",
+    "padrao": "temos (tudo|voc[eê]) coberto|deixe (o resto|tudo) (com|por conta)|pode (deixar|confiar) (com a gente|conosco)|cuidamos de tudo",
+    "exemplo": "Cuidamos de tudo para você",
+    "tipo": "vago",
+    "peso": 2,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "vago-missao-visao-valores",
+    "padrao": "miss[aã]o,? vis[aã]o e valores|[eé]tica,? (respeito|transpar[eê]ncia|compromisso|responsabilidade)|transpar[eê]ncia,? (respeito|[eé]tica|compromisso)",
+    "exemplo": "Nossos valores: ética, transparência e respeito",
+    "tipo": "vago",
+    "peso": 2,
+    "fonte": {
+      "nome": "Fast Company Brasil: Na hora de rever os valores da empresa, evite cometer este grande erro",
+      "url": "https://fastcompanybrasil.com/worklife/na-hora-de-rever-os-valores-da-empresa-evite-cometer-este-grande-erro/",
+      "licenca": "Artigo público sem licença aberta; só a palavra citada como exemplo"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "vago-cliente-no-centro",
+    "padrao": "cliente (no|ao) centro|(coloca|colocamos|colocar) o cliente (no centro|em primeiro lugar)|cliente em primeiro lugar|o cliente [eé] (o )?(centro|nossa prioridade)",
+    "exemplo": "Colocamos o cliente no centro",
+    "tipo": "vago",
+    "peso": 3,
+    "fonte": {
+      "nome": "Digiday: 25 Marketing Cliches You Should Avoid at All Costs",
+      "url": "https://digiday.com/brands/25-marketing-cliches-avoid-costs/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "vago-autentico",
+    "padrao": "conversa aut[eê]ntica|comunica[cç][aã]o aut[eê]ntica|marca aut[eê]ntica|experi[eê]ncia aut[eê]ntica",
+    "exemplo": "Uma comunicação autêntica",
+    "tipo": "vago",
+    "peso": 2,
+    "fonte": {
+      "nome": "Digiday: 25 Marketing Cliches You Should Avoid at All Costs",
+      "url": "https://digiday.com/brands/25-marketing-cliches-avoid-costs/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "vago-storytelling",
+    "padrao": "storytelling|conta(r|mos) hist[oó]rias que (conectam|encantam|emocionam)",
+    "exemplo": "Contamos histórias que conectam",
+    "tipo": "vago",
+    "peso": 2,
+    "fonte": {
+      "nome": "Digiday: 25 Marketing Cliches You Should Avoid at All Costs",
+      "url": "https://digiday.com/brands/25-marketing-cliches-avoid-costs/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "vago-encantar",
+    "padrao": "surpreender e encantar|encantar (o |os |os seus |seus |nossos )(cliente|clientes|consumidor|consumidores)|encante (seus|os) clientes",
+    "exemplo": "Vamos encantar os seus clientes",
+    "tipo": "vago",
+    "peso": 3,
+    "fonte": {
+      "nome": "Digiday: 25 Marketing Cliches You Should Avoid at All Costs",
+      "url": "https://digiday.com/brands/25-marketing-cliches-avoid-costs/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "vago-experiencia-adjetivada",
+    "padrao": "experi[eê]ncia (completa|inesquec[ií]vel|memor[aá]vel|premium|diferenciada|incr[ií]vel)",
+    "exemplo": "Uma experiência inesquecível",
+    "tipo": "vago",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "vago-jornada-juntos",
+    "padrao": "embarque (nessa|nesta) jornada|com a gente (nessa|nesta) jornada|(nessa|nesta) jornada (juntos|conosco|com a gente)|jornada (rumo|at[eé])",
+    "exemplo": "Venha com a gente nessa jornada",
+    "tipo": "vago",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "vago-insights-acionaveis",
+    "padrao": "insights? (acion[aá]veis|valiosos|poderosos|estrat[eé]gicos)",
+    "exemplo": "Insights acionáveis para decidir",
+    "tipo": "vago",
+    "peso": 2,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "vago-pensado-para-voce",
+    "padrao": "(pensad|feit|criad|desenvolvid)[oa]s? (pensando )?(especialmente )?(para|pra|em) voc[eê]",
+    "exemplo": "Feito pensando em você",
+    "tipo": "vago",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "vago-fazer-acontecer",
+    "padrao": "fazer acontecer|fazemos acontecer|faz acontecer|tirar (a|as|seu|seus) (ideia|ideias|projeto|projetos|sonho|sonhos) do papel",
+    "exemplo": "Fazemos acontecer",
+    "tipo": "vago",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "vago-resultados-adjetivados",
+    "padrao": "resultados (reais|incr[ií]veis|extraordin[aá]rios|expressivos|surpreendentes|consistentes|que (impressionam|surpreendem|importam))",
+    "exemplo": "Resultados que importam",
+    "tipo": "vago",
+    "peso": 3,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "vago-parceiro-de-confianca",
+    "padrao": "parceir[oa] (estrat[eé]gic[oa]|de confian[cç]a|ideal)|seu melhor parceiro|parceria de sucesso",
+    "exemplo": "Seu parceiro de confiança",
+    "tipo": "vago",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "vago-agregar-valor",
+    "padrao": "agreg(ar|amos|ando|a|e) valor|gera(r|mos|ndo)? valor (para|ao|aos|a)",
+    "exemplo": "Agregamos valor ao seu negócio",
+    "tipo": "vago",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "vago-otimizar",
+    "padrao": "otimiz(e|ar|amos|ando|a) (seus|seu|sua|suas|o|a|os|as) ?(processos|resultados|neg[oó]cio|opera[cç][oõ]es|performance|rotina)",
+    "exemplo": "Otimize seus processos",
+    "tipo": "vago",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "vago-ecossistema",
+    "padrao": "ecossistema (completo|integrado|digital|de (solu[cç][oõ]es|inova[cç][aã]o))",
+    "exemplo": "Um ecossistema completo",
+    "tipo": "vago",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "vago-adjetivos-de-tecnologia",
+    "padrao": "(solu[cç][aã]o|plataforma|sistema|tecnologia|ferramenta) (robust[oa]|poderos[oa]|intuitiv[oa]|inteligente)",
+    "exemplo": "Uma plataforma robusta e intuitiva",
+    "tipo": "vago",
+    "peso": 3,
+    "fonte": {
+      "nome": "Hallmark (Nutlope)",
+      "url": "https://github.com/Nutlope/hallmark",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "vago-facil-rapido-seguro",
+    "padrao": "(f[aá]cil|simples|r[aá]pido),? (r[aá]pido|f[aá]cil|pr[aá]tico),? e (seguro|eficiente|pr[aá]tico)",
+    "exemplo": "Fácil, rápido e seguro",
+    "tipo": "vago",
+    "peso": 3,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "vago-nomes-de-exemplo",
+    "padrao": "jane doe|john doe|jo[aã]o da silva|maria da silva|fulano de tal|\\bacme\\b|empresa x\\b|cliente exemplo",
+    "exemplo": "Depoimento de João da Silva, CEO da Acme",
+    "tipo": "vago",
+    "peso": 4,
+    "fonte": {
+      "nome": "Hallmark (Nutlope)",
+      "url": "https://github.com/Nutlope/hallmark",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "vago-lorem-ipsum",
+    "padrao": "lorem ipsum|dolor sit amet|consectetur adipiscing",
+    "exemplo": "Lorem ipsum dolor sit amet",
+    "tipo": "vago",
+    "peso": 5,
+    "fonte": {
+      "nome": "ai-design-tells (Han Kim / IOV Labs)",
+      "url": "https://github.com/hankimis/ai-design-tells",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "vago-dados-falsos",
+    "padrao": "\\[(x|nome|empresa|seu nome|inserir[^\\]]{0,30}|texto)\\]|r\\$ ?123[.,]456|\\$ ?123,456|\\bxxx+\\b",
+    "exemplo": "Faturamos R$ 123.456 por mês",
+    "tipo": "vago",
+    "peso": 4,
+    "fonte": {
+      "nome": "unslop (Damir Sokolovsky / heydamir)",
+      "url": "https://heydamir.design/unslop",
+      "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "vago-prova-social-sem-fonte",
+    "padrao": "(confiad|amad|escolhid|aprovad|recomendad)[oa] por (mais de |milhares|centenas|milh[oõ]es)|(milhares|milh[oõ]es|centenas) de (clientes|pessoas|empresas|usu[aá]rios) (satisfeit|confiam|felizes|j[aá] )|quietly trusted",
+    "exemplo": "Confiado por milhares de empresas",
+    "tipo": "vago",
+    "peso": 3,
+    "fonte": {
+      "nome": "Hallmark (Nutlope)",
+      "url": "https://github.com/Nutlope/hallmark",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "abertura-bem-vindo",
+    "padrao": "^\\s*(seja )?bem[- ]vind[oa]s? (ao|à|a|aos|ao nosso|à nossa)",
+    "exemplo": "Bem-vindo ao nosso site",
+    "tipo": "abertura-batida",
+    "peso": 2,
+    "fonte": {
+      "nome": "unslop (Damir Sokolovsky / heydamir)",
+      "url": "https://heydamir.design/unslop",
+      "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "abertura-bem-vindo-de-volta",
+    "padrao": "bem[- ]vind[oa] de volta|que bom te ver (de novo|por aqui)",
+    "exemplo": "Bem-vindo de volta",
+    "tipo": "abertura-batida",
+    "peso": 2,
+    "fonte": {
+      "nome": "unslop (Damir Sokolovsky / heydamir)",
+      "url": "https://heydamir.design/unslop",
+      "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "abertura-mundo-de-hoje",
+    "padrao": "no mundo (digital|atual|moderno|de hoje)|mundo cada vez mais (digital|competitivo|conectado|acelerado)|nos dias (de hoje|atuais)|na era digital|mercado cada vez mais competitivo",
+    "exemplo": "No mundo digital de hoje, ter presença online é essencial",
+    "tipo": "abertura-batida",
+    "peso": 3,
+    "fonte": {
+      "nome": "Hallmark (Nutlope)",
+      "url": "https://github.com/Nutlope/hallmark",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "abertura-somos-uma-empresa",
+    "padrao": "^\\s*(ol[aá]!?,? )?(n[oó]s )?somos (uma|a|o|um) (empresa|ag[eê]ncia|equipe|startup|plataforma|consultoria|loja) (especializad|dedicad|focad|l[ií]der|refer[eê]ncia|comprometid|apaixonad)",
+    "exemplo": "Somos uma empresa especializada em soluções",
+    "tipo": "abertura-batida",
+    "peso": 3,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "abertura-voce-ja-se-perguntou",
+    "padrao": "voc[eê] j[aá] (se )?(perguntou|pensou|imaginou)|imagine (poder|ter|um mundo)|e se voc[eê] pudesse|cansad[oa] de ",
+    "exemplo": "Você já se perguntou como crescer?",
+    "tipo": "abertura-batida",
+    "peso": 3,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "abertura-apresentamos-o-novo",
+    "padrao": "(apresentamos|apresentando|conhe[cç]a) (o|a|os|as) (novo|nova|novos|novas)|chegou (o|a) (novo|nova)|introduzindo",
+    "exemplo": "Chegou o novo jeito de vender",
+    "tipo": "abertura-batida",
+    "peso": 2,
+    "fonte": {
+      "nome": "unslop (Damir Sokolovsky / heydamir)",
+      "url": "https://heydamir.design/unslop",
+      "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "abertura-lugar-certo",
+    "padrao": "voc[eê] (chegou|veio|est[aá]) (ao|no) lugar certo|chegou ao lugar certo",
+    "exemplo": "Você chegou ao lugar certo",
+    "tipo": "abertura-batida",
+    "peso": 3,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "abertura-mais-que-uma-empresa",
+    "padrao": "mais (do )?que (uma|um) (simples )?(empresa|ag[eê]ncia|loja|plataforma|ferramenta|produto|site|marca)",
+    "exemplo": "Mais que uma agência, somos parceiros",
+    "tipo": "abertura-batida",
+    "peso": 3,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "abertura-ola-tudo-bem",
+    "padrao": "^\\s*(ol[aá]|oi|e a[ií])[!,.]? ?(tudo bem|seja bem)",
+    "exemplo": "Olá, tudo bem?",
+    "tipo": "abertura-batida",
+    "peso": 1,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "fecha-entre-em-contato-e-saiba",
+    "padrao": "(entre em contato|fale conosco|fale com a gente) (e|para) (saiba|saber|conhecer|descobrir|solicitar|agendar)|ficaremos (muito )?felizes em (ajudar|atender)|estamos (aqui )?(a|à) disposi[cç][aã]o|estamos ansiosos",
+    "exemplo": "Fale conosco e saiba mais",
+    "tipo": "fechamento-batido",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "fecha-conte-conosco",
+    "padrao": "esperamos (que )?(voc[eê] )?(tenha gostado|em breve|ver voc[eê])|conte (conosco|com a gente)|ser[aá] um prazer (atender|ajudar|te receber)",
+    "exemplo": "Conte conosco",
+    "tipo": "fechamento-batido",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "fecha-chave-de-ouro",
+    "padrao": "chave de ouro|cereja do bolo",
+    "exemplo": "Para fechar com chave de ouro",
+    "tipo": "fechamento-batido",
+    "peso": 1,
+    "fonte": {
+      "nome": "O Povo+ (coluna): Falta a cereja do bolo para fechar com chave de ouro",
+      "url": "https://mais.opovo.com.br/colunistas/daniela-nogueira/2023/09/18/falta-a-cereja-do-bolo-para-fechar-com-chave-de-ouro.html",
+      "licenca": "Artigo público sem licença aberta; só as expressões citadas como exemplo de chavão"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "fecha-juntos",
+    "padrao": "juntos (somos|vamos|podemos) (mais|mais longe|mais fortes|crescer|construir|transformar)|vamos (juntos )?(construir|crescer|transformar)",
+    "exemplo": "Juntos somos mais fortes",
+    "tipo": "fechamento-batido",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "fecha-rumo-ao-sucesso",
+    "padrao": "rumo ao sucesso|caminho (do|para o) sucesso|sucesso garantido|seu sucesso [eé] (o )?(nosso )?sucesso",
+    "exemplo": "Seu sucesso é o nosso sucesso",
+    "tipo": "fechamento-batido",
+    "peso": 3,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "fecha-pronto-para",
+    "padrao": "pronto(s)? para (come[cç]ar|dar o pr[oó]ximo passo|transformar|levar|decolar|crescer)|d[eê] o (primeiro|pr[oó]ximo) passo",
+    "exemplo": "Pronto para dar o próximo passo?",
+    "tipo": "fechamento-batido",
+    "peso": 3,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "fecha-obrigado-pela-visita",
+    "padrao": "obrigad[oa] (pela|por) (sua )?(visita|visitar|escolher)|agradecemos (a|pela) (sua )?(visita|prefer[eê]ncia|confian[cç]a)",
+    "exemplo": "Agradecemos a sua preferência",
+    "tipo": "fechamento-batido",
+    "peso": 1,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "fecha-e-muito-mais",
+    "padrao": "e muito mais|e muito, muito mais|entre outros (benef[ií]cios|servi[cç]os|recursos)",
+    "exemplo": "Chat, relatórios e muito mais",
+    "tipo": "fechamento-batido",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "cta-saiba-mais",
+    "padrao": "^\\s*(saiba mais|leia mais|veja mais|ver mais|mais informa[cç][oõ]es|conhe[cç]a( mais)?|confira)\\s*[.!→>»]*\\s*$",
+    "exemplo": "Saiba mais",
+    "tipo": "cta-generico",
+    "peso": 2,
+    "fonte": {
+      "nome": "ai-design-tells (Han Kim / IOV Labs)",
+      "url": "https://github.com/hankimis/ai-design-tells",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "cta-clique-aqui",
+    "padrao": "^\\s*clique aqui\\s*[.!→>»]*\\s*$|clique aqui para",
+    "exemplo": "Clique aqui",
+    "tipo": "cta-generico",
+    "peso": 3,
+    "fonte": {
+      "nome": "B Squared Media: The Big Giant List Of Marketing Clichés",
+      "url": "https://bsquared.media/marketing-cliches/",
+      "licenca": "Artigo público sem licença aberta; só a ideia da expressão, traduzida e adaptada"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "cta-comece-agora",
+    "padrao": "^\\s*(comece (agora|j[aá]|gr[aá]tis)|come[cç]ar( agora)?|vamos come[cç]ar|iniciar)\\s*[.!→>»]*\\s*$",
+    "exemplo": "Comece agora",
+    "tipo": "cta-generico",
+    "peso": 2,
+    "fonte": {
+      "nome": "ai-design-tells (Han Kim / IOV Labs)",
+      "url": "https://github.com/hankimis/ai-design-tells",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "cta-cadastre-se",
+    "padrao": "^\\s*(cadastre-se|inscreva-se|registre-se|criar conta|crie sua conta|cadastrar)( gr[aá]tis| agora)?\\s*[.!→>»]*\\s*$",
+    "exemplo": "Cadastre-se",
+    "tipo": "cta-generico",
+    "peso": 2,
+    "fonte": {
+      "nome": "ai-design-tells (Han Kim / IOV Labs)",
+      "url": "https://github.com/hankimis/ai-design-tells",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "cta-teste-gratis",
+    "padrao": "^\\s*(experimente( gr[aá]tis| agora)?|teste (gr[aá]tis|gratuitamente|agora)|use gr[aá]tis)\\s*[.!→>»]*\\s*$",
+    "exemplo": "Experimente grátis",
+    "tipo": "cta-generico",
+    "peso": 2,
+    "fonte": {
+      "nome": "ai-design-tells (Han Kim / IOV Labs)",
+      "url": "https://github.com/hankimis/ai-design-tells",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "cta-fale-conosco",
+    "padrao": "^\\s*(fale conosco|entre em contato|contate-nos|contato|fale com a gente)\\s*[.!→>»]*\\s*$",
+    "exemplo": "Fale conosco",
+    "tipo": "cta-generico",
+    "peso": 2,
+    "fonte": {
+      "nome": "ai-design-tells (Han Kim / IOV Labs)",
+      "url": "https://github.com/hankimis/ai-design-tells",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "cta-enviar-ok-sim-nao",
+    "padrao": "^\\s*(enviar|submit|ok|sim|n[aã]o)\\s*$",
+    "exemplo": "Enviar",
+    "tipo": "cta-generico",
+    "peso": 2,
+    "fonte": {
+      "nome": "Impeccable (pbakaus)",
+      "url": "https://github.com/pbakaus/impeccable",
+      "licenca": "Apache-2.0"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "cta-descubra",
+    "padrao": "^\\s*descubra( mais| como| agora)?\\s*[.!→>»]*\\s*$",
+    "exemplo": "Descubra mais",
+    "tipo": "cta-generico",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "cta-aproveite",
+    "padrao": "^\\s*(aproveite( agora| j[aá])?|n[aã]o perca|eu quero|quero aproveitar)\\s*[.!→>»]*\\s*$",
+    "exemplo": "Aproveite agora",
+    "tipo": "cta-generico",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "cta-solicite-orcamento",
+    "padrao": "^\\s*(solicite (um )?or[cç]amento|pe[cç]a (um )?or[cç]amento|solicitar or[cç]amento|or[cç]amento gr[aá]tis)\\s*[.!→>»]*\\s*$",
+    "exemplo": "Solicite um orçamento",
+    "tipo": "cta-generico",
+    "peso": 1,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "estr-nao-e-x-e-y",
+    "padrao": "n[aã]o [eé] (apenas |s[oó] |somente |meramente |simplesmente )?[^.!?\\n]{2,60}[,;.—–-]\\s*(mas |e )?[eé] ",
+    "exemplo": "Não é só um site, é uma experiência",
+    "tipo": "estrutura",
+    "peso": 3,
+    "fonte": {
+      "nome": "Hallmark (Nutlope)",
+      "url": "https://github.com/Nutlope/hallmark",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "estr-nao-apenas-mas-tambem",
+    "padrao": "n[aã]o (apenas|s[oó]|somente) [^.!?\\n]{2,60},? mas (tamb[eé]m )?",
+    "exemplo": "Não apenas vendemos, mas também ensinamos",
+    "tipo": "estrutura",
+    "peso": 1,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "estr-sem-x-sem-y-sem-z",
+    "padrao": "sem [^.,;!?\\n]{2,25}, sem [^.,;!?\\n]{2,25}(,| e) sem ",
+    "exemplo": "Sem burocracia, sem espera e sem surpresas",
+    "tipo": "estrutura",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "estr-tres-fragmentos",
+    "padrao": "(^|[.!?] )[a-zà-ú]+( [a-zà-ú]+){0,2}\\. [a-zà-ú]+( [a-zà-ú]+){0,2}\\. [a-zà-ú]+( [a-zà-ú]+){0,2}\\.",
+    "exemplo": "Simples. Rápido. Seguro.",
+    "tipo": "estrutura",
+    "peso": 3,
+    "fonte": {
+      "nome": "Hallmark (Nutlope)",
+      "url": "https://github.com/Nutlope/hallmark",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "estr-pergunta-e-solucao",
+    "padrao": "\\?\\s+(temos|n[oó]s temos|a gente tem|n[oó]s (somos|temos)) a (solu[cç][aã]o|resposta|ajuda)",
+    "exemplo": "Cansado de perder tempo? Temos a solução",
+    "tipo": "estrutura",
+    "peso": 3,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "estr-do-x-ao-y-cuidamos",
+    "padrao": "d[oae]s? [a-zà-ú ]{3,25} (ao|à|a) [a-zà-ú ]{3,25},? (cuidamos|fazemos|temos|oferecemos|entregamos|n[oó]s)",
+    "exemplo": "Do planejamento à execução, cuidamos de tudo",
+    "tipo": "estrutura",
+    "peso": 2,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "estr-seja-x-seja-y",
+    "padrao": "seja [^.,;!?\\n]{2,25},? seja [^.,;!?\\n]{2,25}",
+    "exemplo": "Seja para vender, seja para divulgar",
+    "tipo": "estrutura",
+    "peso": 1,
+    "fonte": {
+      "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+      "url": "",
+      "licenca": "MIT (projeto)"
+    },
+    "confianca": "baixa"
+  },
+  {
+    "id": "estr-travessao",
+    "padrao": "—",
+    "exemplo": "A empresa — líder do setor — cresce",
+    "tipo": "estrutura",
+    "peso": 1,
+    "fonte": {
+      "nome": "Hallmark (Nutlope)",
+      "url": "https://github.com/Nutlope/hallmark",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "estr-exclamacao-dupla",
+    "padrao": "!{2,}|!\\s!",
+    "exemplo": "Aproveite!!",
+    "tipo": "estrutura",
+    "peso": 2,
+    "fonte": {
+      "nome": "unslop (Damir Sokolovsky / heydamir)",
+      "url": "https://heydamir.design/unslop",
+      "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "estr-exclamacao",
+    "padrao": "!",
+    "exemplo": "Compre agora!",
+    "tipo": "estrutura",
+    "peso": 1,
+    "fonte": {
+      "nome": "unslop (Damir Sokolovsky / heydamir)",
+      "url": "https://heydamir.design/unslop",
+      "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)"
+    },
+    "confianca": "media"
+  },
+  {
+    "id": "estr-ponto-medio-e-seta",
+    "padrao": "\\s[·•]\\s|[a-zà-ú]\\s?→",
+    "exemplo": "Design · Código · Marca",
+    "tipo": "estrutura",
+    "peso": 1,
+    "fonte": {
+      "nome": "Hallmark (Nutlope)",
+      "url": "https://github.com/Nutlope/hallmark",
+      "licenca": "MIT"
+    },
+    "confianca": "media"
+  }
+]

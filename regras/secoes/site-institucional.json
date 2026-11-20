@@ -1,0 +1,534 @@
+[
+  {
+    "id": "proposta-de-valor-na-home",
+    "tipo_de_site": "site-institucional",
+    "nome": "Proposta de valor logo na home",
+    "descricao": "Quem chega quer entender em poucos segundos o que a empresa faz e por que escolher ela. Uma frase curta e clara no topo evita que a pessoa vá embora sem entender.",
+    "obrigatoriedade": "essencial",
+    "peso": 9,
+    "deteccao": {
+      "seletores": [
+        "h1",
+        "[class*=\"hero\" i] h1",
+        "[class*=\"tagline\" i]",
+        "header p"
+      ],
+      "palavras": [
+        "somos",
+        "oferecemos",
+        "ajudamos",
+        "soluções",
+        "solucoes",
+        "o que fazemos"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Homepage Design: 5 Fundamental Principles",
+        "url": "https://www.nngroup.com/articles/homepage-design-principles/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: \"Get Started\" Stops Users",
+        "url": "https://www.nngroup.com/articles/get-started/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O script confirma se existe título e frase de apoio visíveis na home; se a frase realmente explica o negócio é julgamento do modelo."
+  },
+  {
+    "id": "sobre-a-empresa",
+    "tipo_de_site": "site-institucional",
+    "nome": "Sobre a empresa / quem somos",
+    "descricao": "Visitantes procuram uma página que conte quem está por trás do site, o que a empresa faz e como trabalha. Ela passa confiança e é o primeiro lugar onde se vai checar se o negócio é real.",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"sobre\" i]",
+        "a[href*=\"quem-somos\" i]",
+        "section[id*=\"sobre\" i]",
+        "#sobre"
+      ],
+      "palavras": [
+        "sobre nós",
+        "sobre nos",
+        "quem somos",
+        "nossa história",
+        "nossa historia",
+        "sobre a empresa"
+      ],
+      "padroes_regex": [
+        "\\b(sobre n[óo]s|quem somos|nossa hist[óo]ria)\\b"
+      ],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 'About Us' Information on Corporate Websites",
+        "url": "https://www.nngroup.com/articles/about-us-information-on-websites/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Creating helpful, reliable, people-first content",
+        "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. A fonte recomenda um resumo curto e fácil de escanear no topo da página e um link para ela no rodapé."
+  },
+  {
+    "id": "contato-visivel",
+    "tipo_de_site": "site-institucional",
+    "nome": "Contato fácil de achar",
+    "descricao": "Quem quer falar com a empresa procura telefone, e-mail ou WhatsApp sem precisar caçar. Mostrar contato real, e não só um formulário, passa credibilidade.",
+    "obrigatoriedade": "essencial",
+    "peso": 9,
+    "deteccao": {
+      "seletores": [
+        "a[href^=\"tel:\"]",
+        "a[href^=\"mailto:\"]",
+        "a[href*=\"wa.me\"]",
+        "a[href*=\"api.whatsapp.com\"]",
+        "a[href*=\"contato\" i]",
+        "address"
+      ],
+      "palavras": [
+        "contato",
+        "fale conosco",
+        "telefone",
+        "e-mail",
+        "whatsapp"
+      ],
+      "padroes_regex": [
+        "\\(?\\d{2}\\)?\\s?9?\\d{4}[-\\s]?\\d{4}"
+      ],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 'Contact Us' Page Guidelines",
+        "url": "https://www.nngroup.com/articles/contact-us-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Trustworthiness in Web Design: 4 Credibility Factors",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. A fonte lembra que o link para contato costuma ser procurado no canto superior direito ou no rodapé."
+  },
+  {
+    "id": "servicos-ou-produtos",
+    "tipo_de_site": "site-institucional",
+    "nome": "O que a empresa vende ou faz",
+    "descricao": "A pessoa espera ver, de forma completa e clara, quais serviços ou produtos existem. Se isso não está explícito, ela assume que o site não serve para o que procura.",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"servicos\" i]",
+        "a[href*=\"produtos\" i]",
+        "section[id*=\"servic\" i]",
+        "section[id*=\"produt\" i]"
+      ],
+      "palavras": [
+        "serviços",
+        "servicos",
+        "produtos",
+        "soluções",
+        "solucoes",
+        "nossos serviços",
+        "o que fazemos"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Trustworthiness in Web Design: 4 Credibility Factors",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Homepage Design: 5 Fundamental Principles",
+        "url": "https://www.nngroup.com/articles/homepage-design-principles/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Cobertura completa de serviços/produtos aparece como fator de credibilidade na fonte."
+  },
+  {
+    "id": "menu-principal-claro",
+    "tipo_de_site": "site-institucional",
+    "nome": "Menu principal claro e consistente",
+    "descricao": "O visitante precisa achar o menu num lugar óbvio, com nomes simples, e voltar à página inicial pelo logo. Mais de um caminho (menu, busca, mapa do site) ajuda a achar qualquer página.",
+    "obrigatoriedade": "esperada",
+    "peso": 6,
+    "deteccao": {
+      "seletores": [
+        "header nav",
+        "nav[aria-label]",
+        "a[rel=\"home\"]",
+        "header a[href=\"/\"]"
+      ],
+      "palavras": [
+        "início",
+        "inicio",
+        "home",
+        "menu"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Homepage Design: 5 Fundamental Principles",
+        "url": "https://www.nngroup.com/articles/homepage-design-principles/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "W3C WCAG 2.2: Understanding 2.4.5 Multiple Ways",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/multiple-ways.html",
+        "licenca": "W3C Software and Document License (© W3C)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Menu consistente entre páginas é medido comparando a navegação das páginas amostradas."
+  },
+  {
+    "id": "identificacao-da-empresa",
+    "tipo_de_site": "site-institucional",
+    "nome": "Endereço e identificação da empresa",
+    "descricao": "Mostrar o nome da empresa, o endereço e, quando existir, o CNPJ mostra que há alguém real por trás do site e facilita checar a empresa.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "address",
+        "footer",
+        "[itemtype*=\"Organization\" i]",
+        "[itemtype*=\"LocalBusiness\" i]"
+      ],
+      "palavras": [
+        "cnpj",
+        "endereço",
+        "endereco",
+        "razão social",
+        "razao social"
+      ],
+      "padroes_regex": [
+        "\\b\\d{2}\\.?\\d{3}\\.?\\d{3}/?\\d{4}-?\\d{2}\\b"
+      ],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 'Contact Us' Page Guidelines",
+        "url": "https://www.nngroup.com/articles/contact-us-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Trustworthiness in Web Design: 4 Credibility Factors",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Para site institucional, a presença de CNPJ não é exigida pelas fontes consultadas; o peso reflete só a recomendação de transparência."
+  },
+  {
+    "id": "prova-social-clientes",
+    "tipo_de_site": "site-institucional",
+    "nome": "Clientes, depoimentos ou avaliações",
+    "descricao": "Depoimentos, logos de clientes ou avaliações ajudam a pessoa a confiar. Funcionam melhor quando são honestos, identificados e não só elogios genéricos.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"depoimento\" i]",
+        "[class*=\"testimonial\" i]",
+        "blockquote",
+        "[id*=\"clientes\" i]"
+      ],
+      "palavras": [
+        "depoimentos",
+        "clientes",
+        "quem confia",
+        "avaliações",
+        "avaliacoes",
+        "cases"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 'About Us' Information on Corporate Websites",
+        "url": "https://www.nngroup.com/articles/about-us-information-on-websites/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Social Proof in the User Experience",
+        "url": "https://www.nngroup.com/articles/social-proof-ux/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Trustworthiness in Web Design: 4 Credibility Factors",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. As fontes alertam que prova social pouco crível ou com números baixos pode atrapalhar."
+  },
+  {
+    "id": "politica-de-privacidade",
+    "tipo_de_site": "site-institucional",
+    "nome": "Política de privacidade",
+    "descricao": "Se o site coleta qualquer dado (formulário, newsletter, análise de visitas), a pessoa espera achar um texto simples dizendo para que os dados são usados e como falar com o responsável.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"privacidade\" i]",
+        "a[href*=\"privacy\" i]",
+        "a[href*=\"lgpd\" i]"
+      ],
+      "palavras": [
+        "política de privacidade",
+        "politica de privacidade",
+        "privacidade",
+        "lgpd"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Lei 13.709/2018 (LGPD), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Regra documentada (LGPD art. 9º), mas só se aplica quando há tratamento de dados pessoais. Aviso, não parecer jurídico."
+  },
+  {
+    "id": "rodape-com-links-essenciais",
+    "tipo_de_site": "site-institucional",
+    "nome": "Rodapé com links essenciais",
+    "descricao": "Muita gente rola até o rodapé quando não acha algo. Ele deve repetir os links principais, como sobre, contato e privacidade.",
+    "obrigatoriedade": "esperada",
+    "peso": 4,
+    "deteccao": {
+      "seletores": [
+        "footer a[href*=\"contato\" i]",
+        "footer a[href*=\"sobre\" i]",
+        "footer a[href*=\"privacidade\" i]",
+        "footer"
+      ],
+      "palavras": [
+        "contato",
+        "sobre",
+        "privacidade"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 'About Us' Information on Corporate Websites",
+        "url": "https://www.nngroup.com/articles/about-us-information-on-websites/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: 'Contact Us' Page Guidelines",
+        "url": "https://www.nngroup.com/articles/contact-us-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Ambas as fontes citam o rodapé como lugar de busca de reserva do visitante."
+  },
+  {
+    "id": "equipe-ou-lideranca",
+    "tipo_de_site": "site-institucional",
+    "nome": "Equipe ou liderança",
+    "descricao": "Mostrar quem faz o trabalho, com nome e papel, deixa a empresa mais humana e crível, principalmente em serviços.",
+    "obrigatoriedade": "opcional",
+    "peso": 3,
+    "deteccao": {
+      "seletores": [
+        "[id*=\"equipe\" i]",
+        "[class*=\"team\" i]",
+        "[class*=\"equipe\" i]"
+      ],
+      "palavras": [
+        "equipe",
+        "nosso time",
+        "fundador",
+        "sócios",
+        "socios",
+        "liderança",
+        "lideranca"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 'About Us' Information on Corporate Websites",
+        "url": "https://www.nngroup.com/articles/about-us-information-on-websites/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Creating helpful, reliable, people-first content",
+        "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "baixa",
+    "notas": "Peso inicial, a calibrar. Na fonte, liderança e equipe são uma subpágina possível de Sobre, não um item obrigatório."
+  },
+  {
+    "id": "perguntas-frequentes",
+    "tipo_de_site": "site-institucional",
+    "nome": "Perguntas frequentes",
+    "descricao": "Uma lista de perguntas reais dos clientes poupa mensagens e tira dúvidas de quem ainda está decidindo.",
+    "obrigatoriedade": "opcional",
+    "peso": 3,
+    "deteccao": {
+      "seletores": [
+        "[id*=\"faq\" i]",
+        "[class*=\"faq\" i]",
+        "details > summary",
+        "a[href*=\"faq\" i]"
+      ],
+      "palavras": [
+        "perguntas frequentes",
+        "dúvidas frequentes",
+        "duvidas frequentes",
+        "faq"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: FAQs Still Deliver Great Value",
+        "url": "https://www.nngroup.com/articles/faqs-deliver-value/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. A fonte pede perguntas reais, agrupadas por assunto e fáceis de escanear."
+  },
+  {
+    "id": "novidades-ou-blog",
+    "tipo_de_site": "site-institucional",
+    "nome": "Novidades ou blog",
+    "descricao": "Uma área de notícias ou artigos mostra que a empresa está ativa e responde dúvidas do público. Só vale a pena se for mantida atualizada.",
+    "obrigatoriedade": "opcional",
+    "peso": 2,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"blog\" i]",
+        "a[href*=\"noticias\" i]",
+        "a[href*=\"novidades\" i]"
+      ],
+      "palavras": [
+        "notícias",
+        "noticias",
+        "novidades",
+        "blog",
+        "imprensa"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 'About Us' Information on Corporate Websites",
+        "url": "https://www.nngroup.com/articles/about-us-information-on-websites/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "baixa",
+    "notas": "Peso inicial, a calibrar. Na fonte, notícias são uma subpágina opcional de Sobre."
+  },
+  {
+    "id": "carreiras",
+    "tipo_de_site": "site-institucional",
+    "nome": "Trabalhe conosco",
+    "descricao": "Empresas que contratam costumam ter uma página para candidatos. É opcional e só faz sentido se houver vagas ou interesse em receber currículos.",
+    "obrigatoriedade": "opcional",
+    "peso": 1,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"carreira\" i]",
+        "a[href*=\"vagas\" i]",
+        "a[href*=\"trabalhe\" i]"
+      ],
+      "palavras": [
+        "trabalhe conosco",
+        "carreiras",
+        "vagas"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 'About Us' Information on Corporate Websites",
+        "url": "https://www.nngroup.com/articles/about-us-information-on-websites/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "baixa",
+    "notas": "Peso inicial, a calibrar. Citado na fonte entre as subpáginas possíveis de Sobre."
+  }
+]

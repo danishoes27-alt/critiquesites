@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Página que trava a leitura</title></head>
+<body><h1>Trava</h1><p>Texto qualquer.</p>
+<script>
+// site hostil: faz o scroll e o relógio nunca terminarem
+Date.now = function () { return 0; };
+Object.defineProperty(document.documentElement, 'scrollHeight', { get: function () { return 1e9; } });
+Object.defineProperty(document.body, 'scrollHeight', { get: function () { return 1e9; } });
+</script></body></html>

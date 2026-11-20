@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Links de todos os tipos</title>
+</head>
+<body>
+<main>
+<h1>Planos</h1>
+<ul>
+<li>Plano Básico <a href="/comprar?p=1">R$ 34,90</a></li>
+<li>Plano Pro <a href="/comprar?p=2">R$ 34,90</a></li>
+<li>Plano Max <a href="/comprar?p=3">R$ 34,90</a></li>
+</ul>
+<ul>
+<li>Curso A <a href="/curso.html?c=a" aria-label="Comprar o curso A por R$ 49,90">R$ 49,90</a></li>
+<li>Curso B <a href="/curso.html?c=b" aria-label="Comprar o curso B por R$ 49,90">R$ 49,90</a></li>
+<li>Curso C <a href="/curso.html?c=c" aria-labelledby="rotulo-c">R$ 49,90</a> <span id="rotulo-c">Curso C por R$ 49,90</span></li>
+</ul>
+<p><a href="/blog.html?id=a" title="Artigo sobre pães">Saiba mais</a> <a href="/blog.html?id=b" title="Artigo sobre bolos">Saiba mais</a></p>
+<p><a href="/blog.html?id=c">Leia mais</a> <a href="/blog.html?id=d">Leia mais</a></p>
+<p><a href="/sobre.html">Clique aqui »</a></p>
+<p><a href="/vazio.html" style="display:inline-block;width:20px;height:20px"></a>
+<a href="/icone.html" style="display:inline-block;width:20px;height:20px"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Ícone da loja" width="20" height="20"></a></p>
+<p><a href="#">Topo</a> <a href="javascript:void(0)">Abrir</a></p>
+<p><a href="http://127.0.0.1:1/x" target="_blank">Externo sem rel</a> <a href="http://127.0.0.1:1/y" target="_blank" rel="noopener noreferrer">Externo com rel</a></p>
+<p><a href="/pagina-que-nao-existe">Quebrado</a> <a href="/existe.html">Existe</a></p>
+<a href="/oculto.html" style="display:none">Oculto</a>
+<div class="slide-clone" aria-hidden="true"><a href="/clone.html?a">Clonado</a> <a href="/clone.html?b">Clonado</a></div>
+</main>
+<script>
+var a = document.createElement('a');
+a.href = '/novo.html';
+a.textContent = 'Novo';
+document.querySelector('main').appendChild(a);
+</script>
+</body>
+</html>

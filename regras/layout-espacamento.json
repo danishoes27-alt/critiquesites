@@ -1,0 +1,829 @@
+[
+  {
+    "id": "lay-padding-unico-em-tudo",
+    "categoria": "layout-espacamento",
+    "titulo": "Um único espaçamento interno repetido em quase todos os blocos",
+    "descricao": "Quase todas as caixas, cartões e painéis do site têm o mesmo espaço interno, seja um cartão pequeno ou um painel grande. A página fica uniforme, sem diferença de respiro entre o que é principal e o que é secundário.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Lê o padding computado dos blocos visíveis que têm fundo, borda ou sombra, agrupa pelo valor mais comum e calcula a fração de blocos que usam esse valor.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "elementos": "blocos visíveis (não clones) com background, border ou box-shadow e ao menos um filho com texto",
+        "propriedade": "padding-top, padding-right, padding-bottom, padding-left computados em px",
+        "fracao_minima_do_valor_dominante": 0.7,
+        "minimo_de_valores_distintos_de_padding_no_site": 4,
+        "dispara_se": "fração do valor dominante >= 0.7 E o site usa >= 4 valores distintos de padding",
+        "intensidade": "(fração dominante - 0.7) / 0.3, limitada a [0,1]"
+      }
+    },
+    "peso": 5,
+    "severidade": "tell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Dê espaçamentos internos diferentes por papel: mais folga no bloco principal, menos nos itens pequenos de lista.",
+    "prompt_correcao": "No arquivo {{arquivo}}, nos blocos do trecho {{trecho}}, todos usam o mesmo padding ({{valor}}). Defina de 3 a 4 níveis de espaçamento interno por papel (item pequeno, cartão, painel de destaque) e aplique cada nível ao papel certo. NÃO mude textos, cores nem a ordem das seções. Pronto quando o padding computado dos blocos mostrar pelo menos 3 valores distintos e nenhum valor cobrir 70% ou mais dos blocos.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells (hankimis)",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:D1"
+    ],
+    "citacoes": [
+      "numero",
+      "contagem"
+    ],
+    "notas": "Limiar de 70% e de 4 valores vêm do ai-design-tells (D1), medidos pelo repositório em sites reais, sem valer como verdade universal; peso 5 também vem da fonte. Sistema de design com padding padrão de propósito pode disparar: aplicar créditos de craft (tokens declarados). A regra oposta (irmãos com padding diferente) é lay-irmaos-com-espacamento-diferente."
+  },
+  {
+    "id": "lay-irmaos-com-espacamento-diferente",
+    "categoria": "layout-espacamento",
+    "titulo": "Itens do mesmo tipo com espaçamentos diferentes entre si",
+    "descricao": "Cartões ou itens de uma mesma lista, que deveriam ser iguais, têm espaço interno ou distância entre eles diferente. O olho percebe que algo está torto, mesmo sem saber dizer o quê.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Agrupa irmãos diretos com a mesma tag e mesmo conjunto de classes (pelo menos 3). Compara o padding computado de cada um e a distância entre irmãos consecutivos, usando as caixas medidas.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "grupo_minimo_de_irmaos": 3,
+        "tolerancia_px": 2,
+        "compara": [
+          "padding total vertical",
+          "padding total horizontal",
+          "distância vertical ou horizontal entre irmãos consecutivos"
+        ],
+        "dispara_se": "em algum grupo, a diferença entre o maior e o menor valor passa de 2 px",
+        "intensidade": "fração de grupos com diferença"
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Faça os itens do mesmo tipo usarem o mesmo espaçamento, vindo de um único estilo compartilhado.",
+    "prompt_correcao": "No arquivo {{arquivo}}, os itens do trecho {{trecho}} têm espaçamentos diferentes entre si ({{valor}}). Faça todos usarem o mesmo padding e o mesmo gap, definidos em uma única classe ou variável. NÃO altere o conteúdo nem o espaçamento de outros grupos. Pronto quando, no grupo, a diferença entre o maior e o menor padding e gap for de no máximo 2 px.",
+    "fonte": [
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:padding-desigual",
+      "unslop-heydamir:linhas-desiguais",
+      "design-review:DR-LAY-01",
+      "design-review:DR-COM-02"
+    ],
+    "citacoes": [
+      "numero",
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. A tolerância de 2 px é técnica (arredondamento), não vem das fontes, que só descrevem o sinal sem número. Cartões de destaque propositalmente maiores (grade bento) não devem entrar: excluir irmãos com classes diferentes."
+  },
+  {
+    "id": "lay-espacamento-fora-da-escala",
+    "categoria": "layout-espacamento",
+    "titulo": "Espaçamentos soltos, fora de uma escala regular",
+    "descricao": "Os espaços (margens, paddings e vãos) usam muitos valores avulsos que não seguem uma escala simples, como múltiplos de 4. O resultado é um ritmo irregular, com a sensação de cada espaço ter sido ajustado no olho.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Coleta os valores computados de margin, padding, gap, row-gap e column-gap em elementos visíveis, ignora 0, 1 e 2 px e valores automáticos, e conta os valores distintos que não são múltiplos de 4.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "base_px": 4,
+        "valores_ignorados_px": [
+          0,
+          1,
+          2
+        ],
+        "maximo_de_valores_fora_da_escala": 3,
+        "dispara_se": "mais de 3 valores distintos fora de múltiplos de 4",
+        "intensidade": "fração das ocorrências de espaçamento que ficam fora da escala"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Escolha uma escala curta (4, 8, 12, 16, 24, 32, 48, 64) e troque os valores avulsos pelo degrau mais próximo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o trecho {{trecho}} usa espaçamentos fora de uma escala (por exemplo {{valor}}). Defina variáveis de espaçamento (4, 8, 12, 16, 24, 32, 48, 64 px) e troque cada valor avulso pelo degrau mais próximo, sem mudar o layout geral. NÃO mexa em tamanhos de fonte nem em larguras de colunas. Pronto quando no máximo 3 valores distintos de espaçamento ficarem fora de múltiplos de 4.",
+    "fonte": [
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:espaco-arbitrario",
+      "unslop-heydamir:tok-escala-4px",
+      "hallmark:24b",
+      "design-review:DR-LAY-06",
+      "impeccable:lay-escala"
+    ],
+    "citacoes": [
+      "numero",
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. A escala de múltiplos de 4 vem do unslop (tokens.md); o limite de 3 ajustes ópticos vem do Hallmark (24b), pensado para builds com tokens. Em sites reais, valores como 6, 10 e 14 px são comuns e legítimos, então a confiança é baixa até calibrar."
+  },
+  {
+    "id": "lay-titulo-colado-no-bloco-anterior",
+    "categoria": "layout-espacamento",
+    "titulo": "Título mais perto do que vem antes do que do texto que ele apresenta",
+    "descricao": "Subtítulos de seção ficam mais próximos do bloco anterior do que do conteúdo que anunciam. O leitor entende o título como pertencente ao trecho errado, e a hierarquia fica confusa.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "js",
+      "metodo": "Para cada h2, h3 e h4 com bloco anterior e posterior, mede com getBoundingClientRect o espaço acima (até o bloco anterior) e abaixo (até o primeiro bloco do conteúdo) e compara.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "elementos": "h2, h3, h4 visíveis, fora de caixas com menos de 200 px de altura",
+        "razao_acima_sobre_abaixo_maxima": 0.75,
+        "falta_minima_px": 12,
+        "minimo_de_titulos_que_disparam": 2,
+        "dispara_se": "espaço acima < 0.75 x espaço abaixo E faltam 12 px ou mais, em pelo menos 2 títulos"
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Dê ao título pelo menos o dobro de espaço acima do que abaixo, para ele grudar visualmente no conteúdo que apresenta.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o título do trecho {{trecho}} está mais perto do bloco anterior do que do seu conteúdo (espaço acima e abaixo: {{valor}}). Ajuste margens para que o espaço acima do título seja pelo menos o dobro do espaço abaixo. NÃO mude o texto, o tamanho da fonte nem outros blocos. Pronto quando, para cada título, o espaço acima for maior ou igual a 0,75 vez o espaço abaixo.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:71",
+      "unslop-heydamir:agrupamento-invertido",
+      "design-review:DR-HIE-04",
+      "impeccable:lay-agrupar",
+      "impeccable:floor-espacamento"
+    ],
+    "citacoes": [
+      "numero",
+      "contagem"
+    ],
+    "notas": "Limiares (0,75, 12 px, 200 px, 2 títulos) vêm do Hallmark (gates.md, gate 71), medidos pelo repositório; confiança média no máximo. Teste do Hallmark pede sempre medir no render, não no CSS."
+  },
+  {
+    "id": "lay-respiro-curto-entre-secoes",
+    "categoria": "layout-espacamento",
+    "titulo": "Seções coladas, com pouco respiro entre elas na tela larga",
+    "descricao": "Em tela larga, o espaço entre uma seção e a seguinte é curto, e as seções parecem uma pilha de blocos apertados. Pouco respiro tira o destaque de cada seção.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Em viewport de 1440 px, mede a distância vertical entre o último conteúdo de uma seção e o primeiro conteúdo da seguinte (padding e margens somados). Usa limite menor quando o fundo muda de uma seção para outra.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "viewport": "1440x900",
+        "limite_px": 120,
+        "limite_px_quando_fundo_muda": 64,
+        "proporcao_de_pares_abaixo_do_limite_para_disparar": 0.5,
+        "dispara_se": "metade ou mais dos pares de seções consecutivas ficam abaixo do limite",
+        "intensidade": "fração dos pares abaixo do limite"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "site-institucional",
+      "landing-page",
+      "portfolio"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Aumente o respiro vertical entre seções e varie o tamanho conforme a importância de cada uma.",
+    "prompt_correcao": "No arquivo {{arquivo}}, as seções do trecho {{trecho}} têm só {{valor}} de espaço entre elas na tela de 1440 px. Aumente o espaço vertical para pelo menos 120 px (64 px onde o fundo muda), variando um pouco conforme a importância da seção. NÃO mude o conteúdo nem a versão de celular. Pronto quando, a 1440 px, menos da metade dos pares de seções ficarem abaixo do limite.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:59"
+    ],
+    "citacoes": [
+      "numero",
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. Os valores 120 px e 64 px vêm do Hallmark (gate 59), que o próprio repositório trata como padrão da casa; a proporção de 50% para disparar é proposta. O Hallmark isenta estruturas densas que separam por linhas e cores; por isso a regra fica restrita a tipos de site com respiro esperado. A parte \"todos os espaços iguais\" está em estr-ritmo-uniforme-de-secoes."
+  },
+  {
+    "id": "lay-vao-sob-o-hero",
+    "categoria": "layout-espacamento",
+    "titulo": "Faixa vazia grande entre o conteúdo do topo e a dobra da tela",
+    "descricao": "Na primeira tela, sobra um vazio grande entre o último elemento do topo da página e o fim da primeira dobra. A abertura parece desproporcional e sem composição.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Em 1440x900, acha o último conteúdo visível do bloco de abertura (texto, imagem, botão) e mede o espaço vazio até a base do bloco ou até a dobra, o que vier primeiro.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "viewport": "1440x900",
+        "vazio_maximo_px": 160,
+        "dispara_se": "vazio > 160 px",
+        "intensidade": "min(1, (vazio - 160) / 160)"
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Centralize melhor o conteúdo na primeira tela ou aumente o elemento visual, em vez de deixar o vazio.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o bloco de abertura {{trecho}} deixa {{valor}} de vazio entre o último conteúdo e a dobra da tela de 1440x900. Ajuste a altura e o alinhamento vertical para que o conteúdo ocupe a tela de forma equilibrada. NÃO preencha o vazio com texto novo. Pronto quando o vazio medido for de no máximo 160 px.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:79"
+    ],
+    "citacoes": [
+      "numero"
+    ],
+    "notas": "Limiar de 160 px vem do Hallmark (gate 79), medido pelo repositório. O Hallmark isenta aberturas com postura declarada de poster ou ledge; sem isso, usar confiança média."
+  },
+  {
+    "id": "lay-ultimo-item-sozinho",
+    "categoria": "layout-espacamento",
+    "titulo": "Última linha da grade com um item sozinho",
+    "descricao": "Uma grade de cartões ou itens termina com um único item órfão na última linha, enquanto as linhas de cima têm vários. A grade parece incompleta e desequilibrada.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Para grades e linhas com quebra, agrupa os filhos visíveis pela posição vertical (linhas) e verifica se a última linha tem 1 item enquanto as anteriores têm 2 ou mais.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "minimo_de_itens_nas_linhas_anteriores": 2,
+        "itens_na_ultima_linha": 1,
+        "larguras_testadas": [
+          1440,
+          768
+        ],
+        "dispara_se": "última linha com 1 item e linhas anteriores com 2 ou mais"
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Ajuste o número de colunas ou de itens para fechar a grade, ou deixe o último item ocupar a linha toda de propósito.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a grade do trecho {{trecho}} termina com um item sozinho na última linha ({{valor}}). Ajuste as colunas (por exemplo, mude para um número que divida os itens) ou faça o último item ocupar a linha inteira. NÃO remova nem reordene itens. Pronto quando a última linha tiver mais de um item ou o item sozinho ocupar toda a largura.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:F20"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Item de acabamento (tier Finish) no Hallmark, sem número além de \"um item sozinho\". Medir em duas larguras exige mais de uma renderização, por isso só no modo completo."
+  },
+  {
+    "id": "lay-bloco-de-texto-espremido",
+    "categoria": "layout-espacamento",
+    "titulo": "Bloco de texto espremido em coluna estreita demais",
+    "descricao": "Um parágrafo ou legenda fica numa coluna tão estreita que cabem pouquíssimas letras por linha, e o texto vira uma coluna longa e picotada. A leitura cansa.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Em 1440 px, para blocos de texto com 4 linhas ou mais, estima os caracteres por linha (total de caracteres dividido pelo número de linhas renderizadas) e compara com o mínimo.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "viewport": 1440,
+        "minimo_de_linhas": 4,
+        "minimo_de_caracteres_por_linha": 16,
+        "dispara_se": "média de caracteres por linha < 16 em bloco com 4 linhas ou mais"
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Alargue a coluna ou reorganize o layout para o texto ter largura de leitura confortável.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o bloco {{trecho}} tem apenas {{valor}} caracteres por linha a 1440 px. Alargue o contêiner ou mude a grade para que o texto tenha pelo menos 30 caracteres por linha. NÃO mude o texto nem o tamanho da fonte. Pronto quando nenhum bloco de 4 linhas ou mais tiver menos de 16 caracteres por linha.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:F17"
+    ],
+    "citacoes": [
+      "numero"
+    ],
+    "notas": "Limiar de cerca de 16 caracteres e de 4 linhas vem do Hallmark (checagem F17), de acabamento. A sugestão de 30 caracteres no prompt é só orientação de correção, não critério de detecção."
+  },
+  {
+    "id": "lay-caixa-apertada",
+    "categoria": "layout-espacamento",
+    "titulo": "Texto colado nas bordas da própria caixa",
+    "descricao": "Texto dentro de uma caixa com fundo ou borda lateral fica quase encostado nas bordas. A caixa parece apertada, com falta de respiro interno.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Para caixas com fundo preenchido ou borda lateral, maiores que 100x30 px, mede a distância entre o texto e as bordas e compara com o mínimo proporcional ao tamanho da fonte.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "tamanho_minimo_da_caixa_px": "100x30",
+        "folga_lateral_minima": "max(8 px, 0,5 em), com teto de 24 px",
+        "folga_vertical_minima": "max(4 px, 0,3 em), com teto de 12 px",
+        "dispara_se": "folga menor que o mínimo em qualquer lado"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Aumente o padding da caixa para dar respiro ao texto.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a caixa do trecho {{trecho}} tem o texto a apenas {{valor}} da borda. Aumente o padding para pelo menos 0,5em nas laterais e 0,3em em cima e embaixo (com mínimo de 8 px e 4 px). NÃO mude cor, fonte nem o conteúdo. Pronto quando a folga entre texto e bordas ficar acima desses mínimos.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:72",
+      "design-review:DR-LAY-03"
+    ],
+    "citacoes": [
+      "numero"
+    ],
+    "notas": "Fórmulas de folga vêm do Hallmark (gate 72), medidas no render; confiança média no máximo. A parte de texto colado na borda do celular está em resp-texto-colado-na-borda."
+  },
+  {
+    "id": "lay-parede-de-texto",
+    "categoria": "layout-espacamento",
+    "titulo": "Parede de texto: palavras demais por tela",
+    "descricao": "Em uma única tela de rolagem cabem dezenas de palavras seguidas, sem pausa visual. O leitor desiste de ler e a página parece um documento, não uma página pensada para escanear.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Conta as palavras de nós de texto visíveis (sem clones nem ocultos) dentro de janelas deslizantes de 900 px de altura a 1440 px de largura e guarda o máximo. Na abertura, conta quantos blocos de texto vêm antes da primeira ação.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "viewport_largura": 1440,
+        "janela_altura_px": 900,
+        "palavras_aviso": 80,
+        "palavras_alto": 95,
+        "blocos_de_texto_maximos_antes_da_primeira_acao_na_abertura": 2,
+        "dispara_se": "alguma janela acima de 80 palavras, ou abertura com mais de 2 blocos de texto antes das ações"
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "site-institucional",
+      "landing-page",
+      "portfolio",
+      "link-na-bio"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Corte o texto, quebre em seções com títulos curtos e use imagens, listas ou tabelas onde ajudarem.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o trecho {{trecho}} tem {{valor}} palavras numa única tela. Divida em blocos com títulos curtos, corte repetições e mova detalhes para uma seção seguinte, mantendo as informações importantes. NÃO invente conteúdo novo nem mude preços e dados. Pronto quando nenhuma janela de 900 px a 1440 px tiver mais de 80 palavras visíveis.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:58"
+    ],
+    "citacoes": [
+      "numero",
+      "contagem"
+    ],
+    "notas": "Limiares de 80 e 95 palavras e de 2 blocos vêm do Hallmark (gate 58), que se declara regra da casa; confiança média no máximo. Páginas de documentação e blog são excluídas por natureza (tipos de site restritos)."
+  },
+  {
+    "id": "lay-dois-sticky-no-topo",
+    "categoria": "layout-espacamento",
+    "titulo": "Dois elementos fixos no topo disputando o mesmo lugar",
+    "descricao": "Dois elementos (por exemplo o menu e um título de seção) ficam grudados no topo ao mesmo tempo, e um desliza por baixo do outro. Cobre conteúdo e cria sobreposições estranhas ao rolar.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Lê o position computado de todos os elementos visíveis; lista os que têm sticky ou fixed com top igual a 0 (ou menor que a altura do menu) e verifica se dois ou mais ocupam o topo da tela ao mesmo tempo, ao rolar.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "position": [
+          "sticky"
+        ],
+        "top_maximo_px": 0,
+        "minimo_de_elementos": 2,
+        "dispara_se": "dois elementos sticky com top 0 visíveis juntos ao rolar"
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Faça o segundo elemento grudar abaixo do primeiro, usando a altura do menu como deslocamento.",
+    "prompt_correcao": "No arquivo {{arquivo}}, os elementos {{trecho}} usam position sticky com top 0 e se sobrepõem ao rolar. Defina para o segundo um top igual à altura do menu fixo (variável CSS) e ajuste o z-index para o menu ficar por cima. NÃO mude a aparência do menu nem o conteúdo. Pronto quando, ao rolar a página, nenhum elemento sticky ficar escondido sob outro.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:56"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Item Floor do Hallmark (gate 56), verificado por script e render. O modo completo é necessário porque a sobreposição só aparece ao rolar."
+  },
+  {
+    "id": "lay-texto-coberto",
+    "categoria": "layout-espacamento",
+    "titulo": "Texto escondido por baixo de outro elemento",
+    "descricao": "Parte de um texto fica coberta por uma caixa opaca, uma imagem ou outro texto, e não dá para ler a linha inteira. Costuma indicar sobreposição por posicionamento mal calculado.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "js",
+      "metodo": "Para cada nó de texto visível, calcula o retângulo e chama elementFromPoint em 3 pontos (início, meio e fim da linha). Se o elemento no topo não for o próprio texto, seu ancestral ou seu descendente, marca como coberto, exceto barras fixas ou sticky.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "pontos_por_linha": 3,
+        "ignora": [
+          "position fixed",
+          "position sticky",
+          "pointer-events: none",
+          "elementos decorativos aria-hidden"
+        ],
+        "dispara_se": "ao menos um ponto da linha coberto por elemento opaco que não seja da própria árvore do texto"
+      }
+    },
+    "peso": 6,
+    "severidade": "tell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Separe o texto do elemento que o cobre, com espaço próprio ou camada acima (z-index).",
+    "prompt_correcao": "No arquivo {{arquivo}}, o texto {{trecho}} está coberto por {{valor}}. Corrija o posicionamento (espaço próprio, margem ou z-index) para o texto ficar totalmente visível. NÃO mude o texto, a cor nem outros elementos. Pronto quando elementFromPoint nos três pontos da linha devolver o próprio texto.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:73"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Item Floor do Hallmark (gate 73), medido no render. Faixas fixas e sticky são excluídas por definição do repositório. Sobreposição decorativa intencional (texto sobre imagem) não deve contar: filtrar por elementos opacos."
+  },
+  {
+    "id": "lay-conteudo-estoura-caixa",
+    "categoria": "layout-espacamento",
+    "titulo": "Texto ou item que ultrapassa a caixa onde deveria caber",
+    "descricao": "Um texto longo, uma palavra grande ou um item estoura para fora da caixa e invade o espaço vizinho, ou é cortado sem aviso. Costuma aparecer quando o layout só foi pensado com textos curtos.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Para elementos com texto, compara scrollWidth com clientWidth e a borda direita dos filhos com a do contêiner (com fundo, borda ou overflow). Mede em 1440 px no modo rápido e em 390, 768 e 1440 no completo.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "tolerancia_px": 1,
+        "larguras_rapido": [
+          1440
+        ],
+        "larguras_completo": [
+          390,
+          768,
+          1440
+        ],
+        "dispara_se": "scrollWidth > clientWidth + 1 com overflow visible, hidden ou clip, ou filho passando da borda do pai"
+      }
+    },
+    "peso": 5,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Deixe o texto quebrar ou ser truncado de propósito (quebra de palavra, reticências, min-width zero em filhos de flex e grid).",
+    "prompt_correcao": "No arquivo {{arquivo}}, o elemento {{trecho}} estoura a caixa ({{valor}}). Permita a quebra do texto (overflow-wrap: anywhere ou break-word) e coloque min-width: 0 nos filhos de flex ou grid; se for lista, use reticências com título completo. NÃO corte informação sem avisar nem reduza a fonte. Pronto quando scrollWidth for menor ou igual a clientWidth nas larguras testadas.",
+    "fonte": [
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "web-design-guidelines:CMD-CNT-01",
+      "web-design-guidelines:CMD-CNT-02",
+      "web-design-guidelines:AG-CH-78",
+      "web-design-guidelines:AG-CH-79",
+      "design-review:DR-TIP-06",
+      "hallmark:50",
+      "impeccable:hard-texto-overflow"
+    ],
+    "citacoes": [
+      "numero",
+      "trecho"
+    ],
+    "notas": "A tolerância de 1 px é técnica (arredondamento de pixel). As fontes apresentam como boa prática, sem limiares numéricos. Fonte Vercel: command.md e AGENTS.md do repositório web-interface-guidelines."
+  },
+  {
+    "id": "lay-espaco-assimetrico-de-secao",
+    "categoria": "layout-espacamento",
+    "titulo": "Seção com vão enorme em cima e quase nada embaixo (ou o contrário)",
+    "descricao": "O espaço acima de uma seção é muito maior do que o espaço abaixo, ou o inverso, sem razão aparente. A seção parece empurrada para um lado e desequilibra o ritmo da página.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Para cada seção principal, lê padding-top e padding-bottom (somando a margem do contêiner) e calcula a razão entre o maior e o menor.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "razao_maxima": 2.5,
+        "ignora": [
+          "primeira seção (abertura)",
+          "rodapé",
+          "seções coladas ao topo por menu fixo"
+        ],
+        "dispara_se": "razão entre o maior e o menor espaço vertical > 2.5 em 2 ou mais seções"
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Equilibre o espaço de cima e de baixo, ou deixe uma diferença pequena e intencional.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a seção {{trecho}} tem espaços verticais muito diferentes entre cima e baixo ({{valor}}). Equilibre padding-top e padding-bottom para que a diferença fique abaixo de 2,5 vezes. NÃO mude o conteúdo nem a cor de fundo. Pronto quando a razão entre o maior e o menor espaço vertical for de no máximo 2,5.",
+    "fonte": [
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:vazio-desbalanceado"
+    ],
+    "citacoes": [
+      "numero"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. A fonte (signs.md do unslop) descreve o sinal sem número; a razão de 2,5 é proposta. Atenção: a skill Impeccable defende mais espaço acima de títulos do que abaixo, o que é diferente de seção."
+  },
+  {
+    "id": "lay-alinhamento-esquerda-solto",
+    "categoria": "layout-espacamento",
+    "titulo": "Títulos e blocos alinhados em colunas diferentes, sem eixo comum",
+    "descricao": "As bordas esquerdas de títulos, textos e cartões mudam de uma seção para outra, sem seguir uma grade. A página parece montada por partes que não conversam.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "js",
+      "metodo": "Em 1440 px, coleta a coordenada x esquerda de títulos (h1 a h3) e de blocos de texto principais em seções com alinhamento à esquerda (ignora blocos centralizados). Agrupa em faixas de 4 px e conta quantas bordas distintas existem.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "viewport": 1440,
+        "agrupamento_px": 4,
+        "maximo_de_bordas_distintas": 3,
+        "dispara_se": "mais de 3 bordas esquerdas distintas entre seções alinhadas à esquerda"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Alinhe títulos e blocos principais a uma mesma grade de colunas.",
+    "prompt_correcao": "No arquivo {{arquivo}}, os blocos do trecho {{trecho}} começam em posições horizontais diferentes ({{valor}}). Faça títulos e textos principais usarem o mesmo contêiner e a mesma coluna inicial. NÃO mude o conteúdo nem a ordem das seções. Pronto quando, a 1440 px, houver no máximo 3 bordas esquerdas distintas entre as seções alinhadas à esquerda.",
+    "fonte": [
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "design-review:DR-LAY-02",
+      "design-review:DR-LAY-04",
+      "web-design-guidelines:AG-LY-53"
+    ],
+    "citacoes": [
+      "numero"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. As fontes pedem alinhamento a grade como princípio, sem número. O limite de 3 bordas e o agrupamento de 4 px são propostos. Layouts editoriais intencionais podem disparar; a fila de julgamento do modelo decide."
+  }
+]

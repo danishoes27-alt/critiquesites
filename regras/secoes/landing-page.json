@@ -1,0 +1,413 @@
+[
+  {
+    "id": "promessa-principal",
+    "tipo_de_site": "landing-page",
+    "nome": "Promessa principal (título e frase de apoio)",
+    "descricao": "O título do topo precisa dizer, de forma específica e honesta, o que a pessoa ganha. Frases genéricas ou exageradas fazem o visitante sair sem entender a oferta.",
+    "obrigatoriedade": "essencial",
+    "peso": 9,
+    "deteccao": {
+      "seletores": [
+        "h1",
+        "[class*=\"hero\" i] h1",
+        "[class*=\"hero\" i] p",
+        "h1 + p"
+      ],
+      "palavras": [],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Microcontent: How to Write Headlines, Page Titles, and Subject Lines",
+        "url": "https://www.nngroup.com/articles/microcontent-how-to-write-headlines-page-titles-and-subject-lines/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Homepage Design: 5 Fundamental Principles",
+        "url": "https://www.nngroup.com/articles/homepage-design-principles/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: \"Get Started\" Stops Users",
+        "url": "https://www.nngroup.com/articles/get-started/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O script confirma que há um título e uma frase de apoio visíveis; a qualidade da promessa é julgamento."
+  },
+  {
+    "id": "chamada-para-acao-principal",
+    "tipo_de_site": "landing-page",
+    "nome": "Botão de ação principal",
+    "descricao": "A página existe para levar a uma ação. O botão principal deve estar bem visível e dizer exatamente o que acontece ao clicar, em vez de rótulos vagos.",
+    "obrigatoriedade": "essencial",
+    "peso": 9,
+    "deteccao": {
+      "seletores": [
+        "a[class*=\"btn\" i]",
+        "a[class*=\"button\" i]",
+        "button[type=\"submit\"]",
+        "a[class*=\"cta\" i]"
+      ],
+      "palavras": [
+        "quero",
+        "comprar",
+        "começar",
+        "comecar",
+        "cadastrar",
+        "falar com",
+        "solicitar",
+        "agendar",
+        "baixar",
+        "garantir"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: \"Get Started\" Stops Users",
+        "url": "https://www.nngroup.com/articles/get-started/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Homepage Design: 5 Fundamental Principles",
+        "url": "https://www.nngroup.com/articles/homepage-design-principles/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. A fonte desaconselha rótulos vagos como \"começar\" ou \"saiba mais\" sem dizer o que vem depois."
+  },
+  {
+    "id": "beneficios-e-como-funciona",
+    "tipo_de_site": "landing-page",
+    "nome": "Benefícios e como funciona",
+    "descricao": "Depois da promessa, a pessoa quer entender o que muda para ela e como funciona, em blocos curtos que dá para ler rapidamente.",
+    "obrigatoriedade": "esperada",
+    "peso": 6,
+    "deteccao": {
+      "seletores": [
+        "section[id*=\"benef\" i]",
+        "[class*=\"benefit\" i]",
+        "[id*=\"como-funciona\" i]",
+        "section ul li"
+      ],
+      "palavras": [
+        "benefícios",
+        "beneficios",
+        "como funciona",
+        "vantagens",
+        "passo a passo",
+        "por que"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 5 Formatting Techniques for Long-Form Content",
+        "url": "https://www.nngroup.com/articles/formatting-long-form-content/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Homepage Design: 5 Fundamental Principles",
+        "url": "https://www.nngroup.com/articles/homepage-design-principles/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Estrutura em seções curtas, com resumo no começo, vem da fonte sobre conteúdo longo."
+  },
+  {
+    "id": "prova-social",
+    "tipo_de_site": "landing-page",
+    "nome": "Prova social (depoimentos, números, logos)",
+    "descricao": "Relatos de quem já usou reduzem a dúvida de quem está chegando. Funcionam melhor com nome, contexto e sem parecer inventados.",
+    "obrigatoriedade": "esperada",
+    "peso": 6,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"depoimento\" i]",
+        "[class*=\"testimonial\" i]",
+        "blockquote",
+        "[class*=\"logos\" i]"
+      ],
+      "palavras": [
+        "depoimentos",
+        "quem já usou",
+        "quem ja usou",
+        "clientes",
+        "avaliações",
+        "avaliacoes"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Social Proof in the User Experience",
+        "url": "https://www.nngroup.com/articles/social-proof-ux/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Trustworthiness in Web Design: 4 Credibility Factors",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. A fonte avisa que prova social precisa ser testada; números baixos podem prejudicar."
+  },
+  {
+    "id": "formulario-curto",
+    "tipo_de_site": "landing-page",
+    "nome": "Formulário curto",
+    "descricao": "Quando a página pede dados, quanto menos campos melhor. Pedir só o que será usado agora e rotular cada campo evita desistência.",
+    "obrigatoriedade": "esperada",
+    "peso": 6,
+    "deteccao": {
+      "seletores": [
+        "form",
+        "input[type=\"email\"]",
+        "form label",
+        "form input[required]"
+      ],
+      "palavras": [
+        "seu e-mail",
+        "seu email",
+        "seu nome",
+        "telefone",
+        "enviar"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: When to Hide Content Behind Forms and When to Give Content Away",
+        "url": "https://www.nngroup.com/articles/content-behind-forms/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web.dev: Sign-up form best practices",
+        "url": "https://web.dev/articles/sign-up-form-best-practices",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "W3C WCAG 2.2: Understanding 3.3.2 Labels or Instructions",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html",
+        "licenca": "W3C Software and Document License (© W3C)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O script conta campos e rótulos; o limite de campos é um limiar nosso e deve ser calibrado."
+  },
+  {
+    "id": "preco-ou-condicoes",
+    "tipo_de_site": "landing-page",
+    "nome": "Preço ou condições da oferta",
+    "descricao": "Se a página promove algo pago, o preço e as condições não devem ficar escondidos. Esconder valores gera desconfiança e surpresa no fim.",
+    "obrigatoriedade": "esperada",
+    "peso": 4,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"preco\" i]",
+        "[class*=\"price\" i]",
+        "[id*=\"planos\" i]"
+      ],
+      "palavras": [
+        "preço",
+        "preco",
+        "valor",
+        "a partir de",
+        "parcelas",
+        "planos"
+      ],
+      "padroes_regex": [
+        "R\\$\\s?\\d"
+      ],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: \"Get Started\" Stops Users",
+        "url": "https://www.nngroup.com/articles/get-started/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Aplica-se quando há venda; o Decreto 7.962/2013 (art. 2º, IV e V) trata do preço e das condições em ofertas online."
+  },
+  {
+    "id": "perguntas-frequentes",
+    "tipo_de_site": "landing-page",
+    "nome": "Perguntas frequentes e objeções",
+    "descricao": "Um bloco que responde as dúvidas de antes de comprar ou se cadastrar ajuda quem hesita, sem precisar entrar em contato.",
+    "obrigatoriedade": "esperada",
+    "peso": 4,
+    "deteccao": {
+      "seletores": [
+        "[id*=\"faq\" i]",
+        "[class*=\"faq\" i]",
+        "details > summary"
+      ],
+      "palavras": [
+        "perguntas frequentes",
+        "dúvidas",
+        "duvidas",
+        "faq"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: FAQs Still Deliver Great Value",
+        "url": "https://www.nngroup.com/articles/faqs-deliver-value/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. A fonte indica que FAQs respondem dúvidas de pré-compra."
+  },
+  {
+    "id": "contato-e-identificacao-no-rodape",
+    "tipo_de_site": "landing-page",
+    "nome": "Contato e identificação no rodapé",
+    "descricao": "No fim da página, a pessoa espera achar quem é o responsável e como falar com ele. Isso conta como sinal de que o site é confiável.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "footer a[href^=\"mailto:\"]",
+        "footer a[href^=\"tel:\"]",
+        "footer a[href*=\"wa.me\"]",
+        "footer address"
+      ],
+      "palavras": [
+        "contato",
+        "cnpj",
+        "e-mail",
+        "whatsapp"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 'Contact Us' Page Guidelines",
+        "url": "https://www.nngroup.com/articles/contact-us-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Trustworthiness in Web Design: 4 Credibility Factors",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Transparência de contato é fator de credibilidade nas duas fontes."
+  },
+  {
+    "id": "aviso-de-privacidade-no-formulario",
+    "tipo_de_site": "landing-page",
+    "nome": "Aviso de privacidade junto à captura de dados",
+    "descricao": "Perto de onde a pessoa deixa nome e e-mail, deve haver um aviso ou link para a política de privacidade explicando o uso dos dados.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "form a[href*=\"privacidade\" i]",
+        "a[href*=\"privacidade\" i]",
+        "form input[type=\"checkbox\"]"
+      ],
+      "palavras": [
+        "política de privacidade",
+        "politica de privacidade",
+        "privacidade",
+        "concordo"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Lei 13.709/2018 (LGPD), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Regra documentada (LGPD art. 9º); aviso, não parecer jurídico."
+  },
+  {
+    "id": "imagem-ou-video-da-oferta",
+    "tipo_de_site": "landing-page",
+    "nome": "Imagem ou vídeo que mostra a oferta",
+    "descricao": "Uma imagem, captura de tela ou vídeo que realmente mostra o produto ou serviço ajuda a entender mais rápido do que só texto.",
+    "obrigatoriedade": "opcional",
+    "peso": 2,
+    "deteccao": {
+      "seletores": [
+        "video",
+        "picture",
+        "img[alt]"
+      ],
+      "palavras": [],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 5 Formatting Techniques for Long-Form Content",
+        "url": "https://www.nngroup.com/articles/formatting-long-form-content/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: SEO Starter Guide",
+        "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "baixa",
+    "notas": "Peso inicial, a calibrar. A fonte pede imagens que acrescentem sentido, não decoração; o script só verifica presença e texto alternativo."
+  }
+]

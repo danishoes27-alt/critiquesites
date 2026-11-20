@@ -1,0 +1,1093 @@
+[
+  {
+    "id": "txt-densidade-cliches",
+    "categoria": "texto-generico",
+    "titulo": "Muitos clichês de copy para o tamanho do texto",
+    "descricao": "Conta quantas expressões batidas aparecem no texto visível em relação ao tamanho dele. Muita frase que serviria a qualquer empresa deixa o site com cara de genérico.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "texto",
+      "metodo": "Aplica a lista regras/texto/cliches-pt-br.json (tipos hype, vago, abertura-batida e fechamento-batido) ao texto visível e não-clone de cada página; soma o peso de cada acerto e divide pelo total de palavras, vezes mil.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "lista": "regras/texto/cliches-pt-br.json",
+        "tipos_considerados": [
+          "hype",
+          "vago",
+          "abertura-batida",
+          "fechamento-batido"
+        ],
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "excluir": [
+          "nav",
+          "rodape legal",
+          "blockquote de depoimento",
+          "code/pre"
+        ],
+        "minimo_de_palavras": 150,
+        "indice": "soma(peso_i x acertos_i) / total_de_palavras x 1000",
+        "disparo_a_partir_de": 8,
+        "intensidade_maxima_em": 30,
+        "intensidade": "min(1, (indice - 8) / (30 - 8))"
+      }
+    },
+    "peso": 8,
+    "severidade": "tell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque cada expressão batida por um fato do seu negócio: número, nome, prazo, lugar ou exemplo real.",
+    "prompt_correcao": "No arquivo {{arquivo}}, reescreva o trecho «{{trecho}}» (índice de clichês medido: {{valor}} por mil palavras). Troque cada expressão batida por uma informação concreta que eu fornecer (número, nome, prazo, lugar ou exemplo real); se faltar informação, pergunte antes de inventar. NÃO mude a estrutura HTML, as classes CSS, os links nem o sentido original da frase. Pronto quando nenhuma expressão da lista regras/texto/cliches-pt-br.json restar no trecho e a medição, repetida, ficar abaixo de 8 por mil palavras.",
+    "fonte": [
+      {
+        "nome": "SPEC.md do projeto critiquesites (§6.4, módulo de texto genérico/batido)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop-ui (Neil Roberts / Carter Johnson)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "ai-design-tells (Han Kim / IOV Labs)",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Nielsen Norman Group: Concise, SCANNABLE, and Objective: How to Write for the Web (1997)",
+        "url": "https://www.nngroup.com/articles/concise-scannable-and-objective-how-to-write-for-the-web/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-ui:hype-copy",
+      "hallmark:19",
+      "ai-design-tells:G1"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. (disparo em 8 e intensidade máxima em 30 por mil palavras são do projeto). O peso de cada expressão vem da lista de clichês. Apoio, não limiar: um estudo antigo do NN/g (1997, 51 pessoas) achou usabilidade 27% melhor na versão objetiva de um site do que na promocional. O veredito possível é texto genérico/batido, nunca autoria."
+  },
+  {
+    "id": "txt-lorem-ipsum",
+    "categoria": "texto-generico",
+    "titulo": "Texto de enchimento (lorem ipsum) à mostra",
+    "descricao": "Há texto de enchimento do tipo lorem ipsum visível na página. É sinal de página que não foi terminada e passa descuido a quem visita.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "texto",
+      "metodo": "Procura «lorem ipsum», «dolor sit amet» e «consectetur adipiscing» no texto visível do DOM final e registra também se o trecho aparece no HTML cru.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "padroes": [
+          "lorem ipsum",
+          "dolor sit amet",
+          "consectetur adipiscing"
+        ],
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "registrar_tambem": [
+          "cru"
+        ],
+        "minimo_de_ocorrencias": 1,
+        "intensidade": 1
+      }
+    },
+    "peso": 5,
+    "severidade": "tell",
+    "selo": "fato",
+    "confianca": "alta",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque o texto de enchimento por texto real, escrito para essa página.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o trecho «{{trecho}}» é texto de enchimento (lorem ipsum). Substitua por texto real que eu fornecer para essa seção; se eu não tiver fornecido, pergunte antes de inventar. NÃO altere a estrutura HTML, as classes, os ids nem o tamanho do bloco além do necessário para o texto novo caber. Pronto quando uma busca sem diferenciar maiúsculas por «lorem ipsum» e «dolor sit amet» em toda a pasta do site retornar zero resultados.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells (Han Kim / IOV Labs)",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:G3"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Peso 5 vem da fonte (G3). Só conta se o texto estiver visível e não for clone; texto de enchimento oculto vira outro achado."
+  },
+  {
+    "id": "txt-nomes-e-dados-de-exemplo",
+    "categoria": "texto-generico",
+    "titulo": "Nomes e números de exemplo no lugar de dados reais",
+    "descricao": "Aparecem nomes de modelo («Fulano de Tal», «Acme»), marcadores como [nome] ou números óbvios de teste. Parece conteúdo que ficou por preencher.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "texto",
+      "metodo": "Aplica as entradas vago-nomes-de-exemplo e vago-dados-falsos de regras/texto/cliches-pt-br.json ao texto visível e não-clone; cada acerto vira uma evidência com trecho e seletor.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "lista": "regras/texto/cliches-pt-br.json",
+        "ids": [
+          "vago-nomes-de-exemplo",
+          "vago-dados-falsos"
+        ],
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "minimo_de_ocorrencias": 1,
+        "intensidade": "min(1, ocorrencias / 3)"
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque pelo dado real (nome, cargo, valor) ou remova o bloco até ter o dado.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o trecho «{{trecho}}» parece nome ou número de exemplo (valor encontrado: {{valor}}). Troque pelos dados reais que eu fornecer; se eu não tiver o dado, remova o bloco em vez de inventar. NÃO mude o layout, as classes nem os demais blocos. Pronto quando nenhum nome de exemplo nem marcador entre colchetes restar na página e cada depoimento ou número exibido tiver fonte real indicada por mim.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:19",
+      "hallmark:46a",
+      "unslop-heydamir:dados-falsos"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. Um nome comum como «João da Silva» pode ser real; por isso é opinião, não fato. A decisão final é do dono do site."
+  },
+  {
+    "id": "txt-headline-vago",
+    "categoria": "texto-generico",
+    "titulo": "Título principal vago e aspiracional",
+    "descricao": "O título principal usa frases de efeito que servem a qualquer empresa («transforme seu negócio», «o futuro começa aqui») e não diz o que a empresa faz.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "texto",
+      "metodo": "Aplica as entradas dos tipos hype e vago com peso 3 ou mais de regras/texto/cliches-pt-br.json ao primeiro h1, ao parágrafo ou h2 logo abaixo dele e ao primeiro h2 da página; qualquer acerto dispara.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "lista": "regras/texto/cliches-pt-br.json",
+        "tipos_considerados": [
+          "hype",
+          "vago"
+        ],
+        "peso_minimo_da_entrada": 3,
+        "alvos": [
+          "primeiro h1",
+          "texto imediatamente abaixo do h1 (até 40 palavras)",
+          "primeiro h2"
+        ],
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "minimo_de_ocorrencias": 1,
+        "intensidade": "min(1, ocorrencias / 2)"
+      }
+    },
+    "peso": 6,
+    "severidade": "tell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Reescreva o título dizendo o que você faz, para quem e com qual resultado concreto.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o título «{{trecho}}» usa expressão vaga (acerto: {{valor}}). Reescreva em uma frase curta que diga o que a empresa faz, para quem e com qual resultado concreto, usando só fatos que eu confirmar; pergunte o que faltar. NÃO mude a hierarquia de títulos (h1/h2), as classes, o botão principal nem o resto da seção. Pronto quando o título não casar com nenhuma entrada de peso 3 ou mais da lista de clichês e passar no teste: trocando o nome da empresa pelo de um concorrente, a frase deixa de ser verdadeira.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells (Han Kim / IOV Labs)",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:G1",
+      "unslop-heydamir:headline-generico"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Peso 6 e a ideia de olhar o título vêm da fonte (G1), que usa regex sobre o texto visível; a lista em português é adaptação do projeto. O acerto é sinal, não prova; o teste da troca (txt-teste-da-troca) decide os casos duvidosos."
+  },
+  {
+    "id": "txt-ctas-genericos",
+    "categoria": "texto-generico",
+    "titulo": "Só botões de chamada genéricos",
+    "descricao": "Todos os botões e links de ação têm textos como «Saiba mais», «Comece agora» ou «Fale conosco». A pessoa não descobre o que acontece ao clicar.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "texto",
+      "metodo": "Coleta botões e links com aparência de botão (button, [role=button], a com classe btn/cta/button ou fundo/borda de destaque) visíveis e não-clone e compara o texto inteiro com as entradas do tipo cta-generico; dispara quando 100% deles estão na lista.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "lista": "regras/texto/cliches-pt-br.json",
+        "tipos_considerados": [
+          "cta-generico"
+        ],
+        "seletores": [
+          "button",
+          "[role=button]",
+          "a[class*=btn]",
+          "a[class*=cta]",
+          "a[class*=button]",
+          "input[type=submit]"
+        ],
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "minimo_de_ctas": 1,
+        "disparo": "todos os CTAs da página estão na lista",
+        "intensidade": 1
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque pelo verbo mais o resultado: «Pedir orçamento da reforma», «Baixar o catálogo de 2026».",
+    "prompt_correcao": "No arquivo {{arquivo}}, o botão «{{trecho}}» tem texto genérico (CTAs genéricos na página: {{valor}}). Reescreva cada rótulo como verbo mais resultado esperado, em até 4 palavras, com base no que o botão realmente faz (confirme comigo se não estiver claro). NÃO mude links de destino, classes, estilos nem a ordem dos botões. Pronto quando nenhum botão da página tiver texto igual a uma entrada do tipo cta-generico da lista de clichês.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells (Han Kim / IOV Labs)",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:G2",
+      "impeccable:cla-verbo-objeto",
+      "impeccable:cla-confirmacao"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Peso 4 e a condição «todos os CTAs na lista, com pelo menos 1» vêm da fonte (G2). Rótulos como «Fale conosco» podem ser corretos em páginas de contato; por isso é cheiro, não defeito."
+  },
+  {
+    "id": "txt-especificidade-baixa",
+    "categoria": "texto-generico",
+    "titulo": "Poucas frases com número, nome próprio ou unidade",
+    "descricao": "Quase nenhuma frase do texto traz um dado concreto (número, nome próprio, unidade de medida). Texto sem detalhe tende a servir para qualquer empresa.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "texto",
+      "metodo": "Separa o texto visível em frases e conta a proporção das que têm pelo menos um número, nome próprio (palavra com inicial maiúscula fora do começo da frase, que não seja o nome da marca) ou unidade (R$, %, kg, m², km, dias, horas, anos etc.).",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "unidade_de_analise": "frase (separada por ponto, exclamação, interrogação ou quebra de bloco)",
+        "frase_especifica_se": [
+          "contém dígito ou valor monetário",
+          "contém nome próprio que não é a marca",
+          "contém unidade de medida ou período"
+        ],
+        "minimo_de_frases": 20,
+        "excluir": [
+          "nav",
+          "rodape legal",
+          "botoes",
+          "code/pre"
+        ],
+        "proporcao_minima": 0.1,
+        "intensidade": "max(0, 1 - proporcao / 0.10)"
+      }
+    },
+    "peso": 6,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Acrescente dados reais: quantos, quanto, quando, onde, quem. Um número verdadeiro vale mais que um adjetivo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, só {{valor}} das frases do texto têm dado concreto. Reescreva o trecho «{{trecho}}» acrescentando dados reais que eu fornecer (números, nomes de clientes ou produtos, prazos, lugares); pergunte o que faltar e não invente nada. NÃO mude a estrutura HTML, os links, as classes nem o tom geral. Pronto quando a proporção de frases com número, nome próprio ou unidade chegar a 10% ou mais nas páginas com 20 frases ou mais.",
+    "fonte": [
+      {
+        "nome": "SPEC.md do projeto critiquesites (§6.4, módulo de texto genérico/batido)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:reg-texto-calmo",
+      "unslop-heydamir:headline-generico"
+    ],
+    "citacoes": [
+      "numero",
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. (10% e mínimo de 20 frases são do projeto, SPEC §6.4). Textos jurídicos e de blog podem ter poucos dados sem serem batidos; confira o tipo de site antes de acusar."
+  },
+  {
+    "id": "txt-rebatida-nao-e-x-e-y",
+    "categoria": "texto-generico",
+    "titulo": "Repetição do molde «não é X, é Y»",
+    "descricao": "O texto repete a estrutura em que se nega uma coisa para afirmar outra («não é só um site, é uma experiência»). Usada uma vez funciona; repetida vira fórmula.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "texto",
+      "metodo": "Conta no texto visível os acertos das entradas estr-nao-e-x-e-y e estr-nao-apenas-mas-tambem da lista de clichês; dispara com 2 ou mais acertos na mesma página.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "lista": "regras/texto/cliches-pt-br.json",
+        "ids": [
+          "estr-nao-e-x-e-y",
+          "estr-nao-apenas-mas-tambem"
+        ],
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "minimo_na_pagina": 2,
+        "intensidade": "min(1, ocorrencias / 4)"
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Diga direto o que a coisa é, sem negar antes o que ela não é. Mantenha o molde no máximo uma vez.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a frase «{{trecho}}» usa o molde «não é X, é Y» ({{valor}} vezes na página). Reescreva cada uma afirmando direto o que o produto ou serviço é, com um detalhe concreto que eu confirmar; deixe o molde em no máximo uma frase da página. NÃO mude títulos, links, classes nem o significado. Pronto quando a medição achar no máximo 1 acerto das entradas estr-nao-e-x-e-y e estr-nao-apenas-mas-tambem na página.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "SPEC.md do projeto critiquesites (§6.4, módulo de texto genérico/batido)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:19"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. O Hallmark trata a cadência de «rebatida» repetida como sinal de texto de modelo; aqui só a repetição conta, e o limiar de 2 por página é nosso."
+  },
+  {
+    "id": "txt-frases-curtas-em-serie",
+    "categoria": "texto-generico",
+    "titulo": "Séries de três frases curtas seguidas",
+    "descricao": "O texto usa sequências do tipo «Simples. Rápido. Seguro.» com frases de até três palavras. Pode ser estilo, mas em excesso soa a fórmula de anúncio.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "texto",
+      "metodo": "Procura no texto visível sequências de 3 frases seguidas de até 3 palavras cada (entrada estr-tres-fragmentos) e listas de 3 itens de até 2 palavras em h1 e h2; dispara com 2 ou mais ocorrências na página.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "lista": "regras/texto/cliches-pt-br.json",
+        "ids": [
+          "estr-tres-fragmentos"
+        ],
+        "tambem_em": [
+          "h1",
+          "h2 com tres itens de ate 2 palavras separados por virgula ou «e»"
+        ],
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "minimo_na_pagina": 2,
+        "intensidade": "min(1, ocorrencias / 4)"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque a série por uma frase completa com um dado concreto. Uma série curta, por página, no máximo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o trecho «{{trecho}}» é uma série de frases curtas ({{valor}} séries na página). Reescreva como uma ou duas frases completas, com um dado concreto que eu fornecer. NÃO altere títulos, links, classes nem outros blocos. Pronto quando a medição achar no máximo 1 série de três frases curtas na página.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "SPEC.md do projeto critiquesites (§6.4, módulo de texto genérico/batido)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:19"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. O Hallmark cita a batida de três como sinal; o limiar de 2 ocorrências por página é nosso."
+  },
+  {
+    "id": "txt-travessao-densidade",
+    "categoria": "texto-generico",
+    "titulo": "Travessões (—) em quantidade acima do normal",
+    "descricao": "O texto usa muitos travessões longos. É um sinal fraco: bons textos também os usam, então pesa pouco e nunca prova nada sozinho.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "texto",
+      "metodo": "Conta o caractere «—» (U+2014) e o «–» (U+2013) cercado de espaços no texto visível; calcula ocorrências por mil palavras; dispara com pelo menos 3 ocorrências e 3 ou mais por mil palavras.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "caracteres": [
+          "—",
+          " – "
+        ],
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "excluir": [
+          "code/pre",
+          "faixas de preco"
+        ],
+        "minimo_de_palavras": 150,
+        "minimo_de_ocorrencias": 3,
+        "disparo_por_mil_palavras": 3,
+        "intensidade": "min(1, (por_mil - 3) / 7)"
+      }
+    },
+    "peso": 1,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque alguns travessões por vírgula, ponto ou dois-pontos, conforme o sentido.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o texto tem {{valor}} travessões por mil palavras (exemplo: «{{trecho}}»). Substitua por vírgula, ponto ou dois-pontos onde o sentido permitir, mantendo no máximo 2 travessões na página. NÃO mude palavras, ordem das frases, links nem classes. Pronto quando a página tiver menos de 3 travessões por mil palavras.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "SPEC.md do projeto critiquesites (§6.4, módulo de texto genérico/batido)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:19"
+    ],
+    "citacoes": [
+      "numero",
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. Peso baixo de propósito (SPEC §6.4). O Hallmark lista travessões entre os sinais de copy de modelo, mas escritores humanos usam o travessão; este sinal nunca sustenta um veredito."
+  },
+  {
+    "id": "txt-exclamacoes-em-excesso",
+    "categoria": "texto-generico",
+    "titulo": "Pontos de exclamação em excesso",
+    "descricao": "O texto usa muitos pontos de exclamação ou exclamação dupla. Em excesso, passa tom de propaganda gritada e tira a seriedade da página.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "texto",
+      "metodo": "Conta «!» no texto visível, fora de código e de nomes de marca; dispara se houver «!!» (duas ou mais seguidas) ou se as exclamações passarem de 6 por mil palavras.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "caractere": "!",
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "excluir": [
+          "code/pre",
+          "nome de marca com ! no logotipo"
+        ],
+        "disparo_se": [
+          "ocorre «!!» ou «! !»",
+          "exclamacoes_por_mil_palavras > 6"
+        ],
+        "minimo_de_palavras": 100,
+        "intensidade": "min(1, exclamacoes_por_mil / 15)"
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Deixe a exclamação só onde há emoção de verdade. Na maioria dos casos, um ponto final basta.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o texto tem {{valor}} exclamações por mil palavras (exemplo: «{{trecho}}»). Troque por ponto final nas frases informativas e deixe no máximo uma exclamação por página. NÃO mude palavras, links, classes nem a estrutura. Pronto quando não houver «!!» e a página tiver 6 ou menos exclamações por mil palavras.",
+    "fonte": [
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "SPEC.md do projeto critiquesites (§6.4, módulo de texto genérico/batido)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:exclamacao"
+    ],
+    "citacoes": [
+      "numero",
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. A fonte aponta exclamação e «!!» na interface como sinal, sem número; o limite de 6 por mil palavras é nosso."
+  },
+  {
+    "id": "txt-abertura-batida",
+    "categoria": "texto-generico",
+    "titulo": "Abertura de página ou seção com fórmula batida",
+    "descricao": "O começo do texto usa aberturas prontas («bem-vindo ao nosso site», «no mundo digital de hoje»). Quem lê não aprende nada de novo nas primeiras linhas.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "texto",
+      "metodo": "Aplica as entradas do tipo abertura-batida da lista de clichês às primeiras 40 palavras do bloco principal (abaixo do h1) e ao primeiro parágrafo das seções «Sobre» e «Quem somos»; qualquer acerto dispara.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "lista": "regras/texto/cliches-pt-br.json",
+        "tipos_considerados": [
+          "abertura-batida"
+        ],
+        "alvos": [
+          "primeiras 40 palavras abaixo do primeiro h1",
+          "primeiro paragrafo da secao sobre/quem somos"
+        ],
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "minimo_de_ocorrencias": 1,
+        "intensidade": "min(1, ocorrencias / 2)"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Comece pela informação mais útil: o que você faz e o que a pessoa ganha.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a abertura «{{trecho}}» é uma fórmula batida. Reescreva a primeira frase para dizer logo o que a empresa faz e o que o cliente ganha, com um fato concreto que eu confirmar. NÃO mude o título, os links, as classes nem o restante do parágrafo além do necessário. Pronto quando as primeiras 40 palavras do bloco não casarem com nenhuma entrada do tipo abertura-batida da lista de clichês.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:19",
+      "unslop-heydamir:saudacao"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. A lista em português é adaptação do projeto; o Hallmark fala de aberturas genéricas e o unslop (heydamir) de títulos de saudação."
+  },
+  {
+    "id": "txt-fechamento-batido",
+    "categoria": "texto-generico",
+    "titulo": "Fechamento da página com fórmula batida",
+    "descricao": "A faixa final antes do rodapé usa despedidas prontas («conte conosco», «rumo ao sucesso»). É a última chance de convencer e acaba sem informação nova.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "texto",
+      "metodo": "Aplica as entradas do tipo fechamento-batido da lista de clichês à última seção de conteúdo (a última section ou faixa de chamada antes do footer); qualquer acerto dispara.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "lista": "regras/texto/cliches-pt-br.json",
+        "tipos_considerados": [
+          "fechamento-batido"
+        ],
+        "alvos": [
+          "ultima section antes do footer",
+          "faixa final de chamada para acao"
+        ],
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "minimo_de_ocorrencias": 1,
+        "intensidade": "min(1, ocorrencias / 2)"
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Feche com o próximo passo concreto: o que a pessoa faz agora, quanto custa ou em quanto tempo recebe resposta.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o fechamento «{{trecho}}» é uma despedida batida. Reescreva dizendo o próximo passo concreto (ação, prazo de resposta ou condição) com dados que eu fornecer. NÃO mude o link do botão, as classes, o rodapé nem as outras seções. Pronto quando a última seção não casar com nenhuma entrada do tipo fechamento-batido e o botão tiver verbo mais resultado.",
+    "fonte": [
+      {
+        "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:85"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. Lista de fechamentos é proposta do projeto; o Hallmark só aponta o fechamento com cadastro de e-mail fora de propósito (gate 85), que não é a mesma coisa."
+  },
+  {
+    "id": "txt-rotulo-ia-vazio",
+    "categoria": "texto-generico",
+    "titulo": "Recurso vendido pelo rótulo «IA» em vez do benefício",
+    "descricao": "O texto anuncia algo como «com IA», «impulsionado por IA» ou cita o nome de um modelo, sem dizer o que a pessoa ganha. O rótulo vira o argumento no lugar do benefício.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "texto",
+      "metodo": "Procura no texto visível de h1 a h3, botões, links e primeiras 100 palavras: expressões «com IA/inteligência artificial», «impulsionado/alimentado por IA», «AI-powered», «powered by AI», nomes de modelos ou empresas de IA (GPT, ChatGPT, Claude, Anthropic, OpenAI, Gemini, Copilot, LLM) e botões só com «IA».",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "lista": "regras/texto/cliches-pt-br.json",
+        "ids": [
+          "hype-poder-da-ia"
+        ],
+        "padroes_extra": [
+          "(com|via|usando) (ia|intelig[eê]ncia artificial)\\b",
+          "\\b(gpt|chatgpt|claude|anthropic|openai|gemini|copilot|llm)\\b",
+          "^\\s*(ia|ai)\\s*$"
+        ],
+        "alvos": [
+          "h1",
+          "h2",
+          "h3",
+          "button",
+          "a",
+          "primeiras 100 palavras"
+        ],
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "minimo_de_ocorrencias": 1,
+        "intensidade": "min(1, ocorrencias / 3)"
+      }
+    },
+    "peso": 5,
+    "severidade": "tell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Diga o que o recurso faz pela pessoa, em palavras simples. Se a tecnologia importa, cite uma vez e explique o efeito.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o trecho «{{trecho}}» destaca o rótulo de IA ou o nome do modelo. Reescreva para dizer o que o recurso faz pelo usuário, com um exemplo concreto que eu fornecer, citando a tecnologia no máximo uma vez. NÃO remova o recurso, não mude links, classes nem o texto legal. Pronto quando nenhum título ou botão da página tiver só o rótulo de IA como argumento e cada menção a IA vier acompanhada de um benefício verificável.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells (Han Kim / IOV Labs)",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:H2",
+      "unslop-heydamir:visual-ia-cliche"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Peso 5 vem da fonte (H2). Em sites de produtos de IA a menção é legítima; o modelo confirma o contexto antes de apontar. A regra critica o texto vago, nunca a tecnologia."
+  },
+  {
+    "id": "txt-mesmo-fato-repetido",
+    "categoria": "texto-generico",
+    "titulo": "O mesmo fato repetido em várias seções",
+    "descricao": "Uma mesma frase ou dado aparece em quatro ou mais seções, ou a última linha de uma seção só repete o título. A página enrola e gasta a atenção de quem lê.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "texto",
+      "detectavel_por_script": "parcial",
+      "metodo": "O script normaliza frases (minúsculas, sem acento e pontuação) com 6 ou mais palavras e pares número+unidade e conta em quantas seções cada um aparece; também compara o último parágrafo de cada seção com o título dela. O modelo confirma se é o mesmo fato ou só coincidência.",
+      "parametros": {
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "unidade": "section ou grupo de blocos sob um h2",
+        "frase_minima_em_palavras": 6,
+        "disparo_em_secoes": 4,
+        "eco_titulo_ultimo_paragrafo": "pelo menos 80% das palavras do título presentes no último parágrafo",
+        "confirmacao_do_modelo": "sim, só para os trechos acionados (zona cinza)",
+        "intensidade": "min(1, (secoes - 3) / 4)"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Diga cada fato uma vez, no lugar certo. Use o espaço que sobrar para informação nova.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a ideia «{{trecho}}» aparece em {{valor}} seções. Mantenha-a na seção onde ela tem mais função e substitua as outras repetições por informação nova que eu fornecer, ou remova a repetição. NÃO mude a ordem das seções, os títulos, os links nem as classes. Pronto quando nenhuma frase de 6 palavras ou mais nem par número+unidade aparecer em 4 ou mais seções.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:69"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "O limite de 4 seções vem do Hallmark (gate 69: mesmo fato em quatro ou mais seções; última linha repetindo o título). A comparação de 80% entre título e último parágrafo é nossa: Limiar inicial, a calibrar no teste de acerto."
+  },
+  {
+    "id": "txt-teste-da-troca",
+    "categoria": "texto-generico",
+    "titulo": "Teste da troca: a frase serve ao concorrente?",
+    "descricao": "Para as frases mais genéricas do site, pergunta-se: se eu trocar o nome desta empresa pelo do concorrente, a frase continua verdadeira? Se sim, ela não diz nada próprio.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O script escolhe as frases mais genéricas (maior soma de peso de clichês e nenhuma menção a número, nome próprio ou unidade) e o modelo responde, só sobre elas, se a frase continuaria verdadeira com o nome de um concorrente.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "selecao_pelo_script": {
+          "frases_por_pagina_chave_modo_rapido": 3,
+          "frases_por_pagina_chave_modo_completo": 5,
+          "criterio": "ordenar por (peso_de_cliches desc, especificidade asc)"
+        },
+        "pergunta": "Se eu trocar o nome desta empresa pelo do concorrente, a frase continua verdadeira?",
+        "respostas_possiveis": [
+          "serve-a-qualquer-um",
+          "serve-a-parte-do-setor",
+          "so-esta-empresa"
+        ],
+        "nota_0_a_4": "proporção de frases que só servem a esta empresa: 0 = nenhuma, 4 = todas",
+        "ajuste_maximo_na_nota_de_tell": 10,
+        "sempre_marcado_como": "opiniao"
+      }
+    },
+    "peso": 7,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Reescreva a frase com algo que só você pode dizer: um número seu, um cliente real, um método, um lugar.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a frase «{{trecho}}» serviria a qualquer concorrente (resposta do teste da troca: {{valor}}). Reescreva com algo que só esta empresa pode afirmar (número, cliente, método, lugar ou prazo reais que eu fornecer); pergunte o que faltar, sem inventar. NÃO mude o restante da seção, os links, as classes nem o tom. Pronto quando, trocando o nome da empresa pelo de um concorrente, a frase deixar de ser verdadeira.",
+    "fonte": [
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "SPEC.md do projeto critiquesites (§6.4, módulo de texto genérico/batido)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:headline-generico",
+      "unslop-heydamir:tpl-headline-troca",
+      "unslop-heydamir:reg-checklist"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Teste previsto na SPEC §6.4 e no checklist do unslop (heydamir). O número de frases (3 no rápido, 5 no completo) vem da SPEC §7.4. Julgamento do modelo, sempre opinião, ajusta no máximo ±10 pontos do Tell Score."
+  },
+  {
+    "id": "txt-voz-propria",
+    "categoria": "texto-generico",
+    "titulo": "O texto tem voz própria ou fala como qualquer empresa?",
+    "descricao": "Avalia se o texto usa palavras do público e do negócio (nomes de produtos, lugares, processos, pessoas) ou um tom corporativo neutro, que poderia estar em qualquer site do setor.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo lê uma amostra curta (hero, sobre e uma página de serviço) e avalia a voz em 4 pontos: vocabulário do público, detalhes só deste negócio, consistência de tom entre páginas e presença de pessoas ou casos reais.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "amostra": [
+          "hero",
+          "pagina sobre",
+          "uma pagina de servico ou produto"
+        ],
+        "criterios": [
+          "vocabulario do publico",
+          "detalhes so deste negocio",
+          "tom consistente entre paginas",
+          "pessoas ou casos reais citados"
+        ],
+        "escala": {
+          "min": 0,
+          "max": 4,
+          "ancora_0": "texto intercambiável com qualquer concorrente",
+          "ancora_4": "inconfundível: só esta empresa escreveria assim"
+        },
+        "limite_de_trechos": {
+          "rapido": 6,
+          "completo": 12
+        }
+      }
+    },
+    "peso": 5,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Escreva como você fala com um cliente de verdade: use os nomes, lugares e situações do seu dia a dia.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o trecho «{{trecho}}» soa neutro e corporativo (nota de voz: {{valor}} de 4). Reescreva usando o vocabulário real do público e detalhes do negócio que eu fornecer (nomes, lugares, situações); pergunte o que faltar. NÃO mude os fatos, preços, links nem a estrutura HTML. Pronto quando o trecho tiver pelo menos um detalhe só desta empresa e passar no teste da troca de nome.",
+    "fonte": [
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Nielsen Norman Group: About Us Information on Corporate Websites (2019)",
+        "url": "https://www.nngroup.com/articles/about-us-information-on-websites/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:reg-texto-calmo",
+      "unslop-heydamir:reg-ideia-clara",
+      "impeccable:floor-copy-do-produto"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Critério qualitativo, sem limiar numérico de fonte; a escala 0 a 4 é do projeto. O NN/g (About Us, 2019) relata que visitantes esperam linguagem simples e direta, sem jargão, e pessoas reais."
+  },
+  {
+    "id": "txt-diz-o-que-e-em-5-segundos",
+    "categoria": "texto-generico",
+    "titulo": "Dá para entender o que a empresa faz em poucos segundos?",
+    "descricao": "Avalia se o título e a frase de apoio dizem, em linguagem simples, o que é o negócio, para quem e o que a pessoa faz em seguida, sem exigir interpretação.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo lê só o título, a frase de apoio e o botão principal do hero e responde se dá para dizer, em uma frase, o que é, para quem é e qual o próximo passo.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "amostra": [
+          "primeiro h1",
+          "texto de apoio abaixo do h1",
+          "botao principal"
+        ],
+        "perguntas": [
+          "o que e",
+          "para quem",
+          "qual o proximo passo"
+        ],
+        "escala": {
+          "min": 0,
+          "max": 4,
+          "ancora_0": "não dá para saber o que é o negócio",
+          "ancora_4": "as três perguntas respondidas de imediato"
+        },
+        "limite_de_trechos": {
+          "rapido": 3,
+          "completo": 6
+        }
+      }
+    },
+    "peso": 6,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Reescreva o título para responder: o que é, para quem e o que fazer agora. Deixe a poesia para depois.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o bloco de abertura «{{trecho}}» não responde com clareza o que é o negócio, para quem e qual o próximo passo (nota: {{valor}} de 4). Reescreva título, frase de apoio e rótulo do botão para responder essas três perguntas em linguagem simples, com informações que eu confirmar. NÃO mude imagens, links, classes nem outras seções. Pronto quando uma pessoa que nunca viu o site consegue dizer, lendo só o bloco, o que é, para quem é e o que fazer em seguida.",
+    "fonte": [
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Nielsen Norman Group: Concise, SCANNABLE, and Objective: How to Write for the Web (1997)",
+        "url": "https://www.nngroup.com/articles/concise-scannable-and-objective-how-to-write-for-the-web/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:reg-ideia-clara",
+      "unslop-heydamir:reg-texto-calmo",
+      "impeccable:cla-uma-ideia",
+      "impeccable:dis-copy"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Os «5 segundos» são só um jeito de falar, não um limiar medido. A escala 0 a 4 é do projeto. Apoio: no experimento do NN/g de 1997 (51 pessoas), texto objetivo e conciso teve usabilidade melhor que o promocional."
+  }
+]

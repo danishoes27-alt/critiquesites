@@ -1,0 +1,1414 @@
+[
+  {
+    "id": "lei-cnpj-ausente",
+    "categoria": "lei-br",
+    "titulo": "Identificação da empresa (CNPJ/razão social) não localizada",
+    "descricao": "O site oferece produto ou serviço, mas o analisador não encontrou CNPJ ou razão social em texto visível. A norma de comércio eletrônico pede nome empresarial e CPF/CNPJ em local de destaque.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lei",
+      "metodo": "Procura, em texto visível e não-clone das páginas amostradas (cru e final), um CNPJ com dígitos verificadores válidos e rótulos como CNPJ ou razão social. Só avalia se houver oferta (preço, botão de compra/assinatura).",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "regex_cnpj": "\\b\\d{2}\\.?\\d{3}\\.?\\d{3}\\/?\\d{4}-?\\d{2}\\b",
+        "validar_digitos_verificadores": true,
+        "ignorar_sequencias_repetidas_ou_modelo": [
+          "00.000.000/0000-00",
+          "11.111.111/1111-11",
+          "12.345.678/0001-90"
+        ],
+        "rotulos": [
+          "CNPJ",
+          "C.N.P.J",
+          "razão social",
+          "razao social",
+          "nome empresarial",
+          "CPF do responsável"
+        ],
+        "onde_procurar": [
+          "rodapé",
+          "página de contato",
+          "página sobre",
+          "páginas legais (privacidade/termos)"
+        ],
+        "considerar_somente": "nós visivel=true e clone=false",
+        "so_avalia_se_oferta": "há preço em R$, botão comprar/assinar/contratar/garantir vaga ou link de checkout",
+        "peso_por_tipo": {
+          "loja": 9,
+          "pagina-de-vendas": 9,
+          "landing-page": 7,
+          "catalogo": 6,
+          "agendamento": 6,
+          "cardapio": 5,
+          "site-institucional": 4,
+          "link-na-bio": 4,
+          "portfolio": 3,
+          "blog": 2
+        },
+        "afirma_ausente_quando": "nenhum CNPJ válido nem rótulo de razão social em nenhuma página amostrada",
+        "registrar_paginas_examinadas": true
+      }
+    },
+    "peso": 8,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "alta",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Avise quem responde pelo site e mostre, no rodapé, a razão social e o CNPJ (ou CPF, quando for pessoa física) conforme o registro real. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: CNPJ ou razão social não localizados em texto visível (páginas olhadas: {{valor}}). Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: No rodapé de {{arquivo}}, crie um bloco de identificação com os campos \"Razão social: [PREENCHER]\", \"CNPJ ou CPF: [PREENCHER]\" e \"Endereço: [PREENCHER]\", em texto real visível (não imagem). Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: o rodapé exibe o bloco com os campos marcados [PREENCHER] em texto visível e o analisador, ao rodar de novo, encontra os rótulos; a pessoa responsável preenche com os dados reais após revisão com advogado ou contador. Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 - comércio eletrônico (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "CDC - Lei 8.078/1990, texto compilado (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Método do projeto (SPEC.md §5, §5.2, §11.2)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "Decreto-7962:art-2-I",
+      "CDC:art-31",
+      "gabarito-caso-1"
+    ],
+    "citacoes": [
+      "contagem",
+      "trecho"
+    ],
+    "notas": "Mede presença de elemento no código, não legalidade. Peso real varia por tipo de site (parametros.peso_por_tipo)."
+  },
+  {
+    "id": "lei-politica-privacidade-ausente",
+    "categoria": "lei-br",
+    "titulo": "Política de privacidade não localizada",
+    "descricao": "Nenhum link, rodapé ou rota comum levou a uma página de política de privacidade com texto. A lei de proteção de dados pede informações claras e de fácil acesso sobre o tratamento de dados.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lei",
+      "metodo": "Procura links no rodapé/menu/modais e testa rotas comuns; para cada candidata confirma resposta 200 e texto mínimo. Só afirma ausente se nada existir nas páginas amostradas; registra as páginas olhadas.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "texto_do_link": "(pol[ií]tica\\s+de\\s+privacidade|privacidade|aviso\\s+de\\s+privacidade|prote[cç][aã]o\\s+de\\s+dados|lgpd|privacy)",
+        "href_contem": [
+          "privacidade",
+          "privacy",
+          "lgpd",
+          "protecao-de-dados",
+          "politica-privacidade"
+        ],
+        "rotas_comuns": [
+          "/privacidade",
+          "/politica-de-privacidade",
+          "/politica-privacidade",
+          "/privacy",
+          "/privacy-policy",
+          "/lgpd",
+          "/protecao-de-dados"
+        ],
+        "exige": {
+          "status_http": 200,
+          "texto_visivel_minimo_caracteres": 300
+        },
+        "afirma_ausente_quando": "nenhum link, rodapé ou rota comum válido nas páginas amostradas",
+        "se_link_existe_mas_falha": "não dispara esta regra; dispara lei-pagina-legal-quebrada",
+        "registrar_paginas_examinadas": true,
+        "so_avalia_se": "o site coleta dados (formulário, e-mail, telefone), usa analytics/pixel ou oferece produto/serviço"
+      }
+    },
+    "peso": 8,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "alta",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Crie uma página de política de privacidade e coloque o link no rodapé de todas as páginas; o texto deve ser revisado por um profissional. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: nenhuma política de privacidade localizada (páginas olhadas: {{valor}}). Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: Crie a página /politica-de-privacidade com apenas a estrutura de títulos (quem somos, quais dados coletamos, para quê, com quem compartilhamos, por quanto tempo, direitos do titular, contato) e adicione o link \"Política de privacidade\" no rodapé de {{arquivo}}. Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: o link do rodapé abre a página com resposta 200, com os títulos e o texto-modelo [PREENCHER], e o analisador encontra o link em todas as páginas amostradas. Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "LGPD - Lei 13.709/2018 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Método do projeto (SPEC.md §5, §5.2, §11.2)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "LGPD:art-9",
+      "LGPD:art-6-VI",
+      "gabarito-caso-1"
+    ],
+    "citacoes": [
+      "contagem",
+      "trecho"
+    ],
+    "notas": ""
+  },
+  {
+    "id": "lei-termos-de-uso-ausente",
+    "categoria": "lei-br",
+    "titulo": "Termos de uso não localizados",
+    "descricao": "Nenhum link ou rota comum levou a uma página de termos de uso, termos e condições ou equivalente. Para quem vende, a norma pede condições da oferta claras; termos ajudam a organizar isso.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lei",
+      "metodo": "Procura links no rodapé/menu/modais e testa rotas comuns; confirma resposta 200 e texto mínimo. Só afirma ausente se nada existir nas páginas amostradas; registra as páginas olhadas.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "texto_do_link": "(termos(\\s+(de|e)\\s+(uso|condi[cç][oõ]es|servi[cç]o))?|condi[cç][oõ]es\\s+(gerais|de\\s+uso|de\\s+venda)|terms(\\s+of\\s+(use|service))?)",
+        "href_contem": [
+          "termos",
+          "terms",
+          "condicoes",
+          "tos"
+        ],
+        "rotas_comuns": [
+          "/termos",
+          "/termos-de-uso",
+          "/termos-e-condicoes",
+          "/condicoes-de-uso",
+          "/terms",
+          "/terms-of-service"
+        ],
+        "exige": {
+          "status_http": 200,
+          "texto_visivel_minimo_caracteres": 300
+        },
+        "afirma_ausente_quando": "nenhum link, rodapé ou rota comum válido nas páginas amostradas",
+        "registrar_paginas_examinadas": true,
+        "so_avalia_se": "há oferta (preço/checkout), cadastro ou área com regras de uso"
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Crie uma página de termos de uso/condições da oferta e linke no rodapé; o conteúdo deve ser escrito ou revisado por um profissional. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: termos de uso não localizados (páginas olhadas: {{valor}}). Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: Crie a página /termos-de-uso apenas com a estrutura de seções (quem pode usar, condições da oferta, pagamento, cancelamento, contato) e adicione o link \"Termos de uso\" no rodapé de {{arquivo}}. Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: o link do rodapé abre a página com resposta 200 e as seções com texto-modelo [PREENCHER]; o analisador encontra o link nas páginas amostradas. Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "Marco Civil da Internet - Lei 12.965/2014 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l12965.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Decreto 7.962/2013 - comércio eletrônico (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Método do projeto (SPEC.md §5, §5.2, §11.2)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "MarcoCivil:art-7-XI",
+      "Decreto-7962:art-4-I",
+      "gabarito-caso-1"
+    ],
+    "citacoes": [
+      "contagem",
+      "trecho"
+    ],
+    "notas": "Selo opiniao: a norma não exige uma página chamada \"termos de uso\" em todo site; o aviso é sobre clareza das condições."
+  },
+  {
+    "id": "lei-promessa-de-ganho",
+    "categoria": "lei-br",
+    "titulo": "Possível promessa de ganho ou resultado em título ou botão",
+    "descricao": "Há valor de ganho ou palavra de resultado garantido em títulos ou botões (ex.: valor com \"+\", \"ganhe\", \"renda extra\"). O Código do Consumidor trata de publicidade que induz a erro; o script só acha o trecho.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "lei",
+      "metodo": "Script extrai trechos de título, hero e botões que casam com padrões de ganho/resultado. O modelo julga se há ressalva, base ou exemplo ilustrativo próximo. Nunca afirma que é ilegal.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "onde": [
+          "title",
+          "meta og:title",
+          "h1",
+          "h2",
+          "h3",
+          "hero",
+          "botões e links com role=button"
+        ],
+        "padroes": [
+          "\\+\\s*R\\$\\s*[\\d.]+(,\\d{2})?",
+          "ganhe\\s+(at[eé]\\s+)?R\\$",
+          "renda\\s+extra",
+          "\\bfature\\b|\\bfaturar\\b",
+          "R\\$\\s*[\\d.]+(,\\d{2})?\\s*(por|\\/|ao)\\s*(m[eê]s|dia|semana)",
+          "garantid[oa]s?|resultado\\s+garantido|sem\\s+risco"
+        ],
+        "considerar_somente": "nós visivel=true e clone=false",
+        "modelo_julga": [
+          "há ressalva de que resultados variam?",
+          "há base ou exemplo identificável para o valor?",
+          "o valor aparece como possibilidade ou como certeza?"
+        ],
+        "saida_do_script": "trecho, seletor, versão (cru/final)"
+      }
+    },
+    "peso": 6,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Revise a frase: deixe claro de onde vem o valor, que resultados variam e que não há garantia, ou troque por algo que você consiga comprovar. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: possível promessa de ganho/resultado em {{trecho}}. Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: Mostre ao responsável o trecho {{trecho}} em {{arquivo}} e crie, logo abaixo, um espaço de observação com o texto-modelo \"[PREENCHER: base do número, condições e aviso de que resultados variam]\" sem alterar a frase original. Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: existe o espaço de observação ao lado do trecho, ainda com [PREENCHER], e a decisão de manter, mudar ou remover a frase fica registrada pela pessoa responsável após revisão profissional. Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "CDC - Lei 8.078/1990, texto compilado (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Método do projeto (SPEC.md §5, §5.2, §11.2)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "CDC:art-37",
+      "CDC:art-37-par-1",
+      "CDC:art-37-par-3",
+      "gabarito-caso-1"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Selo regra refere-se à norma consultada; o que o script verifica é só a presença da frase. Se a veracidade não puder ser provada no código, o relatório deve tratar como \"não verificável\"."
+  },
+  {
+    "id": "lei-analytics-id-vazio",
+    "categoria": "lei-br",
+    "titulo": "Rastreador instalado com ID vazio ou incompleto",
+    "descricao": "O código tem Google Analytics (G-), Tag Manager (GTM-) ou pixel da Meta, mas o identificador está vazio, incompleto ou é um exemplo. A tag não mede nada e ainda carrega scripts à toa.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "js",
+      "metodo": "Varre o texto de HTML e JS (cru e final) por gtag/GTM/fbq e valida o formato do ID. Reporta o trecho e o motivo (vazio, curto ou exemplo).",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "ga4": {
+          "padrao_valido": "^G-[A-Z0-9]{10}$",
+          "invalidos": [
+            "G- sem 10 caracteres",
+            "gtag('config','')",
+            "gtag('config','G-')",
+            "XXXXXXXXXX",
+            "0000000000"
+          ]
+        },
+        "gtm": {
+          "padrao_valido": "^GTM-[A-Z0-9]{6,8}$",
+          "invalidos": [
+            "GTM-",
+            "GTM-XXXX",
+            "GTM-'' (vazio)"
+          ]
+        },
+        "meta_pixel": {
+          "chamada": "fbq('init', ID)",
+          "padrao_valido": "^\\d{10,20}$",
+          "invalidos": [
+            "fbq('init','')",
+            "fbq('init','0')",
+            "SEU_PIXEL_ID",
+            "YOUR_PIXEL_ID",
+            "000000000000000"
+          ]
+        },
+        "onde": [
+          "script inline",
+          "script externo referenciado",
+          "noscript do GTM",
+          "atributos data-*"
+        ],
+        "registrar": "trecho, versão (cru/final) e motivo"
+      }
+    },
+    "peso": 3,
+    "severidade": "P2",
+    "selo": "fato",
+    "confianca": "alta",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque o ID pelo identificador real da sua conta ou remova a tag. Se usar rastreador, avise os visitantes de forma clara. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: rastreador com ID vazio ou incompleto: {{trecho}}. Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: Em {{arquivo}}, localize o trecho {{trecho}} e deixe o ID como \"[PREENCHER: ID real da sua conta]\" no código de exemplo, ou comente a tag inteira se a pessoa preferir não usar rastreador. Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: o analisador não encontra mais ID vazio, curto ou de exemplo; ou a tag foi removida/comentada de acordo com a decisão da pessoa responsável. Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "Método do projeto (SPEC.md §5, §5.2, §11.2)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "LGPD - Lei 13.709/2018 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "LGPD:art-6-III",
+      "gabarito-caso-1"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Fato verificável no código; não é afirmação sobre legalidade. Formatos de ID são heurísticas e podem mudar."
+  },
+  {
+    "id": "lei-cookies-consentimento-ausente",
+    "categoria": "lei-br",
+    "titulo": "Rastreadores carregando sem banner de consentimento detectável",
+    "descricao": "Foram detectados scripts de análise ou anúncios e não foi encontrado banner nem gestão de consentimento. A LGPD e o guia da ANPD falam de informar e dar escolha; este aviso tem confiança média.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "lei",
+      "metodo": "Detecta domínios/trechos de rastreadores e procura banner de cookies (ids, classes, textos, plataformas conhecidas). Se há rastreador e nenhum indício de banner, avisa. O modelo confere a captura de tela do rodapé.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "rastreadores": [
+          "googletagmanager.com",
+          "google-analytics.com",
+          "connect.facebook.net",
+          "facebook.com/tr",
+          "analytics.tiktok.com",
+          "static.hotjar.com",
+          "clarity.ms",
+          "snap.licdn.com",
+          "doubleclick.net",
+          "cdn.segment.com"
+        ],
+        "indicios_de_banner": {
+          "seletores": [
+            "#onetrust-banner-sdk",
+            "#CybotCookiebotDialog",
+            ".cc-window",
+            "#cookie-banner",
+            "[id*=\"cookie\" i]",
+            "[class*=\"cookie\" i]",
+            "[class*=\"consent\" i]"
+          ],
+          "plataformas": [
+            "cookiebot",
+            "onetrust",
+            "iubenda",
+            "cookieyes",
+            "complianz",
+            "termly",
+            "usercentrics",
+            "osano",
+            "klaro"
+          ],
+          "textos": [
+            "cookies",
+            "aceitar",
+            "recusar",
+            "rejeitar",
+            "gerenciar preferências",
+            "política de cookies"
+          ],
+          "apis": [
+            "__tcfapi",
+            "gtag('consent'"
+          ]
+        },
+        "exige_para_disparar": "pelo menos 1 rastreador carregado e nenhum indício de banner/gestão no cru nem no final",
+        "nao_afirma": "não afirma que há violação; só informa a ausência do elemento"
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Veja se o seu rastreador precisa de aviso e consentimento e, se sim, adicione um banner com opção de recusar. Decida com orientação profissional. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: rastreadores sem banner de cookies detectável ({{valor}}). Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: Em {{arquivo}}, adicione apenas a estrutura de um banner de cookies (container, botões \"Aceitar\", \"Recusar\" e \"Gerenciar\" e link para a política de cookies) com textos [PREENCHER], sem ligar nem remover os rastreadores atuais. Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: o banner existe com os três botões e a lista de rastreadores fica pendente da decisão da pessoa responsável após revisão profissional. Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "LGPD - Lei 13.709/2018 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "ANPD - Guia Orientativo: Cookies e Proteção de Dados Pessoais (out/2022)",
+        "url": "https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-cookies-e-protecao-de-dados-pessoais.pdf",
+        "licenca": "publicação oficial da ANPD; licença não declarada no PDF (usado só como referência, texto reescrito)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Método do projeto (SPEC.md §5, §5.2, §11.2)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "LGPD:art-8",
+      "LGPD:art-9",
+      "ANPD-guia-cookies:banners",
+      "gabarito-caso-1"
+    ],
+    "citacoes": [
+      "contagem",
+      "trecho"
+    ],
+    "notas": "O guia da ANPD é orientação de boas práticas, não norma obrigatória. Banner feito por JS tardio pode escapar da detecção."
+  },
+  {
+    "id": "lei-cookies-banner-sem-recusar",
+    "categoria": "lei-br",
+    "titulo": "Banner de cookies sem botão claro de recusar ou gerenciar",
+    "descricao": "O banner encontrado tem só um botão de aceite (\"entendi\", \"ok\", \"concordo\") e nada para recusar ou escolher. O guia da ANPD desaconselha esse formato quando o consentimento é a base.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "lei",
+      "metodo": "Acha o banner e lista botões/links. Dispara se há um só botão de aceite ou se não há ação com recusar/rejeitar/gerenciar/preferências. O modelo confere se o botão de recusa está só escondido.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "textos_de_aceite": [
+          "entendi",
+          "ok",
+          "aceito",
+          "aceitar",
+          "concordo",
+          "ciente"
+        ],
+        "textos_de_recusa_ou_gestao": [
+          "recusar",
+          "rejeitar",
+          "negar",
+          "gerenciar",
+          "preferências",
+          "configurar",
+          "personalizar"
+        ],
+        "dispara_quando": "banner detectado, 1 ou mais botões de aceite e 0 ações de recusa/gestão",
+        "verificar_tambem": [
+          "checkbox de categorias já marcadas por padrão",
+          "botão de recusar com contraste muito menor que o de aceitar"
+        ]
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Considere oferecer, junto do aceite, um botão de recusar e outro de gerenciar as categorias. Decida com orientação profissional. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: banner de cookies com um único botão de aceite ({{trecho}}). Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: No banner de {{arquivo}}, adicione os botões \"Recusar não essenciais\" e \"Gerenciar\" com o mesmo peso visual do aceite, e uma tela de categorias com texto [PREENCHER], sem alterar o rastreamento já existente. Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: o banner exibe aceitar, recusar e gerenciar com destaque equivalente, e as categorias aparecem desmarcadas por padrão, após a pessoa responsável validar com profissional. Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "ANPD - Guia Orientativo: Cookies e Proteção de Dados Pessoais (out/2022)",
+        "url": "https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-cookies-e-protecao-de-dados-pessoais.pdf",
+        "licenca": "publicação oficial da ANPD; licença não declarada no PDF (usado só como referência, texto reescrito)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "LGPD - Lei 13.709/2018 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ANPD-guia-cookies:evitar-banners",
+      "LGPD:art-8"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Orientação do guia, não norma expressa; por isso selo opiniao e confiança baixa."
+  },
+  {
+    "id": "lei-contato-encarregado",
+    "categoria": "lei-br",
+    "titulo": "Contato do encarregado de dados ou canal do titular não localizado",
+    "descricao": "Não foi achado nome ou contato do encarregado (DPO) nem canal para o titular pedir seus dados. A LGPD pede que a identidade e o contato do encarregado sejam divulgados, de preferência no site.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lei",
+      "metodo": "Procura nas páginas de privacidade, rodapé e contato por termos como encarregado, DPO, canal do titular e e-mails dedicados. Registra as páginas olhadas e só avisa se nada for achado.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "termos": [
+          "encarregado",
+          "dpo",
+          "data protection officer",
+          "canal do titular",
+          "exercer seus direitos",
+          "titular de dados"
+        ],
+        "emails": "\\b(dpo|privacidade|lgpd|encarregado|protecao)[\\w.-]*@[\\w.-]+\\.\\w+",
+        "onde": [
+          "página de privacidade",
+          "rodapé",
+          "página de contato"
+        ],
+        "so_avalia_se": "o site coleta dados pessoais (formulário, e-mail, telefone) ou usa rastreadores",
+        "registrar_paginas_examinadas": true
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Indique quem cuida dos dados pessoais e um canal de contato na política de privacidade ou no rodapé. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: contato do encarregado não localizado (páginas olhadas: {{valor}}). Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: Na política de privacidade ({{arquivo}}) e no rodapé, adicione o bloco \"Encarregado de dados: [PREENCHER nome]\" e \"Contato: [PREENCHER e-mail]\". Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: o bloco aparece em texto visível nas páginas indicadas, com os campos [PREENCHER] a completar pela pessoa responsável após revisão profissional. Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "LGPD - Lei 13.709/2018 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "LGPD:art-41",
+      "LGPD:art-41-par-1",
+      "gabarito-caso-1"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Não foi confirmado nesta consulta se existe tratamento diferenciado para agentes de pequeno porte; deixar para revisão profissional."
+  },
+  {
+    "id": "lei-preco-condicoes-omitidas",
+    "categoria": "lei-br",
+    "titulo": "Preço sem condições visíveis por perto",
+    "descricao": "Há preço em destaque sem parcelamento, prazo da oferta, restrições ou custos extras perto dele. O decreto do comércio eletrônico pede condições completas da oferta e custos adicionais discriminados.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "lei",
+      "metodo": "Para cada preço visível e não-clone, olha o bloco ao redor (mesmo contêiner/seção) por termos de condição. Preço sem nenhum termo vira candidato; o modelo julga se a informação está clara em outro ponto da página.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "regex_preco": "R\\$\\s?\\d{1,3}(\\.\\d{3})*(,\\d{2})?",
+        "termos_de_condicao": [
+          "parcel",
+          "x de",
+          "à vista",
+          "pix",
+          "boleto",
+          "cartão",
+          "válid",
+          "até o dia",
+          "prazo",
+          "vagas",
+          "frete",
+          "taxa",
+          "sujeito a",
+          "regulamento",
+          "a partir de"
+        ],
+        "asterisco": "preço seguido de * sem nota de rodapé correspondente também é candidato",
+        "raio_busca": "contêiner do preço até a seção mais próxima",
+        "considerar_somente": "nós visivel=true e clone=false",
+        "ocultos": "preço oculto nunca gera este aviso"
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Coloque perto do preço o parcelamento, o prazo da oferta, as restrições e qualquer custo extra (frete, taxa), em texto legível. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: preço {{valor}} sem condições por perto em {{trecho}}. Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: Em {{arquivo}}, logo abaixo do preço {{valor}}, adicione uma linha de apoio com \"Condições: [PREENCHER parcelamento/prazo/restrições/custos extras]\" em tamanho legível. Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: cada preço tem uma linha de condições visível, com [PREENCHER] a completar e revisar por profissional pela pessoa responsável. Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 - comércio eletrônico (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "CDC - Lei 8.078/1990, texto compilado (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Método do projeto (SPEC.md §5, §5.2, §11.2)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "Decreto-7962:art-2-IV",
+      "Decreto-7962:art-2-V",
+      "Decreto-7962:art-2-VI",
+      "CDC:art-31",
+      "CDC:art-37-par-3"
+    ],
+    "citacoes": [
+      "numero",
+      "trecho"
+    ],
+    "notas": ""
+  },
+  {
+    "id": "lei-escassez-oferta-falsa-suspeita",
+    "categoria": "lei-br",
+    "titulo": "Contador ou escassez que parece não mudar ou reiniciar",
+    "descricao": "Há contador regressivo ou frase como \"últimas vagas\" cujo valor é igual em todas as leituras ou volta ao início ao recarregar. Pode ser só visual; vale conferir se a escassez é real.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "lei",
+      "metodo": "Compara o valor do contador/frase nas 3 versões e em 2 recarregamentos em contextos limpos. Dispara se o valor ou a data-alvo é igual nas 3 versões ou reinicia a cada carga. O modelo apenas descreve a suspeita.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "seletores": [
+          "[class*=\"countdown\" i]",
+          "[id*=\"countdown\" i]",
+          "[class*=\"timer\" i]",
+          "[data-countdown]"
+        ],
+        "textos": "(últim[ao]s\\s+(vagas|unidades)|restam\\s+\\d+|s[oó]\\s+hoje|oferta\\s+termina|vagas\\s+limitadas|acaba\\s+em)",
+        "padroes_em_js": [
+          "Date\\.now\\(\\)\\s*\\+",
+          "new\\s+Date\\(\\)\\.getTime\\(\\)\\s*\\+",
+          "localStorage de data-alvo recriada a cada visita"
+        ],
+        "dispara_quando": [
+          "valor idêntico em cru, dom250 e final",
+          "data-alvo calculada a partir da hora atual da visita",
+          "reinicia após novo carregamento"
+        ],
+        "nao_afirma": "não afirma que a oferta é falsa"
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Se o contador ou o número de vagas for real, mostre a data ou a fonte do dado; se não for, considere retirar para não induzir a erro. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: escassez que não varia entre leituras: {{trecho}}. Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: Em {{arquivo}}, deixe a data-alvo do contador em uma variável explícita \"[PREENCHER data real da oferta]\" e adicione, perto do contador, a legenda \"Oferta válida até [PREENCHER]\". Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: o contador usa a data fixa preenchida pela pessoa responsável (não recriada a cada visita) e a legenda aparece; sem data real, o contador fica desativado. Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "CDC - Lei 8.078/1990, texto compilado (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Método do projeto (SPEC.md §5, §5.2, §11.2)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "CDC:art-37-par-1",
+      "gabarito-caso-1"
+    ],
+    "citacoes": [
+      "trecho",
+      "numero"
+    ],
+    "notas": "Opinião/heurística: valor igual pode ser coincidência. Só sinaliza."
+  },
+  {
+    "id": "lei-formulario-sem-link-privacidade",
+    "categoria": "lei-br",
+    "titulo": "Formulário que coleta dados sem link de privacidade por perto",
+    "descricao": "Há formulário pedindo e-mail, telefone, nome ou CPF sem link para política de privacidade no mesmo bloco. A LGPD pede informação clara sobre finalidade e uso dos dados.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lei",
+      "metodo": "Acha forms com campos de dados pessoais e procura, dentro do form ou no contêiner pai, link para privacidade ou o texto equivalente. Ignora busca e login.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "campos_pessoais": [
+          "input[type=email]",
+          "input[type=tel]",
+          "input[name*=cpf i]",
+          "input[name*=nome i]",
+          "input[name*=whatsapp i]",
+          "input[name*=telefone i]"
+        ],
+        "link_privacidade": "href~=\"privacidade|privacy|lgpd\" ou texto ~ /pol[ií]tica\\s+de\\s+privacidade/i",
+        "raio": "dentro do form ou até 2 níveis acima, no máximo 300 px de distância",
+        "ignorar": [
+          "input[type=search]",
+          "formulário de login",
+          "formulário de comentário sem e-mail"
+        ],
+        "considerar_somente": "forms visivel=true"
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "alta",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Coloque perto do botão de envio um aviso curto com link para a política de privacidade e a finalidade do uso dos dados. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: formulário {{trecho}} coleta dados sem link de privacidade. Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: No formulário de {{arquivo}}, adicione abaixo do botão a linha \"[PREENCHER finalidade] Veja a Política de privacidade\" com link para a página de privacidade, sem alterar os campos. Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: cada formulário com dados pessoais tem o aviso e o link ativo, com texto [PREENCHER] a revisar por profissional. Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "LGPD - Lei 13.709/2018 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "LGPD:art-9-I",
+      "LGPD:art-9-III",
+      "LGPD:art-6-VI"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": ""
+  },
+  {
+    "id": "lei-checkbox-consentimento-pre-marcado",
+    "categoria": "lei-br",
+    "titulo": "Caixa de consentimento ou marketing já marcada",
+    "descricao": "Há caixa de aceite de e-mails, ofertas ou termos já marcada ao abrir a página. A LGPD pede consentimento por manifestação de vontade; o guia da ANPD desaconselha opções pré-selecionadas.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lei",
+      "metodo": "Procura input[type=checkbox] com checked inicial (cru e final) cujo rótulo ou nome casa com consentimento, newsletter, marketing ou termos.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "seletor": "input[type=checkbox][checked], input[type=checkbox]:checked",
+        "rotulo_ou_name": "(aceito|concordo|consent|newsletter|ofertas|marketing|receber|termos|privacidade|lgpd)",
+        "considerar_somente": "checkbox visivel=true",
+        "versoes": [
+          "cru",
+          "final"
+        ]
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Deixe as caixas de consentimento desmarcadas, para a pessoa marcar por conta própria. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: caixa de consentimento marcada por padrão: {{trecho}}. Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: Em {{arquivo}}, remova o atributo \"checked\" dessa caixa e mantenha o texto do rótulo como \"[PREENCHER texto do consentimento]\" para revisão profissional. Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: ao carregar a página, a caixa aparece desmarcada e o formulário continua enviando normalmente. Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "LGPD - Lei 13.709/2018 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "ANPD - Guia Orientativo: Cookies e Proteção de Dados Pessoais (out/2022)",
+        "url": "https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-cookies-e-protecao-de-dados-pessoais.pdf",
+        "licenca": "publicação oficial da ANPD; licença não declarada no PDF (usado só como referência, texto reescrito)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "LGPD:art-8",
+      "LGPD:art-8-par-4",
+      "ANPD-guia-cookies:consentimento"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": ""
+  },
+  {
+    "id": "lei-direito-arrependimento-ausente",
+    "categoria": "lei-br",
+    "titulo": "Direito de arrependimento não mencionado em venda online",
+    "descricao": "O site vende online e não menciona arrependimento, desistência, devolução ou prazo de 7 dias. O decreto pede informar de forma clara os meios para exercer o arrependimento.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lei",
+      "metodo": "Em lojas, páginas de vendas e landing pages com preço e compra, procura menções a arrependimento/desistência/devolução/reembolso/7 dias em texto visível das páginas amostradas. Registra as páginas olhadas.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "termos": "(arrependimento|desist(ir|[eê]ncia)|7\\s+dias|sete\\s+dias|devolu[cç][aã]o|reembolso|garantia\\s+(incondicional|de\\s+7))",
+        "so_avalia_se": "há preço em R$ e botão/link de compra",
+        "onde": [
+          "página de oferta",
+          "rodapé",
+          "termos",
+          "política de troca"
+        ],
+        "considerar_somente": "nós visivel=true e clone=false",
+        "registrar_paginas_examinadas": true
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "tipos_de_site": [
+      "loja",
+      "pagina-de-vendas",
+      "landing-page",
+      "catalogo"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Informe de forma visível como o cliente pode desistir da compra e em quanto tempo, de acordo com a sua política. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: sem menção a arrependimento/desistência (páginas olhadas: {{valor}}). Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: Em {{arquivo}}, crie a seção \"Arrependimento e devolução\" com os itens \"Prazo: [PREENCHER]\", \"Como pedir: [PREENCHER]\" e link no rodapé. Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: a seção e o link existem em texto visível, com campos [PREENCHER] a completar e revisar por profissional pela pessoa responsável. Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 - comércio eletrônico (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "CDC - Lei 8.078/1990, texto compilado (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "Decreto-7962:art-5",
+      "CDC:art-49"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "A aplicação ao caso concreto (tipo de produto, forma de contratação) é decisão profissional."
+  },
+  {
+    "id": "lei-atendimento-sac-ausente",
+    "categoria": "lei-br",
+    "titulo": "Canal de atendimento ao cliente não localizado",
+    "descricao": "Não foi achado e-mail, telefone, WhatsApp ou formulário de contato. O decreto pede atendimento eletrônico eficaz e dados para localização e contato do fornecedor.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lei",
+      "metodo": "Procura em todas as páginas amostradas links mailto:, tel:, wa.me/api.whatsapp.com, formulário de contato e termos como fale conosco/SAC. Registra as páginas olhadas.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "links": [
+          "a[href^=\"mailto:\"]",
+          "a[href^=\"tel:\"]",
+          "a[href*=\"wa.me\"]",
+          "a[href*=\"api.whatsapp.com\"]"
+        ],
+        "termos": [
+          "fale conosco",
+          "atendimento",
+          "sac",
+          "suporte",
+          "contato"
+        ],
+        "formulario_de_contato": "form com campo de mensagem (textarea) e e-mail",
+        "so_avalia_se": "há oferta de produto/serviço",
+        "registrar_paginas_examinadas": true
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "alta",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Deixe à vista pelo menos um canal de contato real e confira se alguém responde. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: canal de atendimento não localizado (páginas olhadas: {{valor}}). Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: Adicione no rodapé de {{arquivo}} e em /contato o bloco \"Atendimento: e-mail [PREENCHER], telefone/WhatsApp [PREENCHER], horário [PREENCHER]\". Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: o bloco aparece em texto visível com links mailto:/tel: ativos assim que a pessoa responsável preencher os dados reais. Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 - comércio eletrônico (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "Decreto-7962:art-4-V",
+      "Decreto-7962:art-2-II"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": ""
+  },
+  {
+    "id": "lei-endereco-fisico-ausente",
+    "categoria": "lei-br",
+    "titulo": "Endereço físico do fornecedor não localizado",
+    "descricao": "Não foi encontrado endereço físico em texto visível ou nos dados estruturados. O decreto do comércio eletrônico pede endereço físico e eletrônico do fornecedor em local de destaque.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lei",
+      "metodo": "Procura padrão de logradouro, CEP e JSON-LD PostalAddress em texto visível não-clone e nos dados estruturados. Registra as páginas olhadas.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "logradouro": "(Rua|Av\\.?|Avenida|Alameda|Travessa|Rodovia|Pra[cç]a)\\s+[^,\\n]{3,60},?\\s*(n[ºo°]\\s*)?\\d+",
+        "cep": "\\b\\d{5}-?\\d{3}\\b",
+        "jsonld": "PostalAddress com streetAddress",
+        "so_avalia_se": "há oferta de produto/serviço",
+        "registrar_paginas_examinadas": true
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Mostre o endereço físico real do negócio, quando houver, no rodapé ou na página de contato. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: endereço físico não localizado (páginas olhadas: {{valor}}). Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: Adicione no rodapé de {{arquivo}} a linha \"Endereço: [PREENCHER logradouro, número, cidade/UF, CEP]\". Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: a linha existe em texto visível, com [PREENCHER] a completar pela pessoa responsável após revisão profissional. Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 - comércio eletrônico (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "Decreto-7962:art-2-II"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Negócios sem endereço físico próprio devem consultar profissional; o aviso apenas mostra ausência de elemento."
+  },
+  {
+    "id": "lei-caracteristicas-essenciais-ausentes",
+    "categoria": "lei-br",
+    "titulo": "Oferta sem as características essenciais claras",
+    "descricao": "A oferta não deixa claro o que se recebe (conteúdo, quantidade, formato, entrega ou riscos). O Código do Consumidor e o decreto falam de informação adequada e clara sobre as características essenciais.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "lei",
+      "metodo": "O modelo lê o pacote de evidências da oferta (títulos, listas, preço) e julga se dá para entender o que é entregue, quanto, em que formato e até quando. Selo opinião; sem afirmar ilegalidade.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "perguntas": [
+          "o que exatamente a pessoa recebe?",
+          "qual é a quantidade e o formato?",
+          "como e quando é entregue?",
+          "há riscos ou limites informados?"
+        ],
+        "citacoes_exigidas": "ao menos um trecho real da oferta",
+        "fora_do_script": "script só entrega os trechos da oferta"
+      }
+    },
+    "peso": 4,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "loja",
+      "pagina-de-vendas",
+      "landing-page",
+      "catalogo",
+      "agendamento"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Liste, em linguagem simples, o que está incluído, quanto, em qual formato e como é a entrega. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: características da oferta pouco claras em {{trecho}}. Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: Em {{arquivo}}, adicione a seção \"O que está incluído\" com os itens \"[PREENCHER conteúdo]\", \"[PREENCHER formato]\", \"[PREENCHER entrega]\" abaixo da oferta. Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: a seção existe perto do preço, com os itens preenchidos pela pessoa responsável e revisados por profissional. Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "CDC - Lei 8.078/1990, texto compilado (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Decreto 7.962/2013 - comércio eletrônico (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "CDC:art-6-III",
+      "CDC:art-31",
+      "Decreto-7962:art-2-III"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": ""
+  },
+  {
+    "id": "lei-prazo-entrega-frete-ausente",
+    "categoria": "lei-br",
+    "titulo": "Frete, entrega ou forma de acesso não informados perto da oferta",
+    "descricao": "Em loja ou catálogo, não há menção a frete, prazo de entrega ou forma de acesso. O decreto pede discriminar despesas adicionais e informar condições de entrega ou disponibilização.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "lei",
+      "metodo": "Procura termos de entrega/frete/acesso no texto visível das páginas de produto e oferta. O modelo confere se a informação existe em outra página do fluxo.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "termos": [
+          "frete",
+          "entrega",
+          "prazo de entrega",
+          "envio",
+          "retirada",
+          "acesso imediato",
+          "digital",
+          "taxa de entrega"
+        ],
+        "onde": [
+          "página do produto",
+          "página de oferta",
+          "rodapé",
+          "página de envio/entrega"
+        ],
+        "considerar_somente": "nós visivel=true e clone=false"
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "tipos_de_site": [
+      "loja",
+      "catalogo",
+      "cardapio",
+      "pagina-de-vendas"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Informe perto do preço o frete (ou que é grátis), o prazo de entrega e como o produto digital é liberado. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: frete/entrega não informados perto da oferta em {{trecho}}. Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: Em {{arquivo}}, adicione abaixo do preço a linha \"Entrega: [PREENCHER prazo e forma]; Frete: [PREENCHER valor ou grátis]\". Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: a linha aparece nas páginas de oferta, com [PREENCHER] a completar e revisar pela pessoa responsável. Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 - comércio eletrônico (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "Decreto-7962:art-2-IV",
+      "Decreto-7962:art-2-V"
+    ],
+    "citacoes": [
+      "contagem",
+      "trecho"
+    ],
+    "notas": ""
+  },
+  {
+    "id": "lei-politica-direitos-titular-ausentes",
+    "categoria": "lei-br",
+    "titulo": "Política de privacidade sem menção aos direitos do titular",
+    "descricao": "A política encontrada não cita os direitos da pessoa sobre seus dados nem como exercê-los. A LGPD lista direitos como acesso, correção, eliminação e revogação do consentimento.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lei",
+      "metodo": "Nas páginas de privacidade achadas, conta menções a termos de direitos do titular. Dispara com menos de 2 grupos de termos. Pula se não houver política (dispara lei-politica-privacidade-ausente).",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "grupos": [
+          [
+            "acesso aos dados",
+            "confirmação"
+          ],
+          [
+            "correção",
+            "corrigir"
+          ],
+          [
+            "eliminação",
+            "exclusão",
+            "excluir"
+          ],
+          [
+            "portabilidade"
+          ],
+          [
+            "revogação",
+            "revogar"
+          ],
+          [
+            "art. 18",
+            "direitos do titular"
+          ]
+        ],
+        "minimo_de_grupos": 2,
+        "pagina_de_origem": "páginas legais com 200 e texto mínimo"
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Acrescente uma seção \"Seus direitos\" explicando como pedir acesso, correção, eliminação e revogação do consentimento. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: política sem direitos do titular (páginas olhadas: {{valor}}). Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: Na política de privacidade ({{arquivo}}), crie a seção \"Seus direitos\" com subtítulos para acesso, correção, eliminação, portabilidade e revogação, cada um com \"[PREENCHER como pedir]\". Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: a seção existe com os subtítulos e [PREENCHER], e a pessoa responsável revisa o texto com advogado antes de publicar. Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "LGPD - Lei 13.709/2018 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "LGPD:art-18",
+      "LGPD:art-9-VII"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": ""
+  },
+  {
+    "id": "lei-politica-conteudo-minimo-ausente",
+    "categoria": "lei-br",
+    "titulo": "Política de privacidade com poucos dos itens básicos",
+    "descricao": "A política encontrada cita poucos dos itens básicos: finalidade, tempo de uso, quem é o responsável, contato e compartilhamento. A LGPD pede acesso facilitado a essas informações.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "lei",
+      "metodo": "Confere, por palavras-chave, a presença de 5 grupos (finalidade, forma e duração, controlador, contato, compartilhamento). Dispara se menos de 3 grupos aparecem. É uma heurística de palavras.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "grupos": {
+          "finalidade": [
+            "finalidade",
+            "para que usamos",
+            "como usamos"
+          ],
+          "forma_e_duracao": [
+            "por quanto tempo",
+            "prazo de armazenamento",
+            "retenção",
+            "período"
+          ],
+          "controlador": [
+            "controlador",
+            "responsável pelo tratamento",
+            "razão social",
+            "cnpj"
+          ],
+          "contato": [
+            "contato",
+            "e-mail",
+            "encarregado",
+            "dpo"
+          ],
+          "compartilhamento": [
+            "compartilh",
+            "terceiros",
+            "operador",
+            "parceiros"
+          ]
+        },
+        "minimo_de_grupos": 3,
+        "pagina_de_origem": "páginas legais com 200 e texto mínimo"
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Peça a um profissional para revisar a política e conferir se ela cobre finalidade, tempo, responsável, contato e compartilhamento. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: política com poucos itens básicos (grupos achados: {{valor}}). Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: Na política ({{arquivo}}), crie títulos vazios para finalidade, tempo de guarda, responsável, contato e compartilhamento, cada um com \"[PREENCHER]\". Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: os cinco títulos existem com [PREENCHER] e a pessoa responsável os completa após revisão profissional. Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "LGPD - Lei 13.709/2018 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "LGPD:art-9-I",
+      "LGPD:art-9-II",
+      "LGPD:art-9-III",
+      "LGPD:art-9-IV",
+      "LGPD:art-9-V"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Heurística de palavras; confiança baixa. Política em imagem ou PDF não é lida."
+  },
+  {
+    "id": "lei-pagina-legal-quebrada",
+    "categoria": "lei-br",
+    "titulo": "Link de privacidade ou termos leva a página vazia ou com erro",
+    "descricao": "O link existe, mas leva a erro (404/500), a \"#\" ou a uma página quase sem texto. Na prática o visitante não consegue ler as informações legais.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "links",
+      "metodo": "Para cada link de privacidade/termos/cookies, testa o destino: status diferente de 200, href \"#\" ou javascript:void, ou texto visível abaixo do mínimo.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "links_alvo": [
+          "privacidade",
+          "termos",
+          "cookies",
+          "lgpd"
+        ],
+        "falha_quando": [
+          "status_http != 200",
+          "href = \"#\"",
+          "href começa com javascript:",
+          "texto visível < 300 caracteres"
+        ],
+        "registrar": "URL de origem, URL de destino, status e tamanho do texto"
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "fato",
+    "confianca": "alta",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Faça o link apontar para uma página que abre e tem o texto real; confira também no celular. Isto não é parecer jurídico; a decisão é sua.",
+    "prompt_correcao": "Contexto: no projeto, o analisador registrou o seguinte aviso: link legal com problema: {{trecho}} (resultado: {{valor}}). Arquivo provável: {{arquivo}}; trecho ou área: {{trecho}}; valor lido: {{valor}}. O que fazer: Em {{arquivo}}, corrija o link {{trecho}} para uma página existente e crie, se faltar, a página com a estrutura e \"[PREENCHER]\". Use texto-modelo marcado como [PREENCHER] e NÃO redija texto jurídico: avise a pessoa responsável de que o conteúdo deve ser revisado por advogado ou contador antes de publicar. O que NÃO mudar: layout, cores, textos de venda e links que já funcionam. Critério de pronto: o link abre com resposta 200 e texto visível acima de 300 caracteres (com [PREENCHER] a completar). Isto não é parecer jurídico; a decisão é da pessoa responsável pelo site.",
+    "fonte": [
+      {
+        "nome": "LGPD - Lei 13.709/2018 (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "licenca": "domínio público (norma)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Método do projeto (SPEC.md §5, §5.2, §11.2)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "LGPD:art-9",
+      "gabarito-caso-1"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Fato sobre o link no código; não é afirmação de ilegalidade."
+  }
+]

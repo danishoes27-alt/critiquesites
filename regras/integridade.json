@@ -1,0 +1,715 @@
+[
+  {
+    "id": "int2-valor-muda-entre-versoes",
+    "categoria": "integridade",
+    "titulo": "Valor muda entre a leitura rápida e a final da página",
+    "descricao": "Um número ou texto aparece diferente no HTML cru, no DOM a 250 ms e no DOM final. Quem olha rápido (ou uma ferramenta) pode ver um valor que não é o definitivo.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "integridade",
+      "metodo": "Para cada elemento com identidade estável (seletor + texto-âncora), compara o valor numérico/texto nas 3 versões: cru, dom250 e final. Se muda, reporta as 3 leituras.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "versoes": [
+          "cru",
+          "dom250 (250 ms após DOMContentLoaded)",
+          "final (load + rede ociosa até 8 s + rolagem + 1,5 s)"
+        ],
+        "comparar": [
+          "valor numérico normalizado (aceita 9,90 = 9.90)",
+          "texto normalizado (NFKC, espaços, caixa)"
+        ],
+        "identidade": "seletor CSS gerado + texto-âncora",
+        "reportar": "as 3 leituras, o seletor e se o nó é visível",
+        "ignorar": [
+          "nós clone=true",
+          "nós ocultos (tratados por int2-oculto-diverge-do-visivel)",
+          "horas e datas relativas (ex.: \"há 3 min\")"
+        ],
+        "marcar_instavel_se": "o final difere em duas leituras seguidas"
+      }
+    },
+    "peso": 6,
+    "severidade": "P2",
+    "selo": "fato",
+    "confianca": "alta",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Faça o valor definitivo já estar no HTML, ou garanta que a animação termine rápido e que um leitor que não anima veja o número correto.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o elemento {{trecho}} mostra leituras diferentes ({{valor}}). Coloque o valor definitivo no HTML (texto estático) e deixe a animação apenas como efeito visual por cima. NÃO mude o design, as cores nem o restante dos textos. Pronto quando: o HTML cru, o DOM a 250 ms e o DOM final mostram o mesmo valor nesse elemento.",
+    "fonte": [
+      {
+        "nome": "Método do projeto (CLAUDE.md/SPEC.md)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "gabarito-caso-1",
+      "SPEC:4.2"
+    ],
+    "citacoes": [
+      "numero",
+      "trecho"
+    ],
+    "notas": "Cobre o item do gabarito \"valor muda entre versões\". Contador animado tem achado próprio em int2-contador-animado-valor-errado."
+  },
+  {
+    "id": "int2-contador-animado-valor-errado",
+    "categoria": "integridade",
+    "titulo": "Contador animado mostra valor errado em captura rápida",
+    "descricao": "Um número começa em 0 (ou valor parcial) e só chega ao valor final depois da animação. Quem lê rápido, de leitor de tela ou de pré-visualização pode ver o número errado.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "integridade",
+      "metodo": "Caso específico de valor que muda: o cru ou o dom250 mostra um valor menor (ex.: 0) e o final mostra o definitivo (ex.: 54). Reporta as 3 leituras e o seletor.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "condicao": "valor_cru ou valor_dom250 < valor_final e valor_final > 0",
+        "exemplo": "0 -> 54",
+        "candidatos": [
+          "[data-count]",
+          "[data-target]",
+          "[class*=\"counter\" i]",
+          "[class*=\"count\" i]",
+          "elementos numéricos dentro de seções de estatísticas"
+        ],
+        "reportar": [
+          "leitura cru",
+          "leitura dom250",
+          "leitura final",
+          "seletor",
+          "visível?"
+        ],
+        "ignorar": "nós clone=true e ocultos"
+      }
+    },
+    "peso": 6,
+    "severidade": "P2",
+    "selo": "fato",
+    "confianca": "alta",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Escreva o número final no HTML e use a animação só como enfeite; assim a leitura rápida e os leitores de tela veem o valor certo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o contador {{trecho}} começa em {{valor}} e anima até o valor final. Escreva o valor final como texto no HTML e ajuste o script para animar de forma opcional (respeitando prefers-reduced-motion). NÃO mude a aparência do número nem o resto da seção. Pronto quando: o HTML cru e o DOM a 250 ms já mostram o valor final.",
+    "fonte": [
+      {
+        "nome": "Método do projeto (CLAUDE.md/SPEC.md)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "gabarito-caso-1",
+      "SPEC:4.2",
+      "leitura-valor-muda-entre-versoes"
+    ],
+    "citacoes": [
+      "numero",
+      "trecho"
+    ],
+    "notas": "Item \"TEM QUE apontar\" do gabarito (contadores 0 -> N)."
+  },
+  {
+    "id": "int2-clone-carrossel-ignorado",
+    "categoria": "integridade",
+    "titulo": "Método: clones de carrossel não contam como conteúdo",
+    "descricao": "Nós sob ancestral aria-hidden=\"true\" cujo texto repete um irmão visível são clones de carrossel infinito. Eles ficam fora de duplicidade, contagem de conteúdo e repetição de texto.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "integridade",
+      "metodo": "Marca clone=true quando o nó está sob ancestral aria-hidden=\"true\" e o texto normalizado duplica um irmão/primo visível. Achados de conteúdo, copy, preço e duplicidade usam só visivel=true e clone=false.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "condicao_clone": "ancestral com aria-hidden=\"true\" E texto normalizado igual ao de um irmão/primo visível",
+        "nao_entra_em": [
+          "duplicidade de depoimentos",
+          "contagem de conteúdo",
+          "repetição de texto",
+          "achados de preço"
+        ],
+        "registra": "contagem de clones ignorados por página (para transparência)",
+        "peso_zero": "é regra de método; não soma nota"
+      }
+    },
+    "peso": 0,
+    "severidade": "info",
+    "selo": "fato",
+    "confianca": "alta",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Nada a corrigir no site: é um filtro do analisador que evita acusar repetição em carrosséis que duplicam itens só para o efeito visual.",
+    "prompt_correcao": "Esta regra é de método e não gera correção no site. Se quiser auditar, abra {{arquivo}} e confira os nós do carrossel {{trecho}} sob aria-hidden=\"true\". NÃO altere o carrossel. Pronto quando: o analisador mostra a contagem de clones ignorados e nenhum achado de duplicidade aponta para eles.",
+    "fonte": [
+      {
+        "nome": "Método do projeto (CLAUDE.md/SPEC.md)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "gabarito-caso-1",
+      "SPEC:4.3"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Cobre o item do gabarito \"depoimentos duplicados são clones aria-hidden\". Peso 0 e severidade info."
+  },
+  {
+    "id": "int2-texto-oculto-nao-e-visivel",
+    "categoria": "integridade",
+    "titulo": "Método: texto oculto não vale como afirmação sobre a página",
+    "descricao": "Texto com display:none, visibility:hidden, hidden, aria-hidden ou fora da tela não é o que o visitante lê. Ele não vira achado de preço, oferta ou conteúdo.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "integridade",
+      "metodo": "Cada nó recebe visivel e oculto_por. Achados de conteúdo/preço consideram só nós visíveis e não-clone. Ocultos ficam guardados à parte e só entram em int2-oculto-diverge-do-visivel.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "ocultos_por": [
+          "display:none",
+          "visibility:hidden",
+          "atributo hidden",
+          "aria-hidden",
+          "opacity:0",
+          "tamanho zero",
+          "posição fora da tela",
+          "clip"
+        ],
+        "exemplos_que_nunca_viram_achado": [
+          "0% OFF oculto",
+          "oferta encerrada R$ 89 oculta"
+        ],
+        "peso_zero": "é regra de método; não soma nota"
+      }
+    },
+    "peso": 0,
+    "severidade": "info",
+    "selo": "fato",
+    "confianca": "alta",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Nada a corrigir no site: é um filtro do analisador. Texto oculto só é discutido se divergir do que está visível.",
+    "prompt_correcao": "Esta regra é de método e não gera correção no site. Se quiser conferir, abra {{arquivo}} e veja se o trecho {{trecho}} está oculto por {{valor}}. NÃO apague textos ocultos sem necessidade. Pronto quando: o relatório não cita textos ocultos como preço, oferta ou conteúdo visível.",
+    "fonte": [
+      {
+        "nome": "Método do projeto (CLAUDE.md/SPEC.md)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "gabarito-caso-1",
+      "SPEC:4.3"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Cobre o gabarito: \"0% OFF\" e \"oferta encerrada R$ 89\" são texto oculto e não podem ser afirmados."
+  },
+  {
+    "id": "int2-oculto-diverge-do-visivel",
+    "categoria": "integridade",
+    "titulo": "Inconsistência a conferir: texto oculto difere do visível",
+    "descricao": "Um valor oculto (ex.: preço) é diferente do valor visível para o mesmo item. Pode ser sobra de código de uma versão antiga. É para conferir, não é erro confirmado.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "integridade",
+      "metodo": "Compara o valor oculto com o visível do mesmo contêiner. Se divergem, abre um achado de consistência marcado \"a conferir\". Nunca vira \"preço errado\" nem afirma erro.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "comparar": [
+          "valor numérico (preço, desconto)",
+          "texto curto de oferta"
+        ],
+        "pares": "nó oculto e nó visível no mesmo contêiner/seção",
+        "rotulo_do_achado": "inconsistência a conferir",
+        "proibido": "afirmar que o preço está errado ou que a oferta é falsa",
+        "reportar": [
+          "valor visível",
+          "valor oculto",
+          "motivo da ocultação",
+          "seletores"
+        ]
+      }
+    },
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Confira se o texto oculto é resto de uma versão antiga; se for, remova do código para não confundir leitores de tela e ferramentas.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o trecho oculto {{trecho}} ({{valor}}) difere do valor visível ao lado. Confirme com a pessoa responsável qual é o correto e, se o oculto for antigo, remova esse bloco. NÃO altere o valor visível sem confirmação e NÃO mude o layout. Pronto quando: não há mais divergência entre o valor oculto e o visível no mesmo contêiner.",
+    "fonte": [
+      {
+        "nome": "Método do projeto (CLAUDE.md/SPEC.md)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "gabarito-caso-1",
+      "SPEC:4.3"
+    ],
+    "citacoes": [
+      "numero",
+      "trecho"
+    ],
+    "notas": ""
+  },
+  {
+    "id": "int2-contagem-recalculada",
+    "categoria": "integridade",
+    "titulo": "Método: todo número citado é recalculado no DOM final e no cru",
+    "descricao": "Número de imagens, imagens lazy, links ou dados estruturados citado em um achado é recontado por seletor nas duas versões. Se divergirem, o relatório mostra as duas e explica.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "integridade",
+      "metodo": "Para cada citação do tipo contagem, o verificador executa o seletor declarado no DOM final e no HTML cru e compara com o número do achado. Diferença entre versões é explicada, não escondida.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "versoes": [
+          "final",
+          "cru"
+        ],
+        "exemplo": "cru 31 img e 30 lazy; final 57 img e 45 lazy",
+        "se_diverge_entre_versoes": "reportar as duas contagens e a causa provável (JS injeta imagens)",
+        "se_diverge_do_achado": "achado descartado",
+        "peso_zero": "é regra de método; não soma nota"
+      }
+    },
+    "peso": 0,
+    "severidade": "info",
+    "selo": "fato",
+    "confianca": "alta",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Nada a corrigir no site: é uma regra de método que garante que números do relatório foram contados, não estimados.",
+    "prompt_correcao": "Esta regra é de método. Para auditar, rode o seletor {{trecho}} no DOM final e no cru de {{arquivo}} e compare com {{valor}}. NÃO ajuste números do relatório à mão. Pronto quando: as duas contagens aparecem no relatório e, se divergirem, há uma explicação.",
+    "fonte": [
+      {
+        "nome": "Método do projeto (CLAUDE.md/SPEC.md)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "gabarito-caso-1",
+      "SPEC:4.3.1"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Cobre o gabarito: cru 31 img/30 lazy x final 57 img/45 lazy."
+  },
+  {
+    "id": "int2-preco-divergente-entre-paginas",
+    "categoria": "integridade",
+    "titulo": "Mesmo item com preços diferentes em páginas diferentes",
+    "descricao": "O mesmo item aparece com preços visíveis diferentes em páginas amostradas. Pode ser plano diferente ou erro de edição; vale conferir.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "integridade",
+      "metodo": "Agrupa nós de preço visíveis e não-clone por item (título/âncora próxima) e compara entre páginas amostradas. Divergência vira achado; o modelo decide se é fato ou apenas opinião, conforme a evidência.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "regex_preco": "R\\$\\s?\\d{1,3}(\\.\\d{3})*(,\\d{2})?",
+        "agrupar_por": "texto do título/âncora do item mais próximo",
+        "considerar_somente": "nós visivel=true e clone=false",
+        "ignorar": [
+          "preço riscado (\"de\")",
+          "faixas de parcelamento",
+          "itens com variações declaradas (tamanho, plano)"
+        ],
+        "reportar": [
+          "item",
+          "preço A e página A",
+          "preço B e página B"
+        ]
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Confira qual preço está certo e padronize em todas as páginas, ou explique a diferença (plano, período, promoção) ao lado do preço.",
+    "prompt_correcao": "Nos arquivos {{arquivo}}, o item {{trecho}} aparece com preços diferentes ({{valor}}). Confirme com a pessoa responsável o valor correto e deixe o preço em um único lugar (variável ou arquivo de dados). NÃO mude preços sem confirmação e NÃO mude o layout. Pronto quando: o mesmo item mostra o mesmo preço em todas as páginas, ou há legenda explicando a diferença.",
+    "fonte": [
+      {
+        "nome": "Método do projeto (CLAUDE.md/SPEC.md)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "gabarito-caso-1",
+      "SPEC:4.3"
+    ],
+    "citacoes": [
+      "numero",
+      "trecho"
+    ],
+    "notas": "Selo fato por haver evidência reproduzível; o relatório pode rebaixar para opinião quando a diferença puder ser intencional."
+  },
+  {
+    "id": "int2-fato-sem-evidencia-descartado",
+    "categoria": "integridade",
+    "titulo": "Método: achado de selo fato sem citação verificada é descartado",
+    "descricao": "Todo achado com selo fato precisa de ao menos uma citação (trecho, número ou contagem) que o verificador confirme. Sem isso, é descartado e o motivo aparece no relatório.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "integridade",
+      "metodo": "O verificador de citações procura cada citação no escopo declarado (cru, dom250, final, CSS, JS, JSON-LD). Falhou ou não há citação: achado descartado e registrado em verificacao.json.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "normalizacao": "NFKC, espaços, entidades HTML, caixa",
+        "numero": "aceita 9,90 = 9.90",
+        "contagem": "recalculada pelo seletor declarado",
+        "escopo_visivel": "só vale se o nó é visível e não-clone",
+        "registro": "verificacao.json com o motivo do descarte",
+        "peso_zero": "é regra de método; não soma nota"
+      }
+    },
+    "peso": 0,
+    "severidade": "info",
+    "selo": "fato",
+    "confianca": "alta",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Nada a corrigir no site: é uma regra de método. O relatório mostra quantos achados foram descartados por falta de evidência.",
+    "prompt_correcao": "Esta regra é de método e não gera correção no site. Para auditar, abra verificacao.json e confira os achados descartados. NÃO reative achados descartados sem evidência. Pronto quando: cada achado de selo fato exibido tem uma citação verificada.",
+    "fonte": [
+      {
+        "nome": "Método do projeto (CLAUDE.md/SPEC.md)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "SPEC:7.1"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Peso 0 e severidade info."
+  },
+  {
+    "id": "int2-link-interno-quebrado",
+    "categoria": "integridade",
+    "titulo": "Link interno quebrado",
+    "descricao": "Um link para outra página do próprio site leva a erro (404 ou 5xx) ou a uma rota que não existe. O visitante cai em um beco sem saída.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "integridade",
+      "metodo": "Testa os links internos das páginas amostradas com HEAD/GET (limite de volume e intervalo entre acessos) e reporta os com status 4xx/5xx ou redirecionamento em laço.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "escopo": "links <a href> do mesmo domínio, normalizados (sem hash e utm)",
+        "falha_quando": [
+          "status 404/410",
+          "status 5xx",
+          "laço de redirecionamento"
+        ],
+        "limite": "respeita robots, intervalo e limites do crawler",
+        "ignorar": [
+          "âncoras #",
+          "mailto:",
+          "tel:"
+        ],
+        "reportar": [
+          "origem",
+          "destino",
+          "status"
+        ]
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "fato",
+    "confianca": "alta",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Corrija o endereço do link ou crie a página que falta.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o link {{trecho}} leva a um endereço que responde {{valor}}. Corrija o href para a página certa (ou crie a página que falta). NÃO altere os demais links nem o texto do link. Pronto quando: o link responde 200 e o analisador não encontra mais o link quebrado.",
+    "fonte": [
+      {
+        "nome": "Método do projeto (CLAUDE.md/SPEC.md)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "SPEC:5-links"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": ""
+  },
+  {
+    "id": "int2-canonical-divergente",
+    "categoria": "integridade",
+    "titulo": "Endereço canônico diferente da própria página",
+    "descricao": "O link rel=canonical aponta para outro endereço que não o da página. Isso diz aos buscadores para tratar outra página como a principal; pode ser intencional ou resto de cópia.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Compara o href do link rel=canonical (cru e final) com a URL da página normalizada. Reporta divergência, canonical relativo, múltiplos canonicals diferentes ou canonical com hash.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "comparar": "canonical absoluto normalizado x URL final da página",
+        "divergencias": [
+          "aponta para outra página",
+          "canonical diferente entre cru e final",
+          "mais de um canonical com valores diferentes",
+          "canonical relativo",
+          "canonical com fragmento #"
+        ],
+        "ignorar": "páginas com paginação e filtros declarados",
+        "reportar": "canonical (cru), canonical (final), URL da página"
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Confira se o canonical deve mesmo apontar para outra página; se não, aponte para o endereço da própria página, em formato completo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o <link rel=\"canonical\"> aponta para {{valor}}. Se a página deve ser indexada por si mesma, mude o href para o endereço completo (com https) dela. NÃO mexa em outras meta tags. Pronto quando: o canonical, no HTML cru e no final, é igual ao endereço da página.",
+    "fonte": [
+      {
+        "nome": "Google Search Central - Consolidar URLs duplicadas (canonical)",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls",
+        "licenca": "licença do conteúdo não confirmada na leitura; usado só como referência, texto reescrito",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Método do projeto (CLAUDE.md/SPEC.md)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "Google-SearchCentral:canonical"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": ""
+  },
+  {
+    "id": "int2-conteudo-depende-de-js",
+    "categoria": "integridade",
+    "titulo": "Conteúdo principal só aparece depois do JavaScript",
+    "descricao": "Boa parte do texto visível está no DOM final mas não no HTML cru. Quem não executa JavaScript (alguns robôs, pré-visualizações) vê a página quase vazia.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Compara o texto visível do DOM final com o texto do HTML cru. Se menos de um limite do texto do final existe no cru, reporta a razão e os blocos que só existem no final.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "razao": "caracteres de texto visível no cru / no final",
+        "dispara_se": "razão abaixo de 0.3 e texto final com mais de 500 caracteres",
+        "reportar": [
+          "razão",
+          "caracteres no cru",
+          "caracteres no final",
+          "seletores dos blocos ausentes do cru"
+        ],
+        "ignorar": [
+          "nós clone=true",
+          "nós ocultos",
+          "conteúdo de áreas de login"
+        ]
+      }
+    },
+    "peso": 4,
+    "severidade": "P3",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Faça o texto principal já vir no HTML (renderização no servidor ou página estática) e use JavaScript só para os efeitos.",
+    "prompt_correcao": "No projeto, o texto principal de {{arquivo}} só aparece após o JavaScript (razão {{valor}}). Gere o texto principal da página no HTML inicial (SSR/estático) e mantenha o JS para interação. NÃO mude textos nem o visual. Pronto quando: o HTML cru contém os títulos e parágrafos principais (razão acima de 0.7).",
+    "fonte": [
+      {
+        "nome": "Google Search Central - Noções básicas de SEO com JavaScript",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics",
+        "licenca": "licença do conteúdo não confirmada na leitura; usado só como referência, texto reescrito",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Método do projeto (CLAUDE.md/SPEC.md)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "Google-SearchCentral:javascript-seo",
+      "SPEC:5-ia-visibilidade"
+    ],
+    "citacoes": [
+      "numero",
+      "contagem"
+    ],
+    "notas": "Limiares são heurísticas."
+  },
+  {
+    "id": "int2-hash-versao-estavel",
+    "categoria": "integridade",
+    "titulo": "Método: versão analisada com hash estável entre leituras",
+    "descricao": "O analisador lê o HTML cru duas vezes e compara o hash. Se muda sem o site ter mudado (hora, token, anúncio), a página é marcada instável e fica fora da nota.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "integridade",
+      "metodo": "Calcula SHA-256 do HTML cru em duas leituras seguidas por página. Hash diferente marca a página como instável e registra os trechos que variam. A cache por hash só vale para páginas estáveis.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "leituras": 2,
+        "algoritmo": "SHA-256",
+        "se_difere": "marcar instavel e extrair trechos que variam (diff)",
+        "efeito": "itens instáveis ficam fora da nota",
+        "peso_zero": "é regra de método; não soma nota"
+      }
+    },
+    "peso": 0,
+    "severidade": "info",
+    "selo": "fato",
+    "confianca": "alta",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Nada a corrigir no site: é um controle do analisador para dar a mesma nota para a mesma versão.",
+    "prompt_correcao": "Esta regra é de método e não gera correção no site. Para auditar, compare o hash do HTML cru de {{arquivo}} em duas leituras ({{valor}}). NÃO altere a página só para igualar hashes. Pronto quando: páginas instáveis aparecem marcadas e fora da nota.",
+    "fonte": [
+      {
+        "nome": "Método do projeto (CLAUDE.md/SPEC.md)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "SPEC:4.4",
+      "SPEC:6.5"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": ""
+  },
+  {
+    "id": "int2-conteudo-instavel-fora-da-nota",
+    "categoria": "integridade",
+    "titulo": "Método: conteúdo que muda sozinho fica marcado como instável",
+    "descricao": "Partes que mudam a cada leitura (carrossel com horário, relógio, contador regressivo) são marcadas instáveis e não entram na nota, mas aparecem no relatório.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "integridade",
+      "metodo": "Compara duas leituras do DOM final no mesmo contexto limpo. Elementos que mudam entre as duas leituras recebem instavel=true e são excluídos do cálculo da nota objetiva.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "leituras": 2,
+        "exemplos": [
+          "relógio",
+          "carrossel com horário",
+          "contador regressivo",
+          "anúncio"
+        ],
+        "efeito": "fora da nota, listado no relatório",
+        "peso_zero": "é regra de método; não soma nota"
+      }
+    },
+    "peso": 0,
+    "severidade": "info",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Nada a corrigir no site: é um controle do analisador para evitar notas diferentes para a mesma página.",
+    "prompt_correcao": "Esta regra é de método e não gera correção no site. Para auditar, rode duas leituras do DOM final de {{arquivo}} e confira os elementos {{trecho}}. NÃO remova elementos dinâmicos por causa desta regra. Pronto quando: itens instáveis aparecem listados e ficam fora da nota.",
+    "fonte": [
+      {
+        "nome": "Método do projeto (CLAUDE.md/SPEC.md)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "SPEC:6.5"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": ""
+  }
+]

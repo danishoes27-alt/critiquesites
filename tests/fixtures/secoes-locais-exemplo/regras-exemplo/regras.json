@@ -1,0 +1,146 @@
+[
+  {
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "estrutura-padrao",
+    "id": "local-exemplo-palavra-magica",
+    "tipos_de_site": [
+      "*"
+    ],
+    "titulo": "Regra fictícia de exemplo da camada local",
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "descricao": "Regra inventada só para provar que a camada local carrega regras extras e seus detectores.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "detectavel_por_script": "sim",
+      "metodo": "Procura a palavra de exemplo no texto da página (teste do mecanismo)."
+    },
+    "correcao": "Não há o que corrigir: é só um exemplo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, não faça nada: esta regra é só um exemplo de teste.",
+    "fonte": [
+      {
+        "nome": "Exemplo inventado para teste",
+        "licenca": "fictícia"
+      }
+    ],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "estrutura-padrao",
+    "id": "local-exemplo-julgamento",
+    "tipos_de_site": [
+      "*"
+    ],
+    "titulo": "Pergunta fictícia de julgamento da camada local",
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "descricao": "Regra inventada só para provar que a camada local carrega regras extras e seus detectores.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "detectavel_por_script": "nao",
+      "metodo": "O modelo responde só com evidência do pacote (teste do mecanismo da camada local)."
+    },
+    "correcao": "Não há o que corrigir: é só um exemplo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, não faça nada: esta regra é só um exemplo de teste.",
+    "fonte": [
+      {
+        "nome": "Exemplo inventado para teste",
+        "licenca": "fictícia"
+      }
+    ],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "id": "local-exemplo-quebrada",
+    "categoria": "estrutura-padrao"
+  },
+  {
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "estrutura-padrao",
+    "id": "local-exemplo-selo-sem-fonte",
+    "tipos_de_site": [
+      "*"
+    ],
+    "titulo": "Regra fictícia de exemplo da camada local",
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "baixa",
+    "descricao": "Regra inventada só para provar que a camada local carrega regras extras e seus detectores.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "detectavel_por_script": "sim",
+      "metodo": "Procura a palavra de exemplo no texto da página (teste do mecanismo)."
+    },
+    "correcao": "Não há o que corrigir: é só um exemplo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, não faça nada: esta regra é só um exemplo de teste.",
+    "fonte": [
+      {
+        "nome": "Exemplo inventado para teste",
+        "licenca": "fictícia"
+      }
+    ],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "origem_ids": [],
+    "categoria": "estrutura-padrao",
+    "id": "estr-ritmo-uniforme-de-secoes",
+    "tipos_de_site": [
+      "*"
+    ],
+    "titulo": "Regra fictícia de exemplo da camada local",
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "descricao": "Regra inventada só para provar que a camada local carrega regras extras e seus detectores.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "detectavel_por_script": "sim",
+      "metodo": "Procura a palavra de exemplo no texto da página (teste do mecanismo)."
+    },
+    "correcao": "Não há o que corrigir: é só um exemplo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, não faça nada: esta regra é só um exemplo de teste.",
+    "fonte": [
+      {
+        "nome": "Exemplo inventado para teste",
+        "licenca": "fictícia"
+      }
+    ],
+    "citacoes": [
+      "trecho"
+    ]
+  }
+]

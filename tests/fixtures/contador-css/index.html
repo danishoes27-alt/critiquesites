@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contador desenhado por CSS</title>
+<style>
+.cnt.cnt-run{position:relative;color:transparent!important}
+.cnt.cnt-run::after{content:attr(data-now);position:absolute;left:0;top:0;white-space:nowrap;color:#111}
+</style></head>
+<body><main>
+<h1>Aprenda a cozinhar melhor em casa e <span class="cnt" data-to="3000" data-pre="+R$ ">+R$ 3.000</span></h1>
+<p>São <span class="cnt" data-to="54">54</span> receitas prontas.</p>
+<script>
+// O texto real (valor final) fica no HTML; durante a animação o número é desenhado por CSS via data-now.
+document.addEventListener('DOMContentLoaded', function () {
+  var els = Array.prototype.slice.call(document.querySelectorAll('.cnt'));
+  els.forEach(function (el) { el.classList.add('cnt-run'); el.setAttribute('data-now', (el.dataset.pre || '') + '0'); });
+  setTimeout(function () {
+    var t0 = performance.now();
+    (function passo(t) {
+      var p = Math.min(1, (t - t0) / 1200);
+      els.forEach(function (el) { el.setAttribute('data-now', (el.dataset.pre || '') + Math.round(Number(el.dataset.to) * p).toLocaleString('pt-BR')); });
+      if (p < 1) requestAnimationFrame(passo); else els.forEach(function (el) { el.classList.remove('cnt-run'); });
+    })(t0);
+  }, 400);
+});
+</script>
+</main></body></html>

@@ -1,0 +1,1755 @@
+[
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Se a descrição é boa ou não, só o julgamento diz; o script só vê se existe alt. Imagens de CSS (background) não entram.",
+    "id": "a11y-imagem-sem-alt",
+    "categoria": "acessibilidade",
+    "titulo": "Imagem sem texto alternativo",
+    "descricao": "Imagens que passam informação precisam de um texto alternativo para quem usa leitor de tela. Imagens só de enfeite devem ter o alt vazio, para o leitor pular.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta violações de image-alt, input-image-alt e area-alt, ignorando nós ocultos e clones aria-hidden.",
+      "parametros": {
+        "axe_rule_ids": [
+          "image-alt",
+          "input-image-alt",
+          "area-alt"
+        ]
+      }
+    },
+    "peso": 7,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Descreva a imagem no atributo alt. Se for só enfeite, use alt vazio (alt=\"\").",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione um alt descritivo à imagem {{trecho}} (ou alt=\"\" se ela for só decorativa). Não mude o tamanho, o src nem o layout. Pronto quando o axe-core não reportar mais image-alt para esse elemento.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 1.1.1 Conteúdo não textual",
+        "url": "https://www.w3.org/TR/WCAG22/#non-text-content",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:image-alt",
+      "axe-core:input-image-alt",
+      "axe-core:area-alt",
+      "vercel-web-interface-guidelines:CMD-ACC-05"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "A razão não é arredondada: 4,499 reprova. Logotipos, texto desativado e texto puramente decorativo são isentos pela norma. Hallmark/Vercel preferem APCA; aqui vale o WCAG 2.2.",
+    "id": "a11y-contraste-texto-baixo",
+    "categoria": "acessibilidade",
+    "titulo": "Contraste baixo entre texto e fundo",
+    "descricao": "O texto precisa se destacar do fundo: razão mínima de 4,5 para 1 no texto normal e de 3 para 1 no texto grande (18 pt, ou 14 pt em negrito). Contraste fraco cansa a vista e some para quem enxerga pouco.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta as violações de color-contrast com a razão medida; itens \"incomplete\" (fundo com imagem ou degradê) viram \"não verificável\", nunca falha.",
+      "parametros": {
+        "axe_rule_ids": [
+          "color-contrast"
+        ],
+        "razao_minima_texto_normal": 4.5,
+        "razao_minima_texto_grande": 3,
+        "texto_grande": "18 pt (cerca de 24 px) ou 14 pt em negrito (cerca de 18,5 px)",
+        "sem_arredondar": true,
+        "incomplete_como": "nao-verificavel"
+      }
+    },
+    "peso": 8,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Escureça o texto ou clareie o fundo até a razão de contraste chegar a 4,5 para 1 (3 para 1 se o texto for grande).",
+    "prompt_correcao": "No arquivo {{arquivo}}, ajuste a cor do texto ou do fundo de {{trecho}} para que a razão de contraste seja de pelo menos {{valor}} (4,5:1 para texto normal, 3:1 para texto grande). Não mude fonte, tamanho nem a paleta nos outros elementos. Pronto quando o axe-core não reportar color-contrast nesse elemento.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 1.4.3 Contraste (mínimo)",
+        "url": "https://www.w3.org/TR/WCAG22/#contrast-minimum",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "WCAG 2.2, Entendendo Contraste (mínimo)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+        "licenca": "W3C Document License / Permission to Use WAI Material",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:color-contrast",
+      "hallmark:40",
+      "jezweb-design-review:DR-COR-02"
+    ],
+    "citacoes": [
+      "numero",
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "O axe-core não cobre este critério por completo. Só vale para o que é necessário para reconhecer o componente; bordas puramente decorativas não entram. Confiança média pela dificuldade de achar o \"fundo adjacente\".",
+    "id": "a11y-contraste-componentes-ui",
+    "categoria": "acessibilidade",
+    "titulo": "Bordas, ícones e anéis de foco com pouco contraste",
+    "descricao": "As partes visuais que fazem você reconhecer um botão, campo ou ícone sem texto precisam de contraste de pelo menos 3 para 1 com o que está ao lado. Sem isso, o campo \"some\" para quem enxerga pouco.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "css",
+      "detectavel_por_script": "parcial",
+      "metodo": "Calcula a razão de contraste de borda de campo, ícone sem texto e anel de foco contra o fundo adjacente (estilos computados do DOM final); onde o fundo é imagem ou degradê, marca \"não verificável\".",
+      "parametros": {
+        "razao_minima": 3,
+        "alvos": [
+          "input",
+          "select",
+          "textarea",
+          "button sem texto",
+          "svg interativo",
+          "anel de foco (:focus-visible)"
+        ],
+        "estados": [
+          "repouso",
+          "foco"
+        ]
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Escureça a borda ou o ícone (ou o anel de foco) até ter pelo menos 3 para 1 de contraste com o fundo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, ajuste a cor da borda/ícone de {{trecho}} para ter contraste de pelo menos 3:1 com o fundo ({{valor}} medido hoje). Não mude o tamanho nem o layout do componente. Pronto quando a razão medida do elemento for 3:1 ou mais.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 1.4.11 Contraste de elementos não textuais",
+        "url": "https://www.w3.org/TR/WCAG22/#non-text-contrast",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:40"
+    ],
+    "citacoes": [
+      "numero",
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "",
+    "id": "a11y-botao-sem-nome",
+    "categoria": "acessibilidade",
+    "titulo": "Botão sem nome para o leitor de tela",
+    "descricao": "Botões só com ícone ou imagem precisam de um nome (texto, aria-label ou título). Sem nome, o leitor de tela diz apenas \"botão\" e a pessoa não sabe o que ele faz.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta violações de button-name, input-button-name e aria-command-name, ignorando elementos ocultos.",
+      "parametros": {
+        "axe_rule_ids": [
+          "button-name",
+          "input-button-name",
+          "aria-command-name"
+        ]
+      }
+    },
+    "peso": 7,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Dê um nome ao botão: texto visível ou aria-label curto dizendo o que ele faz.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione um nome acessível ao botão {{trecho}} (por exemplo aria-label=\"{{valor}}\" dizendo a ação). Não mude o visual nem a função do botão. Pronto quando o axe-core não reportar button-name para esse elemento.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 4.1.2 Nome, função, valor",
+        "url": "https://www.w3.org/TR/WCAG22/#name-role-value",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:button-name",
+      "axe-core:input-button-name",
+      "vercel-web-interface-guidelines:CMD-ACC-01",
+      "vercel-web-interface-guidelines:CMD-AP-10"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "",
+    "id": "a11y-link-sem-nome",
+    "categoria": "acessibilidade",
+    "titulo": "Link sem texto que diga para onde ele vai",
+    "descricao": "Links vazios, só com ícone ou com imagem sem alt não dizem nada ao leitor de tela. A pessoa ouve apenas \"link\" e não sabe o destino.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta violações de link-name (link sem texto, aria-label ou alt na imagem interna).",
+      "parametros": {
+        "axe_rule_ids": [
+          "link-name"
+        ]
+      }
+    },
+    "peso": 7,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Coloque texto no link ou um aria-label curto que diga o destino.",
+    "prompt_correcao": "No arquivo {{arquivo}}, dê um nome acessível ao link {{trecho}} (texto visível ou aria-label=\"{{valor}}\" descrevendo o destino). Não mude o href nem o visual. Pronto quando o axe-core não reportar link-name para esse link.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 2.4.4 Finalidade do link (em contexto)",
+        "url": "https://www.w3.org/TR/WCAG22/#link-purpose-in-context",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "WCAG 2.2, critério 4.1.2 Nome, função, valor",
+        "url": "https://www.w3.org/TR/WCAG22/#name-role-value",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:link-name"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Caso de teste nº 1 (SPEC §11.2). Clones de carrossel (aria-hidden) e links invisíveis nunca contam. Pelo critério 2.4.4 (nível A), contexto no mesmo parágrafo, item de lista ou célula já resolve; por isso confiança média e severidade P2. Se só falhar o 2.4.9 (AAA, exige o link sozinho ser claro), rebaixar para P3 e dizer que é nível AAA. Esta regra mede links iguais; \"clique aqui\" genérico é da regra seo-texto-de-link-generico.",
+    "id": "a11y-link-texto-repetido-sem-contexto",
+    "categoria": "acessibilidade",
+    "titulo": "Vários links com o mesmo texto e sem contexto para leitor de tela",
+    "descricao": "Quando vários links dizem a mesma coisa (por exemplo \"R$ 34,90\") e nada no código explica a diferença, quem usa leitor de tela ouve uma lista de links iguais e não sabe qual escolher.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "links",
+      "detectavel_por_script": "parcial",
+      "metodo": "Agrupa os links visíveis e não-clone pelo texto normalizado; para cada grupo com 2 ou mais links, verifica se o nome acessível (aria-label, aria-labelledby, texto escondido só para leitor de tela) ou o contexto próximo (parágrafo, item de lista, célula, título da seção) os diferencia; registra quantos têm e quantos não têm contexto.",
+      "parametros": {
+        "texto_normalizacao": "NFKC, minúsculas, espaços colapsados",
+        "escopo_links": "só <a href> visíveis e não-clone (clone = sob ancestral aria-hidden=\"true\" com texto igual a um irmão/primo visível)",
+        "min_ocorrencias": 2,
+        "destinos": "mesmo ou diferentes (os dois casos entram)",
+        "contexto_que_resolve": [
+          "aria-label",
+          "aria-labelledby",
+          "aria-describedby",
+          "texto visualmente oculto dentro do link",
+          "title (fraco)",
+          "texto do mesmo parágrafo, item de lista ou célula (vale só para o critério 2.4.4)"
+        ],
+        "axe_rule_ids_complementares": [
+          "identical-links-same-purpose"
+        ],
+        "habilitar_regras_desligadas_por_padrao": true,
+        "registrar": [
+          "total_com_o_texto",
+          "destinos_distintos",
+          "com_contexto",
+          "sem_contexto"
+        ],
+        "exemplo_do_caso_de_teste": "R$ 34,90"
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Faça cada link ser único para o leitor de tela: acrescente um aria-label ou texto escondido com o nome do produto, por exemplo \"R$ 34,90, plano Básico\".",
+    "prompt_correcao": "No arquivo {{arquivo}}, acrescente contexto acessível aos links com o texto \"{{valor}}\" (trecho: {{trecho}}), usando aria-label ou aria-labelledby que inclua o nome do item ao qual cada link pertence. Não mude o texto visível, o destino (href) nem o visual. Pronto quando cada link com esse texto tiver um nome acessível diferente dos demais, conferido pelo medidor de links.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 2.4.4 Finalidade do link (em contexto)",
+        "url": "https://www.w3.org/TR/WCAG22/#link-purpose-in-context",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "WCAG 2.2, critério 2.4.9 Finalidade do link (somente o link), nível AAA",
+        "url": "https://www.w3.org/TR/WCAG22/#link-purpose-link-only",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "WCAG 2.2, Entendendo Finalidade do link (em contexto)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html",
+        "licenca": "W3C Document License / Permission to Use WAI Material",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:identical-links-same-purpose",
+      "caso-de-teste-1:links-r$-34,90"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "",
+    "id": "a11y-link-so-por-cor",
+    "categoria": "acessibilidade",
+    "titulo": "Link dentro de texto que se diferencia só pela cor",
+    "descricao": "Em parágrafos, links que só mudam de cor (sem sublinhado ou outro sinal) são difíceis de achar para quem não distingue cores bem.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta violações de link-in-text-block (links em blocos de texto sem sinal além da cor).",
+      "parametros": {
+        "axe_rule_ids": [
+          "link-in-text-block"
+        ]
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Mantenha o sublinhado nos links dentro de textos, ou use outro sinal além da cor.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione sublinhado (text-decoration: underline) aos links dentro de texto corrido, como {{trecho}}. Não mude a cor, o tamanho nem os links fora de parágrafos (menus, botões). Pronto quando o axe-core não reportar link-in-text-block.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 1.4.1 Uso de cor",
+        "url": "https://www.w3.org/TR/WCAG22/#use-of-color",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:link-in-text-block"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "O axe só valida o código do idioma; saber se o código bate com o idioma real do texto é julgamento (zona cinza do modelo).",
+    "id": "a11y-idioma-da-pagina",
+    "categoria": "acessibilidade",
+    "titulo": "Idioma da página ausente ou inválido",
+    "descricao": "O atributo lang no elemento html diz ao leitor de tela em que idioma ler. Sem ele (ou com valor errado), o texto em português pode ser lido com sotaque e pronúncia de outra língua.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core e coleta violações das quatro regras de idioma; compara também lang do HTML cru com o do DOM final.",
+      "parametros": {
+        "axe_rule_ids": [
+          "html-has-lang",
+          "html-lang-valid",
+          "html-xml-lang-mismatch",
+          "valid-lang"
+        ]
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Coloque lang=\"pt-BR\" na tag html (ou o idioma certo da página).",
+    "prompt_correcao": "No arquivo {{arquivo}}, defina o atributo lang da tag <html> como \"{{valor}}\" (por exemplo pt-BR). Não altere outros atributos nem o conteúdo da página. Pronto quando o axe-core não reportar html-has-lang nem html-lang-valid.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 3.1.1 Idioma da página",
+        "url": "https://www.w3.org/TR/WCAG22/#language-of-page",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "WCAG 2.2, critério 3.1.2 Idioma das partes",
+        "url": "https://www.w3.org/TR/WCAG22/#language-of-parts",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:html-has-lang",
+      "axe-core:html-lang-valid",
+      "axe-core:valid-lang"
+    ],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Aqui só conta existir no DOM final. Qualidade, repetição e presença no HTML cru ficam nas regras de SEO.",
+    "id": "a11y-titulo-da-pagina-ausente",
+    "categoria": "acessibilidade",
+    "titulo": "Página sem título (elemento title)",
+    "descricao": "O título aparece na aba do navegador e é a primeira coisa que o leitor de tela fala ao abrir a página. Sem ele, a pessoa não sabe onde está.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta document-title (title ausente ou vazio).",
+      "parametros": {
+        "axe_rule_ids": [
+          "document-title"
+        ]
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Coloque um <title> descritivo e único em cada página.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione ou preencha o elemento <title> dentro do <head> com um texto que descreva a página (por exemplo \"{{valor}}\"). Não altere meta tags nem o conteúdo visível. Pronto quando document.title for não vazio e o axe-core não reportar document-title.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 2.4.2 Página com título",
+        "url": "https://www.w3.org/TR/WCAG22/#page-titled",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:document-title",
+      "vercel-web-interface-guidelines:AG-CA-61"
+    ],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "",
+    "id": "a11y-campo-sem-rotulo",
+    "categoria": "acessibilidade",
+    "titulo": "Campo de formulário sem rótulo",
+    "descricao": "Campos de texto, listas e seleções precisam de um rótulo ligado ao campo. Sem ele, o leitor de tela não diz o que a pessoa deve preencher, e clicar no texto ao lado não ativa o campo.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta violações de rótulo em input, select, textarea e campos ARIA, ignorando campos ocultos.",
+      "parametros": {
+        "axe_rule_ids": [
+          "label",
+          "select-name",
+          "aria-input-field-name",
+          "form-field-multiple-labels"
+        ]
+      }
+    },
+    "peso": 7,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Ligue um <label> ao campo (for + id) ou use aria-label com o nome do campo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, associe um rótulo ao campo {{trecho}}: use <label for=\"id\"> com o id do campo ou aria-label=\"{{valor}}\". Não mude o tipo do campo, o name nem o visual. Pronto quando o axe-core não reportar label nesse campo.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 3.3.2 Rótulos ou instruções",
+        "url": "https://www.w3.org/TR/WCAG22/#labels-or-instructions",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "WCAG 2.2, critério 4.1.2 Nome, função, valor",
+        "url": "https://www.w3.org/TR/WCAG22/#name-role-value",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:label",
+      "axe-core:select-name",
+      "vercel-web-interface-guidelines:CMD-ACC-02",
+      "vercel-web-interface-guidelines:CMD-AP-09"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "",
+    "id": "a11y-nome-acessivel-difere-do-texto",
+    "categoria": "acessibilidade",
+    "titulo": "Nome acessível não contém o texto que aparece no botão ou link",
+    "descricao": "Quem usa comando de voz diz o texto que vê na tela. Se o aria-label do controle for diferente desse texto, o comando \"clicar em Comprar agora\" falha.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta label-content-name-mismatch (texto visível não incluído no nome acessível).",
+      "parametros": {
+        "axe_rule_ids": [
+          "label-content-name-mismatch"
+        ]
+      }
+    },
+    "peso": 3,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Faça o aria-label começar com o mesmo texto que aparece no botão ou link, ou remova o aria-label.",
+    "prompt_correcao": "No arquivo {{arquivo}}, ajuste o aria-label de {{trecho}} para incluir o texto visível \"{{valor}}\" (de preferência no começo). Não mude o texto visível nem o destino. Pronto quando o axe-core não reportar label-content-name-mismatch.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 2.5.3 Rótulo no nome",
+        "url": "https://www.w3.org/TR/WCAG22/#label-in-name",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:label-content-name-mismatch"
+    ],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "",
+    "id": "a11y-autocomplete-incorreto",
+    "categoria": "acessibilidade",
+    "titulo": "Campo com autocomplete inválido ou errado",
+    "descricao": "Campos de nome, e-mail, endereço e telefone devem dizer ao navegador o que são, para preencher sozinho. Um valor de autocomplete errado atrapalha quem tem dificuldade de digitar.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta autocomplete-valid (valor de autocomplete inexistente ou fora do campo).",
+      "parametros": {
+        "axe_rule_ids": [
+          "autocomplete-valid"
+        ]
+      }
+    },
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Use os valores oficiais de autocomplete (name, email, tel, street-address...) nos campos de dados pessoais.",
+    "prompt_correcao": "No arquivo {{arquivo}}, corrija o atributo autocomplete do campo {{trecho}} para um valor válido, por exemplo \"{{valor}}\". Não mude o type, o name nem o visual. Pronto quando o axe-core não reportar autocomplete-valid.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 1.3.5 Identificar a finalidade do campo",
+        "url": "https://www.w3.org/TR/WCAG22/#identify-input-purpose",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:autocomplete-valid",
+      "vercel-web-interface-guidelines:CMD-FRM-01"
+    ],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "O README da Vercel sugere maximum-scale=1 contra o zoom automático do iOS (item RM-15), o que conflita com o WCAG e com o próprio AGENTS.md dela; aqui vale o WCAG.",
+    "id": "a11y-zoom-bloqueado",
+    "categoria": "acessibilidade",
+    "titulo": "Página impede aumentar o zoom no celular",
+    "descricao": "Travar o zoom (user-scalable=no ou maximum-scale baixo) impede quem enxerga pouco de aumentar o texto. O texto precisa poder crescer até 200% sem perder conteúdo.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core e lê a meta viewport do HTML cru e do DOM final; marca user-scalable=no/0 e maximum-scale restritivo.",
+      "parametros": {
+        "axe_rule_ids": [
+          "meta-viewport"
+        ],
+        "regex_bloqueio": "user-scalable\\s*=\\s*(no|0)|maximum-scale\\s*=\\s*[0-1](\\.\\d+)?\\b",
+        "versoes": [
+          "cru",
+          "final"
+        ]
+      }
+    },
+    "peso": 6,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Tire user-scalable=no e maximum-scale da meta viewport; deixe só width=device-width, initial-scale=1.",
+    "prompt_correcao": "No arquivo {{arquivo}}, remova user-scalable=no e qualquer maximum-scale restritivo da meta viewport ({{trecho}}), deixando \"width=device-width, initial-scale=1\". Não mexa em outras meta tags nem no CSS. Pronto quando o axe-core não reportar meta-viewport.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 1.4.4 Redimensionar texto",
+        "url": "https://www.w3.org/TR/WCAG22/#resize-text",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:meta-viewport",
+      "vercel-web-interface-guidelines:CMD-AP-01",
+      "vercel-web-interface-guidelines:AG-TI-7"
+    ],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Mede só se há um sinal de foco; o contraste do sinal (e se algo o cobre) não é afirmado. O Tab simulado não alcança menus que só abrem com hover.",
+    "id": "a11y-foco-do-teclado-invisivel",
+    "categoria": "acessibilidade",
+    "titulo": "Sem sinal visível de foco ao navegar pelo teclado",
+    "descricao": "Quem usa só o teclado precisa ver onde está. Remover o contorno do foco (outline: none) sem pôr outro sinal no lugar deixa a pessoa perdida na página.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "css",
+      "detectavel_por_script": "parcial",
+      "metodo": "Procura no CSS regras :focus/:focus-visible com outline none/0 sem substituto (box-shadow, borda, fundo ou outline em :focus-visible); depois percorre com Tab até 30 controles no Playwright e compara o estilo computado antes e depois do foco.",
+      "parametros": {
+        "max_controles_testados": 30,
+        "procurar_regex": "outline\\s*:\\s*(none|0)",
+        "substitutos_aceitos": [
+          "box-shadow",
+          "border",
+          "outline em :focus-visible",
+          "background-color diferente"
+        ],
+        "teclas": [
+          "Tab"
+        ]
+      }
+    },
+    "peso": 7,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Mostre um contorno claro quando o controle recebe foco (use :focus-visible com outline ou sombra).",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione um estilo :focus-visible visível (por exemplo outline: 2px solid {{valor}}; outline-offset: 2px) ao seletor {{trecho}}, em vez de outline: none. Não remova outros estilos nem mude o hover. Pronto quando, ao navegar por Tab, o estilo computado do elemento focado mudar de forma visível.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 2.4.7 Foco visível",
+        "url": "https://www.w3.org/TR/WCAG22/#focus-visible",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Web Interface Guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope): gates de qualidade",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:26a",
+      "vercel-web-interface-guidelines:CMD-FOC-02",
+      "vercel-web-interface-guidelines:CMD-AP-04",
+      "vercel-web-interface-guidelines:AG-KB-4",
+      "jezweb-design-review:DR-INT-02"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Listeners ligados por frameworks em um ancestral (delegação) podem escapar; por isso confiança média e a pergunta final vai ao modelo na zona cinza.",
+    "id": "a11y-clique-sem-teclado",
+    "categoria": "acessibilidade",
+    "titulo": "Elemento clicável que o teclado não alcança",
+    "descricao": "Uma div ou span que reage a clique, mas não é botão nem link e não recebe foco, não funciona para quem navega só pelo teclado ou por leitor de tela.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "html",
+      "detectavel_por_script": "parcial",
+      "metodo": "No DOM final, lista elementos que não são a/button/input/select/textarea/summary mas têm onclick (atributo ou listener lido via CDP) ou cursor:pointer, sem role de controle nem tabindex 0 ou maior, e sem descendente interativo.",
+      "parametros": {
+        "excluir_tags": [
+          "a",
+          "button",
+          "input",
+          "select",
+          "textarea",
+          "summary",
+          "label"
+        ],
+        "roles_de_controle": [
+          "button",
+          "link",
+          "tab",
+          "menuitem",
+          "checkbox",
+          "switch",
+          "radio"
+        ],
+        "sinais_de_clique": [
+          "atributo onclick",
+          "listener click via DOMDebugger.getEventListeners",
+          "cursor: pointer computado"
+        ],
+        "tabindex_minimo": 0
+      }
+    },
+    "peso": 6,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Troque a div clicável por um <button> (ou <a href>), que já funciona com teclado e leitor de tela.",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque o elemento clicável {{trecho}} por um <button type=\"button\"> (ou <a href> se for navegação), mantendo classes e texto. Não mude o que o clique faz nem o visual. Pronto quando o elemento for alcançado com Tab e acionado com Enter e Espaço.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 2.1.1 Teclado",
+        "url": "https://www.w3.org/TR/WCAG22/#keyboard",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Web Interface Guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "vercel-web-interface-guidelines:CMD-ACC-03",
+      "vercel-web-interface-guidelines:CMD-ACC-04",
+      "vercel-web-interface-guidelines:CMD-AP-06",
+      "vercel-web-interface-guidelines:AG-SN-28"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "heading-order e empty-heading são boas práticas do axe, não falhas diretas de um critério WCAG; por isso peso baixo e confiança média.",
+    "id": "a11y-titulos-vazios-ou-fora-de-ordem",
+    "categoria": "acessibilidade",
+    "titulo": "Títulos vazios ou fora de ordem",
+    "descricao": "Quem usa leitor de tela navega pela lista de títulos. Título vazio não diz nada, e pular de h2 para h5 bagunça o mapa da página.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta heading-order e empty-heading.",
+      "parametros": {
+        "axe_rule_ids": [
+          "heading-order",
+          "empty-heading"
+        ]
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Remova títulos vazios e use h1, h2, h3 em sequência, sem pular níveis.",
+    "prompt_correcao": "No arquivo {{arquivo}}, corrija a hierarquia de títulos em {{trecho}}: use o nível seguinte ao anterior (h2 depois de h1, h3 depois de h2) e apague ou preencha títulos vazios. Ajuste o tamanho visual só por CSS, sem trocar a ordem do conteúdo. Pronto quando o axe-core não reportar heading-order nem empty-heading.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 1.3.1 Informações e relações",
+        "url": "https://www.w3.org/TR/WCAG22/#info-and-relationships",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:heading-order",
+      "axe-core:empty-heading",
+      "vercel-web-interface-guidelines:CMD-ACC-09"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Regiões são uma das técnicas aceitas para o critério 2.4.1 (Ignorar blocos); as regras do axe são boas práticas, não exigência direta.",
+    "id": "a11y-sem-regiao-principal",
+    "categoria": "acessibilidade",
+    "titulo": "Página sem região principal (main) bem definida",
+    "descricao": "O elemento main marca onde começa o conteúdo. Sem ele, ou com mais de um, quem usa leitor de tela perde o atalho para pular direto ao conteúdo.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta as três regras de região main.",
+      "parametros": {
+        "axe_rule_ids": [
+          "landmark-one-main",
+          "landmark-no-duplicate-main",
+          "landmark-main-is-top-level"
+        ]
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Envolva o conteúdo principal em um único <main>, fora de outras regiões.",
+    "prompt_correcao": "No arquivo {{arquivo}}, envolva o conteúdo principal da página em um único elemento <main> ({{trecho}}), sem duplicar nem aninhar dentro de header, nav ou footer. Não mude o visual. Pronto quando o axe-core não reportar landmark-one-main nem landmark-no-duplicate-main.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, Entendendo Ignorar blocos",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks.html",
+        "licenca": "W3C Document License / Permission to Use WAI Material",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:landmark-one-main",
+      "axe-core:landmark-no-duplicate-main"
+    ],
+    "citacoes": [
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "A página de apoio do WCAG diz que basta existir algum mecanismo (e que navegadores podem oferecer atalhos), então o axe só reprova quando não há link, região nem título.",
+    "id": "a11y-sem-forma-de-pular-o-menu",
+    "categoria": "acessibilidade",
+    "titulo": "Sem como pular o menu repetido",
+    "descricao": "Em toda página o menu se repete. Quem usa teclado precisa de um jeito de pular direto ao conteúdo: link \"pular para o conteúdo\", regiões bem marcadas ou títulos.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta bypass (nenhum link de salto, região ou título) e skip-link (link de salto que aponta para alvo inexistente).",
+      "parametros": {
+        "axe_rule_ids": [
+          "bypass",
+          "skip-link"
+        ]
+      }
+    },
+    "peso": 3,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Adicione um link \"Pular para o conteúdo\" no começo da página, apontando para o <main>.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione como primeiro elemento do <body> um link <a href=\"#conteudo\">Pular para o conteúdo</a> e dê id=\"conteudo\" ao {{trecho}} (o <main>). Deixe o link visível ao receber foco. Não altere o menu. Pronto quando o primeiro Tab focar o link e Enter levar ao conteúdo, e o axe-core não reportar bypass.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 2.4.1 Ignorar blocos",
+        "url": "https://www.w3.org/TR/WCAG22/#bypass-blocks",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "WCAG 2.2, Entendendo Ignorar blocos",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks.html",
+        "licenca": "W3C Document License / Permission to Use WAI Material",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:bypass",
+      "axe-core:skip-link",
+      "vercel-web-interface-guidelines:CMD-ACC-09"
+    ],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "O número oficial (AA) é 24 px. Os 44 px de guias como o da Vercel e do jezweb são recomendação deles, não exigência de nível AA. O axe não sabe se existe um controle equivalente em outro lugar, então pode exagerar.",
+    "id": "a11y-alvo-de-toque-pequeno",
+    "categoria": "acessibilidade",
+    "titulo": "Botões e links pequenos demais para tocar",
+    "descricao": "Controles menores que 24 por 24 pixels, sem espaço em volta, são difíceis de acertar com o dedo ou com mão trêmula. A norma admite exceções (texto corrido, controles do navegador, outro controle equivalente).",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Liga explicitamente a regra target-size do axe (WCAG 2.2, desligada por padrão) no DOM final e coleta alvos com menos de 24x24 px CSS e sem folga suficiente.",
+      "parametros": {
+        "axe_rule_ids": [
+          "target-size"
+        ],
+        "habilitar_regra": "target-size",
+        "tamanho_minimo_css_px": 24,
+        "folga": "círculo de 24 px centrado no alvo não pode tocar outro alvo",
+        "viewport": [
+          "desktop 1440",
+          "mobile 390"
+        ]
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Aumente a área de toque para pelo menos 24 por 24 pixels (ou dê mais espaço entre os controles).",
+    "prompt_correcao": "No arquivo {{arquivo}}, aumente a área clicável de {{trecho}} para pelo menos 24x24 px CSS (padding ou min-width/min-height), ou afaste-o dos vizinhos. Não mude o ícone, o texto nem o layout geral. Pronto quando o axe-core (com target-size ligado) não reportar o elemento.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 2.5.8 Tamanho do alvo (mínimo)",
+        "url": "https://www.w3.org/TR/WCAG22/#target-size-minimum",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "WCAG 2.2, Entendendo Tamanho do alvo (mínimo)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
+        "licenca": "W3C Document License / Permission to Use WAI Material",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:target-size",
+      "jezweb-design-review:DR-RES-04",
+      "vercel-web-interface-guidelines:AG-TI-5"
+    ],
+    "citacoes": [
+      "numero",
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "O script não escuta o áudio: se o vídeo tem fala, só o julgamento ou a pessoa confirma. Se a trilha existe, não dá para saber se está correta.",
+    "id": "a11y-video-sem-legenda",
+    "categoria": "acessibilidade",
+    "titulo": "Vídeo com som sem legendas",
+    "descricao": "Vídeos com fala ou som importante precisam de legendas para quem não ouve. Vídeo de fundo mudo, só decorativo, não precisa.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta video-caption (video sem track de legendas); ignora video decorativo (muted, sem controles, em loop). Vídeos em iframe (YouTube, Vimeo) viram \"não verificável\".",
+      "parametros": {
+        "axe_rule_ids": [
+          "video-caption"
+        ],
+        "ignorar_se": "video muted, em loop e sem controls (decorativo)",
+        "iframes_externos": "nao-verificavel"
+      }
+    },
+    "peso": 6,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Adicione legendas ao vídeo com <track kind=\"captions\"> (arquivo .vtt).",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione ao vídeo {{trecho}} um <track kind=\"captions\" srclang=\"pt-BR\" label=\"Português\" src=\"{{valor}}\"> com as legendas (arquivo .vtt). Não mude o arquivo de vídeo nem os controles. Pronto quando o axe-core não reportar video-caption para esse vídeo.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 1.2.2 Legendas (pré-gravado)",
+        "url": "https://www.w3.org/TR/WCAG22/#captions-prerecorded",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:video-caption",
+      "vercel-web-interface-guidelines:CMD-ACC-11"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "A parte do carrossel é heurística (duas capturas), por isso confiança média. O critério só vale para movimento que começa sozinho e roda ao lado de outro conteúdo.",
+    "id": "a11y-movimento-automatico-sem-pausa",
+    "categoria": "acessibilidade",
+    "titulo": "Movimento ou som automático sem como pausar",
+    "descricao": "Conteúdo que se mexe sozinho por mais de 5 segundos (carrossel, marquee, vídeo em loop) ou som que toca por mais de 3 segundos precisa de um botão para pausar, parar ou esconder.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "axe",
+      "detectavel_por_script": "parcial",
+      "metodo": "Roda no axe-core as regras no-autoplay-audio, blink e marquee; no DOM final procura video/audio com autoplay sem muted e carrosséis que trocam de slide sozinhos em duas capturas espaçadas, sem botão de pausa (nome contendo pausar, parar, pause ou stop).",
+      "parametros": {
+        "axe_rule_ids": [
+          "no-autoplay-audio",
+          "blink",
+          "marquee"
+        ],
+        "movimento_minimo_s": 5,
+        "audio_minimo_s": 3,
+        "botao_pausa_regex": "(pausar|parar|pause|stop)",
+        "capturas_espacadas_s": [
+          0,
+          8
+        ]
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Dê a quem visita um botão de pausar (ou pare o movimento automático) e deixe o som desligado por padrão.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione um botão acessível de pausar/retomar ao movimento automático de {{trecho}} (aria-label=\"Pausar\"), e remova autoplay com som. Não mude as imagens, os textos nem o tempo de troca. Pronto quando houver um controle que pare o movimento e o axe-core não reportar no-autoplay-audio.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 2.2.2 Pausar, parar, ocultar",
+        "url": "https://www.w3.org/TR/WCAG22/#pause-stop-hide",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "WCAG 2.2, critério 1.4.2 Controle de áudio",
+        "url": "https://www.w3.org/TR/WCAG22/#audio-control",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Web Interface Guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope): gates de qualidade",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:no-autoplay-audio",
+      "axe-core:marquee",
+      "axe-core:blink",
+      "vercel-web-interface-guidelines:CMD-ANI-07",
+      "vercel-web-interface-guidelines:AG-AN-49",
+      "hallmark:18"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Selo de opinião: o critério 2.3.3 é nível AAA e a exigência vem de guias de interface (Vercel, Hallmark), não do nível AA. Animação de poucas coisas pequenas é pouco arriscada.",
+    "id": "a11y-animacao-sem-reduced-motion",
+    "categoria": "acessibilidade",
+    "titulo": "Animações sem opção para quem prefere menos movimento",
+    "descricao": "Algumas pessoas sentem tontura com animações. O navegador permite pedir \"menos movimento\" (prefers-reduced-motion); sites com muita animação devem respeitar esse pedido.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "detectavel_por_script": "sim",
+      "metodo": "Conta @keyframes e transições/animações no CSS carregado e procura ao menos um bloco @media (prefers-reduced-motion: reduce) que as desligue ou reduza.",
+      "parametros": {
+        "sinais_de_animacao": [
+          "@keyframes",
+          "animation-name",
+          "transition-property diferente de none"
+        ],
+        "procurar_regex": "@media[^{]*prefers-reduced-motion",
+        "alerta_se": "keyframes ou transform animado presentes e nenhum bloco prefers-reduced-motion"
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "media",
+    "correcao": "Adicione um bloco @media (prefers-reduced-motion: reduce) que desligue ou reduza as animações.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione ao CSS um bloco @media (prefers-reduced-motion: reduce) que desative ou reduza as animações de {{trecho}} (animation: none; transition: none). Não remova as animações para quem não pediu menos movimento. Pronto quando o CSS tiver o bloco e as animações pararem com a preferência ativada.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 2.3.3 Animação a partir de interações (nível AAA)",
+        "url": "https://www.w3.org/TR/WCAG22/#animation-from-interactions",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Web Interface Guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope): gates de qualidade",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:27",
+      "vercel-web-interface-guidelines:CMD-ANI-01",
+      "vercel-web-interface-guidelines:AG-AN-41"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "",
+    "id": "a11y-aria-uso-invalido",
+    "categoria": "acessibilidade",
+    "titulo": "ARIA usado de forma inválida",
+    "descricao": "Atributos ARIA errados (papel inexistente, atributo que não combina com o papel, valor inválido, parte obrigatória faltando) podem deixar o leitor de tela mais confuso do que se não houvesse ARIA.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta as violações das regras ARIA listadas.",
+      "parametros": {
+        "axe_rule_ids": [
+          "aria-roles",
+          "aria-valid-attr",
+          "aria-valid-attr-value",
+          "aria-allowed-attr",
+          "aria-required-attr",
+          "aria-required-children",
+          "aria-required-parent",
+          "aria-prohibited-attr",
+          "aria-deprecated-role",
+          "aria-conditional-attr"
+        ]
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Corrija ou remova o atributo ARIA inválido; prefira elementos nativos (button, a, label).",
+    "prompt_correcao": "No arquivo {{arquivo}}, corrija o uso de ARIA em {{trecho}}: use um papel e atributos válidos para o elemento, ou troque por o elemento HTML nativo equivalente. Não mude o comportamento nem o visual. Pronto quando o axe-core não reportar nenhuma regra aria-* para esse elemento.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 4.1.2 Nome, função, valor",
+        "url": "https://www.w3.org/TR/WCAG22/#name-role-value",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:aria-roles",
+      "axe-core:aria-valid-attr",
+      "axe-core:aria-valid-attr-value",
+      "axe-core:aria-allowed-attr",
+      "vercel-web-interface-guidelines:CMD-ACC-08"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Carrosséis infinitos costumam duplicar slides com aria-hidden; os links dentro deles disparam esta regra. Isso não contradiz a regra de que clones não contam como conteúdo duplicado.",
+    "id": "a11y-aria-hidden-em-elemento-focavel",
+    "categoria": "acessibilidade",
+    "titulo": "Conteúdo escondido do leitor de tela, mas que o teclado alcança",
+    "descricao": "Elementos com aria-hidden=\"true\" não devem conter links, botões ou campos que recebem foco. O teclado cai neles, mas o leitor de tela não diz nada, e a pessoa fica perdida.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta aria-hidden-focus (foco dentro de aria-hidden) e aria-hidden-body. Diferente das regras de conteúdo, esta NÃO ignora clones de carrossel: o foco do teclado existe mesmo em clones.",
+      "parametros": {
+        "axe_rule_ids": [
+          "aria-hidden-focus",
+          "aria-hidden-body"
+        ]
+      }
+    },
+    "peso": 6,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Tire os links e botões do foco (tabindex=\"-1\" ou atributo inert) enquanto estiverem escondidos, ou remova o aria-hidden.",
+    "prompt_correcao": "No arquivo {{arquivo}}, em {{trecho}}, faça os elementos dentro de aria-hidden=\"true\" não receberem foco: adicione o atributo inert ao contêiner (ou tabindex=\"-1\" aos controles). Não remova o conteúdo nem mude o visual. Pronto quando o axe-core não reportar aria-hidden-focus e Tab não parar nesses elementos.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 4.1.2 Nome, função, valor",
+        "url": "https://www.w3.org/TR/WCAG22/#name-role-value",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:aria-hidden-focus",
+      "axe-core:aria-hidden-body"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "aria-dialog-name e aria-treeitem-name são boas práticas do axe; as demais ligam ao critério 4.1.2.",
+    "id": "a11y-componente-aria-sem-nome",
+    "categoria": "acessibilidade",
+    "titulo": "Janela, aba ou botão personalizado (ARIA) sem nome",
+    "descricao": "Componentes montados com ARIA (janela de diálogo, aba, interruptor, dica, barra de progresso) precisam de um nome. Sem ele, o leitor de tela não diz do que se trata.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta as regras de nome para componentes ARIA listadas.",
+      "parametros": {
+        "axe_rule_ids": [
+          "aria-dialog-name",
+          "aria-tooltip-name",
+          "aria-tab-name",
+          "aria-toggle-field-name",
+          "aria-meter-name",
+          "aria-progressbar-name",
+          "aria-treeitem-name"
+        ]
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Dê um nome ao componente com aria-label ou aria-labelledby apontando para um título.",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione aria-label=\"{{valor}}\" (ou aria-labelledby apontando para um título visível) ao componente {{trecho}}. Não mude o papel (role) nem o visual. Pronto quando o axe-core não reportar a regra aria-*-name desse elemento.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 4.1.2 Nome, função, valor",
+        "url": "https://www.w3.org/TR/WCAG22/#name-role-value",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:aria-dialog-name",
+      "axe-core:aria-tab-name",
+      "axe-core:aria-toggle-field-name"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "",
+    "id": "a11y-iframe-sem-titulo",
+    "categoria": "acessibilidade",
+    "titulo": "Quadro incorporado (iframe) sem título",
+    "descricao": "Mapas, vídeos e formulários incorporados precisam de um título que diga o que são. Sem ele, o leitor de tela só diz \"quadro\". Títulos repetidos também confundem.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta frame-title e frame-title-unique para iframe e frame.",
+      "parametros": {
+        "axe_rule_ids": [
+          "frame-title",
+          "frame-title-unique"
+        ]
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Coloque title no iframe, dizendo o que ele mostra (ex.: \"Mapa da loja\").",
+    "prompt_correcao": "No arquivo {{arquivo}}, adicione o atributo title=\"{{valor}}\" ao iframe {{trecho}}, descrevendo o conteúdo dele, e use títulos diferentes se houver mais de um. Não mude o src nem o tamanho. Pronto quando o axe-core não reportar frame-title nem frame-title-unique.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 4.1.2 Nome, função, valor",
+        "url": "https://www.w3.org/TR/WCAG22/#name-role-value",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:frame-title",
+      "axe-core:frame-title-unique"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Ícones decorativos sem aria-hidden (item 33 do Hallmark, CMD-ACC-06 da Vercel) são só uma boa prática e não entram aqui.",
+    "id": "a11y-svg-ou-role-img-sem-nome",
+    "categoria": "acessibilidade",
+    "titulo": "Gráfico ou ícone com papel de imagem, mas sem nome",
+    "descricao": "SVG, objetos e elementos com role=\"img\" que informam algo precisam de um texto alternativo. Os que são só enfeite devem ser escondidos do leitor de tela.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta svg-img-alt, role-img-alt e object-alt, ignorando nós ocultos e clones aria-hidden.",
+      "parametros": {
+        "axe_rule_ids": [
+          "svg-img-alt",
+          "role-img-alt",
+          "object-alt"
+        ]
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Dê nome ao SVG (aria-label ou <title>); se for só enfeite, use aria-hidden=\"true\".",
+    "prompt_correcao": "No arquivo {{arquivo}}, em {{trecho}}, adicione aria-label=\"{{valor}}\" (ou um <title> interno) ao SVG informativo, ou aria-hidden=\"true\" se ele for só decorativo. Não mude o desenho, o tamanho nem as cores. Pronto quando o axe-core não reportar svg-img-alt nem role-img-alt.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 1.1.1 Conteúdo não textual",
+        "url": "https://www.w3.org/TR/WCAG22/#non-text-content",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:svg-img-alt",
+      "axe-core:role-img-alt",
+      "hallmark:33",
+      "vercel-web-interface-guidelines:CMD-ACC-06"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "scope-attr-valid e empty-table-header são boas práticas do axe, não critérios diretos; por isso confiança média.",
+    "id": "a11y-lista-ou-tabela-mal-estruturada",
+    "categoria": "acessibilidade",
+    "titulo": "Lista ou tabela montada de forma que o leitor de tela se perde",
+    "descricao": "Listas precisam de itens dentro delas, e tabelas de células de cabeçalho ligadas aos dados. Quando a estrutura está quebrada, o leitor de tela não consegue dizer \"item 2 de 5\" nem ler o cabeçalho de cada coluna.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta as regras de lista e tabela listadas.",
+      "parametros": {
+        "axe_rule_ids": [
+          "list",
+          "listitem",
+          "definition-list",
+          "dlitem",
+          "th-has-data-cells",
+          "td-headers-attr",
+          "scope-attr-valid",
+          "empty-table-header"
+        ]
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Use ul/ol com li dentro, e tabelas com th e scope corretos.",
+    "prompt_correcao": "No arquivo {{arquivo}}, corrija a estrutura de {{trecho}}: li só dentro de ul/ol, dt/dd só dentro de dl, e cabeçalhos de tabela com <th scope=\"col\"> ou \"row\". Não mude o texto nem o visual. Pronto quando o axe-core não reportar list, listitem nem regras de tabela nesse trecho.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 1.3.1 Informações e relações",
+        "url": "https://www.w3.org/TR/WCAG22/#info-and-relationships",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:list",
+      "axe-core:listitem",
+      "axe-core:th-has-data-cells"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "",
+    "id": "a11y-espacamento-de-texto-travado",
+    "categoria": "acessibilidade",
+    "titulo": "Estilo no próprio elemento que impede ajustar o espaçamento do texto",
+    "descricao": "Quem tem dislexia ou baixa visão ajusta o espaçamento entre linhas e letras com uma extensão do navegador. Estilos inline com !important travam esse ajuste.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "axe",
+      "detectavel_por_script": "sim",
+      "metodo": "Roda o axe-core no DOM final e coleta avoid-inline-spacing (style inline com !important em line-height, letter-spacing, word-spacing).",
+      "parametros": {
+        "axe_rule_ids": [
+          "avoid-inline-spacing"
+        ]
+      }
+    },
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Tire o !important dos estilos de espaçamento inline, ou mova para o CSS sem !important.",
+    "prompt_correcao": "No arquivo {{arquivo}}, remova o !important dos estilos inline de line-height, letter-spacing e word-spacing em {{trecho}} (ou mova-os para uma classe de CSS sem !important). Não mude os valores visuais. Pronto quando o axe-core não reportar avoid-inline-spacing.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, critério 1.4.12 Espaçamento de texto",
+        "url": "https://www.w3.org/TR/WCAG22/#text-spacing",
+        "licenca": "W3C Document License",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "axe-core: descrição das regras",
+        "url": "https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md",
+        "licenca": "MPL-2.0 (axe-core); documentação pública",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "axe-core:avoid-inline-spacing"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  }
+]

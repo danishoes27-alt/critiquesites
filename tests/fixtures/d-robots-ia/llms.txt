@@ -1,0 +1,8 @@
+# Casa de Teste
+
+> Site de fixture para o medidor robots-ia.
+
+## Páginas
+
+- [Início](/): página inicial
+- [Sobre](/sobre.html): quem somos

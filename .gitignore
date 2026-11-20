@@ -1,0 +1,9 @@
+referencias/
+node_modules/
+.venv/
+saidas/
+.env
+
+# Conteudo local (nao publicar)
+entrada/
+local/

@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Números</title></head>
+<body><main><h1>Nossos números</h1>
+<p><span id="sites" data-alvo="54">0</span> sites prontos</p>
+<p><span id="alunos" data-alvo="1200">0</span> alunos</p>
+<p>Preço fixo: R$ 9,90</p>
+<script>
+const t0 = performance.now(), dur = 1500;
+function passo(agora){ const p = Math.min(1,(agora-t0)/dur);
+  for (const el of document.querySelectorAll('[data-alvo]')) el.textContent = Math.round(Number(el.dataset.alvo)*p);
+  if (p<1) requestAnimationFrame(passo); }
+setTimeout(()=>requestAnimationFrame(passo), 600);
+</script></main></body></html>

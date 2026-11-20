@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estúdio Aurora - responsividade ruim</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; padding: 0 16px; color: #111; }
+  .hero { height: 100vh; background: #fed; }
+  .largo { width: 900px; background: #def; }
+  .pequeno { font-size: 9px; }
+  .apertado { line-height: 1.1; }
+  .mini { display: inline-block; width: 16px; height: 16px; background: #333; margin-right: 6px; }
+  .medio { display: inline-block; width: 100px; height: 32px; background: #135; color: #fff; margin: 6px; text-align: center; line-height: 32px; }
+  .so-desktop { margin-top: 12px; }
+  img { max-width: 100%; height: auto; display: block; margin: 8px 0; }
+  @media (max-width: 600px) { .so-desktop { display: none; } }
+</style>
+</head>
+<body>
+<section class="hero">
+  <h1>Estúdio Aurora</h1>
+  <p>Fotografia de família e de eventos.</p>
+</section>
+<main>
+  <div class="largo">Esta caixa tem largura fixa de novecentos pixels e passa da borda da tela do celular.</div>
+  <p class="pequeno">Texto miúdo demais para ler no celular sem esforço nenhum.</p>
+  <p class="apertado">Este parágrafo tem entrelinha bem apertada, o que deixa as linhas coladas umas nas outras quando o texto quebra em várias linhas na tela pequena do celular.</p>
+  <p>
+    <a class="mini" href="/a.html" aria-label="Item A"></a><a class="mini" href="/b.html" aria-label="Item B"></a><a class="mini" href="/c.html" aria-label="Item C"></a>
+  </p>
+  <p>
+    <a class="medio" href="/d.html">Planos</a><a class="medio" href="/e.html">Preços</a><a class="medio" href="/f.html">Sobre</a>
+  </p>
+  <div class="so-desktop">
+    Tabela completa de preços e condições de pagamento do estúdio: sessão de estúdio com uma hora de duração inclui vinte fotos tratadas e entrega digital em até cinco dias úteis; sessão externa em parques ou praias inclui deslocamento até trinta quilômetros, duas horas de duração, quarenta fotos tratadas, álbum impresso de vinte páginas e entrega digital em até sete dias úteis; cobertura de eventos é cobrada por hora, com mínimo de quatro horas.
+  </div>
+  <img src="img/foto-1.png" alt="Foto de família na praia">
+  <img src="img/foto-2.png" alt="Foto de casal no parque">
+  <img src="img/foto-3.png" alt="Foto de aniversário">
+</main>
+</body>
+</html>

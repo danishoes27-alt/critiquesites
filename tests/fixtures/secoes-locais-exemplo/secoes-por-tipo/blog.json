@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "faixas": [
+      {
+        "pagina": "inicio",
+        "min": 3,
+        "max": 5
+      }
+    ],
+    "ctas_a_evitar": [
+      "Saiba mais"
+    ]
+  },
+  "secoes": [
+    {
+      "id": "mural-de-avisos",
+      "tipo_de_site": "x",
+      "nome": "Mural de avisos do exemplo",
+      "descricao": "Seção fictícia usada só nos testes do mecanismo da camada local.",
+      "obrigatoriedade": "essencial",
+      "peso": 5,
+      "deteccao": {
+        "seletores": [],
+        "palavras": [
+          "mural de avisos"
+        ],
+        "padroes_regex": [],
+        "onde": "home",
+        "detectavel_por_script": "sim"
+      },
+      "fonte": [
+        {
+          "nome": "Exemplo inventado para teste",
+          "url": "https://exemplo.test/guia",
+          "licenca": "fictícia",
+          "data_consulta": "2026-11-20"
+        }
+      ],
+      "confianca": "media",
+      "notas": "",
+      "pagina": "inicio",
+      "ordem": 1,
+      "cta": "Ver avisos",
+      "selo": "opiniao"
+    },
+    {
+      "id": "cantinho-do-cha",
+      "tipo_de_site": "x",
+      "nome": "Cantinho do chá do exemplo",
+      "descricao": "Seção fictícia usada só nos testes do mecanismo da camada local.",
+      "obrigatoriedade": "opcional",
+      "peso": 5,
+      "deteccao": {
+        "seletores": [],
+        "palavras": [
+          "cantinho do cha"
+        ],
+        "padroes_regex": [],
+        "onde": "home",
+        "detectavel_por_script": "sim"
+      },
+      "fonte": [
+        {
+          "nome": "Exemplo inventado para teste",
+          "url": "https://exemplo.test/guia",
+          "licenca": "fictícia",
+          "data_consulta": "2026-11-20"
+        }
+      ],
+      "confianca": "media",
+      "notas": "",
+      "pagina": "inicio",
+      "ordem": 2
+    }
+  ]
+}

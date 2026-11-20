@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Loja Aurora</title></head>
+<body><div id="app"></div>
+<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Logo da loja" width="40" height="40">
+<span itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="Aurora"></span>
+<noscript>Ative o JavaScript para ver a loja.</noscript>
+<script>
+var app = document.getElementById('app');
+var menu = [['/', 'Início'], ['/sobre.html', 'Sobre'], ['/produtos.html', 'Produtos'], ['/blog/', 'Blog'], ['/contato.html', 'Contato'], ['/faq.html', 'Perguntas']];
+var html = '<nav>' + menu.map(function (m) { return '<a href="' + m[0] + '">' + m[1] + '</a>'; }).join(' ') + '</nav>';
+html += '<main><h1>Loja Aurora</h1><h2>Cerâmica feita à mão no interior</h2>';
+html += '<p>Cada peça da Aurora é modelada à mão em pequenas tiragens, queimada em forno a lenha e esmaltada com pigmentos minerais da região.</p>';
+html += '<h2>Como funciona a encomenda</h2>';
+html += '<p>Você escolhe o modelo, conversa com a ceramista sobre cor e tamanho e acompanha a produção por mensagens com fotos de cada etapa.</p>';
+html += '<h2>Entrega e cuidados</h2>';
+html += '<p>As peças saem embaladas com papel reciclado e proteção reforçada, e acompanham um guia curto de uso, limpeza e conservação do esmalte.</p>';
+html += '<h2>Pagamento e prazos</h2>';
+html += '<p>O pagamento é combinado na encomenda, e o prazo de produção varia conforme o modelo, a cor escolhida e o número de peças do pedido.</p>';
+html += '</main>';
+app.innerHTML = html;
+for (var i = 1; i <= 3; i++) { var im = document.createElement('img'); im.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='; im.alt = 'Peça ' + i; im.width = 40; im.height = 40; im.loading = 'lazy'; document.body.appendChild(im); }
+var ld = document.createElement('script'); ld.type = 'application/ld+json';
+ld.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'Organization', name: 'Aurora' });
+document.head.appendChild(ld);
+</script></body></html>

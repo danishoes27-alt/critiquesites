@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Studio Bem-Estar - Agende seu horário</title>
+<style>body{font-family:Arial,sans-serif;margin:0;color:#233}main{max-width:640px;margin:0 auto;padding:24px}label{display:block;margin:12px 0 4px}</style></head>
+<body>
+<main>
+<h1>Agende sua sessão de massagem</h1>
+<p>Escolha o serviço, o profissional e um dos horários disponíveis. Você recebe a confirmação por WhatsApp.</p>
+<form action="/agendar" method="post">
+<label for="servico">Serviço</label>
+<select id="servico" name="servico"><option>Massagem relaxante (60 min)</option><option>Drenagem linfática (50 min)</option></select>
+<label for="data">Data</label>
+<input id="data" name="data" type="date">
+<label for="hora">Horário disponível</label>
+<select id="hora" name="hora"><option>09:00</option><option>10:30</option><option>14:00</option><option>16:30</option></select>
+<label for="nome">Seu nome</label>
+<input id="nome" name="nome" type="text">
+<p><button type="submit">Reservar horário</button></p>
+</form>
+<p>Precisa remarcar? Cancelamentos até 24 horas antes, sem custo.</p>
+</main>
+</body></html>

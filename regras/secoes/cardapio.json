@@ -1,0 +1,440 @@
+[
+  {
+    "id": "itens-do-cardapio",
+    "tipo_de_site": "cardapio",
+    "nome": "Pratos e itens do cardápio",
+    "descricao": "A principal razão de visitar o site de um restaurante é ver o que se serve. O cardápio deve estar na própria página, organizado por seções, e não escondido.",
+    "obrigatoriedade": "essencial",
+    "peso": 10,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"cardapio\" i]",
+        "[class*=\"menu\" i] li",
+        "[itemtype*=\"Menu\" i]",
+        "a[href*=\"cardapio\" i]"
+      ],
+      "palavras": [
+        "cardápio",
+        "cardapio",
+        "pratos",
+        "entradas",
+        "sobremesas",
+        "bebidas",
+        "lanches"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Google Search Central: Local Business structured data",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/local-business",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Business Profile Help: Manage your local business links",
+        "url": "https://support.google.com/business/answer/6218037?hl=en",
+        "licenca": "© Google; termos de serviço do Google, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O Google prevê a propriedade menu (endereço do cardápio) para estabelecimentos de comida e um link de cardápio no perfil da empresa."
+  },
+  {
+    "id": "precos-dos-pratos",
+    "tipo_de_site": "cardapio",
+    "nome": "Preços dos pratos",
+    "descricao": "O cliente quer saber quanto vai gastar antes de ir ou pedir. O preço deve estar ao lado de cada item, legível e em reais.",
+    "obrigatoriedade": "essencial",
+    "peso": 9,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"preco\" i]",
+        "[class*=\"price\" i]",
+        "[itemprop=\"price\"]"
+      ],
+      "palavras": [
+        "r$",
+        "preço",
+        "preco"
+      ],
+      "padroes_regex": [
+        "R\\$\\s?\\d{1,4}([.,]\\d{2})?"
+      ],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 5.903/2006 (informação de preços ao consumidor), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/decreto/d5903.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lei 8.078/1990 (Código de Defesa do Consumidor), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Pricing information gives B2B sites a competitive advantage",
+        "url": "https://www.nngroup.com/articles/show-price/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O Decreto 5.903/2006 exige preço com clareza e legibilidade e a lista de preços do lado de fora de restaurantes; aqui foi adaptado ao site. NN/g trata de B2B. Aviso, não parecer jurídico."
+  },
+  {
+    "id": "horario-de-funcionamento",
+    "tipo_de_site": "cardapio",
+    "nome": "Horário de funcionamento",
+    "descricao": "Poucas dúvidas são tão comuns quanto saber se está aberto agora. Os horários por dia da semana, inclusive feriados, devem ser fáceis de achar.",
+    "obrigatoriedade": "essencial",
+    "peso": 9,
+    "deteccao": {
+      "seletores": [
+        "[itemprop=\"openingHours\"]",
+        "[class*=\"horario\" i]",
+        "[class*=\"hours\" i]"
+      ],
+      "palavras": [
+        "horário",
+        "horario",
+        "funcionamento",
+        "aberto",
+        "segunda",
+        "domingo",
+        "feriados"
+      ],
+      "padroes_regex": [
+        "\\b\\d{1,2}\\s?(h|:\\d{2})\\b"
+      ],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Google Search Central: Local Business structured data",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/local-business",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: 'Contact Us' Page Guidelines",
+        "url": "https://www.nngroup.com/articles/contact-us-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O Google recomenda openingHoursSpecification; o NN/g lembra de informar horários e fuso nos contatos."
+  },
+  {
+    "id": "endereco-e-mapa",
+    "tipo_de_site": "cardapio",
+    "nome": "Endereço e mapa",
+    "descricao": "Quem vai ao local precisa do endereço completo e de um mapa ou link para abrir no aplicativo de rotas.",
+    "obrigatoriedade": "essencial",
+    "peso": 9,
+    "deteccao": {
+      "seletores": [
+        "address",
+        "iframe[src*=\"google.com/maps\"]",
+        "a[href*=\"maps.google\" i]",
+        "a[href*=\"goo.gl/maps\"]",
+        "a[href*=\"maps.app.goo.gl\"]"
+      ],
+      "palavras": [
+        "endereço",
+        "endereco",
+        "como chegar",
+        "localização",
+        "localizacao",
+        "rua",
+        "av."
+      ],
+      "padroes_regex": [
+        "\\b\\d{5}-?\\d{3}\\b"
+      ],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Google Search Central: Local Business structured data",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/local-business",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Store Finders and Locators",
+        "url": "https://www.nngroup.com/articles/store-finders-and-locators/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O Google marca nome e endereço como campos obrigatórios em dados de empresa local; o NN/g recomenda facilitar a localização física."
+  },
+  {
+    "id": "telefone-whatsapp-e-forma-de-pedido",
+    "tipo_de_site": "cardapio",
+    "nome": "Telefone, WhatsApp e forma de pedido",
+    "descricao": "O cliente quer saber como pedir ou reservar: por telefone, WhatsApp, aplicativo de entrega ou no balcão. O contato deve ser um toque.",
+    "obrigatoriedade": "essencial",
+    "peso": 9,
+    "deteccao": {
+      "seletores": [
+        "a[href^=\"tel:\"]",
+        "a[href*=\"wa.me\"]",
+        "a[href*=\"api.whatsapp.com\"]",
+        "a[href*=\"ifood\" i]"
+      ],
+      "palavras": [
+        "whatsapp",
+        "telefone",
+        "peça agora",
+        "peca agora",
+        "faça seu pedido",
+        "faca seu pedido",
+        "reservas"
+      ],
+      "padroes_regex": [
+        "\\(?\\d{2}\\)?\\s?9?\\d{4}[-\\s]?\\d{4}"
+      ],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Google Search Central: Local Business structured data",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/local-business",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: 'Contact Us' Page Guidelines",
+        "url": "https://www.nngroup.com/articles/contact-us-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Business Profile Help: Manage your local business links",
+        "url": "https://support.google.com/business/answer/6218037?hl=en",
+        "licenca": "© Google; termos de serviço do Google, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O Google recomenda telefone e permite links de pedido e reserva no perfil da empresa."
+  },
+  {
+    "id": "cardapio-em-texto",
+    "tipo_de_site": "cardapio",
+    "nome": "Cardápio em texto, não só imagem ou PDF",
+    "descricao": "Cardápio feito só de foto ou PDF fica difícil de ler no celular e não funciona com leitores de tela. Texto na página é mais fácil de usar.",
+    "obrigatoriedade": "esperada",
+    "peso": 6,
+    "deteccao": {
+      "seletores": [
+        "a[href$=\".pdf\" i]",
+        "img[alt*=\"cardápio\" i]",
+        "img[alt*=\"cardapio\" i]",
+        "main li"
+      ],
+      "palavras": [
+        "cardápio",
+        "cardapio"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "W3C WCAG 2.2: Understanding 1.4.5 Images of Text",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/images-of-text.html",
+        "licenca": "W3C Software and Document License (© W3C)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "W3C WCAG 2.2: Understanding 1.1.1 Non-text Content",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html",
+        "licenca": "W3C Software and Document License (© W3C)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. WCAG 1.4.5 evita imagens de texto e 1.1.1 exige alternativa em texto. O script compara texto do cardápio com imagens e links para PDF."
+  },
+  {
+    "id": "delivery-e-taxa-de-entrega",
+    "tipo_de_site": "cardapio",
+    "nome": "Delivery e taxa de entrega",
+    "descricao": "Quando há entrega, o cliente quer saber a área atendida, a taxa e o prazo antes de montar o pedido.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"delivery\" i]",
+        "[class*=\"entrega\" i]",
+        "a[href*=\"ifood\" i]"
+      ],
+      "palavras": [
+        "delivery",
+        "entrega",
+        "taxa de entrega",
+        "área de entrega",
+        "area de entrega",
+        "bairros"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Baymard Institute: Product Pages Need to Show Estimated Shipping Costs",
+        "url": "https://baymard.com/blog/show-shipping-costs-on-product-pages",
+        "licenca": "© Baymard Institute; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 vale quando o pedido é fechado pelo site; Baymard trata do custo de entrega. Aviso, não parecer jurídico."
+  },
+  {
+    "id": "fotos-dos-pratos-e-do-ambiente",
+    "tipo_de_site": "cardapio",
+    "nome": "Fotos dos pratos e do ambiente",
+    "descricao": "Fotos reais da comida e do local ajudam a decidir. Elas devem mostrar a realidade, com boa luz e foco.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "img[alt]",
+        "[class*=\"gallery\" i] img",
+        "picture img"
+      ],
+      "palavras": [
+        "galeria",
+        "fotos",
+        "ambiente"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Google Business Profile Help: Manage your Business Profile photos & videos",
+        "url": "https://support.google.com/business/answer/6103862?hl=en",
+        "licenca": "© Google; termos de serviço do Google, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Trustworthiness in Web Design: 4 Credibility Factors",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O Google sugere fotos de fachada, interior e produtos; o NN/g valoriza fotos do trabalho e das pessoas reais."
+  },
+  {
+    "id": "tipo-de-cozinha-e-sobre",
+    "tipo_de_site": "cardapio",
+    "nome": "Tipo de cozinha e história da casa",
+    "descricao": "Uma frase que diz o estilo da cozinha e um pouco da história da casa ajuda a pessoa a entender se aquele lugar é para ela.",
+    "obrigatoriedade": "esperada",
+    "peso": 4,
+    "deteccao": {
+      "seletores": [
+        "[itemprop=\"servesCuisine\"]",
+        "#sobre",
+        "section[id*=\"sobre\" i]"
+      ],
+      "palavras": [
+        "cozinha",
+        "culinária",
+        "culinaria",
+        "nossa história",
+        "nossa historia",
+        "especialidade"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Google Search Central: Local Business structured data",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/local-business",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: 'About Us' Information on Corporate Websites",
+        "url": "https://www.nngroup.com/articles/about-us-information-on-websites/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "baixa",
+    "notas": "Peso inicial, a calibrar. servesCuisine é propriedade recomendada pelo Google; a parte de história vem do NN/g sobre empresas."
+  },
+  {
+    "id": "avaliacoes-de-clientes",
+    "tipo_de_site": "cardapio",
+    "nome": "Avaliações de clientes",
+    "descricao": "Opiniões de clientes ajudam a escolher onde comer. Devem ser reais e não montadas pelo próprio restaurante.",
+    "obrigatoriedade": "opcional",
+    "peso": 3,
+    "deteccao": {
+      "seletores": [
+        "[itemprop=\"review\"]",
+        "[class*=\"review\" i]",
+        "[class*=\"avaliac\" i]",
+        "blockquote"
+      ],
+      "palavras": [
+        "avaliações",
+        "avaliacoes",
+        "o que dizem",
+        "depoimentos"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Google Search Central: Review snippet structured data",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/review-snippet",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Social Proof in the User Experience",
+        "url": "https://www.nngroup.com/articles/social-proof-ux/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "baixa",
+    "notas": "Peso inicial, a calibrar. O Google não considera avaliações curadas pelo próprio negócio para estrelas nos resultados."
+  }
+]

@@ -1,0 +1,21 @@
+# Fixture: bloqueia treino (GPTBot, ClaudeBot), libera busca (OAI-SearchBot), bloqueio parcial em PerplexityBot e Google-Extended
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Disallow: /privado/
+
+User-agent: Google-Extended
+Disallow: /
+Allow: /publico/
+
+User-agent: *
+Disallow: /segredo
+
+Sitemap: /sitemap.xml

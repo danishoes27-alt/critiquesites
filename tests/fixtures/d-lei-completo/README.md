@@ -1,0 +1,2 @@
+Site "com tudo": CNPJ válido + razão social, privacidade e termos (200, texto longo), banner de cookies com aceitar/recusar/gerenciar, CMP Cookiebot e GTM por URL de script (type=text/plain: presentes no código, sem requisição),
+DPO, formulário com link de privacidade, preço com parcelamento/garantia/prazo (e um preço "R$ 52,00" sem condição no bloco), endereço, telefone, WhatsApp, checkbox pré-marcado e "0% OFF" oculto.

@@ -1,0 +1,759 @@
+[
+  {
+    "id": "icone-emoji-como-icone",
+    "categoria": "visual-iconografia",
+    "titulo": "Emojis no lugar de ícones em títulos, botões e cartões",
+    "descricao": "Emojis fazem o papel de ícone em títulos, botões, links e cartões de recurso (🚀 ⚡ 🔥 ✅). O desenho muda de aparelho para aparelho e passa uma imagem de página montada às pressas.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Procura caracteres emoji (Extended_Pictographic) em h1 a h4, button, a, span, div e p, e em listas e rótulos de cartão. Exclui ©, ®, ™, setas e marcas simples de confirmação. Dispara com 2 ou mais emojis usados como ícone.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "regex_emoji": "\\p{Extended_Pictographic}",
+        "excluir": [
+          "©",
+          "®",
+          "™",
+          "setas",
+          "marcas de seleção simples"
+        ],
+        "elementos": [
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "button",
+          "a",
+          "span",
+          "div",
+          "p",
+          "li"
+        ],
+        "minimo_emojis": 2,
+        "lista_mais_comum": [
+          "🚀",
+          "✨",
+          "⚡",
+          "🔥",
+          "💡",
+          "🔒",
+          "✅",
+          "🎯",
+          "🌟",
+          "🛡",
+          "📈",
+          "🔑",
+          "🎉"
+        ]
+      }
+    },
+    "peso": 5,
+    "severidade": "tell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "site-institucional",
+      "landing-page",
+      "blog",
+      "catalogo",
+      "loja",
+      "agendamento",
+      "pagina-de-vendas",
+      "portfolio",
+      "area-de-membros"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque os emojis por um único conjunto de ícones (SVG) ou apenas pelo texto.",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque os emojis usados como ícone ({{trecho}}) por ícones SVG de um único conjunto (mesmo tamanho e traço) ou remova-os, deixando só o texto. Não mude os textos nem o layout. Pronto quando não houver emoji em títulos, botões, links e cartões de recurso e todos os ícones forem do mesmo conjunto.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:C4",
+      "unslop-ui:emoji-as-icons",
+      "hallmark:gate-30a",
+      "unslop-heydamir:emoji-nav",
+      "unslop-heydamir:emoji-contador",
+      "unslop-heydamir:feature-emoji",
+      "impeccable:floor-proib-glifos"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Limiar de 2 emojis do ai-design-tells (C4: peso 3 smell); hallmark trata como Floor e unslop-ui como medium. Cinco fontes concordam, por isso 5 e tell. Cardápio e link-na-bio ficam de fora de tipos_de_site porque usam emoji de forma natural."
+  },
+  {
+    "id": "icone-sparkle-ia",
+    "categoria": "visual-iconografia",
+    "titulo": "Faíscas, varinha, robô ou cérebro como ícone",
+    "descricao": "O site usa o ícone de faíscas ✨, varinha, robô, cérebro ou chip como símbolo de recurso ou de marca. É um desenho muito repetido, que não diz nada específico sobre o que o produto faz.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Procura no HTML final nomes de ícone de biblioteca (Sparkles, Wand, Bot, Brain, Cpu, Stars), classes lucide equivalentes e os emojis ✨ 🪄 🤖 🧠, em ícones, botões, cartões e logotipo.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "regex_componentes": "<\\s*(Sparkles|Wand2|Wand|BrainCircuit|Brain|Bot|Cpu|Stars|MagicWand)\\b",
+        "regex_classes": "^(lucide-)?(sparkles|wand2?|magic-?wand|robot|brain|braincircuit|cpu|bot)$",
+        "emojis": [
+          "✨",
+          "🪄",
+          "🤖",
+          "🧠"
+        ],
+        "comparacao": "diferenciar maiúsculas e minúsculas nos nomes de componente (evita a palavra \"brain\" em texto)"
+      }
+    },
+    "peso": 5,
+    "severidade": "tell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Use um ícone que represente a função real (por exemplo documento, gráfico, chat) ou apenas o texto.",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque o ícone {{trecho}} (faíscas, varinha, robô, cérebro ou chip) por um ícone que represente a função real do recurso, do mesmo conjunto dos demais, ou remova-o. Não mude textos nem a estrutura. Pronto quando nenhum ícone de faíscas, varinha, robô, cérebro ou chip aparecer como decoração de recurso.",
+    "fonte": [
+      {
+        "nome": "ai-design-tells",
+        "url": "https://github.com/hankimis/ai-design-tells",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "ai-design-tells:H1",
+      "unslop-heydamir:sparkle-ia",
+      "unslop-heydamir:logo-gradiente"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Peso 5 e regex do ai-design-tells (H1, tell). O ai-design-tells é testado sobre produtos que anunciam uma função de IA; em produto de IA de verdade o ícone pode ser legítimo, então o modelo pode anular. A regra fala de ícone genérico, não de autoria."
+  },
+  {
+    "id": "icone-bibliotecas-misturadas",
+    "categoria": "visual-iconografia",
+    "titulo": "Duas ou mais bibliotecas de ícones misturadas na mesma página",
+    "descricao": "Os ícones vêm de bibliotecas diferentes (por exemplo Font Awesome e Lucide), com traços e pesos que não combinam. O conjunto parece colado de pedaços.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Procura no HTML e no CSS marcas de cada biblioteca de ícones (classes, nomes de pacote, fontes de ícones) e conta quantas bibliotecas diferentes aparecem. Dispara com 2 ou mais. Aceita uma marca de terceiros (rede social) em até duas posições.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "bibliotecas_regex": {
+          "material": "material-icons|material-symbols",
+          "heroicons": "heroicon",
+          "lucide": "lucide",
+          "phosphor": "phosphor|\\bph-(bold|fill|light|duotone|[a-z]+-[a-z]+)",
+          "font_awesome": "font-?awesome|\\bfa-(solid|regular|brands|light)\\b",
+          "feather": "feather-icons|\\bfeather\\b",
+          "tabler": "tabler-icons",
+          "bootstrap_icons": "bootstrap-icons|\\bbi-[a-z]"
+        },
+        "minimo_bibliotecas": 2,
+        "excecao": "marca de rede social ou de parceiro em até 2 posições"
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Escolha uma só biblioteca de ícones para o site inteiro.",
+    "prompt_correcao": "No arquivo {{arquivo}}, unifique os ícones em uma única biblioteca (por exemplo {{valor}}), substituindo os de outras bibliotecas ({{trecho}}) por equivalentes. Mantenha logotipos de redes sociais como estão. Não mude textos nem posições. Pronto quando a página carregar ícones de apenas 1 biblioteca (fora marcas de terceiros).",
+    "fonte": [
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:gate-30b",
+      "design-review:DR-COM-04",
+      "unslop-heydamir:icones-mistos"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Regex e limiar (2 bibliotecas) do código do hallmark (30b, Reflex). design-review e heydamir pedem uma só família com tamanho e traço consistentes."
+  },
+  {
+    "id": "icone-tamanhos-e-tracos-soltos",
+    "categoria": "visual-iconografia",
+    "titulo": "Ícones com tamanhos e espessuras de traço muito variados",
+    "descricao": "Mesmo da mesma biblioteca, os ícones aparecem em tamanhos e espessuras de traço diferentes no mesmo contexto, sem critério. A página perde ritmo visual.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Coleta os SVG de ícone (até 32px) em menus, listas e cartões e conta tamanhos renderizados e valores de stroke-width distintos. Dispara com mais de 1 espessura de traço ou mais de 3 tamanhos distintos.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "tamanho_maximo_icone_px": 32,
+        "maximo_stroke_width_distintos": 1,
+        "maximo_tamanhos_distintos": 3,
+        "referencia_tokens": "ícones de 16 ou 18px com traço de 1,5"
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Padronize o tamanho e a espessura de traço dos ícones por contexto (menu, texto, cartão).",
+    "prompt_correcao": "No arquivo {{arquivo}}, padronize os ícones: tamanho de 16px ou 18px em menus e texto, 20 a 24px em cartões, e uma única espessura de traço (por exemplo 1.5). Troque os valores soltos como {{valor}}. Não mude os ícones escolhidos nem as cores. Pronto quando houver no máximo 3 tamanhos e 1 valor de stroke-width entre os ícones.",
+    "fonte": [
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "design-review:DR-COM-04",
+      "unslop-heydamir:icones-mistos",
+      "unslop-heydamir:tok-icones",
+      "vercel-web-interface-guidelines:AG-LY-54"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "As fontes pedem consistência sem dar limites; só o heydamir dá referência (16 ou 18px, traço 1,5). Os limiares de 1 espessura e 3 tamanhos são proposta nossa: limiar inicial, a calibrar no teste de acerto."
+  },
+  {
+    "id": "icone-em-tile-colorido",
+    "categoria": "visual-iconografia",
+    "titulo": "Ícone dentro de quadradinho ou moeda colorida acima do título",
+    "descricao": "Cada recurso tem um ícone dentro de um quadrado arredondado ou círculo de cor suave, acima do título. Repetido em vários cartões, vira a \"receita\" mais comum de página de produto.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Procura contêineres de até 64px, com raio acima de zero (ou 50%), fundo de cor suave e um único ícone SVG ou de fonte, sem texto, imediatamente antes de um título (h2 a h4) dentro de um cartão. Dispara se o padrão se repete em 3 ou mais cartões.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "tamanho_maximo_px": 64,
+        "minimo_repeticoes": 3,
+        "estrutura": "contêiner com fundo + 1 ícone + título logo depois",
+        "elementos_titulo": [
+          "h2",
+          "h3",
+          "h4"
+        ]
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Tire o ícone do quadradinho, use-o menor ao lado do título, ou troque por uma imagem real do recurso.",
+    "prompt_correcao": "No arquivo {{arquivo}}, remova os quadradinhos ou moedas coloridas que envolvem os ícones de {{trecho}} e use ícones simples, sem fundo, ao lado do título, ou troque por captura real do recurso. Não mude textos nem o número de cartões. Pronto quando menos de 3 cartões tiverem ícone dentro de contêiner colorido acima do título.",
+    "fonte": [
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:gate-3",
+      "hallmark:F5",
+      "impeccable:nw-cromado-generico"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Hallmark cita \"ícone em tile arredondado\" (gate 3, Reflex) e \"ícone dentro de moeda colorida\" (F5, Finish). O corte de 64px é o orçamento de ícone do impeccable (nw-svg-desenho) e o mínimo de 3 repetições é proposta nossa: limiar inicial, a calibrar no teste de acerto. O padrão de três cartões de recurso é tratado na categoria de estrutura."
+  },
+  {
+    "id": "icone-ilustracao-svg-desenhada",
+    "categoria": "visual-iconografia",
+    "titulo": "Ilustração desenhada em SVG ou CSS no lugar de imagem real",
+    "descricao": "O visual principal é uma ilustração (objeto, pessoa, paisagem) desenhada em código com SVG ou formas CSS. Costuma ficar simples e genérica, e perde de uma foto, captura ou ilustração de verdade.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Procura SVG inline de 120px ou mais de largura ou altura, com 3 ou mais curvas ou 3 ou mais preenchimentos distintos e sem elemento de texto, principalmente na primeira tela. Ícones e logotipos com menos que isso são ignorados.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "tamanho_minimo_px": 120,
+        "minimo_curvas_ou_preenchimentos": 3,
+        "sem_texto": true,
+        "orcamento_icone_px": 64,
+        "prioridade": "hero"
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque a ilustração em código por uma foto, captura do produto ou ilustração feita por profissional.",
+    "prompt_correcao": "No arquivo {{arquivo}}, substitua o SVG ilustrativo {{trecho}} por uma imagem real (foto, captura do produto ou ilustração profissional) com alt descritivo, em WebP ou AVIF. Não mude o texto ao redor nem a ordem das seções. Pronto quando não houver SVG inline ilustrativo de 120px ou mais com 3 ou mais curvas na primeira tela.",
+    "fonte": [
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:gate-80",
+      "impeccable:nw-svg-desenho"
+    ],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "O hallmark (gate 80) usa 120px com 3 curvas ou 3 preenchimentos e sem texto; o impeccable recusa SVG que desenha ilustração além de 64px no hero. Adotamos 120px (mais frouxo) e marcamos confiança baixa: pode pegar diagramas legítimos, que o modelo deve anular."
+  },
+  {
+    "id": "icone-ilustracao-de-banco-generica",
+    "categoria": "visual-iconografia",
+    "titulo": "Ilustrações genéricas de bancos de imagens gratuitos",
+    "descricao": "O site usa ilustrações de bancos conhecidos (undraw, storyset, drawkit). São desenhos usados em milhares de páginas e não pertencem à marca.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Procura nos atributos src, href, srcset, em url() do CSS e nos nomes de arquivo por referências a esses bancos de ilustração.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "regex": "undraw|storyset|drawkit",
+        "onde_procurar": [
+          "img src",
+          "srcset",
+          "background-image url()",
+          "nomes de arquivo SVG",
+          "comentários HTML"
+        ],
+        "minimo_ocorrencias": 1
+      }
+    },
+    "peso": 2,
+    "severidade": "smell",
+    "selo": "fato",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque por fotos, capturas do produto ou ilustrações próprias.",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque a ilustração de banco {{trecho}} por uma imagem própria da marca (foto, captura do produto ou ilustração encomendada), com alt descritivo. Não mude o texto ao redor. Pronto quando nenhuma imagem da página vier de undraw, storyset ou drawkit.",
+    "fonte": [
+      {
+        "nome": "unslop-ui (iamneilroberts/claude-skills)",
+        "url": "https://github.com/iamneilroberts/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-ui:stock-illustration"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Fonte única; unslop-ui dá peso low (1 de 3), por isso peso 2 e confiança baixa. A detecção é pelo nome do banco e não prova que a imagem seja genérica para o público do site."
+  },
+  {
+    "id": "icone-visual-principal-cliche",
+    "categoria": "visual-iconografia",
+    "titulo": "Imagem principal em clichê visual (orbe, robô, cérebro, circuito)",
+    "descricao": "O visual de destaque é um objeto 3D brilhante, orbe, forma líquida ou nebulosa, ou então robô, cérebro, circuitos e hologramas. São imagens muito repetidas que não mostram o produto de verdade.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo olha o screenshot da primeira tela e responde: o visual principal é um objeto 3D brilhante, orbe, forma líquida, nebulosa, robô, cérebro, circuito, holograma, foguete ou cristal? Se sim, descreve o que vê. Se não conseguir afirmar, marca como não verificável.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "lista_de_cliches": [
+          "orbe",
+          "forma líquida",
+          "nebulosa",
+          "cromo líquido",
+          "cubo",
+          "circuito",
+          "holograma",
+          "robô",
+          "cérebro",
+          "foguete",
+          "cristal"
+        ],
+        "onde": "imagem principal da primeira tela",
+        "evidencia_minima": "descrever o elemento visual"
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Mostre algo concreto do produto ou do assunto: uma captura real, uma foto de objeto, uma cena específica.",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque a imagem principal {{trecho}} por um visual concreto do produto ou do assunto (captura real, foto de objeto ou cena específica descrita em uma frase). Não mude os textos nem a ordem das seções. Pronto quando for possível dizer em uma frase o que a imagem mostra e por que pertence ao produto.",
+    "fonte": [
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:visual-3d-blob",
+      "unslop-heydamir:visual-ia-cliche",
+      "unslop-heydamir:vis-evitar-ia",
+      "unslop-heydamir:reg-ideia-clara"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Fonte única (heydamir, CC-BY-4.0), julgamento puro, sem número. Fala de imagem genérica, não de autoria."
+  },
+  {
+    "id": "icone-logo-gradiente-orbe",
+    "categoria": "visual-iconografia",
+    "titulo": "Logotipo em tile de gradiente, orbe brilhante ou com faíscas",
+    "descricao": "A marca é um quadradinho com degradê, uma bola brilhante ou um ícone de faíscas, e o nome da marca aparece em texto com degradê. Parece marca de modelo, sem identidade própria.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "css",
+      "metodo": "Localiza o logotipo (primeiro link ou imagem do cabeçalho) e verifica fundo em degradê, raio alto com brilho (box-shadow colorido) ou texto com background-clip: text. O modelo confere no screenshot se é uma bola/orbe brilhante ou um tile de gradiente com faíscas.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "onde": "primeiro link ou imagem do cabeçalho",
+        "sinais": [
+          "fundo em gradiente",
+          "box-shadow colorido sem deslocamento",
+          "wordmark com background-clip: text",
+          "ícone de faíscas"
+        ],
+        "minimo_sinais": 2
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Use um logotipo simples, de uma cor, que combine com a identidade escolhida.",
+    "prompt_correcao": "No arquivo {{arquivo}}, simplifique o logotipo {{trecho}}: use uma cor sólida de marca, sem degradê, brilho nem ícone de faíscas, mantendo o nome e o tamanho atuais. Não altere o nome da marca. Pronto quando o logotipo não tiver gradiente, brilho colorido nem faíscas.",
+    "fonte": [
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:logo-gradiente",
+      "unslop-heydamir:logo-orb"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Fonte única (heydamir). O mínimo de 2 sinais é proposta nossa: limiar inicial, a calibrar no teste de acerto. Marca real existente deve ser mantida (regra \"marca real\" do heydamir): se o logotipo é o da empresa, anular."
+  },
+  {
+    "id": "icone-bloco-visual-vazio",
+    "categoria": "visual-iconografia",
+    "titulo": "Caixa de imagem vazia (só cor ou degradê) no lugar de visual",
+    "descricao": "Há blocos grandes pensados para imagem que ficaram só com cor ou degradê, sem foto, ilustração ou captura dentro. Parece página inacabada.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Procura elementos de 300x200 pixels ou mais com fundo de cor ou gradiente, sem img, picture, video, svg, canvas ou texto dentro, e blocos com atributo data-slot vazio. Dispara com 1 ou mais.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "tamanho_minimo_px": [
+          300,
+          200
+        ],
+        "sem_conteudo": [
+          "img",
+          "picture",
+          "video",
+          "svg",
+          "canvas",
+          "texto"
+        ],
+        "atributo_slot": "data-slot vazio",
+        "minimo_ocorrencias": 1
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Coloque a imagem real no bloco ou remova o bloco.",
+    "prompt_correcao": "No arquivo {{arquivo}}, preencha o bloco vazio {{trecho}} com a imagem real (foto, captura do produto ou ilustração) com alt descritivo, ou remova o bloco. Não mude os textos ao redor. Pronto quando nenhum bloco de 300x200 ou mais ficar só com cor ou degradê, sem conteúdo.",
+    "fonte": [
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:gate-81",
+      "hallmark:gate-68",
+      "unslop-heydamir:tpl-visual-caixa"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Limiar de 300x200 do hallmark (gate 81, Reflex, medido por render). Blocos vazios de espera de carregamento (esqueleto) não contam se houver imagem após o carregamento completo: medir no DOM final."
+  },
+  {
+    "id": "icone-selo-novidade-com-emoji",
+    "categoria": "visual-iconografia",
+    "titulo": "Selo de novidade com emoji acima do título (\"✨ Novo\", \"Beta 🚀\")",
+    "descricao": "Uma etiqueta pequena acima do título principal anuncia novidade ou versão, com emoji ou faíscas (por exemplo \"✨ Introducing\", \"Novo\", \"Beta 🚀\"). É um enfeite de abertura muito repetido, que não informa nada concreto.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Procura, imediatamente antes do primeiro h1 ou em cartões e menus, um elemento curto (até 28 caracteres, formato de pílula) com emoji ou ✨ e palavras de novidade (Novo, New, Introducing, Beta, PRO, Lançamento, Versão).",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "max_caracteres": 28,
+        "regex_palavras": "\\b(novo|new|introducing|beta|pro|lançamento|versão|v\\d)\\b",
+        "flags_regex": "iu",
+        "emojis": [
+          "✨",
+          "🚀",
+          "🔥",
+          "⚡"
+        ],
+        "posicao": "antes do h1, em cartões ou em itens de menu",
+        "minimo_ocorrencias": 1
+      }
+    },
+    "peso": 4,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Remova o selo, ou troque por uma frase concreta com data ou número real.",
+    "prompt_correcao": "No arquivo {{arquivo}}, remova o selo {{trecho}} acima do título, ou troque por uma informação concreta e verificável (data ou número real). Não mude o título principal. Pronto quando não houver etiqueta com emoji e palavra de novidade (Novo, Beta, PRO, Introducing) acima do h1.",
+    "fonte": [
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:pill-badge-hero",
+      "unslop-heydamir:badge-pro-new",
+      "hallmark:gate-66"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Heydamir (CC-BY-4.0) cita \"✨ Introducing\", \"New ✨\" e \"Beta 🚀\" como padrões; hallmark (66) cita pílula de versão/BETA como texto decorativo. O limite de 28 caracteres é o de pílula do ai-design-tells (A4). Regex é proposta nossa: limiar inicial, a calibrar no teste de acerto."
+  },
+  {
+    "id": "icone-grafico-decorativo-falso",
+    "categoria": "visual-iconografia",
+    "titulo": "Miniaturas e anéis de progresso usados como enfeite no lugar de conteúdo",
+    "descricao": "Cartões de números trazem miniaturas de gráfico, anéis de progresso ou barrinhas só para parecerem painéis, sem dados reais por trás. Enfeite no lugar de informação.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O modelo olha cartões de números e responde para cada um: o gráfico ou o anel tem eixo, rótulo e dado reconhecível? Se é só traço decorativo repetido em todos os cartões, aponta o trecho; se não consegue dizer, marca como não verificável.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "elementos": [
+          "sparkline",
+          "anel de progresso",
+          "mini barras",
+          "contadores repetidos"
+        ],
+        "pergunta": "há dado, eixo ou rótulo reconhecível?",
+        "evidencia_minima": "citar 2 cartões"
+      }
+    },
+    "peso": 3,
+    "severidade": "smell",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Mostre o número com o seu significado e use gráfico só quando houver dado real.",
+    "prompt_correcao": "No arquivo {{arquivo}}, remova os gráficos decorativos ({{trecho}}) dos cartões de números e deixe o valor com rótulo e comparação real; mantenha gráficos só onde houver dados verdadeiros. Não invente números. Pronto quando todo gráfico restante tiver eixo, rótulo e fonte de dados claros.",
+    "fonte": [
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (skill lida localmente, v4.3.1)",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:stat-decorado",
+      "impeccable:floor-proib-substitutos"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Julgamento puro: sem número nas fontes. Hallmark 82 cita 24 ou mais marcas idênticas como \"dispositivo de contagem\", mas é outra checagem (render) e não entrou. Em dashboards reais esta regra não se aplica."
+  }
+]

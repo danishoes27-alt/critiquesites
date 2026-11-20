@@ -1,0 +1,460 @@
+[
+  {
+    "id": "titulo-claro-do-post",
+    "tipo_de_site": "blog",
+    "nome": "Título claro do post",
+    "descricao": "Cada texto precisa de um título que diga do que se trata, mesmo visto fora do contexto, em busca ou redes sociais.",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "article h1",
+        "h1.entry-title",
+        "[itemprop=\"headline\"]",
+        "meta[property=\"og:title\"]"
+      ],
+      "palavras": [],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Microcontent: How to Write Headlines, Page Titles, and Subject Lines",
+        "url": "https://www.nngroup.com/articles/microcontent-how-to-write-headlines-page-titles-and-subject-lines/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Article structured data",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/article",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O Google recomenda título conciso, pois títulos longos podem ser cortados."
+  },
+  {
+    "id": "autor-do-post",
+    "tipo_de_site": "blog",
+    "nome": "Autor identificado",
+    "descricao": "O leitor quer saber quem escreveu. Mostrar o nome do autor, com link para uma página de apresentação, aumenta a confiança no conteúdo.",
+    "obrigatoriedade": "essencial",
+    "peso": 7,
+    "deteccao": {
+      "seletores": [
+        "[rel=\"author\"]",
+        "[itemprop=\"author\"]",
+        ".author",
+        "a[href*=\"autor\" i]",
+        "meta[name=\"author\"]"
+      ],
+      "palavras": [
+        "por ",
+        "autor",
+        "autora",
+        "escrito por",
+        "publicado por"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Google Search Central: Creating helpful, reliable, people-first content",
+        "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Article structured data",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/article",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O Google pergunta se fica claro para o visitante quem criou o conteúdo e recomenda assinatura onde se espera uma."
+  },
+  {
+    "id": "data-de-publicacao-e-atualizacao",
+    "tipo_de_site": "blog",
+    "nome": "Data de publicação e de atualização",
+    "descricao": "O leitor precisa saber se o texto é recente. Mostrar a data de publicação e, quando mudou, a de atualização evita confiar em informação velha.",
+    "obrigatoriedade": "essencial",
+    "peso": 7,
+    "deteccao": {
+      "seletores": [
+        "time",
+        "[itemprop=\"datePublished\"]",
+        "[itemprop=\"dateModified\"]",
+        "meta[property=\"article:published_time\"]"
+      ],
+      "palavras": [
+        "publicado em",
+        "atualizado em",
+        "atualizado"
+      ],
+      "padroes_regex": [
+        "\\b\\d{1,2}/\\d{1,2}/\\d{2,4}\\b"
+      ],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Google Search Central: Add a byline date to Google Search results",
+        "url": "https://developers.google.com/search/docs/appearance/publication-dates",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Article structured data",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/article",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O Google recomenda data visível e igual à informada nos dados estruturados."
+  },
+  {
+    "id": "sobre-o-blog-e-o-autor",
+    "tipo_de_site": "blog",
+    "nome": "Sobre o blog e quem escreve",
+    "descricao": "Uma página de apresentação conta quem faz o blog e por que tem autoridade no assunto. É um dos sinais de confiança que o leitor e o Google procuram.",
+    "obrigatoriedade": "esperada",
+    "peso": 6,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"sobre\" i]",
+        "a[href*=\"autor\" i]",
+        "#sobre"
+      ],
+      "palavras": [
+        "sobre",
+        "quem sou",
+        "quem escreve",
+        "sobre o autor"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Google Search Central: Creating helpful, reliable, people-first content",
+        "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: 'About Us' Information on Corporate Websites",
+        "url": "https://www.nngroup.com/articles/about-us-information-on-websites/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O Google cita página sobre o autor ou o site como sinal de experiência e confiança."
+  },
+  {
+    "id": "lista-de-posts-recentes",
+    "tipo_de_site": "blog",
+    "nome": "Lista de posts recentes",
+    "descricao": "Na página inicial do blog o visitante espera ver os textos mais novos, cada um com título claro e link descritivo para abrir.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "article",
+        ".post",
+        "a[href*=\"/blog\" i]",
+        "main h2 a"
+      ],
+      "palavras": [
+        "últimos posts",
+        "ultimos posts",
+        "recentes",
+        "leia mais"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Google Search Central: SEO Starter Guide",
+        "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Microcontent: How to Write Headlines, Page Titles, and Subject Lines",
+        "url": "https://www.nngroup.com/articles/microcontent-how-to-write-headlines-page-titles-and-subject-lines/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "baixa",
+    "notas": "Peso inicial, a calibrar. Inferido de orientações sobre títulos e texto de link descritivo; sem fonte específica para listagem de blog."
+  },
+  {
+    "id": "categorias-e-navegacao-por-assunto",
+    "tipo_de_site": "blog",
+    "nome": "Categorias ou navegação por assunto",
+    "descricao": "Quem gostou de um texto quer achar outros do mesmo assunto. Categorias, tags ou trilha de navegação organizam o conteúdo e ajudam a achar páginas.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "a[rel=\"category tag\"]",
+        "a[href*=\"categoria\" i]",
+        "nav[aria-label*=\"breadcrumb\" i]",
+        ".breadcrumb"
+      ],
+      "palavras": [
+        "categorias",
+        "categoria",
+        "tags",
+        "assuntos"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Google Search Central: SEO Starter Guide",
+        "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "W3C WCAG 2.2: Understanding 2.4.5 Multiple Ways",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/multiple-ways.html",
+        "licenca": "W3C Software and Document License (© W3C)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Organização lógica e link entre páginas aparecem no guia do Google."
+  },
+  {
+    "id": "busca-no-site",
+    "tipo_de_site": "blog",
+    "nome": "Busca no site",
+    "descricao": "Em blogs com muitos textos, um campo de busca visível ajuda quem procura um assunto específico.",
+    "obrigatoriedade": "esperada",
+    "peso": 4,
+    "deteccao": {
+      "seletores": [
+        "input[type=\"search\"]",
+        "form[role=\"search\"]",
+        "[role=\"search\"]"
+      ],
+      "palavras": [
+        "buscar",
+        "pesquisar",
+        "busca"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Search: Visible and Simple",
+        "url": "https://www.nngroup.com/articles/search-visible-and-simple/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "W3C WCAG 2.2: Understanding 2.4.5 Multiple Ways",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/multiple-ways.html",
+        "licenca": "W3C Software and Document License (© W3C)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. A fonte recomenda um campo aberto, visível, em todas as páginas."
+  },
+  {
+    "id": "conteudo-escaneavel",
+    "tipo_de_site": "blog",
+    "nome": "Texto com resumo e subtítulos",
+    "descricao": "A maioria lê por cima. Texto dividido em blocos com subtítulos, listas e um resumo no início é bem mais fácil de usar.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "article h2",
+        "article h3",
+        "article ul",
+        "article blockquote"
+      ],
+      "palavras": [
+        "resumo",
+        "em resumo",
+        "principais pontos",
+        "neste artigo"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 5 Formatting Techniques for Long-Form Content",
+        "url": "https://www.nngroup.com/articles/formatting-long-form-content/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O script conta subtítulos e listas dentro do artigo; o que é \"suficiente\" é limiar a calibrar."
+  },
+  {
+    "id": "contato",
+    "tipo_de_site": "blog",
+    "nome": "Contato",
+    "descricao": "O leitor quer ter como falar com quem escreve, para tirar dúvida, corrigir ou propor parceria.",
+    "obrigatoriedade": "esperada",
+    "peso": 4,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"contato\" i]",
+        "a[href^=\"mailto:\"]",
+        "footer a[href*=\"contato\" i]"
+      ],
+      "palavras": [
+        "contato",
+        "fale comigo",
+        "fale conosco",
+        "e-mail"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 'Contact Us' Page Guidelines",
+        "url": "https://www.nngroup.com/articles/contact-us-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Trustworthiness in Web Design: 4 Credibility Factors",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Contato fácil de achar é fator de credibilidade nas fontes."
+  },
+  {
+    "id": "politica-de-privacidade",
+    "tipo_de_site": "blog",
+    "nome": "Política de privacidade",
+    "descricao": "Blogs costumam coletar e-mail (newsletter), usar análise de visitas ou publicidade. Um texto simples explica o uso desses dados.",
+    "obrigatoriedade": "esperada",
+    "peso": 4,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"privacidade\" i]",
+        "a[href*=\"privacy\" i]"
+      ],
+      "palavras": [
+        "política de privacidade",
+        "politica de privacidade",
+        "privacidade"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Lei 13.709/2018 (LGPD), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Regra documentada (LGPD art. 9º), aplicável se houver dados pessoais. Aviso, não parecer jurídico."
+  },
+  {
+    "id": "inscricao-na-newsletter",
+    "tipo_de_site": "blog",
+    "nome": "Inscrição na newsletter",
+    "descricao": "Quem gosta do conteúdo pode querer receber novidades. O cadastro deve dizer o que chega e com que frequência, sem caixa de aceite já marcada.",
+    "obrigatoriedade": "opcional",
+    "peso": 3,
+    "deteccao": {
+      "seletores": [
+        "form input[type=\"email\"]",
+        "form[class*=\"newsletter\" i]",
+        "[id*=\"newsletter\" i]"
+      ],
+      "palavras": [
+        "newsletter",
+        "assine",
+        "inscreva-se",
+        "receba"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Mailing List Usability",
+        "url": "https://www.nngroup.com/articles/mailing-list-usability/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. A fonte recomenda confirmar o e-mail e deixar o aceite desmarcado por padrão."
+  },
+  {
+    "id": "posts-relacionados-e-links-internos",
+    "tipo_de_site": "blog",
+    "nome": "Posts relacionados e links internos",
+    "descricao": "No fim de um texto, sugerir outros do mesmo tema mantém o leitor no site e ajuda a achar o conteúdo.",
+    "obrigatoriedade": "opcional",
+    "peso": 3,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"related\" i]",
+        "[class*=\"relacionad\" i]",
+        "article a[href*=\"/blog/\" i]"
+      ],
+      "palavras": [
+        "leia também",
+        "leia tambem",
+        "posts relacionados",
+        "veja também",
+        "veja tambem"
+      ],
+      "padroes_regex": [],
+      "onde": "pagina-propria",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Google Search Central: SEO Starter Guide",
+        "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O guia do Google mostra que links internos conectam páginas e que o texto do link deve descrever o destino."
+  }
+]

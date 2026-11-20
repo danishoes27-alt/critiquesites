@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Dados só depois do JavaScript</title>
+</head>
+<body>
+<main><h1>Padaria</h1></main>
+<script>
+var s = document.createElement('script');
+s.type = 'application/ld+json';
+s.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'LocalBusiness', name: 'Padaria', telephone: '+5541999990000', address: { '@type': 'PostalAddress', streetAddress: 'Rua A' } });
+document.head.appendChild(s);
+</script>
+</body>
+</html>

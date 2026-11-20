@@ -1,0 +1,592 @@
+[
+  {
+    "id": "promessa-principal",
+    "tipo_de_site": "pagina-de-vendas",
+    "nome": "Promessa principal",
+    "descricao": "O título precisa dizer o que a pessoa vai conseguir, de forma específica e honesta. Promessas exageradas ou que omitem condições podem enganar o consumidor.",
+    "obrigatoriedade": "essencial",
+    "peso": 9,
+    "deteccao": {
+      "seletores": [
+        "h1",
+        "[class*=\"hero\" i] h1",
+        "h1 + p"
+      ],
+      "palavras": [],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Microcontent: How to Write Headlines, Page Titles, and Subject Lines",
+        "url": "https://www.nngroup.com/articles/microcontent-how-to-write-headlines-page-titles-and-subject-lines/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lei 8.078/1990 (Código de Defesa do Consumidor), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. CDC art. 37 trata de publicidade enganosa, inclusive por omissão. O script não julga se a promessa é verdadeira. Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "para-quem-e",
+    "tipo_de_site": "pagina-de-vendas",
+    "nome": "Para quem é (e para quem não é)",
+    "descricao": "Dizer de forma direta para quem a oferta serve ajuda o visitante certo a se reconhecer e evita vender para quem não vai aproveitar.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "[id*=\"para-quem\" i]",
+        "section[class*=\"publico\" i]"
+      ],
+      "palavras": [
+        "para quem",
+        "ideal para",
+        "se você",
+        "se voce",
+        "é para você",
+        "e para voce",
+        "não é para",
+        "nao e para"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Homepage Design: 5 Fundamental Principles",
+        "url": "https://www.nngroup.com/articles/homepage-design-principles/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "baixa",
+    "notas": "Peso inicial, a calibrar. A fonte pede declarar o que o site faz e agrupar ações por público; não trata especificamente de páginas de vendas."
+  },
+  {
+    "id": "o-que-esta-incluso",
+    "tipo_de_site": "pagina-de-vendas",
+    "nome": "O que está incluso",
+    "descricao": "A pessoa quer saber exatamente o que vai receber: conteúdos, módulos, bônus, formato e duração de acesso.",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "[id*=\"conteudo\" i]",
+        "[id*=\"modulos\" i]",
+        "[class*=\"inclui\" i]",
+        "section ul li"
+      ],
+      "palavras": [
+        "o que você recebe",
+        "o que voce recebe",
+        "o que está incluso",
+        "o que esta incluso",
+        "módulos",
+        "modulos",
+        "bônus",
+        "bonus",
+        "conteúdo programático"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lei 8.078/1990 (Código de Defesa do Consumidor), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 2º, III e CDC art. 31 (características e informações claras). Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "preco-e-formas-de-pagamento",
+    "tipo_de_site": "pagina-de-vendas",
+    "nome": "Preço e formas de pagamento",
+    "descricao": "O preço total à vista, o valor e número das parcelas e os custos extras devem estar claros. Mostrar só o valor da parcela ou esconder condições prejudica a confiança.",
+    "obrigatoriedade": "essencial",
+    "peso": 9,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"preco\" i]",
+        "[class*=\"price\" i]",
+        "[id*=\"oferta\" i]"
+      ],
+      "palavras": [
+        "preço",
+        "preco",
+        "à vista",
+        "a vista",
+        "parcelas",
+        "pix",
+        "cartão",
+        "cartao",
+        "investimento"
+      ],
+      "padroes_regex": [
+        "R\\$\\s?\\d"
+      ],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Decreto 5.903/2006 (informação de preços ao consumidor), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/decreto/d5903.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: \"Get Started\" Stops Users",
+        "url": "https://www.nngroup.com/articles/get-started/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "alta",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 2º, IV e V; Decreto 5.903/2006 arts. 3º e 9º (total à vista, parcelas discriminadas). Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "garantia-e-arrependimento",
+    "tipo_de_site": "pagina-de-vendas",
+    "nome": "Garantia e direito de arrependimento",
+    "descricao": "Quem compra online pode desistir em 7 dias, e a garantia, quando existe, deve ser explicada por escrito, com prazo e como acionar.",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "[id*=\"garantia\" i]",
+        "[class*=\"garantia\" i]",
+        "a[href*=\"reembolso\" i]"
+      ],
+      "palavras": [
+        "garantia",
+        "7 dias",
+        "sete dias",
+        "arrependimento",
+        "reembolso",
+        "devolução do dinheiro",
+        "devolucao do dinheiro"
+      ],
+      "padroes_regex": [
+        "\\b\\d{1,3}\\s*dias\\b"
+      ],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Lei 8.078/1990 (Código de Defesa do Consumidor), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "alta",
+    "notas": "Peso inicial, a calibrar. CDC art. 49 e 50; Decreto 7.962/2013 art. 5º. Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "prova-social-depoimentos",
+    "tipo_de_site": "pagina-de-vendas",
+    "nome": "Depoimentos e provas reais",
+    "descricao": "Relatos de clientes, com nome e contexto, ajudam a confiar. Depoimentos só elogiosos e sem identificação passam a impressão de que foram escolhidos a dedo.",
+    "obrigatoriedade": "essencial",
+    "peso": 7,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"depoimento\" i]",
+        "[class*=\"testimonial\" i]",
+        "blockquote",
+        "[class*=\"resultado\" i]"
+      ],
+      "palavras": [
+        "depoimentos",
+        "resultados",
+        "quem já comprou",
+        "quem ja comprou",
+        "alunos",
+        "clientes"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Social Proof in the User Experience",
+        "url": "https://www.nngroup.com/articles/social-proof-ux/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: 'About Us' Information on Corporate Websites",
+        "url": "https://www.nngroup.com/articles/about-us-information-on-websites/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Trustworthiness in Web Design: 4 Credibility Factors",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. NN/g: usuários desconfiam de elogios escolhidos pela empresa e comparam com avaliações de terceiros."
+  },
+  {
+    "id": "chamada-para-compra",
+    "tipo_de_site": "pagina-de-vendas",
+    "nome": "Botão de compra claro",
+    "descricao": "O botão de compra deve aparecer logo e voltar mais de uma vez ao longo da página, dizendo o que acontece (por exemplo, \"Comprar agora\").",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "a[class*=\"btn\" i]",
+        "a[class*=\"button\" i]",
+        "a[href*=\"checkout\" i]",
+        "a[href*=\"pay.hotmart\" i]",
+        "button[type=\"submit\"]"
+      ],
+      "palavras": [
+        "comprar",
+        "quero",
+        "garantir",
+        "matricule-se",
+        "inscreva-se",
+        "adquirir"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: \"Get Started\" Stops Users",
+        "url": "https://www.nngroup.com/articles/get-started/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Homepage Design: 5 Fundamental Principles",
+        "url": "https://www.nngroup.com/articles/homepage-design-principles/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. NN/g critica rótulos vagos que escondem o que vem depois; repetição do botão é prática comum, não regra da fonte."
+  },
+  {
+    "id": "perguntas-frequentes",
+    "tipo_de_site": "pagina-de-vendas",
+    "nome": "Perguntas frequentes e objeções",
+    "descricao": "Um bloco que responde as dúvidas de antes de comprar (acesso, prazo, suporte, formas de pagamento) tira o último obstáculo.",
+    "obrigatoriedade": "esperada",
+    "peso": 6,
+    "deteccao": {
+      "seletores": [
+        "[id*=\"faq\" i]",
+        "[class*=\"faq\" i]",
+        "details > summary"
+      ],
+      "palavras": [
+        "perguntas frequentes",
+        "dúvidas frequentes",
+        "duvidas frequentes",
+        "faq"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: FAQs Still Deliver Great Value",
+        "url": "https://www.nngroup.com/articles/faqs-deliver-value/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. NN/g indica que FAQs respondem dúvidas de pré-compra."
+  },
+  {
+    "id": "identificacao-do-vendedor",
+    "tipo_de_site": "pagina-de-vendas",
+    "nome": "Identificação do vendedor (CNPJ e contato)",
+    "descricao": "A pessoa quer saber quem está vendendo: nome empresarial, CNPJ ou CPF, endereço e canal de contato, em local de destaque.",
+    "obrigatoriedade": "essencial",
+    "peso": 7,
+    "deteccao": {
+      "seletores": [
+        "footer",
+        "address",
+        "footer a[href^=\"mailto:\"]"
+      ],
+      "palavras": [
+        "cnpj",
+        "razão social",
+        "razao social",
+        "endereço",
+        "endereco"
+      ],
+      "padroes_regex": [
+        "\\b\\d{2}\\.?\\d{3}\\.?\\d{3}/?\\d{4}-?\\d{2}\\b"
+      ],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Trustworthiness in Web Design: 4 Credibility Factors",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "alta",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 2º, I e II. Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "condicoes-e-restricoes-da-oferta",
+    "tipo_de_site": "pagina-de-vendas",
+    "nome": "Condições e restrições da oferta",
+    "descricao": "Prazo da promoção, número de vagas, bônus condicionados e outras restrições precisam estar claros. A oferta divulgada passa a valer como parte do contrato.",
+    "obrigatoriedade": "esperada",
+    "peso": 6,
+    "deteccao": {
+      "seletores": [
+        "[class*=\"oferta\" i]",
+        "[class*=\"countdown\" i]",
+        "[class*=\"vagas\" i]"
+      ],
+      "palavras": [
+        "válido até",
+        "valido ate",
+        "últimas vagas",
+        "ultimas vagas",
+        "somente hoje",
+        "oferta termina",
+        "condições",
+        "condicoes"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Lei 8.078/1990 (Código de Defesa do Consumidor), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 2º, VI; CDC arts. 30 e 37. O script não prova se a escassez é real. Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "sobre-o-autor-ou-produtor",
+    "tipo_de_site": "pagina-de-vendas",
+    "nome": "Sobre quem criou o produto",
+    "descricao": "Dizer quem criou o produto e que experiência essa pessoa tem ajuda a confiar. Fotos e nomes devem ser de pessoas reais.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "[id*=\"autor\" i]",
+        "[id*=\"criador\" i]",
+        "[id*=\"sobre\" i]"
+      ],
+      "palavras": [
+        "sobre o autor",
+        "quem sou",
+        "quem criou",
+        "minha história",
+        "minha historia",
+        "sobre mim"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Google Search Central: Creating helpful, reliable, people-first content",
+        "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: 'About Us' Information on Corporate Websites",
+        "url": "https://www.nngroup.com/articles/about-us-information-on-websites/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O Google considera fabricar nomes, fotos ou credenciais um sinal de baixa qualidade."
+  },
+  {
+    "id": "como-funciona-e-entrega",
+    "tipo_de_site": "pagina-de-vendas",
+    "nome": "Como funciona e como recebo",
+    "descricao": "Explicar o passo a passo depois da compra (quando e como o acesso chega, prazo de entrega) evita dúvida e pedido de reembolso.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "[id*=\"como-funciona\" i]",
+        "[class*=\"passo\" i]",
+        "ol li"
+      ],
+      "palavras": [
+        "como funciona",
+        "passo a passo",
+        "acesso imediato",
+        "você recebe",
+        "voce recebe",
+        "prazo de entrega"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 2º, V (prazo e forma de execução do serviço ou entrega). Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "suporte-e-contato",
+    "tipo_de_site": "pagina-de-vendas",
+    "nome": "Suporte e contato",
+    "descricao": "Depois da compra, o cliente precisa saber a quem pedir ajuda, tirar dúvidas ou cancelar.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "a[href^=\"mailto:\"]",
+        "a[href*=\"wa.me\"]",
+        "a[href*=\"suporte\" i]",
+        "a[href*=\"contato\" i]"
+      ],
+      "palavras": [
+        "suporte",
+        "contato",
+        "fale conosco",
+        "e-mail",
+        "whatsapp"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: 'Contact Us' Page Guidelines",
+        "url": "https://www.nngroup.com/articles/contact-us-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. Decreto 7.962/2013 art. 4º, V. Aviso, não parecer jurídico; a decisão é do dono do site."
+  },
+  {
+    "id": "termos-e-privacidade",
+    "tipo_de_site": "pagina-de-vendas",
+    "nome": "Termos de uso e privacidade",
+    "descricao": "Antes de comprar, a pessoa espera acesso aos termos de uso e à política de privacidade, com um resumo do que está contratando.",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"termos\" i]",
+        "a[href*=\"privacidade\" i]"
+      ],
+      "palavras": [
+        "termos de uso",
+        "política de privacidade",
+        "politica de privacidade",
+        "termos e condições",
+        "termos e condicoes"
+      ],
+      "padroes_regex": [],
+      "onde": "qualquer-pagina",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Lei 13.709/2018 (LGPD), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Decreto 7.962/2013 (comércio eletrônico), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. LGPD art. 9º e Decreto 7.962/2013 art. 4º, I. Aviso, não parecer jurídico; a decisão é do dono do site."
+  }
+]

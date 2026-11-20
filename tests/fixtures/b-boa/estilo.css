@@ -1,0 +1,26 @@
+@font-face{font-family:"Fonte Boa";src:url("fonte-boa.ttf") format("truetype");font-display:swap;font-weight:400}
+:root{--cor-fundo:#faf6ef;--cor-texto:#2b2118;--cor-acento:#0b6e4f;--cor-borda:#d9cdb8;--espaco-1:.5rem;--espaco-2:1rem;--espaco-4:2rem;--raio-controle:6px;--raio-botao:999px;--raio-cartao:12px}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Fonte Boa",Georgia,serif;font-size:1.125rem;line-height:1.6;background:var(--cor-fundo);color:var(--cor-texto)}
+.topo{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;border-bottom:1px solid var(--cor-borda)}
+.marca{font-size:1.25rem;font-weight:700;color:var(--cor-acento);text-decoration:none;display:inline-block;min-height:44px;line-height:44px}
+.nav-link{display:inline-block;min-height:44px;min-width:44px;line-height:44px;margin-left:1rem;color:var(--cor-texto)}
+.abertura{padding:5rem 2rem 3rem;max-width:56rem}
+.abertura h1{font-size:3.5rem;line-height:1.05;letter-spacing:-.03em;font-weight:700;margin:0 0 1rem}
+.botao{display:inline-block;min-height:44px;padding:.65rem 1.5rem;background:var(--cor-acento);color:#fff;border:0;border-radius:var(--raio-botao);font:inherit;text-decoration:none;cursor:pointer;transition:background-color .2s cubic-bezier(.2,.7,.2,1),transform .2s cubic-bezier(.2,.7,.2,1)}
+.botao:hover{background:#085a41}
+.botao:active{transform:translateY(1px)}
+.botao:focus-visible,.nav-link:focus-visible,input:focus-visible{outline:3px solid #f2a900;outline-offset:2px}
+.lista{padding:2rem 2rem 4rem}
+.lista h2{font-size:2rem;letter-spacing:-.02em;margin:0 0 1rem}
+.itens{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:2fr 1fr;gap:2rem}
+.item{border:1px solid var(--cor-borda);border-radius:var(--raio-cartao);padding:1.5rem 2rem;background:#fff}
+.item h3{margin:0 0 .5rem;font-size:1.375rem}
+.contato{padding:1rem 2rem 6rem;max-width:32rem}
+label{display:block;margin-bottom:.25rem}
+input{display:block;width:100%;min-height:44px;margin-bottom:1rem;padding:.5rem .75rem;border:1px solid var(--cor-borda);border-radius:var(--raio-controle);font:inherit}
+.rodape{padding:2rem;font-size:.9375rem;border-top:1px solid var(--cor-borda)}
+@media (max-width:40rem){.abertura h1{font-size:2.25rem}.itens{grid-template-columns:1fr}}
+@media (min-width:64rem){.abertura{padding-top:7rem}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media (prefers-color-scheme:dark){:root{--cor-fundo:#1a1510;--cor-texto:#f3ebdd}}

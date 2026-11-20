@@ -1,0 +1,901 @@
+[
+  {
+    "id": "resp-rolagem-horizontal",
+    "categoria": "responsividade",
+    "titulo": "A página rola para os lados em telas estreitas",
+    "descricao": "Em tela de celular ou de janela estreita, a página ganha uma barra de rolagem horizontal porque algum elemento é mais largo que a tela. O leitor precisa arrastar para os lados para ler, o que atrapalha muito.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "js",
+      "metodo": "Renderiza a página em cada largura da lista e compara documentElement.scrollWidth com a largura da janela. Se passa, lista os elementos cuja borda direita ultrapassa a janela (os culpados), incluindo elementos com largura 100vw ou larguras fixas em px.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "larguras_rapido_px": [
+          390
+        ],
+        "larguras_completo_px": [
+          320,
+          375,
+          390,
+          768,
+          1024,
+          1440,
+          1920
+        ],
+        "tolerancia_px": 1,
+        "excecoes_da_norma": [
+          "tabelas de dados, mapas e imagens com rolagem própria"
+        ],
+        "culpados": "até 5 elementos com maior excesso (seletor e largura)",
+        "dispara_se": "scrollWidth > largura da janela + 1 em qualquer largura testada"
+      }
+    },
+    "peso": 8,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "alta",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Ache o elemento mais largo que a tela e faça-o se ajustar (max-width 100%, quebra de linha, grade flexível).",
+    "prompt_correcao": "No arquivo {{arquivo}}, o elemento {{trecho}} ({{valor}}) é mais largo que a tela e gera rolagem horizontal. Corrija com max-width: 100%, flex-wrap, quebra de palavras ou uma grade flexível; troque width: 100vw por 100%. NÃO use overflow-x: hidden no body para esconder o problema. Pronto quando document.scrollWidth for igual à largura da janela em 320, 390, 768 e 1440 px.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, Reflow (1.4.10)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
+        "licenca": "norma pública/documentação (W3C Document License; páginas Understanding sob Permission to Use WAI Material)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:34",
+      "web-design-guidelines:CMD-SAF-02",
+      "web-design-guidelines:AG-LY-57",
+      "impeccable:aud-resp-scroll-horizontal",
+      "impeccable:aud-resp-largura-fixa"
+    ],
+    "citacoes": [
+      "numero",
+      "trecho"
+    ],
+    "notas": "Fundamento: WCAG 2.2, critério 1.4.10 Reflow (nível AA): conteúdo de rolagem vertical deve funcionar em 320 px CSS de largura sem rolagem horizontal, com exceção de conteúdo que precisa de duas dimensões (tabelas, mapas). A faixa de 320 a 1920 px vem do Hallmark (34). No modo rápido só mede 390 px, então o limite de 320 px da norma fica sem verificar; o relatório deve avisar."
+  },
+  {
+    "id": "resp-conteudo-cortado-por-overflow",
+    "categoria": "responsividade",
+    "titulo": "Conteúdo cortado do lado de fora, escondido por overflow",
+    "descricao": "Algum elemento passa da borda da tela, mas a página não rola para os lados porque o overflow foi escondido. O problema não aparece como barra de rolagem, mas parte do texto ou dos botões fica inacessível.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "js",
+      "metodo": "Em 390 px, quando scrollWidth não passa da janela, procura elementos com texto, imagem ou controles cuja borda direita ou esquerda fica fora da janela, que não estão dentro de contêiner com rolagem própria, e que pertencem a html ou body com overflow-x hidden ou clip.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "largura_px": 390,
+        "tolerancia_px": 1,
+        "contexto": "html ou body com overflow-x hidden ou clip",
+        "ignora": [
+          "conteúdo dentro de contêiner com overflow-x auto ou scroll",
+          "elementos decorativos aria-hidden sem texto"
+        ],
+        "dispara_se": "elemento com texto ou controle cortado fora da janela"
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Corrija a largura do elemento em vez de esconder o excesso com overflow-x hidden no body.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o elemento {{trecho}} fica cortado fora da tela em 390 px ({{valor}}), escondido por overflow-x. Ajuste o layout para o elemento caber (max-width: 100%, quebra de linha ou grade flexível). NÃO adicione novos overflow-x: hidden. Pronto quando todo texto e controle ficarem dentro da largura da janela em 390 px sem esconder overflow.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "WCAG 2.2, Reflow (1.4.10)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
+        "licenca": "norma pública/documentação (W3C Document License; páginas Understanding sob Permission to Use WAI Material)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:34",
+      "web-design-guidelines:CMD-SAF-02",
+      "web-design-guidelines:AG-LY-57"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Complemento de resp-rolagem-horizontal. Hallmark (34) recomenda overflow-x clip e width 100% e Vercel pede corrigir o overflow em vez de escondê-lo. WCAG 1.4.10 exige que não haja perda de conteúdo. Confiança média por conta de elementos decorativos que ficam fora da tela de propósito."
+  },
+  {
+    "id": "resp-zoom-bloqueado",
+    "categoria": "responsividade",
+    "titulo": "Ampliação com os dedos bloqueada no celular",
+    "descricao": "A configuração de viewport proíbe dar zoom (user-scalable=no ou escala máxima baixa). Quem enxerga mal e precisa ampliar o texto não consegue.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Lê meta name=\"viewport\" no HTML cru e final e procura user-scalable=no (ou 0) e maximum-scale menor que 2.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "padroes": [
+          "user-scalable=no",
+          "user-scalable=0",
+          "maximum-scale < 2"
+        ],
+        "limite_maximum_scale": 2,
+        "dispara_se": "qualquer um dos padrões na meta viewport"
+      }
+    },
+    "peso": 7,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "alta",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Remova user-scalable=no e maximum-scale da meta viewport.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a meta viewport {{trecho}} bloqueia o zoom. Troque por <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">, sem user-scalable nem maximum-scale. NÃO mude outras metas. Pronto quando a meta viewport não bloquear a ampliação.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, Resize Text (1.4.4)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html",
+        "licenca": "norma pública/documentação (W3C Document License; páginas Understanding sob Permission to Use WAI Material)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "MDN Web Docs, meta viewport",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag",
+        "licenca": "norma pública/documentação (MDN: texto CC-BY-SA 2.5, exemplos de código CC0)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "web-design-guidelines:CMD-AP-01",
+      "web-design-guidelines:AG-TI-7"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Fundamento: WCAG 2.2, critério 1.4.4 Resize Text (nível AA, ampliação até 200%); o limite maximum-scale de 2 vem dessa equivalência (escala 2 = 200%). O README do Vercel sugere maximum-scale=1 como alternativa ao tamanho de fonte de 16 px, o que contradiz as regras do próprio repositório (AG-TI-7, CMD-AP-01); essa sugestão foi descartada."
+  },
+  {
+    "id": "resp-sem-meta-viewport",
+    "categoria": "responsividade",
+    "titulo": "Página sem a configuração para celular (meta viewport)",
+    "descricao": "O HTML não declara a configuração de viewport. No celular, o navegador mostra a página como se fosse uma tela de computador encolhida, com letras minúsculas.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Verifica no HTML cru e final se existe meta name=\"viewport\" com width=device-width.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "seletor": "meta[name=\"viewport\"]",
+        "valor_esperado": "contém width=device-width",
+        "dispara_se": "ausente ou sem width=device-width"
+      }
+    },
+    "peso": 6,
+    "severidade": "P1",
+    "selo": "fato",
+    "confianca": "alta",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Adicione <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> no head.",
+    "prompt_correcao": "No arquivo {{arquivo}}, falta a meta viewport no head. Adicione <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">. NÃO acrescente user-scalable nem maximum-scale. Pronto quando a meta existir e a página usar a largura real do aparelho no celular.",
+    "fonte": [
+      {
+        "nome": "MDN Web Docs, meta viewport",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag",
+        "licenca": "norma pública/documentação (MDN: texto CC-BY-SA 2.5, exemplos de código CC0)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:ada-breakpoints"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "A ausência é um fato verificável no HTML. O MDN documenta o efeito (sem a meta, o celular renderiza a página em largura de desktop). Impeccable (adapt.md) pede mobile first com breakpoints por conteúdo, o que pressupõe a meta viewport."
+  },
+  {
+    "id": "resp-alvo-menor-que-24px",
+    "categoria": "responsividade",
+    "titulo": "Botões e links pequenos demais para tocar, abaixo de 24 px",
+    "descricao": "Botões, links ou campos medem menos de 24 por 24 pixels e estão apertados contra vizinhos. No celular ou com dificuldade motora, é fácil tocar no item errado.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "js",
+      "metodo": "Em 390 px, mede o retângulo dos alvos de ponteiro (a com href, button, input, select, textarea, summary e elementos com role de controle). Aplica as exceções da norma: espaçamento (círculo de 24 px centrado no alvo não pode tocar outro alvo), alvo dentro de frase, controle nativo sem estilo, alternativa equivalente e apresentação essencial.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "largura_px": 390,
+        "tamanho_minimo_px": 24,
+        "excecoes": [
+          "espaçamento: círculo de 24 px de diâmetro centrado na caixa do alvo não cruza outro alvo nem o círculo de outro alvo menor",
+          "alvo em linha dentro de frase",
+          "controle nativo do navegador sem estilo",
+          "função equivalente em outro controle da página",
+          "tamanho essencial ou exigido por lei"
+        ],
+        "dispara_se": "alvo menor que 24x24 sem nenhuma exceção",
+        "intensidade": "fração dos alvos fora da norma"
+      }
+    },
+    "peso": 6,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Aumente a área de toque para pelo menos 24 por 24 pixels, ou afaste os alvos entre si.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o alvo {{trecho}} mede {{valor}}. Aumente a área clicável para pelo menos 24x24 px (padding ou min-width e min-height), sem mudar o tamanho visual do ícone, ou afaste-o dos vizinhos. NÃO reduza o espaço entre outros controles. Pronto quando todos os alvos medirem 24x24 px ou mais, ou passarem na exceção de espaçamento.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, Target Size (Minimum) (2.5.8)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
+        "licenca": "norma pública/documentação (W3C Document License; páginas Understanding sob Permission to Use WAI Material)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "web-design-guidelines:AG-TI-5"
+    ],
+    "citacoes": [
+      "numero",
+      "contagem"
+    ],
+    "notas": "Fundamento: WCAG 2.2, critério 2.5.8 Target Size (Minimum), nível AA: 24 por 24 pixels CSS, com as exceções de espaçamento, equivalente, em linha, controle do navegador e essencial. Vercel também cita 24 px como piso. A recomendação mais exigente de 44 px está em resp-alvo-menor-que-44px."
+  },
+  {
+    "id": "resp-alvo-menor-que-44px",
+    "categoria": "responsividade",
+    "titulo": "Botões e links abaixo do tamanho confortável de toque (44 px)",
+    "descricao": "Botões e links no celular têm menos de 44 por 44 pixels, tamanho recomendado para tocar com o polegar sem errar. Passa na norma mínima, mas fica desconfortável.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "js",
+      "metodo": "Em 390 px, mede os alvos de ponteiro que não violam o mínimo de 24 px (esses entram na outra regra) e conta os que ficam abaixo de 44 por 44 px, ignorando links dentro de frases.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "largura_px": 390,
+        "tamanho_recomendado_px": 44,
+        "ignora": [
+          "alvos já marcados em resp-alvo-menor-que-24px",
+          "links em linha dentro de parágrafos"
+        ],
+        "dispara_se": "mais de 30% dos alvos principais (menu, botões de ação) abaixo de 44 px"
+      }
+    },
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "regra",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Dê aos botões e links principais pelo menos 44 por 44 pixels de área de toque.",
+    "prompt_correcao": "No arquivo {{arquivo}}, os controles {{trecho}} medem {{valor}} no celular. Aumente a área de toque dos botões e links principais para pelo menos 44x44 px com padding, mantendo o visual. NÃO aumente o tamanho das letras nem mude o layout geral. Pronto quando os controles principais medirem 44x44 px ou mais em 390 px.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, Target Size (Enhanced) (2.5.5)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-enhanced.html",
+        "licenca": "norma pública/documentação (W3C Document License; páginas Understanding sob Permission to Use WAI Material)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "design-review:DR-RES-04",
+      "impeccable:ada-alvo-toque",
+      "impeccable:aud-resp-touch",
+      "web-design-guidelines:AG-TI-5"
+    ],
+    "citacoes": [
+      "numero",
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. O valor 44 px vem de WCAG 2.5.5 (nível AAA, recomendado), do design-review, do Impeccable e do Vercel (44 px no celular). A proporção de 30% para disparar é proposta. Hallmark (39b) usa 44 a 52 px de altura para controles em páginas de marketing, regra da casa."
+  },
+  {
+    "id": "resp-texto-pequeno-no-celular",
+    "categoria": "responsividade",
+    "titulo": "Texto corrido pequeno ou apertado no celular",
+    "descricao": "O texto principal fica com letras abaixo de 16 pixels no celular, ou com entrelinha muito apertada. A leitura exige apertar os olhos ou ampliar a tela.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Em 390 px, calcula o tamanho de fonte mediano do texto corrido (p, li, blockquote), ponderado pelo número de caracteres. Também marca texto corrido abaixo de 12 px e parágrafos de várias linhas com entrelinha menor que 1,3.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "largura_px": 390,
+        "mediana_minima_px": 16,
+        "texto_corrido_minimo_px": 12,
+        "texto_funcional_minimo_px": 11,
+        "entrelinha_minima_em_prosa": 1.3,
+        "dispara_se": "mediana ponderada abaixo de 16 px, ou texto corrido abaixo de 12 px, ou prosa com entrelinha abaixo de 1,3",
+        "intensidade": "fração dos caracteres abaixo de 16 px"
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Use corpo de texto de pelo menos 16 px e entrelinha em torno de 1,5.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o texto do trecho {{trecho}} fica com {{valor}} no celular. Defina o corpo com 16 px (1rem) e entrelinha entre 1,5 e 1,65; mantenha 14 px só para textos realmente secundários. NÃO mude a fonte, os títulos nem o layout. Pronto quando a mediana do texto corrido, ponderada por caracteres, for de 16 px ou mais em 390 px.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:ada-texto-mobile",
+      "impeccable:tipo-corpo-16",
+      "impeccable:hard-fonte-minima",
+      "hallmark:75"
+    ],
+    "citacoes": [
+      "numero"
+    ],
+    "notas": "Limiar de 16 px vem do Impeccable (adapt.md, typeset.md e harden.md), que o apresenta como piso com exceções para texto denso ou secundário; os limites de 12 px, 11 px e entrelinha 1,3 vêm do Hallmark (gate 75). Recomendações, não medições nem norma; confiança média no máximo. A tipografia geral é tratada em outra categoria; aqui só a leitura no celular."
+  },
+  {
+    "id": "resp-campo-com-fonte-menor-que-16",
+    "categoria": "responsividade",
+    "titulo": "Campos de formulário com letra menor que 16 px, que dão zoom no iPhone",
+    "descricao": "Campos de texto com fonte abaixo de 16 pixels fazem o iPhone ampliar a tela sozinho ao tocar no campo. O zoom desloca o layout e é preciso afastar o dedo para voltar.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Em 390 px, lê o font-size computado de input (texto, e-mail, telefone, senha, busca, número), select e textarea visíveis e conta os abaixo de 16 px.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "largura_px": 390,
+        "tamanho_minimo_px": 16,
+        "campos": [
+          "input",
+          "select",
+          "textarea"
+        ],
+        "dispara_se": "ao menos 1 campo com font-size computado abaixo de 16 px",
+        "intensidade": "fração dos campos abaixo de 16 px"
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Use 16 px (1rem) nos campos de formulário no celular.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o campo {{trecho}} tem fonte de {{valor}}. Defina font-size: 16px (ou 1rem) para input, select e textarea, pelo menos na versão de celular. NÃO bloqueie o zoom da página. Pronto quando todos os campos tiverem font-size computado de 16 px ou mais em 390 px.",
+    "fonte": [
+      {
+        "nome": "web-interface-guidelines (Vercel Labs)",
+        "url": "https://github.com/vercel-labs/web-interface-guidelines",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "web-design-guidelines:AG-TI-6",
+      "impeccable:hard-fonte-minima"
+    ],
+    "citacoes": [
+      "numero",
+      "contagem"
+    ],
+    "notas": "Vercel (AGENTS.md, AG-TI-6) exige 16 px ou mais nos campos do celular para evitar o zoom do iOS, e o Impeccable (harden.md) repete a informação. O comportamento é de um navegador específico, descrito pelas fontes, sem norma pública, por isso o selo é de opinião."
+  },
+  {
+    "id": "resp-altura-em-vh",
+    "categoria": "responsividade",
+    "titulo": "Abertura dimensionada em vh, que não considera a barra do navegador no celular",
+    "descricao": "A altura da primeira seção é definida em vh. No celular, a barra de endereço aparece e some, e a seção fica maior que a parte visível da tela, cortando botões.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Procura height, min-height e max-height em unidade vh na abertura (primeira section ou header com h1) e verifica se existe a versão dvh ou svh para o mesmo seletor.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "propriedades": [
+          "height",
+          "min-height",
+          "max-height"
+        ],
+        "unidade_problematica": "vh",
+        "unidades_corretas": [
+          "dvh",
+          "svh"
+        ],
+        "aceita_se": "o mesmo seletor também declara dvh ou svh (melhoria progressiva)",
+        "dispara_se": "altura da abertura em vh sem dvh ou svh no mesmo seletor"
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "fato",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque vh por dvh ou svh na altura da abertura, mantendo vh como alternativa antiga.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a regra {{trecho}} usa {{valor}} em vh na altura da abertura. Troque por dvh (ou svh) e mantenha a declaração em vh imediatamente antes como alternativa para navegadores antigos. NÃO mude as proporções do layout. Pronto quando a altura da abertura usar dvh ou svh.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "MDN Web Docs, unidades de comprimento (viewport)",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/length",
+        "licenca": "norma pública/documentação (MDN: texto CC-BY-SA 2.5, exemplos de código CC0)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:6a"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Presença verificável por script. O Hallmark (6a, falha obrigatória) pede dvh ou svh; o MDN documenta as unidades de viewport dinâmicas. O seletor de abertura é a primeira section ou header com h1."
+  },
+  {
+    "id": "resp-imagem-sem-srcset",
+    "categoria": "responsividade",
+    "titulo": "Imagens grandes demais carregadas no celular, sem versões menores",
+    "descricao": "Imagens com o dobro do tamanho necessário ou mais são entregues no celular sem srcset nem picture, que permitem ao navegador escolher uma versão menor. O site gasta mais dados e fica mais lento.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "imagens",
+      "metodo": "Em 390 px, compara a largura natural da imagem com a largura exibida (em px) e verifica se tem srcset ou está em picture. Conta as imagens com largura natural maior que o dobro da exibida e sem alternativas.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "largura_px": 390,
+        "razao_natural_sobre_exibida": 2,
+        "minimo_de_imagens_para_disparar": 3,
+        "ignora": [
+          "svg",
+          "imagens com srcset ou dentro de picture",
+          "imagens menores que 100 px exibidas"
+        ],
+        "dispara_se": "3 ou mais imagens com largura natural acima de 2x a exibida e sem srcset"
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Ofereça versões em vários tamanhos com srcset e sizes (ou picture) para o navegador escolher.",
+    "prompt_correcao": "No arquivo {{arquivo}}, as imagens {{trecho}} são maiores que o necessário no celular ({{valor}}). Gere versões em larguras diferentes (por exemplo 400, 800 e 1200 px), use srcset com descritor w e sizes, e mantenha width e height. NÃO reduza a qualidade nem troque as imagens. Pronto quando as imagens listadas tiverem srcset e a versão escolhida em 390 px for no máximo o dobro da largura exibida.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "MDN Web Docs, imagens responsivas",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images",
+        "licenca": "norma pública/documentação (MDN: texto CC-BY-SA 2.5, exemplos de código CC0)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:ada-imagens",
+      "impeccable:opt-imagens",
+      "unslop-heydamir:vis-colocacao"
+    ],
+    "citacoes": [
+      "contagem",
+      "numero"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. A razão de 2 vem do unslop (visuals.md: exportar no dobro do tamanho de exibição); o mínimo de 3 imagens é proposto. O Impeccable pede srcset com descritor w e sizes, e picture para direção de arte. O peso total de imagens é medido em outra categoria (performance)."
+  },
+  {
+    "id": "resp-conteudo-some-no-celular",
+    "categoria": "responsividade",
+    "titulo": "Conteúdo importante do computador que desaparece no celular",
+    "descricao": "Parte do texto, ou funções que existem na versão de computador, são escondidas na versão de celular. Quem acessa pelo celular recebe uma página mais pobre, e o buscador também lê a versão de celular.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "js",
+      "metodo": "Renderiza em 1440 px e em 375 px e compara os blocos de texto visíveis. Soma as palavras que estão visíveis a 1440 e escondidas (display none, visibility hidden, clip) a 375, excluindo duplicatas de menu e textos repetidos visíveis em outro ponto. Também marca tabelas com 2 ou mais colunas fora da tela a 375 px.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "larguras_px": [
+          1440,
+          375
+        ],
+        "minimo_de_palavras_escondidas": 40,
+        "colunas_de_tabela_fora_da_tela": 2,
+        "excecoes": [
+          "menu duplicado (versão desktop e mobile)",
+          "conteúdo repetido visível em outro ponto da página"
+        ],
+        "dispara_se": "40 ou mais palavras escondidas só no celular, ou tabela com 2 ou mais colunas fora da tela"
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Mostre o conteúdo no celular de outro jeito (reorganizado, dobrável) em vez de escondê-lo.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o trecho {{trecho}} ({{valor}}) some na versão de celular. Reorganize para aparecer em coluna única, ou em um bloco dobrável (details e summary), em vez de display: none. NÃO apague o conteúdo nem mude a versão de computador. Pronto quando o texto estiver acessível a 375 px (visível ou em bloco expansível).",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:F25",
+      "impeccable:ada-nunca",
+      "impeccable:ada-repensar",
+      "impeccable:ada-tabelas"
+    ],
+    "citacoes": [
+      "numero",
+      "contagem"
+    ],
+    "notas": "Os limites de 40 palavras e de 2 colunas fora da tela em 375 px vêm do Hallmark (F25, de acabamento), medidos pelo repositório; confiança média no máximo. Impeccable lista \"esconder funcionalidade essencial no celular\" entre as proibições e sugere reorganizar tabelas em cartões. Modo completo por exigir duas renderizações."
+  },
+  {
+    "id": "resp-menu-transborda-no-celular",
+    "categoria": "responsividade",
+    "titulo": "Menu que não se adapta ao celular e estoura a tela",
+    "descricao": "No celular, o menu principal continua com todos os links em linha, quebra em várias linhas ou passa da borda da tela, em vez de virar um menu compacto. Navegar fica difícil.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "js",
+      "metodo": "Em 390 px, mede o contêiner do menu principal (nav no cabeçalho): verifica se scrollWidth ultrapassa a largura, se os links quebram em 3 ou mais linhas e se existe botão de menu (hambúrguer, aria-expanded ou aria-controls). O modelo confirma pela captura.",
+      "detectavel_por_script": "parcial",
+      "parametros": {
+        "largura_px": 390,
+        "linhas_maximas_de_links": 2,
+        "botao_de_menu": "button com aria-expanded ou aria-controls, ou classes menu-toggle, hamburger, burger",
+        "dispara_se": "menu com rolagem horizontal ou 3 ou mais linhas, e sem botão de menu"
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Transforme o menu em um painel que abre por botão no celular, ou reduza para poucos links essenciais.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o menu {{trecho}} estoura a tela em 390 px ({{valor}}). Em larguras menores que 768 px, esconda os links em um painel aberto por botão com aria-expanded e aria-controls, com alvos de toque de pelo menos 44 px. NÃO mude os links nem o menu do computador. Pronto quando, em 390 px, o menu não passar da largura e puder ser aberto por botão.",
+    "fonte": [
+      {
+        "nome": "design-review (jezweb/claude-skills)",
+        "url": "https://github.com/jezweb/claude-skills",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "design-review:DR-RES-01",
+      "impeccable:ada-navegacao-mobile"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. As fontes pedem navegação limpa e fácil de tocar no celular (gaveta, hambúrguer ou barra inferior), sem números; os limites de 2 linhas e a presença de botão são propostos."
+  },
+  {
+    "id": "resp-texto-colado-na-borda",
+    "categoria": "responsividade",
+    "titulo": "Texto encostado na borda da tela do celular",
+    "descricao": "No celular, o texto corrido começa quase na borda da tela, sem margem lateral. A leitura fica desconfortável e o texto parece cortado.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "js",
+      "metodo": "Em 390 px, mede a distância entre as bordas esquerda e direita da janela e os retângulos de texto corrido (p, li, h1 a h4) que não ficam dentro de caixa com fundo.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "largura_px": 390,
+        "distancia_minima_px": 8,
+        "margem_recomendada_px": 16,
+        "dispara_se": "texto corrido a menos de 8 px da borda da janela",
+        "intensidade": "fração dos blocos de texto encostados"
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Dê uma margem lateral de pelo menos 16 pixels ao conteúdo no celular.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o texto {{trecho}} fica a {{valor}} da borda da tela em 390 px. Adicione padding lateral de 16 px ao contêiner do conteúdo no celular. NÃO mude as margens em tela larga. Pronto quando todo texto corrido ficar a pelo menos 16 px das bordas da janela em 390 px.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:72"
+    ],
+    "citacoes": [
+      "numero"
+    ],
+    "notas": "O limite de 8 px e a margem de 16 px vêm do Hallmark (gate 72: texto corrido a 8 px da borda do telefone; correção com 16 px de margem), medidos pelo repositório. Confiança média no máximo."
+  },
+  {
+    "id": "resp-conteudo-sem-limite-em-tela-ultralarga",
+    "categoria": "responsividade",
+    "titulo": "Conteúdo esticado até as bordas em telas muito largas",
+    "descricao": "Em monitores grandes, o conteúdo se estica de ponta a ponta, sem largura máxima, ou ganha colunas demais. Textos viram linhas longas e a página perde a composição.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Renderiza em 1920x1080. Une os retângulos do texto e das imagens principais e mede as margens laterais. Verifica se o contêiner principal tem max-width e se as grades ganham colunas em relação a 1440 px.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "viewport": "1920x1080",
+        "margem_lateral_minima_px": 120,
+        "faixa_de_max_width_recomendada_px": [
+          1360,
+          1520
+        ],
+        "dispara_se": "margem lateral do conteúdo menor que 120 px, ou grade com mais colunas que em 1440 px"
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Limite a largura do conteúdo (por exemplo 1360 a 1520 px) e centralize.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o contêiner {{trecho}} se estica em 1920 px de largura ({{valor}} de margem). Defina max-width entre 1360 e 1520 px, margin-inline: auto e mantenha o número de colunas das grades igual ao de 1440 px. NÃO mude o layout abaixo de 1440 px. Pronto quando, em 1920 px, o conteúdo tiver margem lateral de pelo menos 120 px.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:44d"
+    ],
+    "citacoes": [
+      "numero"
+    ],
+    "notas": "Limiar de 120 px de margem lateral e faixa de max-width de 1360 a 1520 px vêm do Hallmark (gate 44d), padrão do próprio repositório; confiança média no máximo. O Hallmark também marca quando a abertura não cabe em 1920x1080. Modo completo por exigir viewport extra."
+  },
+  {
+    "id": "resp-espacamento-de-texto-corta-conteudo",
+    "categoria": "responsividade",
+    "titulo": "Texto cortado ou sobreposto quando o leitor aumenta os espaçamentos",
+    "descricao": "Quando a pessoa aplica espaçamentos maiores entre linhas, letras e parágrafos (como fazem muitos leitores), partes do texto são cortadas ou ficam por cima de outras. Isso acontece com caixas de altura fixa.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "js",
+      "metodo": "Injeta CSS com line-height 1,5, margem de parágrafo de 2 vezes a fonte, letter-spacing de 0,12 em e word-spacing de 0,16 em. Depois procura elementos com overflow hidden e altura fixa cujo scrollHeight passa de clientHeight, e blocos de texto que se sobrepõem.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "line_height": 1.5,
+        "espacamento_entre_paragrafos_em": 2,
+        "letter_spacing_em": 0.12,
+        "word_spacing_em": 0.16,
+        "tolerancia_px": 1,
+        "dispara_se": "texto cortado por overflow ou blocos de texto sobrepostos depois da injeção"
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Use altura mínima (min-height) em vez de altura fixa em caixas com texto e evite esconder o excesso.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a caixa {{trecho}} corta o texto quando os espaçamentos aumentam ({{valor}}). Troque height por min-height, tire overflow: hidden onde houver texto e deixe a caixa crescer. NÃO mude o visual com espaçamentos normais. Pronto quando, com line-height 1,5, letter-spacing 0,12em e word-spacing 0,16em aplicados, nenhum texto ficar cortado ou sobreposto.",
+    "fonte": [
+      {
+        "nome": "WCAG 2.2, Text Spacing (1.4.12)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html",
+        "licenca": "norma pública/documentação (W3C Document License; páginas Understanding sob Permission to Use WAI Material)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "WCAG 2.2, Resize Text (1.4.4)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html",
+        "licenca": "norma pública/documentação (W3C Document License; páginas Understanding sob Permission to Use WAI Material)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:aud-resp-escala-texto",
+      "impeccable:hard-expansao-idioma"
+    ],
+    "citacoes": [
+      "trecho",
+      "numero"
+    ],
+    "notas": "Fundamento: WCAG 2.2, critério 1.4.12 Text Spacing (nível AA): sem perda de conteúdo com linha de 1,5 vez a fonte, parágrafos de 2 vezes, letras de 0,12 e palavras de 0,16 vez. Valores da norma, confiança média pela dificuldade de distinguir corte intencional. Impeccable (audit.md e harden.md) cita layout que quebra quando o texto aumenta e reserva de 30 a 40% de espaço para tradução. Modo completo por exigir nova renderização."
+  }
+]

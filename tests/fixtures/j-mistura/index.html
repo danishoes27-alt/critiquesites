@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mistura de padrões visuais</title>
+<!-- fixture de teste (prefixo j-): junta de propósito muitos padrões visuais, cada um com a quantidade mínima para disparar -->
+<link rel="stylesheet" href="https://cdn.example.invalid/font-awesome/css/all.min.css">
+<style>
+:root{--cor-fundo:#f5efe6;--cor-acento:#c2410c;--cor-texto:#3a2f26}
+*{box-sizing:border-box}
+body{margin:0;font-family:Fraunces,Georgia,serif;background:var(--cor-fundo);color:var(--cor-texto);font-size:16px;line-height:1.1}
+header{display:flex;gap:16px;align-items:center;padding:12px 24px}
+a.logo{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:#111;text-decoration:none}
+a.logo .mark{display:inline-block;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#a855f7);box-shadow:0 0 24px rgba(168,85,247,.7)}
+a.logo .nome{background:linear-gradient(90deg,#6366f1,#ec4899);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-bg{padding:48px 24px;background-image:linear-gradient(rgba(0,0,0,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.06) 1px,transparent 1px);background-size:24px 24px}
+.btn{display:inline-block;background:#c2410c;color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none;font-family:Fraunces,serif}
+.selo{display:inline-block;border-radius:999px;padding:4px 12px;background:#fff;border:1px solid #ddd;font-size:14px;font-family:Fraunces,serif}
+h1{font-size:56px;font-weight:900;margin:12px 0}
+h2{font-size:30px;margin:24px 0 8px;font-weight:800}
+h2 em{font-style:italic;color:var(--cor-acento)}
+h3{font-size:20px;margin:8px 0;letter-spacing:-0.06em;font-weight:600}
+.eyebrow{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-family:Fraunces,serif;color:#6b7280}
+.mono{font-family:"JetBrains Mono",monospace;font-size:13px}
+.pills span{display:inline-block;border-radius:9999px;padding:2px 10px;font-size:13px;margin-right:6px;font-family:"Space Grotesk",sans-serif}
+.p1{background:#dcfce7;color:#166534}.p2{background:#fef3c7;color:#92400e}.p3{background:#dbeafe;color:#1e40af}.p4{background:#fee2e2;color:#991b1b}
+.colorido{background:#fcd34d;padding:16px;border-radius:12px}
+.colorido p{color:#6b7280;margin:4px 0;line-height:1.2}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:16px 24px}
+.item{border:1px solid #ccc;background:#fff;padding:16px;border-radius:12px;box-shadow:0 10px 15px rgba(0,0,0,.12)}
+.item.b{border-radius:4px}
+.item.c{border-radius:24px}
+.dura{box-shadow:6px 6px 0 #000;background:#fff;padding:12px;margin:12px 24px;display:block}
+.aviso{border-left:5px solid #2563eb;padding:8px 12px;background:#f8fafc;margin:12px 24px}
+.pai{border-radius:6px;background:#fff;padding:12px;margin:12px 24px;border:1px solid #ccc}
+.pai .filho{border-radius:20px;background:#e0e7ff;padding:8px}
+.brilho{display:inline-block;padding:8px 16px;border-radius:8px;background:#4f46e5;color:#fff;box-shadow:0 0 32px rgba(99,102,241,.8)}
+.g1{background:linear-gradient(90deg,#f97316,#ef4444);padding:8px;margin:4px 24px}.g2{background:linear-gradient(90deg,#22c55e,#14b8a6);padding:8px;margin:4px 24px}.g3{background:radial-gradient(circle,#facc15,#f59e0b);padding:8px;margin:4px 24px}
+.tile{width:48px;height:48px;border-radius:12px;background:#e0e7ff;display:flex;align-items:center;justify-content:center}
+.recurso{padding:12px}
+.vazio{width:400px;height:240px;background:linear-gradient(135deg,#e2e8f0,#cbd5e1);margin:12px 24px}
+.janela{margin:12px 24px;border:1px solid #ccc;border-radius:8px;overflow:hidden;width:320px}
+.janela .window-bar{display:flex;gap:6px;padding:8px;background:#eee}
+.janela .window-bar i{display:block;width:10px;height:10px;border-radius:50%}
+.micro span{display:inline-block;margin-right:8px}
+.m9{font-size:9px}.m10{font-size:10px}.m11{font-size:11px}
+.longo{max-width:none;padding:0 24px;font-size:16px;line-height:1.3}
+.just{text-align:justify;padding:0 24px}
+.fam{font-family:"Playfair Display",serif}.fam2{font-family:"Roboto Slab",serif}.fam3{font-family:"Oswald",sans-serif}
+td,th{padding:4px 12px;text-align:right}
+.caps{text-transform:uppercase;line-height:.9;font-size:28px;margin:8px 24px}
+.w3{font-weight:300}.w5{font-weight:500}.w7{font-weight:700}
+</style></head>
+<body>
+<header><a class="logo" href="/"><span class="mark"></span><span class="nome">Marca ✨</span></a><nav><a href="#a">Início</a></nav></header>
+<section class="hero-bg">
+<span class="selo">✨ Novo</span>
+<h1>Pão de verdade, <em>feito</em> com calma</h1>
+<a class="btn" href="#a">Peça agora</a>
+<p class="longo">Este parágrafo ocupa a largura inteira da janela e por isso cada linha vai ter bem mais de setenta e cinco caracteres, o que cansa a leitura de quem precisa voltar o olho para a linha seguinte depois de percorrer a tela toda de ponta a ponta sem parar no meio do caminho nenhuma vez. Cada linha vai ter bem mais de setenta e cinco caracteres, e quem lê precisa voltar o olho para a linha seguinte depois de percorrer a tela toda. Cada linha vai ter bem mais de setenta e cinco caracteres, e quem lê precisa voltar o olho para a linha seguinte depois de percorrer a tela toda. Cada linha vai ter bem mais de setenta e cinco caracteres, e quem lê precisa voltar o olho para a linha seguinte depois de percorrer a tela toda.</p>
+<p class="just">Ele disse "olá mundo" e depois "até logo" sem parar de falar... e continuou assim por um bom tempo, com texto justificado e sem hifenização nenhuma por aqui.</p>
+</section>
+<section>
+<span class="eyebrow">Recursos</span><h2>Tudo para <em>crescer</em></h2>
+<span class="eyebrow">Planos</span><h2>Preços <em>simples</em></h2>
+<span class="eyebrow">Contato</span><h3>Fale conosco agora</h3>
+<p>Rótulos mono: <span class="mono badge">ALFA</span> <span class="mono badge">BETA</span> <span class="mono badge">GAMA</span></p>
+<div class="pills"><span class="p1">Ativo</span><span class="p2">Pendente</span><span class="p3">Novo</span><span class="p4">Erro</span></div>
+<div class="colorido"><p>Texto cinza sobre fundo azul claro, como em muitos cartões.</p><p>Outro parágrafo cinza sobre o mesmo fundo azul claro.</p></div>
+</section>
+<section class="grid">
+<div class="item"><h3>Primeiro</h3><p>Texto do primeiro cartão com algumas palavras.</p></div>
+<div class="item b"><h3>Segundo</h3><p>Texto do segundo cartão com algumas palavras.</p></div>
+<div class="item c"><h3>Terceiro</h3><p>Texto do terceiro cartão com algumas palavras.</p></div>
+</section>
+<div class="dura">Caixa com sombra dura deslocada</div>
+<div class="aviso">Aviso com faixa colorida só na esquerda.</div>
+<div class="pai">Pai com raio pequeno<div class="filho">Filho com raio maior</div></div>
+<p><span class="brilho">Botão com brilho</span></p>
+<div class="g1">Degradê um</div><div class="g2">Degradê dois</div><div class="g3">Degradê três</div>
+<section>
+<div class="recurso"><div class="tile"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16"/></svg></div><h3>Rápido</h3></div>
+<div class="recurso"><div class="tile"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h16"/></svg></div><h3>Seguro</h3></div>
+<div class="recurso"><div class="tile"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12h16"/></svg></div><h3>Simples</h3></div>
+<div class="recurso"><div class="tile"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M4 12h16"/></svg></div><h3>Aberto</h3></div>
+<p><i class="lucide lucide-sparkles"></i> <i class="fa-solid fa-star"></i> <img data-src="/img/undraw_rocket.svg" alt=""></p>
+</section>
+<svg width="300" height="200" viewBox="0 0 300 200"><circle cx="60" cy="60" r="40" fill="#f87171"/><path d="M10 150 C 60 100, 120 200, 200 140 S 280 120, 290 160" fill="#60a5fa"/><path d="M0 190 Q 100 120 300 190" fill="#34d399"/></svg>
+<div class="vazio"></div>
+<div class="janela"><div class="window-bar"><i style="background:#ef4444"></i><i style="background:#facc15"></i><i style="background:#22c55e"></i></div><p>captura</p></div>
+<div class="rounded-lg border bg-card text-card-foreground shadow-sm">Cartão estilo shadcn</div>
+<p class="micro"><span class="m9">nota nove</span><span class="m10">nota dez</span><span class="m11">nota onze</span></p>
+<p class="fam">Fonte um</p><p class="fam2">Fonte dois</p><p class="fam3">Fonte três</p>
+<table><tr><th>Item</th><th>Qtd</th></tr><tr><td>Pão</td><td>1.250</td></tr><tr><td>Bolo</td><td>2.340</td></tr><tr><td>Torta</td><td>3.480</td></tr></table>
+<h2 class="caps">Título em caixa alta apertado que quebra</h2>
+<p class="w3">leve</p><p class="w5">médio</p><p class="w7">negrito</p>
+<p style="letter-spacing:-0.05em;font-size:13px">Texto pequeno com letras apertadas demais.</p>
+</body></html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Acelere tudo com a plataforma</title>
+<style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:#0f172a;color:#e2e8f0;text-align:center;font-size:16px}
+.topo{position:sticky;top:0;padding:10px 24px;background:#1e293b}
+.faixa-aviso{position:sticky;top:0;padding:5px 24px;background:#4338ca}
+section{padding:12px 24px}
+.hero{padding:40px 24px 12px}
+.hero h1{font-size:44px;margin:0 0 12px}
+.rotulo{display:inline-block;padding:5px 13px;border-radius:999px;background:#334155;font-size:13px;margin:0 0 7px}
+.btn{display:inline-block;padding:12px 24px;margin:6px;border-radius:12px;background:#6366f1;color:#fff;text-decoration:none;transition:transform .2s cubic-bezier(.68,-.55,.27,1.55)}
+.btn:hover{transition-duration:.8s}
+.metricas{display:flex;justify-content:center;gap:24px;margin-top:18px}
+.metrica strong{display:block;font-size:34px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.grid4{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{border-radius:16px;padding:24px;box-shadow:0 10px 15px rgba(0,0,0,.15);background:#1e293b;transition:all .3s ease}
+.card .card{background:#334155}
+.card:hover,.plano:hover,.recurso:hover{transform:translateY(-6px)}
+.galeria img:hover{transform:scale(1.1)}
+.plano{list-style:none}
+.depo ul{padding:0;margin:0}
+.assim{padding:8px 24px 64px}
+.estreito{width:90px;font-size:12px;line-height:1.2;margin:0 auto 10px}
+.fade{animation:entrar .6s both}
+.slide{animation:deslizar .6s both}
+.zoom{animation:ampliar .6s both}
+.lento{animation:surgir 1.2s both}
+@keyframes entrar{from{opacity:0}to{opacity:1}}
+@keyframes deslizar{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none}}
+@keyframes ampliar{from{transform:scale(.8)}to{transform:scale(1)}}
+@keyframes surgir{from{opacity:0}to{opacity:1}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulsar{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes expandir{from{width:0}to{width:100%}}
+.pulsa{animation:pulsar 2s ease-in-out infinite;display:inline-block}
+.faixa{animation:marquee 20s linear infinite;white-space:nowrap}
+.barra{animation:expandir 1s both;height:6px;background:#6366f1}
+.menu-aberto{transition:height .3s}
+.cascata{list-style:none;margin:0;padding:0}
+.cascata li:nth-child(1){animation-delay:.1s}
+.cascata li:nth-child(2){animation-delay:.2s}
+.cascata li:nth-child(3){animation-delay:.3s}
+.cascata li:nth-child(4){animation-delay:.4s}
+.cascata li:nth-child(5){animation-delay:.5s}
+.cascata li:nth-child(6){animation-delay:.6s}
+.cascata li:nth-child(7){animation-delay:.7s}
+.cascata li:nth-child(8){animation-delay:.8s}
+.reveal{visibility:hidden}
+.reveal.in{visibility:visible}
+.hero-bg{background-attachment:fixed;background-color:#123}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%}
+.dot.r{background:#ff5f56}
+.dot.y{background:#ffbd2e}
+.dot.g{background:#27c93f}
+</style></head>
+<body>
+<div class="hero-bg" data-parallax="0.4"></div>
+<aside class="faixa-aviso">Frete grátis hoje</aside>
+<header class="topo"><a href="#recursos">Recursos</a> <a href="#planos">Planos</a></header>
+<video autoplay loop class="fundo" src="demo.mp4"></video>
+<main>
+<section class="hero">
+<p class="rotulo">Nova versão</p>
+<h1>Acelere tudo com a plataforma inteligente</h1>
+<p>Uma frase de apoio sobre o que a plataforma entrega.</p>
+<a class="btn" href="#a">Começar agora</a><a class="btn" href="#b">Ver planos</a><a class="btn" href="#c">Falar com vendas</a>
+<div class="metricas"><div class="metrica"><strong>10k+</strong><span>clientes ativos</span></div><div class="metrica"><strong>98%</strong><span>de satisfação</span></div><div class="metrica"><strong>3M+</strong><span>pedidos entregues</span></div></div>
+</section>
+<section class="grade"><div class="grid3">
+<div class="card fade"><h3>Rápido</h3><p>Resultados em minutos.</p></div>
+<div class="card fade"><h3>Inteligente</h3><p>Tecnologia de ponta.</p></div>
+<div class="card fade"><h3>Seguro</h3><p>Sua tranquilidade.</p><div class="card"><p>Saiba mais</p></div></div>
+</div></section>
+<section class="recursos"><div class="grid4">
+<div class="card recurso fade"><h3>Análises</h3><p>Relatórios claros todo dia.</p></div>
+<div class="card recurso fade slide"><h3>Alertas</h3><p>Avisos na hora certa.</p></div>
+<div class="card recurso fade zoom"><h3>Painéis</h3><p>Tudo num só lugar.</p></div>
+<div class="card recurso fade lento"><h3>Equipe</h3><p>Trabalho em conjunto.</p></div>
+</div></section>
+<section class="depo"><ul>
+<li class="plano"><h4>Ana</h4><p>Mudou o nosso jeito de trabalhar.</p></li>
+<li class="plano"><h4>Bruno</h4><p>Simples de usar todos os dias.</p></li>
+<li class="plano"><h4>Carla</h4><p>Resolveu um problema antigo.</p></li>
+</ul></section>
+<section class="num"><span>01</span><h2>Planejar</h2><p>Descreva o que precisa.</p></section>
+<section class="num"><span>02</span><h2>Montar</h2><p>Monte com blocos prontos.</p></section>
+<section class="num"><span>03</span><h2>Publicar</h2><p>Publique em um clique.</p></section>
+<section class="assim"><h2>Perguntas</h2><p>Respostas rápidas.</p></section>
+<section class="assim"><h2>Garantia</h2><p>Sem letras miúdas.</p></section>
+<section class="sobre"><h2>Sobre nós</h2>
+<p class="estreito">Somos uma equipe pequena que cuida de cada detalhe do produto com muito carinho e atenção.</p>
+<p class="estreito">Começamos num sofá, entre cafés e rascunhos, e hoje atendemos empresas de todos os tamanhos.</p>
+<p class="estreito">Cada recurso nasce de uma conversa real com quem usa o produto todos os dias de verdade.</p>
+<p class="estreito">Acreditamos em ferramentas simples, honestas e que respeitam o tempo de quem trabalha duro.</p>
+<p class="estreito">Por isso medimos tudo, ouvimos todo mundo e só publicamos aquilo que realmente melhora algo.</p>
+<p class="estreito">Se alguma coisa não faz sentido para você, também não faz sentido para nós, e por isso mudamos.</p>
+</section>
+<section><div class="reveal"><p>Este texto só aparece depois que um script de revelação termina.</p></div></section>
+<section><div class="faixa"><span>Logos de parceiros em rolagem automática infinita</span></div><span class="pulsa">Oferta limitada</span><div class="barra"></div><div class="menu-aberto"></div>
+<ul class="cascata"><li>Um</li><li>Dois</li><li>Três</li><li>Quatro</li><li>Cinco</li><li>Seis</li><li>Sete</li><li>Oito</li></ul></section>
+<section class="galeria"><div class="browser-mockup"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div><img src="undraw_rocket.svg" alt="Foguete" width="200" height="150"></section>
+<section class="assinatura"><h2>Receba novidades</h2><form><input type="email" name="email" placeholder="Seu e-mail" aria-label="E-mail"><button type="submit">Assinar</button></form></section>
+</main>
+<footer><p>Rodapé do site</p></footer>
+<script>document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in')});window.addEventListener('scroll',function(){var b=document.querySelector('.hero-bg');if(b){b.style.transform='translateY('+(window.scrollY*0.4)+'px)'}});</script>
+</body></html>

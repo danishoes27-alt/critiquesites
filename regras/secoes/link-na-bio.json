@@ -1,0 +1,345 @@
+[
+  {
+    "id": "identificacao-nome-foto-bio",
+    "tipo_de_site": "link-na-bio",
+    "nome": "Nome, foto e bio curta",
+    "descricao": "Quem chega pelo perfil quer confirmar rápido de quem é a página: nome, foto real e uma frase explicando o que faz.",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "h1",
+        "img[alt]",
+        "[class*=\"avatar\" i]",
+        "[class*=\"profile\" i]"
+      ],
+      "palavras": [],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "Google Search Central: Profile page structured data",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/profile-page",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Homepage Design: 5 Fundamental Principles",
+        "url": "https://www.nngroup.com/articles/homepage-design-principles/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O Google recomenda nome, imagem de perfil (não genérica) e descrição em páginas de perfil; NN/g pede dizer o que o site faz sem supor que a marca é conhecida."
+  },
+  {
+    "id": "lista-de-links-principais",
+    "tipo_de_site": "link-na-bio",
+    "nome": "Lista de links principais",
+    "descricao": "O coração da página: poucos botões, cada um com nome que diz para onde leva. Rótulos como \"clique aqui\" não ajudam ninguém.",
+    "obrigatoriedade": "essencial",
+    "peso": 10,
+    "deteccao": {
+      "seletores": [
+        "main a",
+        "ul a",
+        "a[class*=\"btn\" i]",
+        "a[class*=\"link\" i]"
+      ],
+      "palavras": [],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "W3C WCAG 2.2: Understanding 2.4.4 Link Purpose (In Context)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html",
+        "licenca": "W3C Software and Document License (© W3C)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: \"Get Started\" Stops Users",
+        "url": "https://www.nngroup.com/articles/get-started/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. WCAG 2.4.4 pede que o propósito do link seja claro; NN/g pede rótulos que digam o que o clique entrega. O script conta links e detecta rótulos genéricos."
+  },
+  {
+    "id": "botoes-grandes-para-toque",
+    "tipo_de_site": "link-na-bio",
+    "nome": "Botões grandes o bastante para o dedo",
+    "descricao": "A maioria chega pelo celular. Botões pequenos ou colados fazem a pessoa tocar no link errado.",
+    "obrigatoriedade": "essencial",
+    "peso": 8,
+    "deteccao": {
+      "seletores": [
+        "a",
+        "button"
+      ],
+      "palavras": [],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "W3C WCAG 2.2: Understanding 2.5.8 Target Size (Minimum)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
+        "licenca": "W3C Software and Document License (© W3C)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "web.dev: Accessible tap targets",
+        "url": "https://web.dev/articles/accessible-tap-targets",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (código)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "alta",
+    "notas": "Peso inicial, a calibrar. WCAG 2.5.8 exige no mínimo 24 por 24 pixels CSS (com exceções); web.dev recomenda cerca de 48 pixels com espaço entre alvos. Medido por script nas caixas dos elementos."
+  },
+  {
+    "id": "link-de-destaque",
+    "tipo_de_site": "link-na-bio",
+    "nome": "Link de destaque (ação principal)",
+    "descricao": "Se tudo está em destaque, nada se destaca. O link mais importante (venda, agenda, novidade) deve ser o primeiro e o mais visível.",
+    "obrigatoriedade": "esperada",
+    "peso": 6,
+    "deteccao": {
+      "seletores": [
+        "a[class*=\"primary\" i]",
+        "a[class*=\"destaque\" i]",
+        "main a:first-of-type"
+      ],
+      "palavras": [],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "parcial"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: Homepage Design: 5 Fundamental Principles",
+        "url": "https://www.nngroup.com/articles/homepage-design-principles/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. NN/g: use hierarquia visual para destacar as tarefas principais."
+  },
+  {
+    "id": "contato-direto",
+    "tipo_de_site": "link-na-bio",
+    "nome": "Contato direto (WhatsApp, e-mail)",
+    "descricao": "Quem quer falar com a pessoa ou comprar precisa de um caminho direto: WhatsApp, e-mail ou telefone, a um toque.",
+    "obrigatoriedade": "esperada",
+    "peso": 6,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"wa.me\"]",
+        "a[href*=\"api.whatsapp.com\"]",
+        "a[href^=\"mailto:\"]",
+        "a[href^=\"tel:\"]"
+      ],
+      "palavras": [
+        "whatsapp",
+        "fale comigo",
+        "contato",
+        "e-mail"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 'Contact Us' Page Guidelines",
+        "url": "https://www.nngroup.com/articles/contact-us-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. NN/g lista telefone, e-mail e redes como itens básicos de contato."
+  },
+  {
+    "id": "redes-sociais",
+    "tipo_de_site": "link-na-bio",
+    "nome": "Links para as redes sociais",
+    "descricao": "Links para perfis em outras redes ajudam a confirmar que a pessoa é real e deixam o visitante escolher onde acompanhar.",
+    "obrigatoriedade": "opcional",
+    "peso": 3,
+    "deteccao": {
+      "seletores": [
+        "a[href*=\"instagram.com\"]",
+        "a[href*=\"tiktok.com\"]",
+        "a[href*=\"youtube.com\"]",
+        "a[href*=\"linkedin.com\"]",
+        "a[href*=\"x.com\"]"
+      ],
+      "palavras": [
+        "instagram",
+        "tiktok",
+        "youtube",
+        "linkedin"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "NN/g: 'Contact Us' Page Guidelines",
+        "url": "https://www.nngroup.com/articles/contact-us-pages/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Profile page structured data",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/profile-page",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. O Google recomenda sameAs com os outros perfis do criador."
+  },
+  {
+    "id": "titulo-da-pagina",
+    "tipo_de_site": "link-na-bio",
+    "nome": "Título da página e prévia",
+    "descricao": "O título da aba e da prévia ao compartilhar deve dizer de quem é a página, em vez de nomes genéricos como \"Links\" ou \"Página sem título\".",
+    "obrigatoriedade": "esperada",
+    "peso": 5,
+    "deteccao": {
+      "seletores": [
+        "title",
+        "meta[property=\"og:title\"]",
+        "meta[name=\"description\"]"
+      ],
+      "palavras": [],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "W3C WCAG 2.2: Understanding 2.4.2 Page Titled",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/page-titled.html",
+        "licenca": "W3C Software and Document License (© W3C)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: SEO Starter Guide",
+        "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+        "licenca": "CC BY 4.0 (conteúdo); Apache 2.0 (exemplos de código)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. WCAG 2.4.2 pede título que descreva o tema ou propósito; o Google pede títulos únicos e claros."
+  },
+  {
+    "id": "descricao-da-foto",
+    "tipo_de_site": "link-na-bio",
+    "nome": "Texto alternativo da foto e ícones",
+    "descricao": "Foto de perfil e ícones de redes precisam de descrição em texto, senão leitores de tela leem nada ou só o nome do arquivo.",
+    "obrigatoriedade": "esperada",
+    "peso": 4,
+    "deteccao": {
+      "seletores": [
+        "img",
+        "a svg",
+        "a img"
+      ],
+      "palavras": [],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "W3C WCAG 2.2: Understanding 1.1.1 Non-text Content",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html",
+        "licenca": "W3C Software and Document License (© W3C)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "media",
+    "notas": "Peso inicial, a calibrar. WCAG 1.1.1 (conteúdo não textual)."
+  },
+  {
+    "id": "legibilidade-dos-botoes",
+    "tipo_de_site": "link-na-bio",
+    "nome": "Texto dos botões legível (contraste)",
+    "descricao": "Texto claro sobre fundo claro, ou escuro sobre escuro, não se lê. Os botões precisam de contraste suficiente, mesmo em telas com sol.",
+    "obrigatoriedade": "esperada",
+    "peso": 4,
+    "deteccao": {
+      "seletores": [
+        "a",
+        "button"
+      ],
+      "palavras": [],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "W3C WCAG 2.2: Understanding 1.4.3 Contrast (Minimum)",
+        "url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+        "licenca": "W3C Software and Document License (© W3C)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "alta",
+    "notas": "Peso inicial, a calibrar. WCAG 1.4.3 (contraste mínimo). Medido por axe-core; o limiar vem da norma."
+  },
+  {
+    "id": "privacidade-ao-coletar-dados",
+    "tipo_de_site": "link-na-bio",
+    "nome": "Aviso de privacidade se coleta dados",
+    "descricao": "Se a página pede e-mail ou telefone (lista de espera, newsletter), deve haver aviso ou link com a política de privacidade.",
+    "obrigatoriedade": "opcional",
+    "peso": 3,
+    "deteccao": {
+      "seletores": [
+        "form",
+        "input[type=\"email\"]",
+        "a[href*=\"privacidade\" i]"
+      ],
+      "palavras": [
+        "política de privacidade",
+        "politica de privacidade",
+        "privacidade"
+      ],
+      "padroes_regex": [],
+      "onde": "home",
+      "detectavel_por_script": "sim"
+    },
+    "fonte": [
+      {
+        "nome": "Lei 13.709/2018 (LGPD), Planalto",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "licenca": "Texto oficial de ato normativo, sem proteção de direitos autorais (Lei 9.610/1998, art. 8º, IV)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "NN/g: Mailing List Usability",
+        "url": "https://www.nngroup.com/articles/mailing-list-usability/",
+        "licenca": "© Nielsen Norman Group; conteúdo protegido, usado só como referência (paráfrase, sem reprodução)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "confianca": "baixa",
+    "notas": "Peso inicial, a calibrar. LGPD art. 9º; aplica-se só se houver coleta de dados. Aviso, não parecer jurídico; a decisão é do dono do site."
+  }
+]

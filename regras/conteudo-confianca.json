@@ -1,0 +1,833 @@
+[
+  {
+    "id": "cont-depoimento-sem-identificacao",
+    "categoria": "conteudo-confianca",
+    "titulo": "Depoimentos sem nome, foto, cargo ou fonte",
+    "descricao": "Há depoimentos de clientes que não dizem quem falou (sem nome, foto, cargo, empresa ou link). Quem lê não tem como saber se a pessoa existe, e a prova perde força.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Localiza blocos de depoimento visíveis e não-clone (blockquote, elementos com classe testimonial/depoimento/review/avaliacao, figure com figcaption) e confere, em cada um, quatro sinais de identificação: nome próprio, foto real, cargo/empresa/cidade e link ou fonte. Conta quantos blocos têm menos de 2 sinais.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "seletores_candidatos": [
+          "blockquote",
+          "[class*=testimonial]",
+          "[class*=depoimento]",
+          "[class*=review]",
+          "[class*=avaliac]",
+          "figure:has(figcaption)"
+        ],
+        "sinais": [
+          "nome proprio (2 palavras com inicial maiuscula)",
+          "foto real (img nao decorativa e nao placeholder)",
+          "cargo, empresa ou cidade",
+          "link, perfil ou fonte externa"
+        ],
+        "identificado_se_sinais_ao_menos": 2,
+        "minimo_de_depoimentos": 2,
+        "intensidade": "depoimentos_com_menos_de_2_sinais / total_de_depoimentos",
+        "clones_ignorados": true
+      }
+    },
+    "peso": 6,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Identifique cada depoimento com nome, cargo ou empresa e, se possível, foto e link. Sem permissão da pessoa, retire o depoimento.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o depoimento «{{trecho}}» não tem identificação suficiente ({{valor}} dos depoimentos sem 2 sinais de identificação). Acrescente nome, cargo ou empresa e, se existirem, foto e link real que eu fornecer; se eu não tiver a autorização da pessoa, remova o depoimento em vez de inventar dados. NÃO altere o texto do depoimento, o layout, as classes nem os outros blocos. Pronto quando todo depoimento visível tiver pelo menos nome próprio e mais um sinal (cargo, empresa, cidade, foto ou link).",
+    "fonte": [
+      {
+        "nome": "Nielsen Norman Group: Trustworthiness in Web Design: 4 Credibility Factors (Aurora Harley, 2016)",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Nielsen Norman Group: Trust or Bust: Communicating Trustworthiness in Web Design (Jakob Nielsen, 1999)",
+        "url": "https://www.nngroup.com/articles/communicating-trustworthiness/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:46a",
+      "unslop-heydamir:prova-social"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. (mínimo de 2 de 4 sinais é do projeto). Base: o NN/g diz que visitantes confiam mais em avaliações de sites de terceiros do que nas que a empresa publica; o Hallmark trata depoimento inventado como falha grave. A regra aponta ausência de identificação no código; não afirma que o depoimento seja falso."
+  },
+  {
+    "id": "cont-prova-social-generica",
+    "categoria": "conteudo-confianca",
+    "titulo": "Prova social genérica, sem fonte nem contexto",
+    "descricao": "O site diz que «milhares confiam» ou mostra estrelas e logos sem explicar de onde vêm os números. Quando não dá para conferir, a prova social vale pouco.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "texto",
+      "metodo": "Procura frases de prova social vagas (entrada vago-prova-social-sem-fonte da lista de clichês, «mais de N clientes», «milhares de…», «nota 4,9»), estrelas ou notas sem link/ano/plataforma por perto, e faixas de logos sem link e sem texto alternativo com o nome. Cada ocorrência sem fonte a até 150 caracteres vira evidência.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "lista": "regras/texto/cliches-pt-br.json",
+        "ids": [
+          "vago-prova-social-sem-fonte"
+        ],
+        "padroes_extra": [
+          "mais de [0-9.]+ (clientes|empresas|usu[aá]rios|pessoas)",
+          "(nota|avalia[cç][aã]o) [0-9],?[0-9]?",
+          "[★⭐]{3,}"
+        ],
+        "fonte_aceita_se_ate_150_caracteres_ha": [
+          "link para a plataforma de avaliacao",
+          "ano ou periodo",
+          "nome da plataforma (ex.: Google, Reclame Aqui)"
+        ],
+        "logos": "img de faixa de logos sem link e sem alt com nome da empresa",
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "minimo_de_ocorrencias": 1,
+        "intensidade": "min(1, ocorrencias_sem_fonte / 3)"
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Diga de onde vem cada número: período, plataforma e link. Sem fonte, troque por um caso real e específico.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a afirmação «{{trecho}}» não indica fonte (ocorrências sem fonte: {{valor}}). Acrescente ao lado o período, a plataforma e um link real que eu fornecer; se eu não tiver como comprovar, troque por um caso real com nome e resultado. NÃO invente números, não mude o design dos selos nem as classes. Pronto quando cada número de clientes, nota ou logo tiver fonte verificável a até 150 caracteres.",
+    "fonte": [
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Nielsen Norman Group: Trustworthiness in Web Design: 4 Credibility Factors (Aurora Harley, 2016)",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-heydamir:prova-social",
+      "hallmark:46a"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. (150 caracteres de distância é do projeto). O unslop (heydamir) lista «Trusted by / Loved by» e estrelas sem fonte como sinal. Não afirma que o número seja falso, só que não dá para conferir."
+  },
+  {
+    "id": "cont-numero-sem-contexto",
+    "categoria": "conteudo-confianca",
+    "titulo": "Números em destaque sem unidade, período ou comparação",
+    "descricao": "Aparecem números grandes («+500», «98%», «+30%») sem dizer do que são, em que período ou comparados com quê. O número impressiona mas não informa.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "css",
+      "metodo": "Acha números em destaque (fonte pelo menos 1,5 vez a do texto corrido ou elementos com classe stat/counter/number/metric) e confere se o rótulo vizinho (até 6 palavras) traz unidade, período ou base de comparação; variações com sinal («+12%») sem referência também contam.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "numero_em_destaque_se": [
+          "font-size >= 1.5 x font-size do texto corrido",
+          "classe stat|counter|number|metric|numero|contador"
+        ],
+        "contexto_ok_se_rotulo_ate_6_palavras_tem": [
+          "unidade (clientes, projetos, kg, R$, %)",
+          "periodo (por mes, desde 2019, em 2025)",
+          "base de comparacao (vs, em relacao a)"
+        ],
+        "variacao_sem_referencia": "[+-]?[0-9]+([.,][0-9]+)?\\s?%",
+        "minimo_de_numeros": 1,
+        "contadores_que_mudam_entre_versoes": "tratados na regra leitura-valor-muda-entre-versoes, nao aqui",
+        "intensidade": "numeros_sem_contexto / numeros_em_destaque"
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Acrescente ao lado de cada número: do quê, desde quando e com base em quê. Corte os que não tiverem como explicar.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o número «{{trecho}}» está em destaque sem unidade, período ou comparação ({{valor}} números sem contexto). Acrescente um rótulo curto com o que é contado, o período e, se houver, a base de comparação, usando só informações que eu confirmar; se não houver como comprovar, remova o número. NÃO mude o valor do número, o estilo do destaque nem as classes. Pronto quando todo número em destaque tiver unidade ou período e, em variações com sinal, uma referência.",
+    "fonte": [
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:46b",
+      "unslop-heydamir:variacao-sem-ref"
+    ],
+    "citacoes": [
+      "numero",
+      "trecho"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. (1,5 vez o tamanho do texto e 6 palavras de rótulo são do projeto). O Hallmark aceita número solto como manchete se tiver unidade e fonte; o unslop (heydamir) aponta variação sem referência."
+  },
+  {
+    "id": "cont-promessa-absoluta",
+    "categoria": "conteudo-confianca",
+    "titulo": "Promessas absolutas ou de resultado garantido",
+    "descricao": "O texto promete resultado certo, sem risco ou «para sempre» («100% garantido», «você vai ganhar», «nunca mais»). Promessa que ninguém pode cumprir sempre afasta quem já viu golpe.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "texto",
+      "metodo": "Procura no texto visível expressões de certeza absoluta e de ganho garantido; cada acerto vira evidência com o trecho e o seletor.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "padroes": [
+          "100\\s?% (garantid|seguro|eficaz|natural|sem risco)",
+          "(resultado|sucesso|lucro|retorno|aprova[cç][aã]o) garantid[oa]",
+          "sem (nenhum )?risco",
+          "(ganhe|fature|lucre|receba) (at[eé] )?r\\$ ?[0-9]",
+          "\\b(nunca mais|para sempre|definitivamente|milagr[oe]s?)\\b",
+          "voc[eê] vai (ganhar|lucrar|emagrecer|aprender) "
+        ],
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "minimo_de_ocorrencias": 1,
+        "intensidade": "min(1, ocorrencias / 3)",
+        "lei": "a leitura sob o CDC e a regra de promessa de ganho ficam na categoria lei-br; aqui o foco e credibilidade"
+      }
+    },
+    "peso": 7,
+    "severidade": "P1",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Troque a promessa certa por um resultado real, com prazo e condição, e diga o que pode variar.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a frase «{{trecho}}» promete resultado absoluto ({{valor}} promessas na página). Reescreva com um resultado que eu possa comprovar (número real, prazo e condição) e acrescente que os resultados variam, quando for o caso; se eu não tiver prova, remova a promessa. NÃO mude preços, links, classes nem o botão. Pronto quando nenhuma expressão de certeza absoluta ou de ganho garantido restar no texto visível.",
+    "fonte": [
+      {
+        "nome": "Nielsen Norman Group: Trust or Bust: Communicating Trustworthiness in Web Design (Jakob Nielsen, 1999)",
+        "url": "https://www.nngroup.com/articles/communicating-trustworthiness/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Nielsen Norman Group: Concise, SCANNABLE, and Objective: How to Write for the Web (1997)",
+        "url": "https://www.nngroup.com/articles/concise-scannable-and-objective-how-to-write-for-the-web/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "unslop-ui:hype-copy",
+      "unslop-heydamir:hype"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. A lista de expressões é proposta do projeto. O NN/g (1999) diz que a confiança nasce da experiência real do cliente, não de promessas; o estudo de 1997 do NN/g mostrou pior usabilidade em texto promocional. Pode ser regra legal em certos casos; a avaliação jurídica fica na categoria lei-br. Isto não é parecer jurídico; a decisão é sua."
+  },
+  {
+    "id": "cont-cta-claro",
+    "categoria": "conteudo-confianca",
+    "titulo": "Chamada para ação principal clara e única",
+    "descricao": "A pessoa precisa achar, sem procurar, o que fazer em seguida: uma ação principal visível logo no início, com rótulo que diga o resultado. Sem ela ou com muitas iguais, o visitante hesita.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "css",
+      "detectavel_por_script": "parcial",
+      "metodo": "O script conta, na primeira tela (1440x900 e 390x844), os botões e links de destaque (fundo preenchido ou maior contraste) e confere se o rótulo tem verbo mais objeto e não é genérico; o modelo avalia se a ação principal é a mais óbvia.",
+      "parametros": {
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "viewports": [
+          "1440x900",
+          "390x844"
+        ],
+        "acao_principal_visivel_na_primeira_tela": true,
+        "disparo": [
+          "nenhuma acao de destaque na primeira tela",
+          "3 ou mais botoes de destaque no mesmo bloco",
+          "rotulo da acao principal e generico (tipo cta-generico) ou tem menos de 2 palavras"
+        ],
+        "lista": "regras/texto/cliches-pt-br.json",
+        "confirmacao_do_modelo": "qual acao e a principal e se o rotulo diz o resultado",
+        "intensidade": "media das falhas: ausente = 1, excesso = 0.6, rotulo generico = 0.5"
+      }
+    },
+    "peso": 7,
+    "severidade": "P1",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Deixe uma ação principal e uma secundária na primeira tela, com rótulo de verbo mais resultado.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o bloco de abertura tem {{valor}} ações de destaque; o botão «{{trecho}}» é o principal. Deixe uma ação principal e no máximo uma secundária visíveis na primeira tela, com rótulos de verbo mais resultado (por exemplo «Pedir orçamento»); ações extras viram links simples. NÃO mude destinos de link, textos legais nem a identidade visual. Pronto quando a primeira tela, em 1440x900 e 390x844, tiver exatamente uma ação principal e no máximo uma secundária e nenhum rótulo genérico.",
+    "fonte": [
+      {
+        "nome": "Impeccable (pbakaus)",
+        "url": "https://github.com/pbakaus/impeccable",
+        "licenca": "Apache-2.0",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "impeccable:dis-uma-acao",
+      "impeccable:cla-verbo-objeto",
+      "impeccable:cla-rotulo-resultado",
+      "unslop-heydamir:muitos-botoes",
+      "unslop-heydamir:reg-texto-calmo"
+    ],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "O limite de 3 ou mais botões de destaque vem do unslop (heydamir, sinal «três ou mais botões»); «uma ação principal e poucas secundárias» vem do Impeccable (distill). Os pesos de intensidade são do projeto: Limiar inicial, a calibrar no teste de acerto."
+  },
+  {
+    "id": "cont-contato-visivel",
+    "categoria": "conteudo-confianca",
+    "titulo": "Informação de contato fácil de achar",
+    "descricao": "Procura um jeito claro de falar com alguém: telefone, e-mail, WhatsApp ou endereço visível, e um link de contato no menu ou no rodapé. Contato escondido faz o visitante desconfiar.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Confere na página inicial e nas páginas amostradas: (1) link «Contato/Fale conosco» no cabeçalho ou no rodapé; (2) pelo menos um canal direto visível (link tel:, mailto:, wa.me ou api.whatsapp.com, endereço em address ou PostalAddress, ou número de telefone no texto).",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "itens": {
+          "link_de_contato": "a/nav/footer com texto contato|fale conosco|fale com|atendimento",
+          "canal_direto": [
+            "a[href^=tel:]",
+            "a[href^=mailto:]",
+            "a[href*=wa.me]",
+            "a[href*=api.whatsapp.com]",
+            "address",
+            "JSON-LD PostalAddress",
+            "padrao de telefone brasileiro no texto"
+          ]
+        },
+        "disparo": "falta 1 dos 2 itens",
+        "intensidade": "1 - (itens_atendidos / 2)",
+        "tipos_de_site_com_peso_extra": [
+          "loja",
+          "pagina-de-vendas",
+          "agendamento"
+        ]
+      }
+    },
+    "peso": 6,
+    "severidade": "P1",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Coloque um canal de contato direto no rodapé e no topo, e um link «Contato» no menu. Informe o horário de atendimento.",
+    "prompt_correcao": "No arquivo {{arquivo}}, falta {{valor}} (link de contato no menu ou rodapé, ou canal direto visível). Acrescente um link «Contato» no cabeçalho e no rodapé e, no rodapé, os canais reais que eu fornecer (telefone, e-mail, WhatsApp ou endereço) com horário de atendimento. NÃO invente dados de contato, não remova os canais existentes nem mude o layout do rodapé além do necessário. Pronto quando a página inicial tiver um link de contato no cabeçalho ou rodapé e ao menos um canal direto visível e clicável.",
+    "fonte": [
+      {
+        "nome": "Nielsen Norman Group: Contact Us Page Guidelines (2019)",
+        "url": "https://www.nngroup.com/articles/contact-us-pages/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Nielsen Norman Group: Trustworthiness in Web Design: 4 Credibility Factors (Aurora Harley, 2016)",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Base: o NN/g recomenda link de contato no menu e no rodapé, evitar escondê-lo dentro de «Sobre», e manter telefone além do formulário. Em loja e página de vendas, o Decreto 7.962/2013 (art. 2º, II) pede endereço físico e eletrônico e dados de contato em destaque; a avaliação legal fica em lei-br. Quais itens contam é decisão do projeto. Isto não é parecer jurídico; a decisão é sua."
+  },
+  {
+    "id": "cont-preco-claro",
+    "categoria": "conteudo-confianca",
+    "titulo": "Preço visível e com as condições à vista",
+    "descricao": "Em páginas que vendem algo, o preço deve estar à vista e junto das condições: o que inclui, parcelas ou periodicidade, e custos extras. Preço escondido ou sem condição gera desconfiança.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "texto",
+      "metodo": "Procura valores em reais no texto visível e não-clone e, a até 120 caracteres de cada um, termos de condição (por mês, à vista, parcelas, a partir de, taxa, frete, impostos, o que inclui); em páginas de venda sem nenhum valor, registra «preço ausente».",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "valor": "R\\$\\s?[0-9.]+(,[0-9]{2})?",
+        "termos_de_condicao": [
+          "por m[eê]s",
+          "/m[eê]s",
+          "[aà] vista",
+          "parcel",
+          "a partir de",
+          "taxa",
+          "frete",
+          "impostos",
+          "inclui",
+          "recorr[eê]ncia"
+        ],
+        "distancia_maxima_em_caracteres": 120,
+        "checagens": [
+          "preco_visivel_em_pagina_de_venda",
+          "preco_com_condicao_proxima",
+          "asterisco_sem_nota_correspondente"
+        ],
+        "intensidade": "media(falhas)",
+        "textos_ocultos": "nunca contam; divergencia com texto oculto e outro achado"
+      }
+    },
+    "peso": 7,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "loja",
+      "pagina-de-vendas",
+      "catalogo",
+      "agendamento",
+      "cardapio",
+      "landing-page"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Mostre o preço, o que está incluso, a forma de pagamento e quaisquer custos extras no mesmo lugar.",
+    "prompt_correcao": "No arquivo {{arquivo}}, o preço «{{trecho}}» está sem condições à vista (problema: {{valor}}). Coloque junto dele, em texto visível, o que inclui, a periodicidade ou parcelas e os custos extras (frete, taxas) com os dados reais que eu fornecer; se houver asterisco, escreva a nota correspondente perto. NÃO mude o valor do preço, os links de compra nem o estilo dos cartões. Pronto quando todo preço visível tiver, a até 120 caracteres, a condição de pagamento ou periodicidade e quaisquer custos extras citados.",
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013, arts. 2º e 5º (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto legal oficial (obra pública)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Nielsen Norman Group: Pricing information gives B2B sites a competitive advantage",
+        "url": "https://www.nngroup.com/articles/show-price/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Nielsen Norman Group: Trustworthiness in Web Design: 4 Credibility Factors (Aurora Harley, 2016)",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho",
+      "numero"
+    ],
+    "notas": "O Decreto 7.962/2013, art. 2º, incisos IV, V e VI, pede, em local de destaque, a discriminação de despesas extras, as condições da oferta e as restrições. O NN/g indica que esconder preço afasta compradores e que faixas ou «a partir de» ajudam quando o preço varia. O limite de 120 caracteres é do projeto: Limiar inicial, a calibrar no teste de acerto. O que se verifica é a presença do elemento no código. Isto não é parecer jurídico; a decisão é sua."
+  },
+  {
+    "id": "cont-faq",
+    "categoria": "conteudo-confianca",
+    "titulo": "Perguntas frequentes com respostas de verdade",
+    "descricao": "Páginas de venda e de serviço ganham confiança com uma seção de perguntas frequentes que responda dúvidas reais. Falta de FAQ ou respostas vazias deixam as dúvidas sem resposta.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Procura seção de FAQ (título com «perguntas frequentes», «dúvidas» ou «FAQ», details/summary, acordeão ou JSON-LD FAQPage) e conta pares pergunta-resposta visíveis; confere o tamanho das respostas.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "deteccao_da_secao": [
+          "heading com perguntas frequentes|dúvidas|faq",
+          "details > summary",
+          "[class*=accordion]",
+          "JSON-LD FAQPage"
+        ],
+        "minimo_de_pares": 4,
+        "resposta_minima_em_palavras": 12,
+        "disparo": [
+          "nenhuma secao de faq",
+          "menos de 4 pares",
+          "mais da metade das respostas com menos de 12 palavras"
+        ],
+        "intensidade": "nenhuma = 1, poucos pares = 0.5, respostas curtas = 0.5"
+      }
+    },
+    "peso": 3,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "landing-page",
+      "pagina-de-vendas",
+      "loja",
+      "site-institucional",
+      "agendamento",
+      "catalogo"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Crie uma seção com as dúvidas que os clientes realmente fazem, respondendo de forma direta, inclusive sobre limitações.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a seção de perguntas frequentes tem problema: {{valor}}. Acrescente ou reescreva pelo menos 4 perguntas que os clientes realmente fazem (eu fornecerei a lista; pergunte se faltar), com respostas diretas de 12 palavras ou mais, incluindo limitações conhecidas. NÃO invente perguntas, não mude o resto da página nem as classes. Pronto quando houver ao menos 4 pares visíveis, cada resposta com 12 palavras ou mais, e o link do FAQ aparecer no rodapé.",
+    "fonte": [
+      {
+        "nome": "Nielsen Norman Group: FAQs Still Deliver Great Value",
+        "url": "https://www.nngroup.com/articles/faqs-deliver-value/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Proposta do projeto (a calibrar no teste de acerto)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. (4 pares e 12 palavras são do projeto). O NN/g recomenda usar perguntas reais, respostas diretas e francas sobre limitações, e link para o FAQ no rodapé."
+  },
+  {
+    "id": "cont-garantia-e-trocas",
+    "categoria": "conteudo-confianca",
+    "titulo": "Garantia, troca e cancelamento explicados",
+    "descricao": "Quem vende produto ou serviço deve dizer, de forma visível, como funciona garantia, troca, devolução, cancelamento ou arrependimento. Sem isso, a pessoa teme ficar sem saída.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "texto",
+      "metodo": "Procura nas páginas amostradas, no texto visível e em links, os termos garantia, troca, devolução, reembolso, arrependimento e cancelamento, e uma página de política correspondente; dispara se nenhum aparecer em tipos que vendem.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "termos": [
+          "garantia",
+          "troca",
+          "devolu[cç][aã]o",
+          "reembolso",
+          "arrependimento",
+          "cancelamento",
+          "pol[ií]tica de (troca|devolu[cç][aã]o|reembolso)"
+        ],
+        "onde": [
+          "texto visivel das paginas amostradas",
+          "links do rodape e do menu"
+        ],
+        "disparo": "nenhum termo em nenhuma pagina amostrada",
+        "intensidade": 1
+      }
+    },
+    "peso": 6,
+    "severidade": "P1",
+    "selo": "regra",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "loja",
+      "pagina-de-vendas",
+      "agendamento"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Crie uma página ou seção clara com garantia, trocas, cancelamento e o caminho para pedir arrependimento. Linke no rodapé.",
+    "prompt_correcao": "No arquivo {{arquivo}}, não há informação visível sobre garantia, troca, devolução ou cancelamento (resultado: {{valor}}). Crie uma seção ou página «Garantia e trocas» com as regras reais que eu fornecer (prazos, como pedir, quem paga o envio) e um link no rodapé; pergunte o que faltar. NÃO invente prazos ou condições e não mude o restante da página. Pronto quando uma pessoa chegar a essa informação em um clique a partir de qualquer página, e o texto explicar como exercer o direito de arrependimento nas vendas à distância.",
+    "fonte": [
+      {
+        "nome": "Decreto 7.962/2013, arts. 2º e 5º (Planalto)",
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2013/decreto/d7962.htm",
+        "licenca": "Texto legal oficial (obra pública)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Nielsen Norman Group: Trustworthiness in Web Design: 4 Credibility Factors (Aurora Harley, 2016)",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "O Decreto 7.962/2013, art. 5º, manda informar de forma clara e ostensiva os meios para exercer o direito de arrependimento nas compras feitas pela internet. O NN/g inclui política de devolução na «divulgação antecipada» que gera confiança. A detecção só confere se o assunto aparece no código. Isto não é parecer jurídico; a decisão é sua. Limiar inicial, a calibrar no teste de acerto."
+  },
+  {
+    "id": "cont-consistencia-precos-e-nomes",
+    "categoria": "conteudo-confianca",
+    "titulo": "Preços, nomes e dados diferentes entre páginas",
+    "descricao": "O mesmo produto, plano ou dado aparece com valores ou grafias diferentes em páginas distintas (por exemplo, um plano a R$ 49 numa página e R$ 59 em outra). Quem vê a divergência perde a confiança.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "texto",
+      "metodo": "Extrai pares nome+preço, nomes de produto e de empresa, e-mail, telefone e CNPJ do texto visível e não-clone de cada página amostrada, agrupa por nome normalizado e compara os valores; texto oculto e clones são ignorados.",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "extracao": [
+          "pares nome do plano ou produto + valor em R$ a ate 80 caracteres",
+          "nome da empresa e da marca",
+          "e-mail",
+          "telefone",
+          "CNPJ"
+        ],
+        "normalizacao": "minusculas, sem acento, sem espacos duplicados",
+        "divergencia_de_preco": "mesmo nome normalizado com valores diferentes em paginas diferentes",
+        "divergencia_de_nome": "grafias da marca com distancia de edicao ate 2 que nao sejam identicas",
+        "divergencia_de_contato": "mais de um e-mail, telefone ou CNPJ distinto para a mesma empresa",
+        "minimo_de_paginas": 2,
+        "linguagem_do_achado": "divergencia entre paginas, nunca «preco errado»",
+        "texto_oculto": "se o oculto diverge do visivel, vira outro achado, nao este"
+      }
+    },
+    "peso": 8,
+    "severidade": "P1",
+    "selo": "fato",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Escolha o valor ou a grafia correta e use a mesma em todas as páginas. Se os valores são mesmo diferentes, explique a diferença ao lado.",
+    "prompt_correcao": "Nos arquivos {{arquivo}}, o trecho «{{trecho}}» diverge de outra página (valores encontrados: {{valor}}). Confirme comigo qual é o valor ou grafia correta e padronize em todas as páginas; se forem planos diferentes, deixe a diferença explícita no texto. NÃO mude outros preços, layout, links nem nomes que não divirjam. Pronto quando uma nova medição não achar nenhuma divergência de preço, nome da marca, e-mail, telefone ou CNPJ entre as páginas visíveis.",
+    "fonte": [
+      {
+        "nome": "Nielsen Norman Group: Trustworthiness in Web Design: 4 Credibility Factors (Aurora Harley, 2016)",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "SPEC.md do projeto critiquesites (§6.4, módulo de texto genérico/batido)",
+        "licenca": "MIT (projeto)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:69"
+    ],
+    "citacoes": [
+      "trecho",
+      "numero"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. (distância de edição 2 e janela de 80 caracteres são do projeto). Base: o NN/g inclui conteúdo correto e atual entre os fatores de credibilidade. Compara só texto visível e não-clone (SPEC §4.3); a mensagem descreve a divergência e cita os dois trechos, sem afirmar qual está errado."
+  },
+  {
+    "id": "cont-prova-verificavel-julgamento",
+    "categoria": "conteudo-confianca",
+    "titulo": "A prova social é verificável ou só enfeite?",
+    "descricao": "Avalia, em uma amostra, se os depoimentos, números e selos podem ser conferidos por um desconhecido (pessoa real, link, data, resultado específico) ou se são genéricos demais para acreditar.",
+    "deteccao": {
+      "tipo": "julgamento",
+      "medidor": "modelo",
+      "metodo": "O script escolhe até 6 trechos de prova social (depoimentos, números, logos, selos) e o modelo classifica cada um como verificável, parcial, genérico ou não verificável, justificando em uma frase com base só no que está no código.",
+      "detectavel_por_script": "nao",
+      "parametros": {
+        "amostra": {
+          "rapido": 3,
+          "completo": 6
+        },
+        "criterios": [
+          "pessoa ou empresa real identificada",
+          "link ou fonte externa",
+          "data ou periodo",
+          "resultado especifico (numero com contexto)",
+          "plausibilidade"
+        ],
+        "classes": [
+          "verificavel",
+          "parcial",
+          "generico",
+          "nao-verificavel"
+        ],
+        "regra_de_honestidade": "o modelo nunca afirma que a prova e falsa; se nao da para conferir, a classe e nao-verificavel"
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "media",
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "correcao": "Prefira poucas provas conferíveis a muitas genéricas: nome real, link, data e resultado específico.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a prova social «{{trecho}}» foi classificada como {{valor}}. Reescreva com informações que eu forneça: nome da pessoa ou empresa, cargo, link ou fonte externa, data e um resultado específico com contexto; se eu não tiver permissão ou comprovação, remova a prova. NÃO invente dados nem mude o layout e as classes. Pronto quando cada prova social mantida tiver pelo menos pessoa ou empresa identificada e um link, data ou resultado específico.",
+    "fonte": [
+      {
+        "nome": "Nielsen Norman Group: Trustworthiness in Web Design: 4 Credibility Factors (Aurora Harley, 2016)",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Nielsen Norman Group: Trust or Bust: Communicating Trustworthiness in Web Design (Jakob Nielsen, 1999)",
+        "url": "https://www.nngroup.com/articles/communicating-trustworthiness/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Hallmark (Nutlope)",
+        "url": "https://github.com/Nutlope/hallmark",
+        "licenca": "MIT",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "unslop (Damir Sokolovsky / heydamir)",
+        "url": "https://heydamir.design/unslop",
+        "licenca": "CC-BY-4.0 (crédito: unslop by Damir Sokolovsky / heydamir)",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "hallmark:46a",
+      "unslop-heydamir:prova-social"
+    ],
+    "citacoes": [
+      "trecho"
+    ],
+    "notas": "Julgamento do modelo sobre amostra pequena; resultado sempre marcado como opinião. A escala de classes é do projeto. O NN/g (1999) observa que fontes de terceiros são mais críveis que o que a própria empresa diz."
+  },
+  {
+    "id": "cont-quem-esta-por-tras",
+    "categoria": "conteudo-confianca",
+    "titulo": "Fica claro quem está por trás do site",
+    "descricao": "Visitantes querem saber quem faz o quê: pessoas reais, a história e fotos de verdade. Uma página «Sobre» vazia, só com jargão e fotos de banco, deixa o negócio anônimo.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "html",
+      "metodo": "Procura uma página ou seção «Sobre/Quem somos/Equipe» e confere: nome de pelo menos uma pessoa real, foto não decorativa e não de banco (sem os padrões de URL de banco de imagens), e um fato verificável (ano de início, cidade, número de clientes com período).",
+      "detectavel_por_script": "sim",
+      "parametros": {
+        "escopo": "texto visível e não-clone, versão final do DOM (SPEC §4.3)",
+        "pagina_ou_secao": "link ou heading com sobre|quem somos|nossa historia|equipe|time",
+        "itens": [
+          "nome proprio de pessoa",
+          "foto de pessoa ou do lugar que nao seja de banco (url sem unsplash|pexels|shutterstock|istock|stock)",
+          "fato verificavel (ano, cidade ou numero com periodo)"
+        ],
+        "disparo": "pagina ausente ou menos de 2 dos 3 itens",
+        "intensidade": "1 - (itens_atendidos / 3)"
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "tipos_de_site": [
+      "site-institucional",
+      "landing-page",
+      "pagina-de-vendas",
+      "loja",
+      "portfolio",
+      "agendamento"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "correcao": "Conte quem faz o trabalho: nome, foto real, desde quando e onde. Pessoas reais passam mais confiança que frases prontas.",
+    "prompt_correcao": "No arquivo {{arquivo}}, a página ou seção «Sobre» tem pouca identificação (falha: {{valor}}). Acrescente nome e foto real de quem lidera ou atende, o ano de início e a cidade, usando só dados e fotos que eu fornecer. NÃO use fotos de banco, não invente histórico e não mude o menu nem as classes. Pronto quando a página tiver pelo menos o nome de uma pessoa, uma foto real e um fato com data ou local.",
+    "fonte": [
+      {
+        "nome": "Nielsen Norman Group: About Us Information on Corporate Websites (2019)",
+        "url": "https://www.nngroup.com/articles/about-us-information-on-websites/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Nielsen Norman Group: Trustworthiness in Web Design: 4 Credibility Factors (Aurora Harley, 2016)",
+        "url": "https://www.nngroup.com/articles/trustworthy-design/",
+        "licenca": "Documentação pública do NN/g (direitos reservados); descrita só em palavras próprias, sem cópia",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ],
+    "notas": "Limiar inicial, a calibrar no teste de acerto. (2 de 3 itens é do projeto). O NN/g relata que visitantes esperam, em «Sobre», pessoas reais, história, fotos realistas e linguagem sem jargão. CNPJ e razão social ficam na categoria lei-br."
+  }
+]

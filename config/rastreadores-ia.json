@@ -1,0 +1,103 @@
+{
+  "versao": "1",
+  "consultado_em": "2026-11-18",
+  "aviso": "Lista informativa. Cada item foi conferido na documentação oficial citada em 'documentacao'. A categoria é uma classificação deste projeto a partir do que a documentação diz; não é recomendação de bloquear ou liberar.",
+  "categorias": {
+    "treino": "coleta ou controle de uso de conteúdo para treinar modelos de IA",
+    "busca": "indexação para mostrar sites em resultados de busca de assistentes de IA",
+    "consulta-por-usuario": "visita disparada por uma pessoa que pediu a um assistente para abrir a página"
+  },
+  "rastreadores": [
+    {
+      "id": "gptbot", "nome": "GPTBot", "empresa": "OpenAI", "categoria": "treino", "userAgent": "GPTBot",
+      "descricaoOficial": "Coleta conteúdo para treinar modelos de fundação de IA generativa.",
+      "respeitaRobots": "sim, segundo a documentação",
+      "documentacao": "https://developers.openai.com/api/docs/bots"
+    },
+    {
+      "id": "oai-searchbot", "nome": "OAI-SearchBot", "empresa": "OpenAI", "categoria": "busca", "userAgent": "OAI-SearchBot",
+      "descricaoOficial": "Mostra sites nos resultados de busca do ChatGPT.",
+      "respeitaRobots": "sim, segundo a documentação",
+      "documentacao": "https://developers.openai.com/api/docs/bots"
+    },
+    {
+      "id": "chatgpt-user", "nome": "ChatGPT-User", "empresa": "OpenAI", "categoria": "consulta-por-usuario", "userAgent": "ChatGPT-User",
+      "descricaoOficial": "Ações iniciadas por usuários no ChatGPT e em GPTs personalizados.",
+      "respeitaRobots": "talvez não: a documentação diz que as regras do robots.txt podem não se aplicar, por a visita ser pedida por uma pessoa",
+      "documentacao": "https://developers.openai.com/api/docs/bots"
+    },
+    {
+      "id": "claudebot", "nome": "ClaudeBot", "empresa": "Anthropic", "categoria": "treino", "userAgent": "ClaudeBot",
+      "descricaoOficial": "Coleta de dados de treinamento.",
+      "respeitaRobots": "a página oficial lista o token para bloqueio via robots.txt",
+      "documentacao": "https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler"
+    },
+    {
+      "id": "claude-searchbot", "nome": "Claude-SearchBot", "empresa": "Anthropic", "categoria": "busca", "userAgent": "Claude-SearchBot",
+      "descricaoOficial": "Melhora a relevância dos resultados de busca.",
+      "respeitaRobots": "a página oficial lista o token para bloqueio via robots.txt",
+      "documentacao": "https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler"
+    },
+    {
+      "id": "claude-user", "nome": "Claude-User", "empresa": "Anthropic", "categoria": "consulta-por-usuario", "userAgent": "Claude-User",
+      "descricaoOficial": "Busca páginas para responder perguntas de usuários.",
+      "respeitaRobots": "a página oficial lista o token para bloqueio via robots.txt",
+      "documentacao": "https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler"
+    },
+    {
+      "id": "google-extended", "nome": "Google-Extended", "empresa": "Google", "categoria": "treino", "userAgent": "Google-Extended",
+      "tokenSomente": true,
+      "descricaoOficial": "Token de robots.txt, sem user-agent HTTP próprio. Controla se o conteúdo rastreado pode ser usado para treinar futuras gerações dos modelos Gemini e para grounding em Gemini Apps e Vertex AI. Não afeta a inclusão na Busca do Google nem o ranking.",
+      "respeitaRobots": "é um controle do robots.txt",
+      "documentacao": "https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers"
+    },
+    {
+      "id": "perplexitybot", "nome": "PerplexityBot", "empresa": "Perplexity", "categoria": "busca", "userAgent": "PerplexityBot",
+      "descricaoOficial": "Mostra e linka sites nos resultados de busca do Perplexity; a documentação diz que não é usado para treinar modelos de fundação.",
+      "respeitaRobots": "sim, segundo a documentação",
+      "documentacao": "https://docs.perplexity.ai/guides/bots"
+    },
+    {
+      "id": "perplexity-user", "nome": "Perplexity-User", "empresa": "Perplexity", "categoria": "consulta-por-usuario", "userAgent": "Perplexity-User",
+      "descricaoOficial": "Visita a página quando uma pessoa faz uma pergunta; a documentação diz que não é usado para rastreamento nem para treino.",
+      "respeitaRobots": "geralmente ignora o robots.txt, segundo a documentação, por a visita ser pedida por uma pessoa",
+      "documentacao": "https://docs.perplexity.ai/guides/bots"
+    },
+    {
+      "id": "applebot-extended", "nome": "Applebot-Extended", "empresa": "Apple", "categoria": "treino", "userAgent": "Applebot-Extended",
+      "tokenSomente": true,
+      "descricaoOficial": "Agente secundário que não rastreia páginas; controla como a Apple usa dados já rastreados pelo Applebot. Bloqueá-lo tira o conteúdo do treino dos modelos de fundação de uso geral da Apple, sem remover o site da busca.",
+      "respeitaRobots": "é um controle do robots.txt",
+      "documentacao": "https://support.apple.com/en-us/119829"
+    },
+    {
+      "id": "ccbot", "nome": "CCBot", "empresa": "Common Crawl", "categoria": "treino", "userAgent": "CCBot",
+      "categoriaNota": "A página oficial descreve um repositório aberto de dados da web para pesquisa; o uso do acervo para treino é feito por terceiros e não é afirmado na página.",
+      "descricaoOficial": "Rastreador de uma organização sem fins lucrativos que mantém um repositório aberto de dados de rastreamento da web.",
+      "respeitaRobots": "a página oficial descreve o bloqueio via robots.txt",
+      "documentacao": "https://commoncrawl.org/ccbot"
+    },
+    {
+      "id": "meta-externalagent", "nome": "Meta-ExternalAgent", "empresa": "Meta", "categoria": "treino", "userAgent": "meta-externalagent",
+      "descricaoOficial": "Rastreia a web para treinar modelos de fundação de IA ou melhorar produtos indexando conteúdo diretamente.",
+      "respeitaRobots": "sim, segundo a documentação",
+      "documentacao": "https://developers.facebook.com/docs/sharing/webmasters/web-crawlers"
+    },
+    {
+      "id": "meta-externalfetcher", "nome": "Meta-ExternalFetcher", "empresa": "Meta", "categoria": "consulta-por-usuario", "userAgent": "meta-externalfetcher",
+      "descricaoOficial": "Busca links individuais quando uma pessoa pede, por exemplo em IA agêntica.",
+      "respeitaRobots": "pode ignorar o robots.txt, segundo a documentação, por a visita ser iniciada por uma pessoa",
+      "documentacao": "https://developers.facebook.com/docs/sharing/webmasters/web-crawlers"
+    },
+    {
+      "id": "amazonbot", "nome": "Amazonbot", "empresa": "Amazon", "categoria": "treino", "userAgent": "Amazonbot",
+      "categoriaNota": "A documentação diz que serve para melhorar produtos e serviços da Amazon e que o conteúdo pode ser usado para treinar modelos de IA da Amazon.",
+      "descricaoOficial": "Melhora produtos e serviços da Amazon; o conteúdo pode ser usado para treinar modelos de IA da Amazon.",
+      "respeitaRobots": "sim, segue o Protocolo de Exclusão de Robôs",
+      "documentacao": "https://developer.amazon.com/amazonbot"
+    }
+  ],
+  "nao_incluidos": [
+    { "nome": "Bytespider", "motivo": "A documentação oficial da ByteDance não pôde ser confirmada nesta consulta (a página oficial acessível não menciona o rastreador); mantido fora até haver fonte oficial." }
+  ]
+}

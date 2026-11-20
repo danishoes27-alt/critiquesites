@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Produto com dados estruturados</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"WebSite","@id":"#site","name":"Loja Exemplo","url":"https://loja.example/"},
+ {"@type":"WebPage","@id":"#pagina","name":"Produto","isPartOf":{"@id":"#site"}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Product","name":"Caneca","sku":"CAN-1","offers":{"@type":"Offer","price":"29.90","priceCurrency":"BRL","availability":"https://schema.org/InStock"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Entrega?","acceptedAnswer":{"@type":"Answer","text":"Sim."}}]}
+</script>
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"VideoObject","name":"Vídeo","description":"Demo","thumbnailUrl":"https://loja.example/t.jpg","uploadDate":"2026-01-01"}]
+</script>
+<script type="application/ld+json">
+{ "@type": "Article", "headline": "quebrado", }
+</script>
+</head>
+<body>
+<main>
+<h1>Caneca</h1>
+<div itemscope itemtype="https://schema.org/Person"><span itemprop="name">Ana</span></div>
+<div vocab="https://schema.org/" typeof="Recipe"><span property="name">Bolo</span></div>
+</main>
+<script>
+var s = document.createElement('script');
+s.type = 'application/ld+json';
+s.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'Organization', name: 'Loja Exemplo', url: 'https://loja.example/', logo: 'https://loja.example/logo.png' });
+document.head.appendChild(s);
+</script>
+</body>
+</html>

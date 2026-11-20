@@ -1,0 +1,526 @@
+[
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Fonte principal: guia do Google Search Central sobre otimização para recursos de IA, que diz que llms.txt \"não ajuda nem prejudica\" a visibilidade no Google Search e que pode ser mantido para outros serviços. A página lida não mostra a data de publicação. Peso 0: nunca entra na nota. Se o arquivo tiver texto dirigido a IA, o detector de injeção (outra regra) cuida disso.",
+    "id": "ia-llms-txt-informativo",
+    "categoria": "ia-visibilidade",
+    "titulo": "Arquivo llms.txt: só informamos se ele existe",
+    "descricao": "O Google Search diz que você não precisa criar llms.txt nem outros arquivos de texto para IA: eles não ajudam nem prejudicam sua posição no Google. Por isso, aqui só registramos se o arquivo existe, sem dar nota.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "robots",
+      "detectavel_por_script": "sim",
+      "metodo": "Faz GET em /llms.txt (e /llms-full.txt) e registra se existe (status 200, texto não vazio) e o tamanho; não avalia o conteúdo para fins de nota.",
+      "parametros": {
+        "caminhos": [
+          "/llms.txt",
+          "/llms-full.txt"
+        ],
+        "existe_se": "status 200 e corpo de texto não vazio",
+        "peso_fixo": 0,
+        "texto_fixo": "O Google Search diz que llms.txt não é necessário e não ajuda nem prejudica; o arquivo pode servir a outros serviços.",
+        "so_para_entrada": "url"
+      }
+    },
+    "peso": 0,
+    "severidade": "info",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Nada a corrigir. Ter ou não ter o arquivo não muda sua visibilidade no Google Search.",
+    "prompt_correcao": "Esta regra é só informativa (peso 0). Não crie, não apague nem edite o llms.txt ({{arquivo}}) por causa dela. Só mexa nele se você já tiver outro motivo para isso. Pronto quando nada precisar mudar: o relatório apenas mostra se o arquivo existe.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: guia de otimização para recursos de IA",
+        "url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Recursos de IA e o seu site",
+        "url": "https://developers.google.com/search/docs/appearance/ai-features",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "numero"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "SPEC §2.4 e §5.1: nunca recomendar nem desaconselhar barrar ou permitir rastreadores de IA. Segundo a OpenAI, cada configuração (OAI-SearchBot, GPTBot) funciona de forma independente. Segundo a Anthropic, ClaudeBot (treino), Claude-User (consulta pedida por pessoa) e Claude-SearchBot (índice de busca) obedecem ao robots.txt. Perplexity-User não está na lista pedida, mas consta na documentação da Perplexity e foi incluído. A Google planeja um sinal AIPREF em 2027 (informação da página do Google).",
+    "id": "ia-rastreadores-robots-informativo",
+    "categoria": "ia-visibilidade",
+    "titulo": "Rastreadores de IA no robots.txt: só informamos",
+    "descricao": "Mostra o que o robots.txt diz sobre cada rastreador de IA e explica a diferença entre TREINO (usado para treinar modelos) e BUSCA/CONSULTA (usado para achar ou ler páginas quando alguém pergunta). A decisão sobre cada um é sua.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "robots",
+      "detectavel_por_script": "sim",
+      "metodo": "Lê /robots.txt e, para cada rastreador listado, aplica as regras do grupo mais específico (ou do grupo *) e registra se está permitido, barrado por completo ou barrado em partes; agrupa o resultado em treino, busca e consulta pelo usuário.",
+      "parametros": {
+        "caminho": "/robots.txt",
+        "agentes": {
+          "treino": [
+            {
+              "agente": "GPTBot",
+              "empresa": "OpenAI"
+            },
+            {
+              "agente": "ClaudeBot",
+              "empresa": "Anthropic"
+            },
+            {
+              "agente": "Google-Extended",
+              "empresa": "Google",
+              "observacao": "é um token do robots.txt, não um rastreador separado; controla o uso do conteúdo no treino e na fundamentação do Gemini e não afeta o Google Search"
+            }
+          ],
+          "busca": [
+            {
+              "agente": "OAI-SearchBot",
+              "empresa": "OpenAI"
+            },
+            {
+              "agente": "Claude-SearchBot",
+              "empresa": "Anthropic"
+            },
+            {
+              "agente": "PerplexityBot",
+              "empresa": "Perplexity",
+              "observacao": "indexa para os resultados de busca e, segundo a empresa, não é usado para treinar modelos"
+            }
+          ],
+          "consulta_pelo_usuario": [
+            {
+              "agente": "ChatGPT-User",
+              "empresa": "OpenAI",
+              "observacao": "a OpenAI diz que regras do robots.txt podem não valer, porque a visita é pedida por uma pessoa"
+            },
+            {
+              "agente": "Claude-User",
+              "empresa": "Anthropic"
+            },
+            {
+              "agente": "Perplexity-User",
+              "empresa": "Perplexity",
+              "observacao": "a empresa diz que em geral ignora o robots.txt por ser uma ação pedida por uma pessoa"
+            }
+          ]
+        },
+        "estados": [
+          "sem regra (permitido por padrão)",
+          "permitido de forma explícita",
+          "barrado por completo",
+          "barrado em partes"
+        ],
+        "regras_de_leitura": "vale o grupo User-agent mais específico; sem grupo próprio, vale o grupo *",
+        "nunca_recomendar": [
+          "barrar",
+          "permitir"
+        ],
+        "so_para_entrada": "url"
+      }
+    },
+    "peso": 0,
+    "severidade": "info",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Nada a corrigir. A decisão é sua: o relatório só mostra o que está escrito no robots.txt.",
+    "prompt_correcao": "Esta regra é só informativa (peso 0). Não altere o robots.txt ({{arquivo}}) por causa dela; a decisão sobre cada rastreador é sua. Pronto quando nada precisar mudar: o relatório apenas lista o estado de cada rastreador.",
+    "fonte": [
+      {
+        "nome": "OpenAI: documentação dos rastreadores (GPTBot, OAI-SearchBot, ChatGPT-User)",
+        "url": "https://developers.openai.com/api/docs/bots",
+        "licenca": "documentação pública (sem licença aberta declarada na página)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Anthropic: rastreamento da web e como controlar (ClaudeBot, Claude-SearchBot, Claude-User)",
+        "url": "https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler",
+        "licenca": "documentação pública (sem licença aberta declarada na página)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Perplexity: rastreadores (PerplexityBot, Perplexity-User)",
+        "url": "https://docs.perplexity.ai/guides/bots",
+        "licenca": "documentação pública (sem licença aberta declarada na página)",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Rastreadores comuns do Google (Google-Extended)",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "O achado é um fato sobre as duas versões; a conclusão \"alguns rastreadores podem não ver\" é cautelosa: o Google processa JavaScript, e a documentação dele cita a renderização no servidor como ajuda para outros rastreadores. O limite de 50% é heurística nossa. Texto oculto e clones de carrossel não entram na contagem.",
+    "id": "ia-conteudo-no-html-cru",
+    "categoria": "ia-visibilidade",
+    "titulo": "Texto principal só aparece depois que o JavaScript roda",
+    "descricao": "Compara o texto principal do HTML que o servidor envia (cru) com o da página final. Se quase tudo só aparece depois do JavaScript, rastreadores que não executam JavaScript podem não ver o conteúdo. O Google executa JavaScript e recomenda renderizar no servidor para os demais.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "ia-visibilidade",
+      "detectavel_por_script": "sim",
+      "metodo": "Extrai o texto principal visível e não-clone do HTML cru e do DOM final (dentro de main ou, sem main, do body sem nav, header, footer e aside), normaliza e compara contagem de palavras e blocos de título e parágrafo que só existem no final.",
+      "parametros": {
+        "versoes": [
+          "cru",
+          "final"
+        ],
+        "texto_principal": "main, [role=main] ou body menos nav, header, footer, aside",
+        "normalizacao": "NFKC, espaços colapsados, minúsculas",
+        "metricas": [
+          "palavras_cru",
+          "palavras_final",
+          "razao_cru_sobre_final",
+          "blocos_h1_h3_e_paragrafos_so_no_final"
+        ],
+        "alerta_se_razao_menor_que": 0.5,
+        "origem_do_limite": "heurística nossa, não vem do Google",
+        "texto_em_noscript": "conta como presente no cru",
+        "excecoes": [
+          "contadores e relógios",
+          "preços atualizados por API depois do carregamento"
+        ]
+      }
+    },
+    "peso": 5,
+    "severidade": "P2",
+    "selo": "fato",
+    "confianca": "media",
+    "correcao": "Se o conteúdo importante depende de JavaScript, envie-o já no HTML (renderização no servidor ou pré-renderização).",
+    "prompt_correcao": "No arquivo {{arquivo}}, faça o texto principal de {{trecho}} (hoje só depois do JavaScript, {{valor}} palavras no HTML cru) vir já no HTML enviado pelo servidor, usando renderização no servidor ou pré-renderização do framework. Não tire a interatividade nem mude o visual. Pronto quando o HTML cru contiver o texto principal (pelo menos metade das palavras do DOM final).",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Noções básicas de JavaScript e SEO",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: guia de otimização para recursos de IA",
+        "url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "numero",
+      "contagem",
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "O Google roda JavaScript e acha links no HTML renderizado; o aviso vale mais para rastreadores que não rodam. Limite de 50% é heurística nossa.",
+    "id": "ia-links-internos-so-com-javascript",
+    "categoria": "ia-visibilidade",
+    "titulo": "Links internos só existem depois que o JavaScript roda",
+    "descricao": "Se o menu e os links entre páginas só aparecem depois do JavaScript, quem lê só o HTML cru não consegue seguir para as outras páginas do site.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "ia-visibilidade",
+      "detectavel_por_script": "sim",
+      "metodo": "Conta links <a href> internos únicos no HTML cru e no DOM final da mesma página e compara.",
+      "parametros": {
+        "seletor": "a[href]",
+        "so_internos": true,
+        "versoes": [
+          "cru",
+          "final"
+        ],
+        "alerta_se_razao_menor_que": 0.5,
+        "minimo_de_links_no_final": 5,
+        "origem_do_limite": "heurística nossa"
+      }
+    },
+    "peso": 3,
+    "severidade": "P2",
+    "selo": "fato",
+    "confianca": "media",
+    "correcao": "Faça os links principais do menu já estarem no HTML enviado pelo servidor.",
+    "prompt_correcao": "No arquivo {{arquivo}}, faça os links de navegação {{trecho}} serem <a href> presentes no HTML enviado pelo servidor (hoje {{valor}} no cru contra o total na página final). Não mude os destinos nem o visual do menu. Pronto quando o HTML cru tiver pelo menos metade dos links internos do DOM final.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Noções básicas de JavaScript e SEO",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Links rastreáveis",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/links-crawlable",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "numero",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "A documentação do Google diz que o Googlebot consulta o robots.txt antes de buscar uma URL e que processa JavaScript \"desde que não esteja barrado\". Confiança média porque a página lida cita isso sobre a URL da página; aplicar o mesmo raciocínio aos subrecursos é prática comum, mas não tem frase expressa. Fala só do Googlebot e do conteúdo da página; não trata de rastreadores de IA.",
+    "id": "ia-recursos-bloqueados-no-robots-txt",
+    "categoria": "ia-visibilidade",
+    "titulo": "Scripts e estilos da página barrados no robots.txt para o Googlebot",
+    "descricao": "Se o robots.txt impede o Googlebot de ler os arquivos JavaScript e CSS que montam a página, ele pode não conseguir exibir o conteúdo como você vê. O Google processa JavaScript desde que ele não esteja barrado.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "robots",
+      "detectavel_por_script": "sim",
+      "metodo": "Para cada script e folha de estilo carregado pela página no mesmo domínio, aplica as regras do robots.txt ao agente Googlebot e lista os que estão proibidos.",
+      "parametros": {
+        "recursos": [
+          "script[src]",
+          "link[rel~=stylesheet]"
+        ],
+        "agente": "Googlebot",
+        "mesmo_dominio": true,
+        "falha_se": "URL do recurso proibida pelo robots.txt",
+        "so_para_entrada": "url"
+      }
+    },
+    "peso": 4,
+    "severidade": "P2",
+    "selo": "regra",
+    "confianca": "media",
+    "correcao": "Ajuste o robots.txt para que os arquivos que montam a página possam ser lidos pelo Googlebot.",
+    "prompt_correcao": "No arquivo {{arquivo}} (robots.txt), ajuste a regra {{trecho}} para que os arquivos {{valor}} (scripts e estilos usados pela página) possam ser lidos pelo Googlebot, sem abrir áreas privadas. Não apague outras regras nem as linhas Sitemap. Pronto quando nenhum script ou CSS da página estiver proibido para o Googlebot no robots.txt.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Noções básicas de JavaScript e SEO",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: guia de otimização para recursos de IA",
+        "url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho",
+      "contagem"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "completo"
+    ],
+    "notas": "Opinião do modelo, nunca fato: o script não lê texto dentro de imagens (sem OCR). Pode haver falso alerta em fotos puramente decorativas.",
+    "id": "ia-informacao-chave-so-em-imagem-ou-video",
+    "categoria": "ia-visibilidade",
+    "titulo": "Informação importante só dentro de imagem ou vídeo",
+    "descricao": "O Google recomenda que o conteúdo importante esteja também em texto, apoiado por imagens e vídeos. Preço, planos ou promessas que só existem dentro de uma imagem não podem ser lidos como texto.",
+    "deteccao": {
+      "tipo": "misto",
+      "medidor": "modelo",
+      "detectavel_por_script": "parcial",
+      "metodo": "O script lista seções grandes com imagem ou vídeo e quase nenhum texto (menos de 5 palavras, sem alt descritivo); o modelo olha só essas seções na captura de tela e diz se há informação importante escrita dentro da imagem.",
+      "parametros": {
+        "candidatas": "seções com area grande, img/video/canvas e menos de 5 palavras visíveis",
+        "maximo_para_o_modelo": 12,
+        "origem_dos_limites": "heurística nossa",
+        "pergunta_ao_modelo": "há preço, prazo, oferta ou promessa escrita na imagem que não aparece como texto?"
+      }
+    },
+    "peso": 2,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "correcao": "Escreva também em texto as informações importantes que hoje só aparecem dentro de imagens.",
+    "prompt_correcao": "No arquivo {{arquivo}}, escreva em texto HTML a informação que hoje só aparece dentro da imagem {{trecho}} (por exemplo \"{{valor}}\"), mantendo a imagem como apoio e com alt descritivo. Não remova a imagem nem mude o layout. Pronto quando o texto estiver no HTML cru e visível na página.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Recursos de IA e o seu site",
+        "url": "https://developers.google.com/search/docs/appearance/ai-features",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: guia de otimização para recursos de IA",
+        "url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "Segundo o Google, para aparecer nos recursos de IA a página precisa estar indexada e poder mostrar trecho; nosnippet, max-snippet, data-nosnippet e noindex são os controles disponíveis. noindex é tratado como problema em seo-noindex-na-pagina.",
+    "id": "ia-limite-de-trechos-informativo",
+    "categoria": "ia-visibilidade",
+    "titulo": "Limites de trecho no Google (nosnippet, max-snippet): só informamos",
+    "descricao": "Mostra se a página usa nosnippet, max-snippet ou data-nosnippet. Esses controles limitam quanto texto o Google pode exibir, inclusive nos recursos de IA. Podem ser intencionais; a decisão é sua.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "ia-visibilidade",
+      "detectavel_por_script": "sim",
+      "metodo": "Lê meta robots e googlebot, o cabeçalho X-Robots-Tag e o atributo data-nosnippet no HTML cru e no DOM final e registra nosnippet, max-snippet (valor) e elementos com data-nosnippet.",
+      "parametros": {
+        "fontes": [
+          "meta[name=robots]",
+          "meta[name=googlebot]",
+          "header X-Robots-Tag",
+          "[data-nosnippet]"
+        ],
+        "valores": [
+          "nosnippet",
+          "max-snippet:N",
+          "max-snippet:0"
+        ],
+        "versoes": [
+          "cru",
+          "final"
+        ],
+        "peso_fixo": 0
+      }
+    },
+    "peso": 0,
+    "severidade": "info",
+    "selo": "regra",
+    "confianca": "alta",
+    "correcao": "Nada a corrigir. A decisão é sua: esses controles limitam o quanto do texto o Google mostra e podem ser de propósito.",
+    "prompt_correcao": "Esta regra é só informativa (peso 0). Não altere nosnippet, max-snippet nem data-nosnippet em {{arquivo}} por causa dela; a decisão é sua. Pronto quando nada precisar mudar: o relatório só lista o que foi encontrado.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: Meta tag robots e X-Robots-Tag",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      },
+      {
+        "nome": "Google Search Central: Recursos de IA e o seu site",
+        "url": "https://developers.google.com/search/docs/appearance/ai-features",
+        "licenca": "CC BY 4.0 (conteúdo) e Apache 2.0 (exemplos de código), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [],
+    "citacoes": [
+      "trecho"
+    ]
+  },
+  {
+    "tipos_de_site": [
+      "*"
+    ],
+    "modo": [
+      "rapido",
+      "completo"
+    ],
+    "notas": "O Google diz que HTML semântico é recomendado e não obrigatório, por isso peso mínimo e selo de opinião. Evitar afirmar que isso \"derruba\" a visibilidade em IA.",
+    "id": "ia-estrutura-semantica-fraca",
+    "categoria": "ia-visibilidade",
+    "titulo": "HTML quase sem estrutura (sem main, títulos nem listas)",
+    "descricao": "O Google entende HTML imperfeito e diz que HTML semântico é recomendado, mas não obrigatório. Páginas feitas só de div, sem títulos, regiões nem listas, são mais difíceis de ler por máquinas e por pessoas com leitor de tela.",
+    "deteccao": {
+      "tipo": "script",
+      "medidor": "ia-visibilidade",
+      "detectavel_por_script": "sim",
+      "metodo": "Conta no HTML cru elementos semânticos (main, nav, header, footer, article, section, h1 a h6, ul, ol, table, p) e compara com a quantidade de div e span; alerta quando não há título nem região principal.",
+      "parametros": {
+        "semanticos": [
+          "main",
+          "nav",
+          "header",
+          "footer",
+          "article",
+          "section",
+          "h1",
+          "h2",
+          "h3",
+          "ul",
+          "ol",
+          "table",
+          "p"
+        ],
+        "alerta_se": "nenhum título (h1 a h3) e nenhuma região main ou article no HTML cru",
+        "origem_do_criterio": "heurística nossa",
+        "versoes": [
+          "cru"
+        ]
+      }
+    },
+    "peso": 1,
+    "severidade": "P3",
+    "selo": "opiniao",
+    "confianca": "baixa",
+    "correcao": "Use títulos (h1, h2), main, listas e parágrafos de verdade em vez de só div.",
+    "prompt_correcao": "No arquivo {{arquivo}}, troque divs genéricas de {{trecho}} por elementos semânticos (main, h1/h2, p, ul/li, nav). Não mude o visual (ajuste o CSS se necessário) nem o texto. Pronto quando o HTML cru tiver um main e ao menos um título h1 ou h2 e o layout continuar igual.",
+    "fonte": [
+      {
+        "nome": "Google Search Central: guia de otimização para recursos de IA",
+        "url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+        "licenca": "CC BY 4.0 (conteúdo), segundo as Políticas do Google Developers",
+        "data_consulta": "2026-11-18"
+      }
+    ],
+    "origem_ids": [
+      "vercel-web-interface-guidelines:CMD-ACC-08"
+    ],
+    "citacoes": [
+      "contagem"
+    ]
+  }
+]
