@@ -4,6 +4,14 @@
   "private": false,
   "description": "Skill em português do Brasil que critica sites inteiros para quem não é dev.",
   "author": "Daniel Berg",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danishoes27-alt/critiquesites.git"
+  },
+  "homepage": "https://github.com/danishoes27-alt/critiquesites#readme",
+  "bugs": {
+    "url": "https://github.com/danishoes27-alt/critiquesites/issues"
+  },
   "license": "MIT",
   "type": "module",
   "scripts": {

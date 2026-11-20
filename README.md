@@ -43,7 +43,7 @@ Precisa de [Node.js](https://nodejs.org) 20 ou mais novo e do Claude Code.
 
 ```powershell
 # 1. coloque a pasta onde o Claude Code procura skills
-git clone <endereço-deste-repositório> "$env:USERPROFILE\.claude\skills\critiquesites"
+git clone https://github.com/danishoes27-alt/critiquesites.git "$env:USERPROFILE\.claude\skills\critiquesites"
 cd "$env:USERPROFILE\.claude\skills\critiquesites"
 
 # 2. instale as dependências e o navegador (tudo dentro da pasta da skill)
